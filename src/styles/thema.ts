@@ -2,6 +2,9 @@
 import { DefaultTheme } from "styled-components";
 
 const thema: DefaultTheme = {
+  spacing: {
+    sm: "1.5rem",
+  },
   colorsPrimary: {
     cinza: "#cccccc",
     coral: "#EE6471",

@@ -8,18 +8,29 @@ const ListaLinksStyle = styled.ul`
   gap: 4rem;
 `;
 const LinkStyle = styled.li`
-  ${basicParagraph}
-  color: #FFFFFF;
   list-style: none;
+  a {
+    ${basicParagraph}
+    color: #FFFFFF;
+    text-decoration: none;
+  }
 `;
 const Navbar = () => {
   return (
     <NavbarStyle>
       <ListaLinksStyle>
-        <LinkStyle>Home</LinkStyle>
-        <LinkStyle>Nossas lojas</LinkStyle>
-        <LinkStyle>Novidades</LinkStyle>
-        <LinkStyle>Promoções</LinkStyle>
+        <LinkStyle>
+          <a href="#">Home</a>
+        </LinkStyle>
+        <LinkStyle>
+          <a href="#">Nossas lojas</a>
+        </LinkStyle>
+        <LinkStyle>
+          <a href="#">Novidades</a>
+        </LinkStyle>
+        <LinkStyle>
+          <a href="#">Promoções</a>
+        </LinkStyle>
       </ListaLinksStyle>
     </NavbarStyle>
   );
