@@ -12,8 +12,10 @@ declare module "styled-components" {
       verde: string;
       roxo: string;
       preto: string;
+      branco: string;
       coral: string;
       laranja: string;
+      dropDown: string;
     };
     inputState: {
       error: string;
