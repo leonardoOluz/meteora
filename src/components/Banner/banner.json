@@ -1,0 +1,25 @@
+{
+  "banner": [
+    {
+      "id": 1,
+      "alt": "foto do banner com uma moça branca loira usando calça jeans azul clara e uma blusa dourada e no fundo uma cor roxa.",
+      "fotoMobile": "/assets/banner/mobile/BannerCarouselOne_375.png",
+      "fotoTablet": "/assets/banner/tablet/BannerCarouselOne_768.png",
+      "fotoDesktop": "/assets/banner/desktop/BannerCarouselOne_1440.png"
+    },
+    {
+      "id": 2,
+      "alt": "foto do banner com uma moça morena usando oculos de sol, sentada em um sofa de couro e usando uma blusa preta, no fundo a parede rosa.",
+      "fotoMobile": "/assets/banner/mobile/BannerCarouselTwo_375.png",
+      "fotoTablet": "/assets/banner/tablet/BannerCarouselTwo_768.png",
+      "fotoDesktop": "/assets/banner/desktop/BannerCarouselTwo_1440.png"
+    },
+    {
+      "id": 3,
+      "alt": "Foto do banner com um rapaz moreno no canto direito usando um terno branco, chapeu e usando oculos de grau, no fundo a parede laranja.",
+      "fotoMobile": "/assets/banner/mobile/BannerCarouselThree_375.png",
+      "fotoTablet": "/assets/banner/tablet/BannerCarouselThree_768.png",
+      "fotoDesktop": "/assets/banner/desktop/BannerCarouselThree_1440.png"
+    }
+  ]
+}

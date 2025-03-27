@@ -4,13 +4,18 @@ import "styled-components";
 // and extend them!
 declare module "styled-components" {
   export interface DefaultTheme {
+    spacing:{
+      sm: string;
+    };
     colorsPrimary: {
       cinza: string;
       verde: string;
       roxo: string;
       preto: string;
+      branco: string;
       coral: string;
       laranja: string;
+      dropDown: string;
     };
     inputState: {
       error: string;

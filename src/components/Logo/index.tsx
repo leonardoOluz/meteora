@@ -5,7 +5,7 @@ import logoDesktop from "@assets/Desktop/Logo desktop.png";
 
 const LogoImg = styled.img`
   width: 12.6rem;
-  height: 1.8rem;
+  height: 2.4rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 10rem;

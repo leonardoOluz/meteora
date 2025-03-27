@@ -2,13 +2,18 @@
 import { DefaultTheme } from "styled-components";
 
 const thema: DefaultTheme = {
+  spacing: {
+    sm: "1rem",
+  },
   colorsPrimary: {
     cinza: "#cccccc",
     coral: "#EE6471",
     laranja: "#F87F46",
     preto: "#000000",
+    branco: "#ffffff",
     roxo: "#9353FF",
     verde: "#DAFF01",
+    dropDown: "#343A40",
   },
   inputState: {
     error: "#DC3545",
