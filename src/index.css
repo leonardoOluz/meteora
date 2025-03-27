@@ -11,3 +11,23 @@ body {
   box-sizing: border-box;
   font-weight: 400;
 }
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 5px;
+  background-color: #ccc;
+  display: inline-block;
+  margin: 0 5px;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: "#000";
+  opacity: 1;
+}

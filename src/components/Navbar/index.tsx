@@ -1,11 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import MenuHamburguer from "../MenuHamburguer";
+
 const dropDownOpen  = css`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: ${({ theme }) => theme.colorsPrimary.dropDown};
 `;
 const ContainerStyle = styled.div<{ $menuAberto: boolean }>`

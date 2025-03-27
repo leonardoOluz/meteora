@@ -29,6 +29,7 @@ const MenuHamburguer = ({ setMenuAberto, menuAberto }: IProps) => {
       <BtnMenu
         $menuAberto={menuAberto}
         onClick={() => setMenuAberto(!menuAberto)}
+        onBlur={()=> setMenuAberto(false)}
         aria-label={`menu hamburguer ${menuAberto ? "fechar" : "abrir"}`}
       >
         {menuAberto ? (
