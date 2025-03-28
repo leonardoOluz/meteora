@@ -7,8 +7,6 @@ import "swiper/swiper-bundle.css";
 import { FotoStyles, StyledSwiperContainer } from "./styles";
 import { SwiperOptions } from "swiper/types";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import styled from "styled-components";
-import Typography from "../Typography";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
@@ -19,27 +17,12 @@ const swiperSettings: SwiperOptions = {
   pagination: {
     clickable: true,
   },
-  // autoplay: {
-  //   delay: 5000,
-  // },
+  autoplay: {
+    delay: 3500,
+  },
 };
 
 type imagensBanner = (typeof banner.banner)[0];
-
-const FigureStyle = styled.figure`
-  margin: 0;
-  width: 100%;
-  position: relative;
-`;
-const FiguCaptionStyles = styled.figcaption`
-  position: absolute;
-  top: 60%;
-  right: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const Banner = () => {
   const { width } = useResize();
@@ -55,17 +38,7 @@ const Banner = () => {
     <StyledSwiperContainer {...swiperSettings}>
       {banner.banner.map((foto) => (
         <SwiperSlide key={foto.id}>
-          <FigureStyle>
-            <FotoStyles src={imagemAtual(foto)} alt={foto.alt} />
-            <FiguCaptionStyles>
-              <Typography elementoHtml="h3" nameClass="displayFour">
-                COLEÇÃO ATEMPORAL
-              </Typography>
-              <Typography elementoHtml="p" nameClass="paragraph">
-                Estilo e qualidade para durar.{" "}
-              </Typography>
-            </FiguCaptionStyles>
-          </FigureStyle>
+          <FotoStyles src={imagemAtual(foto)} alt={foto.alt} />
         </SwiperSlide>
       ))}
     </StyledSwiperContainer>
