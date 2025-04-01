@@ -3,12 +3,12 @@
     {
       "id": 1,
       "categoria": "Camisetas",
-      "imagem": "camiseta"
+      "imagem": "camisetas"
     },
     {
       "id": 2,
       "categoria": "Bolsas",
-      "imagem": "bolsa"
+      "imagem": "bolsas"
     },
     {
       "id": 3,
