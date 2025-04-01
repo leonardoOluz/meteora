@@ -3,32 +3,32 @@
     {
       "id": 1,
       "categoria": "Camisetas",
-      "imagem": "Camiseta"
+      "imagem": "camiseta"
     },
     {
       "id": 2,
       "categoria": "Bolsas",
-      "imagem": "Bolsas"
+      "imagem": "bolsas"
     },
     {
       "id": 3,
       "categoria": "Calçados",
-      "imagem": "Calçados"
+      "imagem": "calçados"
     },
     {
       "id": 4,
       "categoria": "Calças",
-      "imagem": "Calças"
+      "imagem": "calças"
     },
     {
       "id": 5,
       "categoria": "Casacos",
-      "imagem": "Casacos"
+      "imagem": "casacos"
     },
     {
       "id": 6,
       "categoria": "Óculos",
-      "imagem": "Óculos"
+      "imagem": "óculos"
     }
   ]
 }

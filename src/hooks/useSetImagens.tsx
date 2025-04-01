@@ -18,11 +18,11 @@ export default function useSetImagens() {
   };
   const imagensCategoria = (imagens: imagensCategoria) => {
     return width < transformNumber(thema.breakpoints.tablet)
-      ? `/public/assets/mobile/categorias/Categoria ${imagens.imagem}.png`
+      ? `assets/mobile/categorias/Categoria ${imagens.imagem}.png`
       : width < transformNumber(thema.breakpoints.desktop) ||
         width > transformNumber(thema.breakpoints.tablet)
-      ? `/public/assets/tablet/categorias/Categoria ${imagens.imagem}.png`
-      : `/public/assets/desktop/categorias/Categoria ${imagens.imagem}.png`;
+      ? `assets/tablet/categorias/Categoria ${imagens.imagem}.png`
+      : `assets/desktop/categorias/Categoria ${imagens.imagem}.png`;
   };
   return {
     imagensBanner,
