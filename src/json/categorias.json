@@ -1,0 +1,34 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "categoria": "Camisetas",
+      "imagem": "Camiseta"
+    },
+    {
+      "id": 2,
+      "categoria": "Bolsas",
+      "imagem": "Bolsas"
+    },
+    {
+      "id": 3,
+      "categoria": "Calçados",
+      "imagem": "Calçados"
+    },
+    {
+      "id": 4,
+      "categoria": "Calças",
+      "imagem": "Calças"
+    },
+    {
+      "id": 5,
+      "categoria": "Casacos",
+      "imagem": "Casacos"
+    },
+    {
+      "id": 6,
+      "categoria": "Óculos",
+      "imagem": "Óculos"
+    }
+  ]
+}

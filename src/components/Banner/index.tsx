@@ -1,12 +1,11 @@
-import banner from "./banner.json";
-import useResize from "@/hooks/useResize";
-import { thema } from "@/styles/thema";
-import transformNumber from "@/hooks/utils/transformNumber";
+import banner from "@/json/banner.json";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { FotoStyles, StyledSwiperContainer } from "./styles";
+import { StyledSwiperContainer } from "./styles";
 import { SwiperOptions } from "swiper/types";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import Photo from "../Photo";
+import useSetImagens from "@/hooks/useSetImagens";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
@@ -22,23 +21,14 @@ const swiperSettings: SwiperOptions = {
   },
 };
 
-type imagensBanner = (typeof banner.banner)[0];
-
 const Banner = () => {
-  const { width } = useResize();
-  const imagemAtual = (imagens: imagensBanner): string => {
-    return width < transformNumber(thema.breakpoints.tablet)
-      ? imagens.fotoMobile
-      : width < transformNumber(thema.breakpoints.desktop)
-      ? imagens.fotoTablet
-      : imagens.fotoDesktop;
-  };
+  const { imagensBanner } = useSetImagens();
 
   return (
     <StyledSwiperContainer {...swiperSettings}>
       {banner.banner.map((foto) => (
         <SwiperSlide key={foto.id}>
-          <FotoStyles src={imagemAtual(foto)} alt={foto.alt} />
+          <Photo photo={imagensBanner(foto)} alt={foto.alt} classe={"imgBanner"}/>
         </SwiperSlide>
       ))}
     </StyledSwiperContainer>
