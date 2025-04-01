@@ -31,7 +31,3 @@ export const StyledSwiperContainer = styled(Swiper)`
     color: ${({ theme }) => theme.colorsPrimary.branco};
   }
 `;
-export const FotoStyles = styled.img`
-  object-fit: cover;
-  width: 100%;
-`;

@@ -4,14 +4,12 @@ import "normalize.css";
 import "./index.css";
 import { ThemeProvider } from "styled-components";
 import { thema } from "./styles/thema";
-import Header from "./components/Header";
-import Banner from "./components/Banner";
+import Home from "./pages/home";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={thema}>
-      <Header />
-      <Banner/>
+      <Home />
     </ThemeProvider>
   </StrictMode>
 );
