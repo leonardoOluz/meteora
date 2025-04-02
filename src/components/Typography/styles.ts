@@ -21,23 +21,30 @@ const paragraph = css`
   text-align: center;
 `;
 
-const titleHeading = css`
+const basicHeadingH3 = css`
   color: #212529;
   font-weight: 500;
   font-size: 2.8rem;
   line-height: 100%;
   letter-spacing: 0rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 3.2rem;
+  }
 `;
 
-const basicHeading = css`
-  margin: 0;
-  color: #ffffff;
+const basicHeadingH4 = css`
+  color: ${({ theme }) => theme.colorsPrimary.branco};
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
+  line-height: 100%;
+  letter-spacing: 0rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 3.2rem;
+  }
 `;
 
 export const TypographyStyle = styled.div<{
-  $nameClass?: "displayFour" | "paragraph" | "titleHeading" | "basicHeading";
+  $nameClass?: "displayFour" | "paragraph" | "basicHeadingH3" | "basicHeadingH4";
 }>`
   box-sizing: border-box;
   ${({ $nameClass }) => {
@@ -46,10 +53,10 @@ export const TypographyStyle = styled.div<{
         return displayFour;
       case "paragraph":
         return paragraph;
-      case "titleHeading":
-        return titleHeading;
-      case "basicHeading":
-        return basicHeading;
+      case "basicHeadingH3":
+        return basicHeadingH3;
+      case "basicHeadingH4":
+        return basicHeadingH4;
       default:
         return paragraph;
     }
