@@ -1,5 +1,5 @@
 import categorias from "@/json/categorias.json";
-import Figure from "@components/Figure";
+import CardCategoria from "@/pages/home/Categoria/CardCategoria";
 import Photo from "@components/Photo";
 import useSetImagens from "@/hooks/useSetImagens";
 import Typography from "@components/Typography";
@@ -10,20 +10,20 @@ import Item from "@/components/LIsta/Item";
 const Categoria = () => {
   const { imagensCategoria } = useSetImagens();
   return (
-    <Section classe="categoria">
-      <Typography elementoHtml="h3" nameClass="titleHeading">
+    <Section classe="secaoCategorias">
+      <Typography elementoHtml="h3" nameClass="basicHeadingH3">
         Busque por categoria:
       </Typography>
-      <Lista>
+      <Lista classe="listaCategorias">
         {categorias.categorias.map((item) => (
           <Item key={item.id}>
-            <Figure texto={item.categoria}>
+            <CardCategoria texto={item.categoria}>
               <Photo
                 photo={imagensCategoria(item)}
                 alt={item.categoria}
                 classe="imgCategoria"
               />
-            </Figure>
+            </CardCategoria>
           </Item>
         ))}
       </Lista>
