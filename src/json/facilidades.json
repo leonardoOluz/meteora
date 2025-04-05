@@ -1,0 +1,22 @@
+{
+  "facilidades": [
+    {
+      "id": 1,
+      "title": "PAGUE PELO PIX",
+      "description": "Ganhe 5% OFF em pagamentos via PIX",
+      "image": "x-diamond"
+    },
+    {
+      "id": 2,
+      "title": "TROCA GRÁTIS",
+      "description": "Fique livre para trocar em até 30 dias.",
+      "image": "arrow-repeat"
+    },
+    {
+      "id": 3,
+      "title": "SUSTENTABILIDADE",
+      "description": "Moda responsável, que respeita o meio ambiente.",
+      "image": "flower"
+    }
+  ]
+}

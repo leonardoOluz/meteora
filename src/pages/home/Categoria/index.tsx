@@ -14,7 +14,7 @@ const Categoria = () => {
       <Typography elementoHtml="h3" nameClass="basicHeadingH3">
         Busque por categoria:
       </Typography>
-      <Lista>
+      <Lista classe="listaCategorias">
         {categorias.categorias.map((item) => (
           <Item key={item.id}>
             <CardCategoria texto={item.categoria}>

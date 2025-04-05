@@ -2,13 +2,13 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const secaoFacilidades = css`
-  background-color: ${({theme}) => theme.colorsPrimary.preto};
+  background-color: ${({ theme }) => theme.colorsPrimary.preto};
+  padding: 4rem 0;
+  gap: 2rem;
 `;
 const secaoCategorias = css`
   margin: 0 2.65rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 const SectionStyle = styled.section<{ $classe?: string }>`
   display: flex;
