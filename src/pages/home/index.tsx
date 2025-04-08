@@ -1,14 +1,16 @@
 import Banner from "@/components/Banner";
 import Categoria from "@/pages/home/Categoria";
-import Header from "@/components/Header";
+import Cabecalho from "@/components/Cabecalho";
 import Facilidades from "./Facilidades";
+import Produtos from "./Produtos";
 
 const Home = () => {
   return (
     <>
-      <Header />
+      <Cabecalho />
       <Banner />
       <Categoria />
+      <Produtos />
       <Facilidades />
     </>
   );

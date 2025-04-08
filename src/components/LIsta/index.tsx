@@ -30,8 +30,16 @@ const listaFelicidades = css`
   }
 `;
 
+const listaProdutos = css`
+  max-width: 111rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+`;
+
 const ListaStyle = styled.ul<{
-  $classe: "listaCategorias" | "listaFelicidades";
+  $classe: "listaCategorias" | "listaFelicidades" | "listaProdutos";
 }>`
   ${({ $classe }) => {
     switch ($classe) {
@@ -39,6 +47,8 @@ const ListaStyle = styled.ul<{
         return listaCategorias;
       case "listaFelicidades":
         return listaFelicidades;
+      case "listaProdutos":
+        return listaProdutos;
       default:
         break;
     }
@@ -47,7 +57,7 @@ const ListaStyle = styled.ul<{
 
 interface IProps {
   children: React.ReactNode;
-  classe: "listaCategorias" | "listaFelicidades";
+  classe: "listaCategorias" | "listaFelicidades" | "listaProdutos";
 }
 
 const Lista = ({ children, classe }: IProps) => {

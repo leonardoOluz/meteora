@@ -9,6 +9,7 @@ declare module "styled-components" {
     };
     colorsPrimary: {
       cinza: string;
+      cinzaChumbo: string;
       verde: string;
       roxo: string;
       preto: string;
