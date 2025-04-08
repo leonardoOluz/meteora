@@ -1,19 +1,28 @@
+import { IClassTypograph, IGrid, ITag } from "@/interface/IU";
 import { TypographyStyle } from "./styles";
 
 interface IProps {
   children: React.ReactNode;
-  elementoHtml: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  nameClass:
-    | "paragraph"
-    | "basicParagraphBold"
-    | "basicParagraphSmall"
-    | "basicHeadingH3"
-    | "basicHeadingH2";
+  elementoHtml: ITag;
+  classTypograph: IClassTypograph;
+  isColor?: string;
+  isGrid?: IGrid;
 }
 
-const Typography = ({ elementoHtml, children, nameClass }: IProps) => {
+const Typography = ({
+  elementoHtml,
+  children,
+  classTypograph,
+  isColor,
+  isGrid,
+}: IProps) => {
   return (
-    <TypographyStyle as={elementoHtml} $nameClass={nameClass}>
+    <TypographyStyle
+      as={elementoHtml}
+      $classTypograph={classTypograph}
+      $isColor={isColor}
+      $isGrid={isGrid}
+    >
       {children}
     </TypographyStyle>
   );

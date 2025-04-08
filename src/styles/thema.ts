@@ -7,6 +7,7 @@ const thema: DefaultTheme = {
   },
   colorsPrimary: {
     cinza: "#cccccc",
+    cinzaChumbo: "#212529",
     coral: "#EE6471",
     laranja: "#F87F46",
     preto: "#000000",

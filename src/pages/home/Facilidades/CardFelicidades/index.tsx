@@ -1,13 +1,14 @@
 import Typography from "@/components/Typography";
+import { thema } from "@/styles/thema";
 import styled from "styled-components";
 
 const ContainerFacilidadesStyle = styled.div`
-  max-width: 30.4rem;
+  max-width: 28.4rem;
   display: grid;
   grid-template-areas: "imagenFacilidades tituloFacilidades" "imagenFacilidades descricaoFacilidades";
   grid-template-columns: 1fr 3fr;
-  grid-row-gap: 1.5rem;
-  grid-column-gap: 2rem;
+  grid-row-gap: 1.6rem;
+  grid-column-gap: 2.4rem;
 `;
 interface IProps {
   children: React.ReactNode;
@@ -18,10 +19,19 @@ const CardFelicidades = ({ children, title, description }: IProps) => {
   return (
     <ContainerFacilidadesStyle>
       {children}
-      <Typography elementoHtml="h4" nameClass="basicParagraphBold">
+      <Typography
+        elementoHtml="h4"
+        classTypograph="basicParagraphBold"
+        isColor={thema.colorsPrimary.verde}
+        isGrid="tituloFacilidades"
+      >
         {title}
       </Typography>
-      <Typography elementoHtml="p" nameClass="basicParagraphSmall">
+      <Typography
+        elementoHtml="p"
+        classTypograph="basicParagraphSmall"
+        isGrid="descricaoFacilidades"
+      >
         {description}
       </Typography>
     </ContainerFacilidadesStyle>

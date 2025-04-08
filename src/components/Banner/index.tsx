@@ -28,7 +28,7 @@ const Banner = () => {
     <StyledSwiperContainer {...swiperSettings}>
       {banner.banner.map((foto) => (
         <SwiperSlide key={foto.id}>
-          <Photo photo={imagensBanner(foto)} alt={foto.alt} classe={"imgBanner"}/>
+          <Photo photo={imagensBanner(foto)} alt={foto.alt} classeImg={"imgBanner"}/>
         </SwiperSlide>
       ))}
     </StyledSwiperContainer>

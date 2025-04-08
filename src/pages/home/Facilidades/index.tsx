@@ -11,7 +11,10 @@ const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();
   return (
     <Section classe="secaoFacilidades">
-      <Typography elementoHtml="h2" nameClass="basicHeadingH2">
+      <Typography
+        elementoHtml="h2"
+        classTypograph="basicHeadingH2"
+      >
         Conheça todas as nossas facilidades
       </Typography>
       <Lista classe="listaFelicidades">
@@ -21,7 +24,7 @@ const Facilidades = () => {
               <Photo
                 photo={imagensFacilidades(item)}
                 alt={item.title}
-                classe="imgFacilidades"
+                classeImg="imgFacilidades"
               />
             </CardFelicidades>
           </Item>

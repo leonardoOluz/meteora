@@ -11,7 +11,7 @@ const Categoria = () => {
   const { imagensCategoria } = useSetImagens();
   return (
     <Section classe="secaoCategorias">
-      <Typography elementoHtml="h3" nameClass="basicHeadingH3">
+      <Typography elementoHtml="h2" classTypograph="basicHeadingH3">
         Busque por categoria:
       </Typography>
       <Lista classe="listaCategorias">
@@ -21,7 +21,7 @@ const Categoria = () => {
               <Photo
                 photo={imagensCategoria(item)}
                 alt={item.categoria}
-                classe="imgCategoria"
+                classeImg="imgCategoria"
               />
             </CardCategoria>
           </Item>
