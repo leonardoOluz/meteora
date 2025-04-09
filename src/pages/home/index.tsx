@@ -3,6 +3,7 @@ import Categoria from "@/pages/home/Categoria";
 import Cabecalho from "@/components/Cabecalho";
 import Facilidades from "./Facilidades";
 import Produtos from "./Produtos";
+import NewsLetter from "@/components/NewsLetter";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Categoria />
       <Produtos />
       <Facilidades />
+      <NewsLetter/>
     </>
   );
 };

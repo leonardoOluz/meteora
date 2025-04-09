@@ -3,20 +3,22 @@ import {
   basicHeadingH2,
   basicHeadingH3,
   basicParagraphBold,
+  basicParagraphLead,
   basicParagraphSmall,
   paragraph,
 } from "@/styles/stylesGlobal";
 import styled from "styled-components";
 
 export const TypographyStyle = styled.div<{
-  $classTypograph?: IClassTypograph;
+  $classNameTypograph?: IClassTypograph;
   $isColor?: string;
   $isGrid?: IGrid;
 }>`
   color: ${({ theme, $isColor }) => $isColor || theme.colorsPrimary.branco};
   box-sizing: border-box;
-  ${({ $classTypograph: $nameClass, $isGrid }) => {
-    switch ($nameClass) {
+
+  ${({ $classNameTypograph, $isGrid }) => {
+    switch ($classNameTypograph) {
       case "paragraph":
         return paragraph;
       case "basicParagraphBold":
@@ -27,6 +29,8 @@ export const TypographyStyle = styled.div<{
         return basicHeadingH3;
       case "basicHeadingH2":
         return basicHeadingH2;
+      case "basicParagraphLead":
+        return basicParagraphLead;
       default:
         return paragraph;
     }

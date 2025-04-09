@@ -42,5 +42,6 @@ declare module "styled-components" {
       tablet: string;
       desktop: string;
     };
+    fontFamily: string;
   }
 }

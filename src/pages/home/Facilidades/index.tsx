@@ -10,10 +10,10 @@ import useSetImagens from "@/hooks/useSetImagens";
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();
   return (
-    <Section classe="secaoFacilidades">
+    <Section classNameSection="secaoFacilidades">
       <Typography
         elementoHtml="h2"
-        classTypograph="basicHeadingH2"
+        classNameTypograph="basicHeadingH2"
       >
         Conheça todas as nossas facilidades
       </Typography>

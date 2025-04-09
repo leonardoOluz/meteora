@@ -1,5 +1,5 @@
-import { inputBuscador } from "@/styles/stylesGlobal";
 import styled from "styled-components";
+import { inputBuscador } from "./styles";
 
 const BuscadorStyle = styled.input`
   ${inputBuscador}

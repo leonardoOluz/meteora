@@ -4,7 +4,7 @@ import { TypographyStyle } from "./styles";
 interface IProps {
   children: React.ReactNode;
   elementoHtml: ITag;
-  classTypograph: IClassTypograph;
+  classNameTypograph: IClassTypograph;
   isColor?: string;
   isGrid?: IGrid;
 }
@@ -12,14 +12,14 @@ interface IProps {
 const Typography = ({
   elementoHtml,
   children,
-  classTypograph,
+  classNameTypograph,
   isColor,
   isGrid,
 }: IProps) => {
   return (
     <TypographyStyle
       as={elementoHtml}
-      $classTypograph={classTypograph}
+      $classNameTypograph={classNameTypograph}
       $isColor={isColor}
       $isGrid={isGrid}
     >

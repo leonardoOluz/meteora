@@ -40,6 +40,7 @@ const thema: DefaultTheme = {
     tablet: "768px",
     desktop: "1440px",
   },
+  fontFamily: '"Inter", sans-serif',
 };
 
 export { thema };
