@@ -1,0 +1,29 @@
+{
+  "theme_color": "#8936FF",
+  "background_color": "#2EC6FE",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "pt-BR",
+  "name": "meteora",
+  "short_name": "meteora",
+  "description": "Aplicativo de roupas contemporania",
+  "id": "/manifest.json",
+  "origin": "[https://meteora-lyart.vercel.app/](https://meteora-lyart.vercel.app/)",
+  "start_url": "/",
+  "scope": "/"
+}
