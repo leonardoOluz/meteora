@@ -11,7 +11,8 @@ export type IClassTypograph =
   | "basicParagraphBold"
   | "basicParagraphSmall"
   | "basicHeadingH3"
-  | "basicHeadingH2";
+  | "basicHeadingH2"
+  | "basicParagraphLead";
 
 /* classes das imagens */
 export type IClassImg =
@@ -19,3 +20,10 @@ export type IClassImg =
   | "imgCategoria"
   | "imgFacilidades"
   | "imgProdutoCard";
+
+/* className section */
+export type IClassSection =
+  | "secaoCategorias"
+  | "secaoProdutos"
+  | "secaoFacilidades"
+  | "secaoNewsLetter";

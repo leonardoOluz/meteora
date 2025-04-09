@@ -10,8 +10,8 @@ import Item from "@/components/LIsta/Item";
 const Categoria = () => {
   const { imagensCategoria } = useSetImagens();
   return (
-    <Section classe="secaoCategorias">
-      <Typography elementoHtml="h2" classTypograph="basicHeadingH3">
+    <Section classNameSection="secaoCategorias">
+      <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
         Busque por categoria:
       </Typography>
       <Lista classe="listaCategorias">

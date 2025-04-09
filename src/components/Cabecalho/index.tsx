@@ -47,7 +47,7 @@ const Cabecalho = () => {
           setTexto={setTexto}
           placeHolder="Digite o produto"
         />
-        <Botao classBotao="botaoCabecalho">Buscar</Botao>
+        <Botao classNameBtn="btnPrimary">Buscar</Botao>
       </Container>
     </Header>
   );

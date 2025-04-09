@@ -6,8 +6,8 @@ import Typography from "@/components/Typography";
 
 const Produtos = () => {
   return (
-    <Section classe="secaoProdutos">
-      <Typography elementoHtml="h2" classTypograph="basicHeadingH3">
+    <Section classNameSection="secaoProdutos">
+      <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
         Produtos que estão bombando!
       </Typography>
       <Lista classe="listaProdutos">

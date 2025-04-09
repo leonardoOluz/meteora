@@ -19,5 +19,4 @@ export const FigStyle = styled.figure`
 `;
 export const SpanPrecoStyle = styled.span`
   ${basicParagraphBold(false)}
-  margin-top: 1.6rem;
 `;

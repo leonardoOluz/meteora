@@ -1,15 +1,15 @@
-import { botaoCabecalho, botaoProdutoCard } from "@/styles/stylesGlobal";
 import styled from "styled-components";
+import { btnPrimary, btnSecundary } from "./styles";
 
 const BtnStyle = styled.button<{
-  $botaoClass: "botaoProdutoCard" | "botaoCabecalho";
+  $classNameBtn:  "btnPrimary" | "btnSecundary";
 }>`
-  ${({ $botaoClass }) => {
+  ${({ $classNameBtn: $botaoClass }) => {
     switch ($botaoClass) {
-      case "botaoCabecalho":
-        return botaoCabecalho;
-      case "botaoProdutoCard":
-        return botaoProdutoCard;
+      case "btnPrimary":
+        return btnPrimary;
+      case "btnSecundary":
+        return btnSecundary;
       default:
         break;
     }
@@ -17,11 +17,11 @@ const BtnStyle = styled.button<{
 `;
 interface IProps {
   children: React.ReactNode;
-  classBotao: "botaoProdutoCard" | "botaoCabecalho";
+  classNameBtn: "btnPrimary" | "btnSecundary";
   tipo?: "button" | "submit" | "reset";
 }
-const Botao = ({ children, classBotao, tipo = "button" }: IProps) => {
-  return <BtnStyle $botaoClass={classBotao} type={tipo}>{children}</BtnStyle>;
+const Botao = ({ children, classNameBtn, tipo = "button" }: IProps) => {
+  return <BtnStyle $classNameBtn={classNameBtn} type={tipo}>{children}</BtnStyle>;
 };
 
 export default Botao;

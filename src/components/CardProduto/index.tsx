@@ -14,7 +14,7 @@ const CardProduto = () => {
           <figcaption style={{paddingLeft: "1.6rem"}}>
             <Typography
               elementoHtml="h3"
-              classTypograph="basicParagraphBold"
+              classNameTypograph="basicParagraphBold"
               isColor={thema.colorsPrimary.cinzaChumbo}
             >
               Camiseta Conforto
@@ -22,17 +22,17 @@ const CardProduto = () => {
           </figcaption>
         </FigStyle>
       </Container>
-      <Container style={{paddingLeft: "1.6rem"}}>        
+      <Container style={{paddingLeft: "1.6rem", gap: "1.6rem"}}>        
         <Typography
           elementoHtml="p"
-          classTypograph="basicParagraphSmall"
+          classNameTypograph="basicParagraphSmall"
           isColor={thema.colorsPrimary.cinzaChumbo}
         >
           Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o
           verão. Modelagem unissex.
         </Typography>
         <SpanPrecoStyle>R$ 70,00</SpanPrecoStyle>
-        <Botao classBotao="botaoProdutoCard">Ver Mais</Botao>
+        <Botao classNameBtn="btnSecundary">Ver Mais</Botao>
       </Container>
     </ArticleStyle>
   );

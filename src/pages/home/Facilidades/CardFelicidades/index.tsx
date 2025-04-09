@@ -21,7 +21,7 @@ const CardFelicidades = ({ children, title, description }: IProps) => {
       {children}
       <Typography
         elementoHtml="h4"
-        classTypograph="basicParagraphBold"
+        classNameTypograph="basicParagraphBold"
         isColor={thema.colorsPrimary.verde}
         isGrid="tituloFacilidades"
       >
@@ -29,7 +29,7 @@ const CardFelicidades = ({ children, title, description }: IProps) => {
       </Typography>
       <Typography
         elementoHtml="p"
-        classTypograph="basicParagraphSmall"
+        classNameTypograph="basicParagraphSmall"
         isGrid="descricaoFacilidades"
       >
         {description}
