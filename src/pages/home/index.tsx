@@ -4,6 +4,7 @@ import Cabecalho from "@/components/Cabecalho";
 import Facilidades from "./Facilidades";
 import Produtos from "./Produtos";
 import NewsLetter from "@/components/NewsLetter";
+import { Footer } from "@/components/Footer";
 
 const Home = () => {
   return (
@@ -13,7 +14,8 @@ const Home = () => {
       <Categoria />
       <Produtos />
       <Facilidades />
-      <NewsLetter/>
+      <NewsLetter />
+      <Footer />
     </>
   );
 };
