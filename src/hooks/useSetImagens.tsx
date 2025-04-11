@@ -1,40 +1,42 @@
 import useResize from "./useResize";
-import banner from "@/json/banner.json";
-import categorias from "@/json/categorias.json";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
-import facilidades from "@/json/facilidades.json";
-
-type imagensBanner = (typeof banner.banner)[0];
-type imagensCategoria = (typeof categorias.categorias)[0];
-type imagensFacilidades = (typeof facilidades.facilidades)[0];
 
 export default function useSetImagens() {
   const { width } = useResize();
-  const imagensBanner = (imagens: imagensBanner): string => {
+  const imagensBanner = (imagemBanner: string): string => {
     return width < transformNumber(thema.breakpoints.tablet)
-      ? imagens.fotoMobile
+      ? `/assets/mobile/banner/${imagemBanner}.png`
       : width < transformNumber(thema.breakpoints.desktop)
-      ? imagens.fotoTablet
-      : imagens.fotoDesktop;
+      ? `/assets/tablet/banner/${imagemBanner}.png`
+      : `/assets/desktop/banner/${imagemBanner}.png`;
   };
-  const imagensCategoria = (imagens: imagensCategoria) => {
+  const imagensCategoria = (imagemCategoria: string) => {
     return width < transformNumber(thema.breakpoints.tablet)
-      ? `assets/mobile/categorias/${imagens.imagem}.png`
+      ? `/assets/mobile/categorias/${imagemCategoria}.png`
       : width < transformNumber(thema.breakpoints.desktop)
-      ? `assets/tablet/categorias/${imagens.imagem}.png`
-      : `assets/desktop/categorias/${imagens.imagem}.png`;
+      ? `/assets/tablet/categorias/${imagemCategoria}.png`
+      : `/assets/desktop/categorias/${imagemCategoria}.png`;
   };
-  const imagensFacilidades = (imagens: imagensFacilidades) => {
+  const imagensFacilidades = (imagemFacilidades: string) => {
     return width < transformNumber(thema.breakpoints.tablet)
-      ? `assets/mobile/facilidades/${imagens.image}.png`
+      ? `/assets/mobile/facilidades/${imagemFacilidades}.png`
       : width > transformNumber(thema.breakpoints.tablet)
-      ? `assets/tablet/facilidades/${imagens.image}.png`
-      : `assets/desktop/facilidades/${imagens.image}.png`;
+      ? `/assets/tablet/facilidades/${imagemFacilidades}.png`
+      : `/assets/desktop/facilidades/${imagemFacilidades}.png`;
   };
+  const imagensCardProdutos = (imagemProduto: string) => {
+    return width < transformNumber(thema.breakpoints.tablet)
+      ? `/assets/mobile/cards/${imagemProduto}.png`
+      : width < transformNumber(thema.breakpoints.desktop)
+      ? `/assets/tablet/cards/${imagemProduto}.png`
+      : `/assets/desktop/cards/${imagemProduto}.png`;
+  };
+
   return {
     imagensBanner,
     imagensCategoria,
     imagensFacilidades,
+    imagensCardProdutos,
   };
 }

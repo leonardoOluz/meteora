@@ -9,20 +9,18 @@ import useSetImagens from "@/hooks/useSetImagens";
 
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();
+  
   return (
     <Section classNameSection="secaoFacilidades">
-      <Typography
-        elementoHtml="h2"
-        classNameTypograph="basicHeadingH2"
-      >
+      <Typography elementoHtml="h2" classNameTypograph="basicHeadingH2">
         Conheça todas as nossas facilidades
       </Typography>
-      <Lista classe="listaFelicidades">
+      <Lista classe="listaFelicidades" ariaLabel="Lista de facilidades">
         {facilidades.facilidades.map((item) => (
           <Item key={item.id}>
             <CardFelicidades title={item.title} description={item.description}>
               <Photo
-                photo={imagensFacilidades(item)}
+                photo={imagensFacilidades(item.image)}
                 alt={item.title}
                 classeImg="imgFacilidades"
               />

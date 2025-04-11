@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import logoMobile from "@assets/Mobile/Logo mobile.png";
-import logoTablet from "@assets/Tablet/Logo tablet.png";
-import logoDesktop from "@assets/Desktop/Logo desktop.png";
+import logoMobile from "./assets/Logo mobile.png";
+import logoTablet from "./assets/Logo tablet.png";
+import logoDesktop from "./assets/Logo desktop.png";
 
 const LogoImg = styled.img`
   width: 12.6rem;

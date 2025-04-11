@@ -14,12 +14,12 @@ const Categoria = () => {
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
         Busque por categoria:
       </Typography>
-      <Lista classe="listaCategorias">
+      <Lista classe="listaCategorias" ariaLabel="Lista de categorias">
         {categorias.categorias.map((item) => (
           <Item key={item.id}>
             <CardCategoria texto={item.categoria}>
               <Photo
-                photo={imagensCategoria(item)}
+                photo={imagensCategoria(item.imagem)}
                 alt={item.categoria}
                 classeImg="imgCategoria"
               />

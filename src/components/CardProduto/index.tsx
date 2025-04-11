@@ -1,23 +1,27 @@
 import Typography from "@components/Typography";
 import { thema } from "@/styles/thema";
 import Photo from "../Photo";
-import camiseta from "@assets/Tablet/Imagens Cards/camiseta.png";
 import Botao from "../Botao";
 import { ArticleStyle, Container, FigStyle, SpanPrecoStyle } from "./styles";
+import { ICardProduto } from "@/interface/IU";
+import useSetImagens from "@/hooks/useSetImagens";
 
-const CardProduto = () => {
+
+const CardProduto = ({alt, descricao, imagem, preco, titulo}: ICardProduto) => {
+  const { imagensCardProdutos} = useSetImagens();
+  
   return (
     <ArticleStyle>
       <Container>
         <FigStyle>
-          <Photo photo={camiseta} alt="camiseta" classeImg="imgProdutoCard" />
+          <Photo photo={imagensCardProdutos(imagem)} alt={alt} classeImg="imgProdutoCard" />
           <figcaption style={{paddingLeft: "1.6rem"}}>
             <Typography
               elementoHtml="h3"
               classNameTypograph="basicParagraphBold"
               isColor={thema.colorsPrimary.cinzaChumbo}
             >
-              Camiseta Conforto
+              {titulo}
             </Typography>
           </figcaption>
         </FigStyle>
@@ -27,11 +31,9 @@ const CardProduto = () => {
           elementoHtml="p"
           classNameTypograph="basicParagraphSmall"
           isColor={thema.colorsPrimary.cinzaChumbo}
-        >
-          Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o
-          verão. Modelagem unissex.
+        >{descricao}
         </Typography>
-        <SpanPrecoStyle>R$ 70,00</SpanPrecoStyle>
+        <SpanPrecoStyle>R$ {preco.toFixed(2)}</SpanPrecoStyle>
         <Botao classNameBtn="btnSecundary">Ver Mais</Botao>
       </Container>
     </ArticleStyle>

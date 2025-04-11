@@ -1,3 +1,4 @@
+import { ILista } from "@/interface/IU";
 import React from "react";
 import styled, { css } from "styled-components";
 
@@ -54,14 +55,18 @@ const ListaStyle = styled.ul<{
     }
   }}
 `;
-
 interface IProps {
   children: React.ReactNode;
-  classe: "listaCategorias" | "listaFelicidades" | "listaProdutos";
+  classe: ILista;
+  ariaLabel: string;
 }
 
-const Lista = ({ children, classe }: IProps) => {
-  return <ListaStyle $classe={classe}>{children}</ListaStyle>;
+const Lista = ({ children, classe, ariaLabel }: IProps) => {
+  return (
+    <ListaStyle $classe={classe} aria-label={ariaLabel}>
+      {children}
+    </ListaStyle>
+  );
 };
 
 export default Lista;
