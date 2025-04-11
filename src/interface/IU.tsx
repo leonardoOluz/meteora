@@ -1,3 +1,8 @@
+import produtos from "@/json/produtos.json";
+import banner from "@/json/banner.json";
+import categorias from "@/json/categorias.json";
+import facilidades from "@/json/facilidades.json";
+
 /* grid, tag e nameClass dos Typography */
 export type IGrid =
   | "tituloFacilidades"
@@ -27,3 +32,9 @@ export type IClassSection =
   | "secaoProdutos"
   | "secaoFacilidades"
   | "secaoNewsLetter";
+
+export type ILista = "listaCategorias" | "listaFelicidades" | "listaProdutos";
+export type ICardProduto = typeof produtos.produtos[0];
+export type ICardBanner = (typeof banner.banner)[0];
+export type ICardCategoria = (typeof categorias.categorias)[0];
+export type ICardFacilidades = (typeof facilidades.facilidades)[0];
