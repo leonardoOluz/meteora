@@ -4,7 +4,7 @@ import "normalize.css";
 import "./index.css";
 import { ThemeProvider } from "styled-components";
 import { thema } from "./styles/thema";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import store from "@/store";
 import { Provider } from "react-redux";
 
