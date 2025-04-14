@@ -1,11 +1,10 @@
-// import categorias from "@/json/categorias.json";
-import CardCategoria from "@/pages/Home/Categoria/CardCategoria";
-import Photo from "@components/Photo";
-import useSetImagens from "@/hooks/useSetImagens";
-import Typography from "@components/Typography";
 import Section from "@components/Section";
+import Typography from "@components/Typography";
 import Lista from "@/components/LIsta";
 import Item from "@/components/LIsta/Item";
+import CardCategoria from "./CardCategoria";
+import Photo from "@components/Photo";
+import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 
