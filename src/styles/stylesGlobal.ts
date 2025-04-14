@@ -1,4 +1,4 @@
-import { IGrid } from "@/interface/IU";
+import { IGrid } from "@/types/componentTypes";
 import { css } from "styled-components";
 /* Estilos da Typography */
 export const paragraph = css`
@@ -32,6 +32,10 @@ export const basicHeadingH3 = css`
     font-size: 3.2rem;
   }
 `;
+export const basicHeadingH5 = css`
+  font-size: 2rem;
+  font-weight: 500;
+`;
 export const basicHeadingH2 = css`
   margin: 0;
   font-weight: 500;
@@ -47,4 +51,16 @@ export const basicParagraphLead = css`
   font-weight: 400;
   font-size: 2rem;
   line-height: 100%;
+`;
+export const typographyModal = css`
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 100%;
+  color: ${({ theme }) => theme.colorsPrimary.branco};
+`;
+export const basicParagraphSmallBold = css`
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colorsPrimary.cinzaChumbo};
 `;

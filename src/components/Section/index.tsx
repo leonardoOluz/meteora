@@ -1,4 +1,4 @@
-import { IClassSection } from "@/interface/IU";
+import { IClassSection } from "@/types/componentTypes";
 import { SectionStyle } from "./styles";
 
 interface IProps {

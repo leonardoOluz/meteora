@@ -1,24 +1,15 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { cabecalho, cabecalhoModal } from "./styles";
 
-const cabecalho = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    background-color: ${({ theme }) => theme.colorsPrimary.preto};
-    padding: 1rem 2.3rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-`;
-
-const HeaderStyle = styled.header<{ $classHeader: "cabecalho" }>`
+const HeaderStyle = styled.header<{
+  $classHeader: "cabecalho" | "cabecalhoModal";
+}>`
   ${({ $classHeader }) => {
     switch ($classHeader) {
       case "cabecalho":
         return cabecalho;
+      case "cabecalhoModal":
+        return cabecalhoModal;
       default:
         break;
     }
@@ -27,8 +18,8 @@ const HeaderStyle = styled.header<{ $classHeader: "cabecalho" }>`
 
 interface IProps {
   children: React.ReactNode;
-  classeHeader: "cabecalho";
-}
+  classeHeader: "cabecalho" | "cabecalhoModal";
+};
 
 const Header = ({ children, classeHeader: classe }: IProps) => {
   return <HeaderStyle $classHeader={classe}>{children}</HeaderStyle>;

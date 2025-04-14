@@ -24,10 +24,13 @@ export const btnPrimary = css`
 `;
 export const btnSecundary = css`
   border: none;
-  max-width: 10.2rem;
+  /* max-width: 10.2rem; */
   font-weight: 500;
   font-size: 1.6rem;
   padding: 0.9rem 1.6rem;
   color: ${({ theme }) => theme.colorsPrimary.branco};
   background-color: ${({ theme }) => theme.colorsPrimary.roxo};
+`;
+export const btnTerciario = css`
+  all: unset;
 `;

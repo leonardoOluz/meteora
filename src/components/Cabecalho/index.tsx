@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import Logo from "@components/Logo";
 import Navbar from "@components/Navbar";
-import Buscador from "@components/Buscador";
+import Input from "@/components/Input";
 import { useState } from "react";
 import Botao from "@components/Botao";
 import Header from "@components/Header";
@@ -42,10 +42,12 @@ const Cabecalho = () => {
         <Navbar menuAberto={menuAberto} setMenuAberto={setMenuAberto} />
       </Container>
       <Container style={{ gap: "1rem" }} $buscadorMobile>
-        <Buscador
-          texto={texto}
-          setTexto={setTexto}
+        <Input
+          value={texto}
+          handleChange={(e) => setTexto(e.target.value)}
           placeHolder="Digite o produto"
+          tipo="text"
+          classeInput="inputBuscador"
         />
         <Botao classNameBtn="btnPrimary">Buscar</Botao>
       </Container>

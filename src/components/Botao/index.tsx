@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { btnPrimary, btnSecundary } from "./styles";
+import { btnPrimary, btnSecundary, btnTerciario } from "./styles";
 
 const BtnStyle = styled.button<{
-  $classNameBtn:  "btnPrimary" | "btnSecundary";
+  $classNameBtn: "btnPrimary" | "btnSecundary" | "btnTerciario";
 }>`
   ${({ $classNameBtn: $botaoClass }) => {
     switch ($botaoClass) {
@@ -10,18 +10,31 @@ const BtnStyle = styled.button<{
         return btnPrimary;
       case "btnSecundary":
         return btnSecundary;
+      case "btnTerciario":
+        return btnTerciario;
       default:
         break;
     }
   }}
+  cursor: pointer;
 `;
 interface IProps {
   children: React.ReactNode;
-  classNameBtn: "btnPrimary" | "btnSecundary";
+  classNameBtn: "btnPrimary" | "btnSecundary" | "btnTerciario";
   tipo?: "button" | "submit" | "reset";
+  handleClick?: () => void;
 }
-const Botao = ({ children, classNameBtn, tipo = "button" }: IProps) => {
-  return <BtnStyle $classNameBtn={classNameBtn} type={tipo}>{children}</BtnStyle>;
+const Botao = ({
+  children,
+  classNameBtn,
+  tipo = "button",
+  handleClick,
+}: IProps) => {
+  return (
+    <BtnStyle $classNameBtn={classNameBtn} onClick={handleClick} type={tipo}>
+      {children}
+    </BtnStyle>
+  );
 };
 
 export default Botao;

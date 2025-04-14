@@ -17,7 +17,8 @@ export type IClassTypograph =
   | "basicParagraphSmall"
   | "basicHeadingH3"
   | "basicHeadingH2"
-  | "basicParagraphLead";
+  | "basicParagraphLead"
+  | "typographyModal";
 
 /* classes das imagens */
 export type IClassImg =
@@ -34,7 +35,7 @@ export type IClassSection =
   | "secaoNewsLetter";
 
 export type ILista = "listaCategorias" | "listaFelicidades" | "listaProdutos";
-export type ICardProduto = typeof produtos.produtos[0];
+export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];
 export type ICardFacilidades = (typeof facilidades.facilidades)[0];

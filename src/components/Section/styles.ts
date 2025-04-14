@@ -1,4 +1,4 @@
-import { IClassSection } from "@/interface/IU";
+import { IClassSection } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 export const secaoFacilidades = css`
