@@ -5,11 +5,15 @@ import "./index.css";
 import { ThemeProvider } from "styled-components";
 import { thema } from "./styles/thema";
 import Home from "./pages/home";
+import store from "@/store";
+import { Provider } from "react-redux";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider theme={thema}>
-      <Home />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={thema}>
+        <Home />
+      </ThemeProvider>
+    </Provider>
   </StrictMode>
 );

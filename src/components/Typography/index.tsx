@@ -1,4 +1,4 @@
-import { IClassTypograph, IGrid, ITag } from "@/interface/IU";
+import { IClassTypograph, IGrid, ITag } from "@/types/componentTypes";
 import { TypographyStyle } from "./styles";
 
 interface IProps {

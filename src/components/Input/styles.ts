@@ -36,3 +36,25 @@ export const inputBuscador = css`
     }
   }
 `;
+
+export const inputModalProduto = css`
+  all: unset;
+  cursor: pointer;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+  
+  &[type="radio"]:hover {
+    box-shadow: 0px 0px 4px 5px ${({theme}) => theme.colorsPrimary.roxo};
+    background-color: #75D7F0;
+  }
+
+  &[type="radio"]:checked {
+    background-color: ${({ theme }) => theme.colorsPrimary.preto};
+  }
+`;

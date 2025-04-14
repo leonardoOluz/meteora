@@ -10,7 +10,7 @@ export const ArticleStyle = styled.article`
 `;
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 `;
 export const FigStyle = styled.figure`
   display: flex;
@@ -18,5 +18,6 @@ export const FigStyle = styled.figure`
   gap: 1.3rem;
 `;
 export const SpanPrecoStyle = styled.span`
+  width: 100%;
   ${basicParagraphBold(false)}
 `;

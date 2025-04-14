@@ -1,4 +1,4 @@
-import { IGrid, IClassTypograph } from "@/interface/IU";
+import { IGrid, IClassTypograph } from "@/types/componentTypes";
 import {
   basicHeadingH2,
   basicHeadingH3,
@@ -6,6 +6,7 @@ import {
   basicParagraphLead,
   basicParagraphSmall,
   paragraph,
+  typographyModal,
 } from "@/styles/stylesGlobal";
 import styled from "styled-components";
 
@@ -31,6 +32,8 @@ export const TypographyStyle = styled.div<{
         return basicHeadingH2;
       case "basicParagraphLead":
         return basicParagraphLead;
+      case "typographyModal":
+        return typographyModal
       default:
         return paragraph;
     }

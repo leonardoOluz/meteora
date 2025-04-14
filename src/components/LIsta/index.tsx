@@ -1,4 +1,4 @@
-import { ILista } from "@/interface/IU";
+import { ILista } from "@/types/componentTypes";
 import React from "react";
 import styled, { css } from "styled-components";
 
