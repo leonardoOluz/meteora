@@ -4,11 +4,11 @@ import Item from "@/components/LIsta/Item";
 import ModalProduto from "@/components/ModalProduto";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
-import store from "@/store";
+import { RootState } from "@/types/store";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-type RootState = ReturnType<typeof store.getState>
+
 
 const Produtos = () => {
   const [modalOpen, setModalOpen] = useState(false);

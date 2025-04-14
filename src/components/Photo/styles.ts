@@ -12,13 +12,13 @@ export const imgCategoria = css`
 export const imgFacilidades = css`
   grid-area: imagenFacilidades;
 `;
-export const imgProdutoCard = css`  
-  width: 100%;
+export const imgProdutoCard = css`
+  /* width: 100%; */
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 33rem;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: 35rem;
+    max-width: 35rem;
   }
 `;

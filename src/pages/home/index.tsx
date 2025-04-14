@@ -1,10 +1,10 @@
 import Banner from "@/components/Banner";
-import Categoria from "@/pages/home/Categoria";
+import Categoria from "@/pages/Home/Categoria";
 import Cabecalho from "@/components/Cabecalho";
-import Facilidades from "./Facilidades";
-import Produtos from "./Produtos";
 import NewsLetter from "@/components/NewsLetter";
 import { Footer } from "@/components/Footer";
+import Produtos from "./Produtos";
+import Facilidades from "./Facilidades";
 
 const Home = () => {
   return (

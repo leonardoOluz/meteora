@@ -2,13 +2,15 @@ import Lista from "@/components/LIsta";
 import Item from "@/components/LIsta/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
-import facilidades from "@/json/facilidades.json";
-import CardFelicidades from "./CardFelicidades";
 import Photo from "@/components/Photo";
 import useSetImagens from "@/hooks/useSetImagens";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
+import CardFelicidades from "./CardFelicidades";
 
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();
+  const facilidades = useSelector((state: RootState) => state.facilidades);
   
   return (
     <Section classNameSection="secaoFacilidades">
@@ -16,7 +18,7 @@ const Facilidades = () => {
         Conheça todas as nossas facilidades
       </Typography>
       <Lista classe="listaFelicidades" ariaLabel="Lista de facilidades">
-        {facilidades.facilidades.map((item) => (
+        {facilidades.map((item) => (
           <Item key={item.id}>
             <CardFelicidades title={item.title} description={item.description}>
               <Photo
