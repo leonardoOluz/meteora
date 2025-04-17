@@ -30,10 +30,9 @@ interface IProps {
 
 const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
-  console.log(card);
 
   return (
-    <DialogModal open={isOpen}>
+    <DialogModal open={isOpen} tabIndex={0}>
       <DivModal>
         <Header classeHeader="cabecalhoModal">
           <DivHeaderModal>
@@ -83,7 +82,12 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
                 </Typography>
               </DivPrecoProdutod>
             </DivDescricaoProduto>
-            <Form>
+            <Form
+              ariaLabel="itens opcionais"
+              handleSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <FieldsetStyle>
                 <LegendStyle>Cores:</LegendStyle>
                 <DivRadio>
