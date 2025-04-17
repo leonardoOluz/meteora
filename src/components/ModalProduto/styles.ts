@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const DialogModal = styled.dialog`
   position: fixed;
-  z-index: 999;
+  z-index: 1;
   left: 0;
   top: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: row;
   justify-content: center;
