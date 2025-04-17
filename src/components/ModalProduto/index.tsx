@@ -20,14 +20,20 @@ import { IoIosClose } from "react-icons/io";
 import Form from "../Form";
 import Photo from "../Photo";
 import RadioSelect from "./RadioSelect";
+import { ICardProduto } from "@/types/componentTypes";
+import useSetImagens from "@/hooks/useSetImagens";
 interface IProps {
   handleClose: () => void;
   isOpen: boolean;
+  card: ICardProduto;
 }
 
-const ModalProduto = ({ handleClose, isOpen }: IProps) => {
+const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
+  const { imagensCardProdutos } = useSetImagens();
+  console.log(card);
+
   return (
-    <DialogModal open={isOpen} >
+    <DialogModal open={isOpen}>
       <DivModal>
         <Header classeHeader="cabecalhoModal">
           <DivHeaderModal>
@@ -46,8 +52,8 @@ const ModalProduto = ({ handleClose, isOpen }: IProps) => {
         </Header>
         <DivProdutoModal>
           <Photo
-            photo="assets/mobile/cards/Bolsa1.png"
-            alt="teste"
+            photo={imagensCardProdutos(card.imagem)}
+            alt={card.alt}
             classeImg="imgProdutoCard"
           />
           <ContainerModal>
@@ -57,18 +63,17 @@ const ModalProduto = ({ handleClose, isOpen }: IProps) => {
                 classNameTypograph="basicParagraphBold"
                 isColor={thema.colorsPrimary.cinzaChumbo}
               >
-                Jaqueta Jeans
+                {card.titulo}
               </Typography>
               <Typography
                 classNameTypograph="basicParagraphSmall"
                 elementoHtml="p"
                 isColor={thema.colorsPrimary.cinzaChumbo}
               >
-                Modelo unissex oversized com gola de camurça. Atemporal e
-                autêntica!
+                {card.descricao}
               </Typography>
               <DivPrecoProdutod>
-                <SpanPreco>R$ 75.00</SpanPreco>
+                <SpanPreco>R$ {card.preco.toFixed(2)}</SpanPreco>
                 <Typography
                   elementoHtml="p"
                   classNameTypograph="basicParagraphSmall"

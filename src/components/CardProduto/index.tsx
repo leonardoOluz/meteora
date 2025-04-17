@@ -5,51 +5,62 @@ import Botao from "../Botao";
 import { ArticleStyle, Container, FigStyle, SpanPrecoStyle } from "./styles";
 import { ICardProduto } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
+import { useState } from "react";
+import ModalProduto from "../ModalProduto";
 interface IProps {
   card: ICardProduto;
-  openModalProduto: () => void;
 }
 
-const CardProduto = ({
-  card: { alt, descricao, imagem, preco, titulo },
-  openModalProduto,
-}: IProps) => {
+const CardProduto = ({ card }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModalProduto = () => {
+    setModalOpen(!modalOpen);
+  };
 
   return (
-    <ArticleStyle>
-      <Container>
-        <FigStyle>
-          <Photo
-            photo={imagensCardProdutos(imagem)}
-            alt={alt}
-            classeImg="imgProdutoCard"
-          />
-          <figcaption style={{ paddingLeft: "1.6rem" }}>
-            <Typography
-              elementoHtml="h3"
-              classNameTypograph="basicParagraphBold"
-              isColor={thema.colorsPrimary.cinzaChumbo}
-            >
-              {titulo}
-            </Typography>
-          </figcaption>
-        </FigStyle>
-      </Container>
-      <Container style={{ paddingLeft: "1.6rem", gap: "1.6rem" }}>
-        <Typography
-          elementoHtml="p"
-          classNameTypograph="basicParagraphSmall"
-          isColor={thema.colorsPrimary.cinzaChumbo}
-        >
-          {descricao}
-        </Typography>
-        <SpanPrecoStyle>R$ {preco.toFixed(2)}</SpanPrecoStyle>
-        <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
-          Ver Mais
-        </Botao>
-      </Container>
-    </ArticleStyle>
+    <>
+      <ArticleStyle>
+        <Container>
+          <FigStyle>
+            <Photo
+              photo={imagensCardProdutos(card.imagem)}
+              alt={card.alt}
+              classeImg="imgProdutoCard"
+            />
+            <figcaption style={{ paddingLeft: "1.6rem" }}>
+              <Typography
+                elementoHtml="h3"
+                classNameTypograph="basicParagraphBold"
+                isColor={thema.colorsPrimary.cinzaChumbo}
+              >
+                {card.titulo}
+              </Typography>
+            </figcaption>
+          </FigStyle>
+        </Container>
+        <Container style={{ paddingLeft: "1.6rem", gap: "1.6rem" }}>
+          <Typography
+            elementoHtml="p"
+            classNameTypograph="basicParagraphSmall"
+            isColor={thema.colorsPrimary.cinzaChumbo}
+          >
+            {card.descricao}
+          </Typography>
+          <SpanPrecoStyle>R$ {card.preco.toFixed(2)}</SpanPrecoStyle>
+          <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
+            Ver Mais
+          </Botao>
+        </Container>
+      </ArticleStyle>
+      {modalOpen && (
+        <ModalProduto
+          handleClose={openModalProduto}
+          isOpen={modalOpen}
+          card={card}
+        />
+      )}
+    </>
   );
 };
 
