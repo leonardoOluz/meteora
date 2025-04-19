@@ -22,15 +22,17 @@ const BtnMenu = styled.button<{ $menuAberto: boolean }>`
 interface IProps {
   setMenuAberto: React.Dispatch<React.SetStateAction<boolean>>;
   menuAberto: boolean;
+  ariaControls?: string;
 }
-const MenuHamburguer = ({ setMenuAberto, menuAberto }: IProps) => {
+const MenuHamburguer = ({ setMenuAberto, menuAberto, ariaControls }: IProps) => {
   return (
     <div style={{ textAlign: "right" }}>
       <BtnMenu
         $menuAberto={menuAberto}
         onClick={() => setMenuAberto(!menuAberto)}
-        onBlur={()=> setMenuAberto(false)}
         aria-label={`menu hamburguer ${menuAberto ? "fechar" : "abrir"}`}
+        aria-expanded={menuAberto}
+        aria-controls={ariaControls}
       >
         {menuAberto ? (
           <IoCloseOutline {...stylesIcons} />

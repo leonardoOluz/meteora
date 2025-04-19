@@ -7,8 +7,9 @@ import Photo from "@components/Photo";
 import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
+import { Link } from "react-router-dom";
 
-const Categoria = () => {
+const Categorias = () => {
   const { imagensCategoria } = useSetImagens();
   const categorias = useSelector((state: RootState) => state.categorias);
   return (
@@ -16,16 +17,18 @@ const Categoria = () => {
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
         Busque por categoria:
       </Typography>
-      <Lista classe="listaCategorias" ariaLabel="Lista de categorias">
+      <Lista classeLista="listaCategorias" ariaLabel="Lista de categorias">
         {categorias.map((item) => (
           <Item key={item.id}>
-            <CardCategoria texto={item.categoria}>
-              <Photo
-                photo={imagensCategoria(item.imagem)}
-                alt={item.categoria}
-                classeImg="imgCategoria"
-              />
-            </CardCategoria>
+            <Link to={`categoria/${item.categoria}`}>
+              <CardCategoria texto={item.categoria}>
+                <Photo
+                  photo={imagensCategoria(item.imagem)}
+                  alt={item.categoria}
+                  classeImg="imgCategoria"
+                />
+              </CardCategoria>
+            </Link>
           </Item>
         ))}
       </Lista>
@@ -33,4 +36,4 @@ const Categoria = () => {
   );
 };
 
-export default Categoria;
+export default Categorias;

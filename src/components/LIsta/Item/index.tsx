@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const ItemStyle = styled.li`
   all: unset;
+  a{
+    text-decoration: none;
+  }
 `;
 
 interface IProps {

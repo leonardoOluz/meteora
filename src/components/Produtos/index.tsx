@@ -14,7 +14,7 @@ const Produtos = () => {
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
         Produtos que estão bombando!
       </Typography>
-      <Lista classe="listaProdutos" ariaLabel="Lista de produtos">
+      <Lista classeLista="listaProdutos" ariaLabel="Lista de produtos">
         {produtos.map((card) => (
           <Item key={card.id} aria-label={`card de produto ${card.categoria}`}>
             <CardProduto card={card} />

@@ -3,11 +3,11 @@ import { ListaStyle } from "./styles";
 
 interface IProps {
   children: React.ReactNode;
-  classe: ILista;
+  classeLista: ILista;
   ariaLabel: string;
 }
 
-const Lista = ({ children, classe, ariaLabel }: IProps) => {
+const Lista = ({ children, classeLista: classe, ariaLabel }: IProps) => {
   return (
     <ListaStyle $classe={classe} aria-label={ariaLabel}>
       {children}

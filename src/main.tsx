@@ -4,15 +4,16 @@ import "normalize.css";
 import "./index.css";
 import { ThemeProvider } from "styled-components";
 import { thema } from "./styles/thema";
-import Home from "./pages/home";
 import store from "@/store";
 import { Provider } from "react-redux";
+import { router } from "./router/Router";
+import { RouterProvider } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={thema}>
-        <Home />
+        <RouterProvider router={router}/> 
       </ThemeProvider>
     </Provider>
   </StrictMode>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import MenuHamburguer from "../MenuHamburguer";
+import { Link } from "react-router-dom";
 
-const dropDownOpen  = css`
+const dropDownOpen = css`
   position: absolute;
   top: 0;
   right: 0;
@@ -20,7 +21,7 @@ const ContainerStyle = styled.div<{ $menuAberto: boolean }>`
 const NavbarStyle = styled.nav<{ $menuAberto: boolean }>`
   display: ${({ $menuAberto }) => ($menuAberto ? "block" : "none")};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-  display: block;
+    display: block;
   }
 `;
 const ListaLinksStyle = styled.ul`
@@ -29,7 +30,6 @@ const ListaLinksStyle = styled.ul`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
@@ -68,29 +68,50 @@ const LinkStyle = styled.li`
     }
   }
 `;
+const links = [
+  { to: "/", name: "Home" },
+  { to: "#", name: "Nossas lojas" },
+  { to: "#", name: "Novidades" },
+  { to: "#", name: "Promoções" },
+];
 
 interface IProps {
   menuAberto: boolean;
   setMenuAberto: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Navbar = ({ menuAberto, setMenuAberto }: IProps) => {
+  const navBarRef = useRef<HTMLDivElement>(null);
+  const navbarId = "navbar-links";
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuAberto &&
+        navBarRef.current &&
+        !navBarRef.current.contains(event.target as Node)
+      ) {
+        setMenuAberto(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, [menuAberto, setMenuAberto]);
+
   return (
-    <ContainerStyle $menuAberto={menuAberto}>
-      <MenuHamburguer menuAberto={menuAberto} setMenuAberto={setMenuAberto} />
+    <ContainerStyle $menuAberto={menuAberto} ref={navBarRef}>
+      <MenuHamburguer
+        menuAberto={menuAberto}
+        setMenuAberto={setMenuAberto}
+        ariaControls={navbarId}
+      />
       <NavbarStyle $menuAberto={menuAberto}>
-        <ListaLinksStyle>
-          <LinkStyle>
-            <a href="#">Home</a>
-          </LinkStyle>
-          <LinkStyle>
-            <a href="#">Nossas lojas</a>
-          </LinkStyle>
-          <LinkStyle>
-            <a href="#">Novidades</a>
-          </LinkStyle>
-          <LinkStyle>
-            <a href="#">Promoções</a>
-          </LinkStyle>
+        <ListaLinksStyle onBlur={() => setMenuAberto(false)} id={navbarId}>
+          {links.map((link, index) => (
+            <LinkStyle key={index} onClick={() => setMenuAberto(false)}>
+              <Link to={link.to}>{link.name}</Link>
+            </LinkStyle>
+          ))}
         </ListaLinksStyle>
       </NavbarStyle>
     </ContainerStyle>
