@@ -17,7 +17,7 @@ const Facilidades = () => {
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH2">
         Conheça todas as nossas facilidades
       </Typography>
-      <Lista classe="listaFelicidades" ariaLabel="Lista de facilidades">
+      <Lista classeLista="listaFelicidades" ariaLabel="Lista de facilidades">
         {facilidades.map((item) => (
           <Item key={item.id}>
             <CardFelicidades title={item.title} description={item.description}>

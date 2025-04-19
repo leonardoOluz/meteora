@@ -1,0 +1,13 @@
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "@/types/store";
+
+const selectRawProdutos = (state: RootState) => state.produtos;
+
+export const selectProdutosPorCategoria = createSelector(
+  [
+    selectRawProdutos,
+    (_, categoria: string | undefined) => categoria,
+  ],
+  (produtos, categoria) =>
+    produtos.filter((item) => item.categoria === categoria)
+);
