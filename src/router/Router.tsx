@@ -1,4 +1,5 @@
 import PageBase from "@/components/PageBase";
+import Carrinho from "@/pages/carrinho";
 import CategoriaPage from "@/pages/categoriaPage";
 import Home from "@/pages/home";
 import { createBrowserRouter } from "react-router-dom";
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
         path: "categoria/:categoria",
         element: <CategoriaPage />,
       },
+      {
+        path: "carrinho",
+        element: <Carrinho/>
+      }
     ],
   },
 ]);
