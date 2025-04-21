@@ -25,16 +25,23 @@ export type IClassImg =
   | "imgBanner"
   | "imgCategoria"
   | "imgFacilidades"
-  | "imgProdutoCard";
+  | "imgProdutoCard"
+  | "imgCarrinho";
 
 /* className section */
 export type IClassSection =
-  | "secaoCategorias"
-  | "secaoProdutos"
-  | "secaoFacilidades"
-  | "secaoNewsLetter";
+  | "secao-categorias"
+  | "secao-produtos"
+  | "secao-facilidades"
+  | "secao-newsLetter"
+  | "secao-carrinho";
 
-export type ILista = "listaCategorias" | "listaFelicidades" | "listaProdutos";
+export type ILista =
+  | "listaCategorias"
+  | "listaFelicidades"
+  | "listaProdutos"
+  | "listaCarrinho";
+export type IButton = "btnPrimary" | "btnSecundary" | "btnTerciario";
 export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];

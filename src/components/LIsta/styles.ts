@@ -1,3 +1,4 @@
+import { ILista } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 const listaCategorias = css`
@@ -37,8 +38,12 @@ const listaProdutos = css`
   gap: 3rem;
 `;
 
+const listaCarrinho = css`
+
+`;
+
 export const ListaStyle = styled.ul<{
-  $classe: "listaCategorias" | "listaFelicidades" | "listaProdutos";
+  $classe: ILista;
 }>`
   ${({ $classe }) => {
     switch ($classe) {
@@ -48,6 +53,8 @@ export const ListaStyle = styled.ul<{
         return listaFelicidades;
       case "listaProdutos":
         return listaProdutos;
+      case "listaCarrinho":
+        return listaCarrinho;
       default:
         break;
     }

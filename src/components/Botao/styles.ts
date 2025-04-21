@@ -1,7 +1,8 @@
-import { css } from "styled-components";
+import { IButton } from "@/types/componentTypes";
+import styled, { css } from "styled-components";
 
 /* Estilos dos botões */
-export const btnPrimary = css`
+const btnPrimary = css`
   padding: 0 1.515rem;
   border: 0.1rem solid;
   border-color: ${({ theme }) => theme.colorsPrimary.preto};
@@ -22,7 +23,7 @@ export const btnPrimary = css`
     color: ${({ theme }) => theme.colorsPrimary.branco};
   }
 `;
-export const btnSecundary = css`
+const btnSecundary = css`
   border: none;
   /* max-width: 10.2rem; */
   font-weight: 500;
@@ -31,6 +32,23 @@ export const btnSecundary = css`
   color: ${({ theme }) => theme.colorsPrimary.branco};
   background-color: ${({ theme }) => theme.colorsPrimary.roxo};
 `;
-export const btnTerciario = css`
+const btnTerciario = css`
   all: unset;
+`;
+export const BtnStyle = styled.button<{
+  $classNameBtn: IButton;
+}>`
+  ${({ $classNameBtn: $botaoClass }) => {
+    switch ($botaoClass) {
+      case "btnPrimary":
+        return btnPrimary;
+      case "btnSecundary":
+        return btnSecundary;
+      case "btnTerciario":
+        return btnTerciario;
+      default:
+        break;
+    }
+  }}
+  cursor: pointer;
 `;

@@ -1,6 +1,6 @@
 import Facilidades from "@/components/Facilidades";
-import Produtos from "../../components/Produtos";
 import NewsLetter from "@/components/NewsLetter";
+import Produtos from "@/components/Produtos";
 
 const Home = () => {
   return (
