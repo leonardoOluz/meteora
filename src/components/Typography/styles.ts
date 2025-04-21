@@ -15,9 +15,6 @@ export const TypographyStyle = styled.div<{
   $isColor?: string;
   $isGrid?: IGrid;
 }>`
-  color: ${({ theme, $isColor }) => $isColor || theme.colorsPrimary.branco};
-  box-sizing: border-box;
-
   ${({ $classNameTypograph, $isGrid }) => {
     switch ($classNameTypograph) {
       case "paragraph":
@@ -33,9 +30,12 @@ export const TypographyStyle = styled.div<{
       case "basicParagraphLead":
         return basicParagraphLead;
       case "typographyModal":
-        return typographyModal
+        return typographyModal;
       default:
         return paragraph;
     }
   }}
+
+  color: ${({ theme, $isColor }) => $isColor || theme.colorsPrimary.branco};
+  box-sizing: border-box;
 `;

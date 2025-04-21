@@ -1,18 +1,19 @@
-import { css } from "styled-components";
+import { IClassImg } from "@/types/componentTypes";
+import styled, { css } from "styled-components";
 
-export const imgBanner = css`
+const imgBanner = css`
   width: 100%;
 `;
-export const imgCategoria = css`
+const imgCategoria = css`
   max-width: 14.6rem;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 100%;
   }
 `;
-export const imgFacilidades = css`
+const imgFacilidades = css`
   grid-area: imagenFacilidades;
 `;
-export const imgProdutoCard = css`
+const imgProdutoCard = css`
   /* width: 100%; */
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -21,4 +22,21 @@ export const imgProdutoCard = css`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     max-width: 35rem;
   }
+`;
+const imgCarrinho = css`
+  max-width: 10.9rem;
+`;
+const objClasseImg = {
+  imgBanner,
+  imgCategoria,
+  imgFacilidades,
+  imgProdutoCard,
+  imgCarrinho,
+};
+
+export const FotoStyles = styled.img<{
+  $classeImg: IClassImg;
+}>`
+  object-fit: cover;
+  ${({ $classeImg }) => objClasseImg[$classeImg]}
 `;

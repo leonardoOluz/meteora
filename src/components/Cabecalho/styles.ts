@@ -30,13 +30,18 @@ export const Container = styled.div<{ $buscadorMobile?: boolean }>`
 export const ContainerCart = styled.div`
   display: flex;
   align-items: center;
-  gap: .4rem;
 
   span {
     font-size: 2rem;
     font-weight: 400;
     color: ${({ theme }) => theme.colorsPrimary.verde};
     padding-right: 1.6rem;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
   }
 `;
 

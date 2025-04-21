@@ -1,5 +1,5 @@
-import Lista from "@/components/LIsta";
-import Item from "@/components/LIsta/Item";
+import Lista from "@/components/Lista";
+import Item from "@/components/Lista/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import Photo from "@/components/Photo";
@@ -13,7 +13,7 @@ const Facilidades = () => {
   const facilidades = useSelector((state: RootState) => state.facilidades);
   
   return (
-    <Section classNameSection="secaoFacilidades">
+    <Section classNameSection="secao-facilidades">
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH2">
         Conheça todas as nossas facilidades
       </Typography>

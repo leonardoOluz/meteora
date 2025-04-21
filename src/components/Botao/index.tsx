@@ -1,23 +1,6 @@
-import styled from "styled-components";
-import { btnPrimary, btnSecundary, btnTerciario } from "./styles";
+import { BtnStyle } from "./styles";
 
-const BtnStyle = styled.button<{
-  $classNameBtn: "btnPrimary" | "btnSecundary" | "btnTerciario";
-}>`
-  ${({ $classNameBtn: $botaoClass }) => {
-    switch ($botaoClass) {
-      case "btnPrimary":
-        return btnPrimary;
-      case "btnSecundary":
-        return btnSecundary;
-      case "btnTerciario":
-        return btnTerciario;
-      default:
-        break;
-    }
-  }}
-  cursor: pointer;
-`;
+
 interface IProps {
   children: React.ReactNode;
   classNameBtn: "btnPrimary" | "btnSecundary" | "btnTerciario";

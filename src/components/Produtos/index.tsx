@@ -1,8 +1,9 @@
 import CardProduto from "@/components/CardProduto";
-import Lista from "@/components/LIsta";
-import Item from "@/components/LIsta/Item";
+import Lista from "@/components/Lista";
+import Item from "@/components/Lista/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
+import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 
@@ -10,8 +11,12 @@ const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
 
   return (
-    <Section classNameSection="secaoProdutos">
-      <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
+    <Section classNameSection="secao-produtos">
+      <Typography
+        elementoHtml="h2"
+        classNameTypograph="basicHeadingH3"
+        isColor={thema.colorsPrimary.cinzaChumbo}
+      >
         Produtos que estão bombando!
       </Typography>
       <Lista classeLista="listaProdutos" ariaLabel="Lista de produtos">

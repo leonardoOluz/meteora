@@ -1,7 +1,7 @@
 import { Swiper } from "swiper/react";
 import styled from "styled-components";
 
-export const StyledSwiperContainer = styled(Swiper)`
+export const BannerSwiperContainer = styled(Swiper)`
   /* Adicione aqui os estilos específicos do container do Swiper, se necessário */
   .swiper-pagination-bullet {
     width: 3rem;
@@ -30,4 +30,9 @@ export const StyledSwiperContainer = styled(Swiper)`
   .swiper-button-prev {
     color: ${({ theme }) => theme.colorsPrimary.branco};
   }
+`;
+
+export const BannerCartContainer = styled.div`
+  width: 100%;
+  display: flex;
 `;

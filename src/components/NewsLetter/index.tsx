@@ -9,7 +9,7 @@ import transformNumber from "@/utils/transformNumber";
 const NewsLetter = () => {
   const { width } = useResize();
   return (
-    <Section classNameSection="secaoNewsLetter">
+    <Section classNameSection="secao-newsLetter">
       <FormStyle aria-label="formulario de NewsLetter">
         <Typography
           elementoHtml="p"

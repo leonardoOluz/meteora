@@ -9,6 +9,7 @@ import { thema } from "@/styles/thema";
 import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { Container, ContainerCart, iconsProps } from "./styles";
+import { Link } from "react-router-dom";
 
 const Cabecalho = () => {
   const [texto, setTexto] = useState("");
@@ -18,16 +19,18 @@ const Cabecalho = () => {
   const cartProdutosDesktop = width >=
     transformNumber(thema.breakpoints.tablet) && (
     <ContainerCart>
-      <BsCart4 {...iconsProps} />
-      <span>4</span>
+      <Link to="carrinho">
+        <BsCart4 {...iconsProps} />
+        <span>4</span>
+      </Link>
     </ContainerCart>
   );
   const cartProdutosMobile = width <
     transformNumber(thema.breakpoints.tablet) && (
-    <>
+    <Link to="carrinho">
       <BsCart4 {...iconsProps} />
       <span>4</span>
-    </>
+    </Link>
   );
 
   return (
