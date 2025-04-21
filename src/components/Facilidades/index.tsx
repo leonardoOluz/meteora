@@ -1,5 +1,3 @@
-import Lista from "@/components/Lista";
-import Item from "@/components/Lista/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import Photo from "@/components/Photo";
@@ -7,6 +5,8 @@ import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import CardFelicidades from "./CardFelicidades";
+import Lista from "../Lista";
+import Item from "../Lista/Item";
 
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();

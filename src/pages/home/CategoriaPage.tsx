@@ -1,8 +1,8 @@
 import CardProduto from "@/components/CardProduto";
-import Lista from "@/components/Lista";
-import Item from "@/components/Lista/Item";
-import Section from "@/components/Section";
-import Typography from "@/components/Typography";
+import Lista from "@components/Lista";
+import Item from "@components/Lista/Item";
+import Section from "@components/Section";
+import Typography from "@components/Typography";
 import { selectProdutosPorCategoria } from "@/store/selectors/itemSelectors";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
