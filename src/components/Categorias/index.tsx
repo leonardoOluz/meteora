@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { Link } from "react-router-dom";
 import { thema } from "@/styles/thema";
-import Lista from "../Lista";
-import Item from "../Lista/Item";
+import Lista from "../LIsta";
+import Item from "../LIsta/Item";
 
 const Categorias = () => {
   const { imagensCategoria } = useSetImagens();

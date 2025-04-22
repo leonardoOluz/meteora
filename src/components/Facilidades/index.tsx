@@ -5,8 +5,8 @@ import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import CardFelicidades from "./CardFelicidades";
-import Lista from "../Lista";
-import Item from "../Lista/Item";
+import Lista from "../LIsta";
+import Item from "../LIsta/Item";
 
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();

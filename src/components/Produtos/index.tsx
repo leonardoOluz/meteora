@@ -4,8 +4,8 @@ import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
-import Lista from "../Lista";
-import Item from "../Lista/Item";
+import Lista from "../LIsta";
+import Item from "../LIsta/Item";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
