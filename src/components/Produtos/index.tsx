@@ -5,7 +5,7 @@ import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import List from "../List";
-import ItemList from "../List/Item";
+import ItemList from "../List/ItemList";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);

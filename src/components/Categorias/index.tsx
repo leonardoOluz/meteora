@@ -8,7 +8,7 @@ import { RootState } from "@/types/store";
 import { Link } from "react-router-dom";
 import { thema } from "@/styles/thema";
 import List from "../List";
-import ItemList from "../List/Item";
+import ItemList from "../List/ItemList";
 
 const Categorias = () => {
   const { imagensCategoria } = useSetImagens();

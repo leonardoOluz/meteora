@@ -5,7 +5,7 @@ import Typography from "@/components/Typography";
 import cardProdutos from "@/json/produtos.json";
 import { DivListaCarrinho } from "./styles";
 import List from "@/components/List";
-import ItemList from "@/components/List/Item";
+import ItemList from "@/components/List/ItemList";
 const Carrinho = () => {
   return (
     <Section classNameSection="secao-carrinho">
