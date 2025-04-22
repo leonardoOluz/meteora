@@ -6,8 +6,8 @@ import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Lista from "@/components/LIsta";
-import Item from "@/components/LIsta/Item";
+import List from "@/components/List";
+import ItemList from "@/components/List/Item";
 
 const CategoriaPage = () => {
   const { categoria } = useParams();
@@ -24,16 +24,16 @@ const CategoriaPage = () => {
         >
           {categoria}
         </Typography>
-        <Lista
+        <List
           ariaLabel={`Lista de produtos da categoria ${categoria}`}
           classeLista="listaProdutos"
         >
           {cardCategoria.map((card) => (
-            <Item key={card.id}>
+            <ItemList key={card.id}>
               <CardProduto card={card} />
-            </Item>
+            </ItemList>
           ))}
-        </Lista>
+        </List>
       </Section>
     </>
   );

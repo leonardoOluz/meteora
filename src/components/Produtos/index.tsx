@@ -4,8 +4,8 @@ import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
-import Lista from "../LIsta";
-import Item from "../LIsta/Item";
+import List from "../List";
+import ItemList from "../List/Item";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
@@ -19,13 +19,13 @@ const Produtos = () => {
       >
         Produtos que estão bombando!
       </Typography>
-      <Lista classeLista="listaProdutos" ariaLabel="Lista de produtos">
+      <List classeLista="listaProdutos" ariaLabel="Lista de produtos">
         {produtos.map((card) => (
-          <Item key={card.id} aria-label={`card de produto ${card.categoria}`}>
+          <ItemList key={card.id} aria-label={`card de produto ${card.categoria}`}>
             <CardProduto card={card} />
-          </Item>
+          </ItemList>
         ))}
-      </Lista>
+      </List>
     </Section>
   );
 };

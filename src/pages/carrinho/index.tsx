@@ -4,8 +4,8 @@ import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import cardProdutos from "@/json/produtos.json";
 import { DivListaCarrinho } from "./styles";
-import Lista from "@/components/LIsta";
-import Item from "@/components/LIsta/Item";
+import List from "@/components/List";
+import ItemList from "@/components/List/Item";
 const Carrinho = () => {
   return (
     <Section classNameSection="secao-carrinho">
@@ -14,13 +14,13 @@ const Carrinho = () => {
         <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
           Detalhes da compra
         </Typography>
-        <Lista classeLista="listaCarrinho" ariaLabel="lista de carrinhos">
+        <List classeLista="listaCarrinho" ariaLabel="lista de carrinhos">
           {cardProdutos.produtos.map((card) => (
-            <Item key={card.id}>
+            <ItemList key={card.id}>
               <CardCarrinho {...card} />
-            </Item>
+            </ItemList>
           ))}
-        </Lista>
+        </List>
       </DivListaCarrinho>
     </Section>
   );

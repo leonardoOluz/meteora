@@ -5,8 +5,8 @@ import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import CardFelicidades from "./CardFelicidades";
-import Lista from "../LIsta";
-import Item from "../LIsta/Item";
+import List from "../List";
+import ItemList from "../List/Item";
 
 const Facilidades = () => {
   const { imagensFacilidades } = useSetImagens();
@@ -17,9 +17,9 @@ const Facilidades = () => {
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH2">
         Conheça todas as nossas facilidades
       </Typography>
-      <Lista classeLista="listaFelicidades" ariaLabel="Lista de facilidades">
+      <List classeLista="listaFelicidades" ariaLabel="Lista de facilidades">
         {facilidades.map((item) => (
-          <Item key={item.id}>
+          <ItemList key={item.id}>
             <CardFelicidades title={item.title} description={item.description}>
               <Photo
                 photo={imagensFacilidades(item.image)}
@@ -27,9 +27,9 @@ const Facilidades = () => {
                 classeImg="imgFacilidades"
               />
             </CardFelicidades>
-          </Item>
+          </ItemList>
         ))}
-      </Lista>
+      </List>
     </Section>
   );
 };

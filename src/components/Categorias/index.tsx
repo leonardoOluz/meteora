@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { Link } from "react-router-dom";
 import { thema } from "@/styles/thema";
-import Lista from "../LIsta";
-import Item from "../LIsta/Item";
+import List from "../List";
+import ItemList from "../List/Item";
 
 const Categorias = () => {
   const { imagensCategoria } = useSetImagens();
@@ -23,9 +23,9 @@ const Categorias = () => {
       >
         Busque por categoria:
       </Typography>
-      <Lista classeLista="listaCategorias" ariaLabel="Lista de categorias">
+      <List classeLista="listaCategorias" ariaLabel="Lista de categorias">
         {categorias.map((item) => (
-          <Item key={item.id}>
+          <ItemList key={item.id}>
             <Link to={`categoria/${item.categoria}`}>
               <CardCategoria texto={item.categoria}>
                 <Photo
@@ -35,9 +35,9 @@ const Categorias = () => {
                 />
               </CardCategoria>
             </Link>
-          </Item>
+          </ItemList>
         ))}
-      </Lista>
+      </List>
     </Section>
   );
 };
