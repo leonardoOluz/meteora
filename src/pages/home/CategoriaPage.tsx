@@ -7,7 +7,7 @@ import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import List from "@/components/List";
-import ItemList from "@/components/List/Item";
+import ItemList from "@/components/List/ItemList";
 
 const CategoriaPage = () => {
   const { categoria } = useParams();
