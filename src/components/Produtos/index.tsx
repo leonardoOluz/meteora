@@ -1,11 +1,11 @@
 import CardProduto from "@/components/CardProduto";
-import Lista from "@/components/Lista";
-import Item from "@/components/Lista/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
+import Lista from "../LIsta";
+import Item from "../LIsta/Item";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);

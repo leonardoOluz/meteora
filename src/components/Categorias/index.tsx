@@ -1,7 +1,5 @@
 import Section from "@components/Section";
 import Typography from "@components/Typography";
-import Lista from "@/components/Lista";
-import Item from "@/components/Lista/Item";
 import CardCategoria from "./CardCategoria";
 import Photo from "@components/Photo";
 import useSetImagens from "@/hooks/useSetImagens";
@@ -9,6 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { Link } from "react-router-dom";
 import { thema } from "@/styles/thema";
+import Lista from "../LIsta";
+import Item from "../LIsta/Item";
 
 const Categorias = () => {
   const { imagensCategoria } = useSetImagens();

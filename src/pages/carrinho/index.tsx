@@ -1,11 +1,11 @@
 import Banner from "@/components/Banner";
 import CardCarrinho from "@/components/CardCarrinho";
-import Lista from "@/components/Lista";
-import Item from "@/components/Lista/Item";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import cardProdutos from "@/json/produtos.json";
 import { DivListaCarrinho } from "./styles";
+import Lista from "@/components/LIsta";
+import Item from "@/components/LIsta/Item";
 const Carrinho = () => {
   return (
     <Section classNameSection="secao-carrinho">
