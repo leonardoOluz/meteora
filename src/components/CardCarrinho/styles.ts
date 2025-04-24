@@ -2,6 +2,7 @@ import { basicParagraphBold } from "@/styles/stylesGlobal";
 import styled from "styled-components";
 
 export const ArtCardCart = styled.article`
+  background-color: ${({ theme }) => theme.colorsPrimary.preto};
   padding: 3.2rem 2.4rem;
   border-bottom: 1px solid #6c757d;
   display: flex;

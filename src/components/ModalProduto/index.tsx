@@ -22,6 +22,9 @@ import Photo from "../Photo";
 import RadioSelect from "./RadioSelect";
 import { ICardProduto } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "@/store/reducers/carrinho";
 interface IProps {
   handleClose: () => void;
   isOpen: boolean;
@@ -30,6 +33,30 @@ interface IProps {
 
 const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
+  const [cor, setCor] = useState("");
+  const [tamanho, setTamanho] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log({
+      id: card.id,
+      cor,
+      tamanho,
+      quantidade: 1,
+    });
+    alert("Produto adicionado ao carrinho");
+    dispatch(
+      addProduct({
+        id: card.id,
+        details: {
+          cor,
+          tamanho
+        }
+      })
+    );
+    handleClose();
+  };
 
   return (
     <DialogModal open={isOpen} tabIndex={0}>
@@ -82,28 +109,35 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
                 </Typography>
               </DivPrecoProdutod>
             </DivDescricaoProduto>
-            <Form
-              ariaLabel="itens opcionais"
-              handleSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
+            <Form ariaLabel="itens opcionais" handleSubmit={handleSubmit}>
               <FieldsetStyle>
                 <LegendStyle>Cores:</LegendStyle>
                 <DivRadio>
-                  <RadioSelect nome="cores" texto="azulClaro" />
-                  <RadioSelect nome="cores" texto="Offwhite" />
-                  <RadioSelect nome="cores" texto="Preto" />
+                  {card.cor.map((cor) => (
+                    <RadioSelect
+                      key={cor}
+                      nome="cor"
+                      texto={cor}
+                      handleChange={(e) => {
+                        setCor(e.target.value);
+                      }}
+                    />
+                  ))}
                 </DivRadio>
               </FieldsetStyle>
               <FieldsetStyle>
                 <LegendStyle>Tamanho:</LegendStyle>
                 <DivRadio>
-                  <RadioSelect nome="tamanho" texto="P" />
-                  <RadioSelect nome="tamanho" texto="PP" />
-                  <RadioSelect nome="tamanho" texto="M" />
-                  <RadioSelect nome="tamanho" texto="G" />
-                  <RadioSelect nome="tamanho" texto="GG" />
+                  {card.tamanho.map((tamanho) => (
+                    <RadioSelect
+                      key={tamanho}
+                      nome="tamanho"
+                      texto={tamanho}
+                      handleChange={(e) => {
+                        setTamanho(e.target.value);
+                      }}
+                    />
+                  ))}
                 </DivRadio>
               </FieldsetStyle>
               <Botao classNameBtn="btnSecundary" tipo="submit">

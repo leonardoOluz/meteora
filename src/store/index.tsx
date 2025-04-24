@@ -3,6 +3,7 @@ import produtosSlice from "@/store/reducers/produtos";
 import bannerSlice from "@/store/reducers/banner";
 import categoriasSlice from "@/store/reducers/categorias";
 import facilidadesSlice from "@/store/reducers/facilidades";
+import carrinhoSlice from "@/store/reducers/carrinho";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     banner: bannerSlice,
     categorias: categoriasSlice,
     facilidades: facilidadesSlice,
+    carrinho: carrinhoSlice,
   },
 });
 

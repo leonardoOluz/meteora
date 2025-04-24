@@ -10,18 +10,21 @@ import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { Container, ContainerCart, iconsProps } from "./styles";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
 
 const Cabecalho = () => {
   const [texto, setTexto] = useState("");
   const [menuAberto, setMenuAberto] = useState(false);
   const { width } = useResize();
+  const carrinho = useSelector((state: RootState) => state.carrinho)
 
   const cartProdutosDesktop = width >=
     transformNumber(thema.breakpoints.tablet) && (
     <ContainerCart>
       <Link to="carrinho">
         <BsCart4 {...iconsProps} />
-        <span>4</span>
+        <span>{carrinho.data.length}</span>
       </Link>
     </ContainerCart>
   );
@@ -29,7 +32,7 @@ const Cabecalho = () => {
     transformNumber(thema.breakpoints.tablet) && (
     <Link to="carrinho">
       <BsCart4 {...iconsProps} />
-      <span>4</span>
+      <span>{carrinho.data.length}</span>
     </Link>
   );
 

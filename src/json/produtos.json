@@ -7,7 +7,9 @@
       "alt": "homem com camiseta dourada",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 70.00
+      "preco": 70.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 2,
@@ -16,7 +18,9 @@
       "alt": "Mulher com camiseta verde",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 70.00
+      "preco": 70.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 3,
@@ -25,7 +29,9 @@
       "alt": "Homem com camiseta marrom",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 65.00
+      "preco": 65.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 4,
@@ -34,7 +40,9 @@
       "alt": "Homem com camiseta listrada vermelha e preta",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 45.00
+      "preco": 45.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 5,
@@ -43,7 +51,9 @@
       "alt": "Homem com camiseta preta",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 75.00
+      "preco": 75.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 6,
@@ -52,7 +62,9 @@
       "alt": "Mulher com camiseta roxa",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "preco": 79.00
+      "preco": 79.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 7,
@@ -61,7 +73,9 @@
       "alt": "Mulher usando uma calça bege",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 105.00
+      "preco": 105.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 8,
@@ -70,7 +84,9 @@
       "alt": "Mulher usando uma calça vermelha",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 165.00
+      "preco": 165.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 9,
@@ -79,7 +95,9 @@
       "alt": "Mulher usando uma calça jeans azul clara",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 195.00
+      "preco": 195.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 10,
@@ -88,7 +106,9 @@
       "alt": "Home usando uma calça branca",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 115.00
+      "preco": 115.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 11,
@@ -97,7 +117,9 @@
       "alt": "Home usando uma calça verde",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 139.00
+      "preco": 139.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 12,
@@ -106,7 +128,9 @@
       "alt": "Mulher usando uma calça branca",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "preco": 165.00
+      "preco": 165.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 13,
@@ -115,7 +139,9 @@
       "alt": "Home usando uma jaqueta jeans azul clara",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 215.00
+      "preco": 215.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 14,
@@ -124,7 +150,9 @@
       "alt": "Mulher usando uma jaqueta esverdeada",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 215.00
+      "preco": 215.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 15,
@@ -133,7 +161,9 @@
       "alt": "Mulher usando uma jaqueta de couro preta",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 315.00
+      "preco": 315.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 16,
@@ -142,7 +172,9 @@
       "alt": "Home usando uma camisa social lilas",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 115.00
+      "preco": 115.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 17,
@@ -151,7 +183,9 @@
       "alt": "Mulher usando uma blusinha listrada preto e branco",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 99.00
+      "preco": 99.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 18,
@@ -160,7 +194,9 @@
       "alt": "Home usando uma jaqueta jeans azul clara",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "preco": 215.00
+      "preco": 215.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 19,
@@ -169,7 +205,9 @@
       "alt": "Mulher usando uma bolsa marrom",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 120.00
+      "preco": 120.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 20,
@@ -178,7 +216,9 @@
       "alt": "Home usando uma bolsa preta",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 220.00
+      "preco": 220.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 21,
@@ -187,7 +227,9 @@
       "alt": "Mulher usando bolsa pequena azul de mão",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 85.00
+      "preco": 85.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 22,
@@ -196,7 +238,9 @@
       "alt": "Mulher usando mochila marrom",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 520.00
+      "preco": 520.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 23,
@@ -205,7 +249,9 @@
       "alt": "Home usando uma bolsa de mão",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 150.00
+      "preco": 150.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 24,
@@ -214,7 +260,9 @@
       "alt": "Mulher usando bolsinha de mão laranja",
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
-      "preco": 179.00
+      "preco": 179.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 25,
@@ -223,7 +271,9 @@
       "alt": "Homem usando um oculos armação fina lente transparente",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 120.00
+      "preco": 120.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 26,
@@ -232,7 +282,9 @@
       "alt": "Homem usando um oculos armação fina lente escuras",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 170.00
+      "preco": 170.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 27,
@@ -241,7 +293,9 @@
       "alt": "Homem usando um oculos armação fina lente transparente",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 130.00
+      "preco": 130.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 28,
@@ -250,7 +304,9 @@
       "alt": "Mulher usando um oculos armação fina lente transparente",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 189.00
+      "preco": 189.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 29,
@@ -259,7 +315,9 @@
       "alt": "Homem usando um oculos armação redanda e lente pequena e escura",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 99.00
+      "preco": 99.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 30,
@@ -268,7 +326,9 @@
       "alt": "Mulher usando oculos branco feshion lente escuras",
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
-      "preco": 320.00
+      "preco": 320.0,
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["P", "PP", "M", "G", "GG"]
     },
     {
       "id": 31,
@@ -277,7 +337,9 @@
       "alt": "Um par de pé usando um tenis branco",
       "titulo": "Tênis Chunky",
       "descricao": "Snicker casual com solado mais alto e modelagem robusta. Modelo unissex.",
-      "preco": 250.00
+      "preco": 250.0,
+      "cor": ["", "", ""],
+      "tamanho": ["", "", ""]
     }
   ]
 }

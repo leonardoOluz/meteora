@@ -1,9 +1,10 @@
+import { IButton } from "@/types/componentTypes";
 import { BtnStyle } from "./styles";
 
 
 interface IProps {
   children: React.ReactNode;
-  classNameBtn: "btnPrimary" | "btnSecundary" | "btnTerciario";
+  classNameBtn: IButton;
   tipo?: "button" | "submit" | "reset";
   handleClick?: () => void;
 }

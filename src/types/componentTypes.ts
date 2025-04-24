@@ -17,6 +17,7 @@ export type IClassTypograph =
   | "basicParagraphSmall"
   | "basicHeadingH3"
   | "basicHeadingH2"
+  | "basicHendingH4"
   | "basicParagraphLead"
   | "typographyModal";
 
@@ -41,7 +42,7 @@ export type ILista =
   | "listaFelicidades"
   | "listaProdutos"
   | "listaCarrinho";
-export type IButton = "btnPrimary" | "btnSecundary" | "btnTerciario";
+export type IButton = "btnPrimary" | "btnSecundary" | "btnTerciario" | "btnQuarciario";
 export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];

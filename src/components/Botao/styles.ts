@@ -25,7 +25,6 @@ const btnPrimary = css`
 `;
 const btnSecundary = css`
   border: none;
-  /* max-width: 10.2rem; */
   font-weight: 500;
   font-size: 1.6rem;
   padding: 0.9rem 1.6rem;
@@ -34,6 +33,14 @@ const btnSecundary = css`
 `;
 const btnTerciario = css`
   all: unset;
+`;
+const btnQuarciario = css`
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid ${({ theme }) => theme.colorsPrimary.roxo};
+  color: ${({ theme }) => theme.colorsPrimary.roxo};
+  background-color: ${({theme}) => theme.colorsPrimary.branco};
 `;
 export const BtnStyle = styled.button<{
   $classNameBtn: IButton;
@@ -46,6 +53,8 @@ export const BtnStyle = styled.button<{
         return btnSecundary;
       case "btnTerciario":
         return btnTerciario;
+      case "btnQuarciario":
+        return btnQuarciario;
       default:
         break;
     }
