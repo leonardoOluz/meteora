@@ -23,6 +23,7 @@ interface IProps {
   classeInput: "inputBuscador" | "inputModalProduto";
   id?: string;
   nome?: string;
+  isRequired?: boolean;
 }
 const Input = ({
   value,
@@ -32,6 +33,7 @@ const Input = ({
   classeInput,
   id,
   nome,
+  isRequired
 }: IProps) => {
   return (
     <StyleInput
@@ -42,6 +44,7 @@ const Input = ({
       onChange={handleChange}
       placeholder={placeHolder}
       type={tipo}
+      required={isRequired}
     />
   );
 };

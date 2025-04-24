@@ -2,6 +2,7 @@ import { IGrid, IClassTypograph } from "@/types/componentTypes";
 import {
   basicHeadingH2,
   basicHeadingH3,
+  basicHendingH4,
   basicParagraphBold,
   basicParagraphLead,
   basicParagraphSmall,
@@ -31,6 +32,8 @@ export const TypographyStyle = styled.div<{
         return basicParagraphLead;
       case "typographyModal":
         return typographyModal;
+      case "basicHendingH4":
+        return basicHendingH4;
       default:
         return paragraph;
     }

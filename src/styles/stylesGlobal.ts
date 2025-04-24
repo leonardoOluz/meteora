@@ -46,6 +46,11 @@ export const basicHeadingH2 = css`
     font-size: 3.2rem;
   }
 `;
+export const basicHendingH4 = css`
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 100%;
+`;
 export const basicParagraphLead = css`
   font-weight: 400;
   font-size: 2rem;

@@ -43,8 +43,10 @@ const secaoNewsLetter = css`
 `;
 const secaoCarrinho = css`
   gap: 0;
-`
-
+  @media screen and (min-width: ${({theme}) => theme.breakpoints.tablet}){
+    gap: 3.2rem;    
+  }
+`;
 
 /* objetos de seções */
 const sectionStyles = {
@@ -52,7 +54,7 @@ const sectionStyles = {
   "secao-produtos": secaoProdutos,
   "secao-facilidades": secaoFacilidades,
   "secao-newsLetter": secaoNewsLetter,
-  "secao-carrinho": secaoCarrinho
+  "secao-carrinho": secaoCarrinho,
 };
 
 export const SectionStyle = styled.section<{
