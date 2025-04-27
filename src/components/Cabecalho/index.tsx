@@ -9,25 +9,51 @@ import { thema } from "@/styles/thema";
 import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { Container, ContainerCart, iconsProps } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
+import CartDropDown from "../CartDropDown";
 
 const Cabecalho = () => {
+  const [cartDropDown, setCartDropDown] = useState(false);
+  const [menuDropDrown, setMenuDropDown] = useState(false);
+  const [isOpenDropDown, setIsOpenDropDown] = useState(true);
   const [texto, setTexto] = useState("");
-  const [menuAberto, setMenuAberto] = useState(false);
   const { width } = useResize();
-  const carrinho = useSelector((state: RootState) => state.carrinho)
+  const carrinho = useSelector((state: RootState) => state.carrinho);
+  const location = useLocation();
+
+  const handleCartDropDown = () => {
+    if (isOpenDropDown) {
+      return setTimeout(() => {
+        if (location.pathname === "/carrinho") {
+          setCartDropDown(false);
+          return;
+        }
+        setCartDropDown(!cartDropDown);
+        setIsOpenDropDown(false);
+      }, 500);
+    }
+    setIsOpenDropDown(true);
+  };
+
+  const isDropDown =
+    location.pathname !== "/carrinho" &&
+    cartDropDown &&
+    width >= transformNumber(thema.breakpoints.tablet) ? (
+      <CartDropDown setDropDown={setCartDropDown} dropDown={cartDropDown} />
+    ) : null;
 
   const cartProdutosDesktop = width >=
     transformNumber(thema.breakpoints.tablet) && (
-    <ContainerCart>
+    <ContainerCart onMouseEnter={() => handleCartDropDown()}>
       <Link to="carrinho">
         <BsCart4 {...iconsProps} />
         <span>{carrinho.data.length}</span>
       </Link>
     </ContainerCart>
   );
+
   const cartProdutosMobile = width <
     transformNumber(thema.breakpoints.tablet) && (
     <Link to="carrinho">
@@ -37,12 +63,15 @@ const Cabecalho = () => {
   );
 
   return (
-    <Header classeHeader="cabecalho">
+    <Header classeHeader="header">
       <Container>
         <Logo />
         <ContainerCart>
           {cartProdutosMobile}
-          <Navbar menuAberto={menuAberto} setMenuAberto={setMenuAberto} />
+          <Navbar
+            menuDropDrown={menuDropDrown}
+            handleMenuDropDrown={setMenuDropDown}
+          />
         </ContainerCart>
       </Container>
       <Container style={{ gap: "1rem" }} $buscadorMobile>
@@ -56,6 +85,7 @@ const Cabecalho = () => {
         <Botao classNameBtn="btnPrimary">Buscar</Botao>
         {cartProdutosDesktop}
       </Container>
+      {isDropDown}
     </Header>
   );
 };

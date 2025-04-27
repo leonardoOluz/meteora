@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
-export const DivSelectedQuantity = styled.div`
+export const DivSelectedQuantity = styled.div<{
+  $flexDirection: "row" | "column";
+}>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({$flexDirection}) => $flexDirection};
   gap: 1.6rem;
   box-sizing: border-box;
+  align-items: center;
 
   div {
     display: flex;
@@ -14,12 +17,14 @@ export const DivSelectedQuantity = styled.div`
 
     .quantity {
       width: 3.9rem;
-      padding: .4rem 0;
+      padding: .9rem 0;
       text-align: center;
       border: solid 1px white;
       border-radius: 0.4rem;
-      color: ${({theme}) => theme.colorsPrimary.branco};
+      color: ${({ theme }) => theme.colorsPrimary.branco};
       box-sizing: border-box;
+      font-weight: 700;
+      font-size: 1.3rem;
     }
 
     button {
@@ -27,7 +32,7 @@ export const DivSelectedQuantity = styled.div`
       font-size: 1.3rem;
       font-weight: 400;
       text-align: center;
-      color: ${({theme}) => theme.colorsPrimary.branco};
+      color: ${({ theme }) => theme.colorsPrimary.branco};
       border: solid 1px white;
       border-radius: 50%;
       box-sizing: border-box;

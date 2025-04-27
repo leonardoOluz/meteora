@@ -1,34 +1,73 @@
 import { ICardProduto } from "@/types/componentTypes";
-import { ArtCardCart, DivActionsCart, DivImgDescrption } from "./styles";
+import {
+  ArtCardCart,
+  ArtCardCartDropDown,
+  DivActionsCart,
+  DivCarDropDown,
+  DivImgDescrption,
+  PriceSpanCardCart,
+} from "./styles";
 import Photo from "../Photo";
 import useSetImagens from "@/hooks/useSetImagens";
 import Typography from "../Typography";
 import SelectedQuantity from "../SelectedQuantity";
 import { MdDelete } from "react-icons/md";
 
-const CardCarrinho = (props: ICardProduto) => {
+interface IProps {
+  card: ICardProduto;
+  cartSuspensa?: boolean;
+}
+
+const CardCarrinho = ({ card, cartSuspensa }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
+
+  if (cartSuspensa) {
+    return (
+      <ArtCardCartDropDown>
+        <div className="cardImgDescription">
+          <Photo
+            photo={imagensCardProdutos(card.imagem)}
+            alt={card.alt}
+            classeImg="imgCarrinho"
+          />
+          <DivCarDropDown>
+            <Typography
+              elementoHtml="h3"
+              classNameTypograph="basicParagraphBold"
+            >
+              {card.titulo}
+            </Typography>
+            <SelectedQuantity isDropDown />
+            <PriceSpanCardCart>R$ {card.preco.toFixed(2)}</PriceSpanCardCart>
+          </DivCarDropDown>
+        </div>
+
+        <MdDelete size={16} color="#fff" style={{ alignSelf: "center" }} />
+      </ArtCardCartDropDown>
+    );
+  }
+
   return (
     <ArtCardCart>
       <DivImgDescrption>
         <Photo
-          photo={imagensCardProdutos(props.imagem)}
-          alt={props.alt}
+          photo={imagensCardProdutos(card.imagem)}
+          alt={card.alt}
           classeImg="imgCarrinho"
         />
         <div>
           <Typography elementoHtml="h3" classNameTypograph="basicParagraphBold">
-            {props.titulo}
+            {card.titulo}
           </Typography>
           <Typography elementoHtml="p" classNameTypograph="basicParagraphSmall">
-            {props.descricao}
+            {card.descricao}
           </Typography>
         </div>
       </DivImgDescrption>
       <DivActionsCart>
-        <span>R$ {props.preco.toFixed(2)}</span>
+        <PriceSpanCardCart>R$ {card.preco.toFixed(2)}</PriceSpanCardCart>
         <SelectedQuantity />
-        <MdDelete size={16} color="#fff"/>
+        <MdDelete size={16} color="#fff" />
       </DivActionsCart>
     </ArtCardCart>
   );

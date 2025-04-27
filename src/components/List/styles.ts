@@ -39,7 +39,8 @@ const listaProdutos = css`
 `;
 
 const listaCarrinho = css`
-
+  overflow-y: auto;
+  /* max-height: 70vh; */
 `;
 
 export const ListaStyle = styled.ul<{

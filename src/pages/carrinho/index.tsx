@@ -42,7 +42,7 @@ const Carrinho = () => {
           <List classeLista="listaCarrinho" ariaLabel="lista de carrinhos">
             {carrinho.map((card) => (
               <ItemList key={card.id}>
-                <CardCarrinho {...card} />
+                <CardCarrinho card={card} />
               </ItemList>
             ))}
           </List>
