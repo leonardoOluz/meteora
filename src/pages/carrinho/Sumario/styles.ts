@@ -6,7 +6,7 @@ export const AnsideSumare = styled.aside`
   padding: 3.2rem 2.4rem;
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
   width: 100%;
-  max-width: 62rem;
+  max-width: 69rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

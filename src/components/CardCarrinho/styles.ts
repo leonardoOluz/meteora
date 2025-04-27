@@ -1,6 +1,7 @@
 import { basicParagraphBold } from "@/styles/stylesGlobal";
 import styled from "styled-components";
 
+/* Cart */
 export const ArtCardCart = styled.article`
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
   padding: 3.2rem 2.4rem;
@@ -9,6 +10,7 @@ export const ArtCardCart = styled.article`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1.6rem;
+  box-sizing: border-box;
 `;
 
 export const DivImgDescrption = styled.div`
@@ -30,12 +32,38 @@ export const DivActionsCart = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 2.4rem;
-
-  span {
-    ${basicParagraphBold()}
-    color: ${({ theme }) => theme.colorsPrimary.verde};
-  }
   svg {
     cursor: pointer;
   }
+`;
+
+export const PriceSpanCardCart = styled.span`
+  ${basicParagraphBold()}
+  color: ${({ theme }) => theme.colorsPrimary.verde};
+`;
+
+/* Cart DropDown */
+export const ArtCardCartDropDown = styled.div`
+  box-sizing: border-box;
+  width: 54rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 4rem 8rem;
+  padding-bottom: 3.2rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colorsPrimary.cinza};
+  
+  &:last-child {
+    margin-bottom: 3.2rem;
+  }
+  .cardImgDescription {
+    display: flex;
+    gap: 1.6rem;
+  }
+`;
+
+export const DivCarDropDown = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.6rem 0;
 `;

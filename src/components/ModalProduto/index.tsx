@@ -39,12 +39,6 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({
-      id: card.id,
-      cor,
-      tamanho,
-      quantidade: 1,
-    });
     alert("Produto adicionado ao carrinho");
     dispatch(
       addProduct({
@@ -61,7 +55,7 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
   return (
     <DialogModal open={isOpen} tabIndex={0}>
       <DivModal>
-        <Header classeHeader="cabecalhoModal">
+        <Header classeHeader="headerModal">
           <DivHeaderModal>
             <FaRegCheckCircle color={thema.colorsPrimary.verde} size={32} />
             <Typography elementoHtml="h2" classNameTypograph="typographyModal">

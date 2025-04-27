@@ -22,7 +22,7 @@ export const DivCartList = styled.div`
     background-color: ${({ theme }) => theme.colorsPrimary.preto};
   }
   width: 100%;
-  max-width: 62rem;
+  max-width: 69rem;
 `;
 
 export const DivCartSumare = styled.div`

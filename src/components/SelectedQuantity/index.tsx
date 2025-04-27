@@ -3,10 +3,13 @@ import Botao from "../Botao";
 import { DivSelectedQuantity } from "./styles";
 import Typography from "../Typography";
 
-const SelectedQuantity = () => {
+interface IProps {
+  isDropDown?: boolean;
+}
+const SelectedQuantity = ({ isDropDown }: IProps) => {
   const [value, setValue] = useState(1);
   return (
-    <DivSelectedQuantity>
+    <DivSelectedQuantity $flexDirection={isDropDown ? "row" : "column"}>
       <Typography elementoHtml="p" classNameTypograph="basicParagraphBold">
         Quantidade:{" "}
       </Typography>

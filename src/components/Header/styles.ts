@@ -1,6 +1,8 @@
-import { css } from "styled-components";
+import { IHeader } from "@/types/componentTypes";
+import styled, { css } from "styled-components";
 
-export const cabecalho = css`
+const header = css`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,10 +15,30 @@ export const cabecalho = css`
     justify-content: space-around;
   }
 `;
-export const cabecalhoModal = css`
+const headerModal = css`
   padding: 1.6rem 2.3rem;
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const headerDropDown = css`
+  text-align: left;
+  background-color: ${({ theme }) => theme.colorsPrimary.roxo};
+  display: flex;
+  justify-content: space-between;
+  padding: 2.4rem 3.2rem 2.4rem 8rem;
+`;
+
+const hedersType = {
+  header,
+  headerModal,
+  headerDropDown,
+};
+
+export const HeaderStyle = styled.header<{
+  $classHeader: IHeader;
+}>`
+  ${({ $classHeader }) => hedersType[$classHeader]}
 `;

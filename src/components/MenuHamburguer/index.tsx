@@ -11,6 +11,7 @@ const BtnMenu = styled.button<{ $menuAberto: boolean }>`
   width: auto;
   background-color: transparent;
   box-sizing: border-box;
+  cursor: pointer;
 
   ${({ $menuAberto }) =>
     $menuAberto ? "padding: 1rem 2.4rem 0 0;" : "padding: 0;"}
@@ -20,21 +21,25 @@ const BtnMenu = styled.button<{ $menuAberto: boolean }>`
   }
 `;
 interface IProps {
-  setMenuAberto: React.Dispatch<React.SetStateAction<boolean>>;
-  menuAberto: boolean;
+  handleMenuDropDrown: React.Dispatch<React.SetStateAction<boolean>>;
+  menuDropDrown: boolean;
   ariaControls?: string;
 }
-const MenuHamburguer = ({ setMenuAberto, menuAberto, ariaControls }: IProps) => {
+const MenuHamburguer = ({
+  handleMenuDropDrown,
+  menuDropDrown,
+  ariaControls,
+}: IProps) => {
   return (
     <div style={{ textAlign: "right" }}>
       <BtnMenu
-        $menuAberto={menuAberto}
-        onClick={() => setMenuAberto(!menuAberto)}
-        aria-label={`menu hamburguer ${menuAberto ? "fechar" : "abrir"}`}
-        aria-expanded={menuAberto}
+        $menuAberto={menuDropDrown}
+        onClick={() => handleMenuDropDrown((prev) => !prev)}
+        aria-label={`menu hamburguer ${menuDropDrown ? "fechar" : "abrir"}`}
+        aria-expanded={menuDropDrown}
         aria-controls={ariaControls}
       >
-        {menuAberto ? (
+        {menuDropDrown ? (
           <IoCloseOutline {...stylesIcons} />
         ) : (
           <IoMenuSharp {...stylesIcons} />
