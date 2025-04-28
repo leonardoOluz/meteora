@@ -1,19 +1,29 @@
 import Typography from "@/components/Typography";
 import { AnsideSumare, DlSumare } from "./styles";
+import { ICartSlice } from "@/types/store";
 
-const Sumario = () => {
+interface IProps {
+  cart: ICartSlice;
+}
+const Sumario = ({ cart }: IProps) => {
+  const frete = 10.0;
+
   return (
     <AnsideSumare>
       <Typography elementoHtml="h4" classNameTypograph="basicHendingH4">
         Sumário
       </Typography>
       <DlSumare>
-        <dt>03 Produtos</dt>
-        <dd>R$ 10,00</dd>
+        <dt>
+          {cart.totProduct <= 1
+            ? `${cart.totProduct} Produto`
+            : `${cart.totProduct} Produtos`}
+        </dt>
+        <dd>R$ {cart.totValue.toFixed(2)}</dd>
         <dt>Frete</dt>
-        <dd>R$ 10,00</dd>
+        <dd>R$ {frete.toFixed(2)}</dd>
         <dt className="total">Total:</dt>
-        <dd className="total">R$ 1020,00</dd>
+        <dd className="total">R$ {(cart.totValue + frete).toFixed(2)}</dd>
       </DlSumare>
     </AnsideSumare>
   );

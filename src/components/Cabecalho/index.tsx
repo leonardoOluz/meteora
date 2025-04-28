@@ -24,16 +24,19 @@ const Cabecalho = () => {
   const location = useLocation();
 
   const handleCartDropDown = () => {
+    if (location.pathname === "/carrinho") {
+      console.log("dentro da rota carrinho");
+      return setCartDropDown(false);
+    }
+
     if (isOpenDropDown) {
       return setTimeout(() => {
-        if (location.pathname === "/carrinho") {
-          setCartDropDown(false);
-          return;
-        }
+        console.log("fora da rota carrinho");
         setCartDropDown(!cartDropDown);
         setIsOpenDropDown(false);
       }, 500);
     }
+
     setIsOpenDropDown(true);
   };
 

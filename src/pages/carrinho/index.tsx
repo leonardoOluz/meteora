@@ -13,10 +13,14 @@ import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import Botao from "@/components/Botao";
+
 const Carrinho = () => {
-  const carrinho = useSelector((state: RootState) => {
+  const cartProduct = useSelector((state: RootState) => {
     return selectCartForProduct(state);
   });
+
+  const cart = useSelector((state: RootState) => state.carrinho);
+
   const { width } = useResize();
 
   const tituloCartMain =
@@ -40,15 +44,21 @@ const Carrinho = () => {
             Detalhes da compra
           </Typography>
           <List classeLista="listaCarrinho" ariaLabel="lista de carrinhos">
-            {carrinho.map((card) => (
-              <ItemList key={card.id}>
-                <CardCarrinho card={card} />
+            {cartProduct.map((itemProduct) => (
+              <ItemList key={itemProduct.id}>
+                <CardCarrinho
+                  card={itemProduct}
+                  totQuanty={
+                    cart.data.find((itemCart) => itemCart.id === itemProduct.id)
+                      ?.quantity || 0
+                  }
+                />
               </ItemList>
             ))}
           </List>
         </DivCartList>
         <DivCartSumare>
-          <Sumario />
+          <Sumario cart={cart} />
           <DivCartBtn>
             <Botao classNameBtn="btnQuarciario" tipo="button">
               Continuar compra

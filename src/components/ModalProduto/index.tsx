@@ -39,16 +39,20 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
     alert("Produto adicionado ao carrinho");
+
     dispatch(
       addProduct({
         id: card.id,
         details: {
           cor,
           tamanho
-        }
+        },
+        price: card.preco
       })
     );
+
     handleClose();
   };
 
