@@ -5,9 +5,11 @@ import Typography from "../Typography";
 
 interface IProps {
   isDropDown?: boolean;
+  totProduct?: number;
 }
-const SelectedQuantity = ({ isDropDown }: IProps) => {
+const SelectedQuantity = ({ isDropDown, totProduct }: IProps) => {
   const [value, setValue] = useState(1);
+
   return (
     <DivSelectedQuantity $flexDirection={isDropDown ? "row" : "column"}>
       <Typography elementoHtml="p" classNameTypograph="basicParagraphBold">
@@ -22,7 +24,7 @@ const SelectedQuantity = ({ isDropDown }: IProps) => {
         >
           -
         </Botao>
-        <span className="quantity">{value}</span>
+        <span className="quantity">{totProduct}</span>
 
         <Botao
           classNameBtn="btnTerciario"

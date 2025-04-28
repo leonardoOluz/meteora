@@ -1,9 +1,10 @@
-import { ICart, IProductCart } from "@/types/store";
+import { ICart, ICartSlice, IProductCart } from "@/types/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: ICartSlice  = {
   data: [] as ICart[],
-  TotValue: 0,
+  totProduct: 0,
+  totValue: 0,
 };
 
 const carrinhoSlice = createSlice({
@@ -22,10 +23,11 @@ const carrinhoSlice = createSlice({
 
         return {
           data: [...state.data, newProductCart],
-          TotValue: state.TotValue,
+          totValue: state.totValue + payload.price,
+          totProduct: state.totProduct + newProductCart.quantity
         };
       }
-      
+
       const newCart = state.data.map((item) => {
         if (payload.id === item.id) {
           return {
@@ -39,11 +41,20 @@ const carrinhoSlice = createSlice({
 
       return {
         data: [...newCart],
-        TotValue: state.TotValue,
+        totValue: state.totValue + payload.price,
+        totProduct: state.totProduct + 1
       };
+    },
+
+    totPrice: (state, { payload }) => {
+      return{
+        data: [...state.data],
+        totValue: payload,
+        totProduct: state.totProduct
+      }
     },
   },
 });
 
-export const { addProduct } = carrinhoSlice.actions;
+export const { addProduct, totPrice } = carrinhoSlice.actions;
 export default carrinhoSlice.reducer;

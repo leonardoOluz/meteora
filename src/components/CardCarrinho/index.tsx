@@ -16,9 +16,10 @@ import { MdDelete } from "react-icons/md";
 interface IProps {
   card: ICardProduto;
   cartSuspensa?: boolean;
+  totQuanty: number;
 }
 
-const CardCarrinho = ({ card, cartSuspensa }: IProps) => {
+const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
 
   if (cartSuspensa) {
@@ -37,8 +38,10 @@ const CardCarrinho = ({ card, cartSuspensa }: IProps) => {
             >
               {card.titulo}
             </Typography>
-            <SelectedQuantity isDropDown />
-            <PriceSpanCardCart>R$ {card.preco.toFixed(2)}</PriceSpanCardCart>
+            <SelectedQuantity totProduct={totQuanty} isDropDown />
+            <PriceSpanCardCart>
+              R$ {(totQuanty * card.preco).toFixed(2)}
+            </PriceSpanCardCart>
           </DivCarDropDown>
         </div>
 
@@ -65,8 +68,10 @@ const CardCarrinho = ({ card, cartSuspensa }: IProps) => {
         </div>
       </DivImgDescrption>
       <DivActionsCart>
-        <PriceSpanCardCart>R$ {card.preco.toFixed(2)}</PriceSpanCardCart>
-        <SelectedQuantity />
+        <PriceSpanCardCart>
+          R$ {(totQuanty * card.preco).toFixed(2)}
+        </PriceSpanCardCart>
+        <SelectedQuantity totProduct={totQuanty} />
         <MdDelete size={16} color="#fff" />
       </DivActionsCart>
     </ArtCardCart>

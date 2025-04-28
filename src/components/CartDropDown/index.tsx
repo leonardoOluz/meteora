@@ -25,9 +25,12 @@ interface IProps {
 
 const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
   const cartDropDownRef = useRef<HTMLDivElement>(null);
+
   const carrinho = useSelector((state: RootState) => {
     return selectCartForProduct(state);
   });
+
+  const cart = useSelector((state: RootState) => state.carrinho);
 
   useHandleMouseDown({
     isBoolean: dropDown,
@@ -53,9 +56,16 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
           classeLista="listaCarrinho"
           ariaLabel="lista de carrinho suspensa"
         >
-          {carrinho.map((item) => (
-            <ItemList key={item.id}>
-              <CardCarrinho card={item} cartSuspensa />
+          {carrinho.map((itemProduct) => (
+            <ItemList key={itemProduct.id}>
+              <CardCarrinho
+                card={itemProduct}
+                cartSuspensa
+                totQuanty={
+                  cart.data.find((itemCart) => itemCart.id === itemProduct.id)
+                    ?.quantity || 0
+                }
+              />
             </ItemList>
           ))}
         </List>
@@ -68,7 +78,9 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
             >
               Total:
             </Typography>
-            <PriceSpanCartDropDown>R$ 1020,00</PriceSpanCartDropDown>
+            <PriceSpanCartDropDown>
+              R$ {cart.totValue.toFixed(2)}
+            </PriceSpanCartDropDown>
           </DivSumareValue>
           <Botao
             classNameBtn="btnSecundary"
