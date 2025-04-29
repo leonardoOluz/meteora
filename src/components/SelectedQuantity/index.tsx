@@ -10,7 +10,6 @@ interface IProps {
   card: ICardProduto;
 }
 const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
-  const [value, setValue] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -22,9 +21,7 @@ const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
       <DivBtnsSelected>
         <Botao
           classNameBtn="btnTerciario"
-          handleClick={() => {
-            setValue(value === 0 ? 0 : value - 1);
-          }}
+          handleClick={() => {}}
         >
           -
         </Botao>
