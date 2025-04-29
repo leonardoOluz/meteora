@@ -18,14 +18,12 @@ export const DialogModal = styled.dialog`
 
 export const DivModal = styled.div`
   background-color: ${({ theme }) => theme.colorsPrimary.branco};
-  /* max-width: 70rem; */
   box-sizing: border-box;
   overflow: auto;
   
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     align-self: center;
     overflow: visible;
-    /* max-height: 58.7rem; */
   }
 `;
 
@@ -47,7 +45,6 @@ export const DivProdutoModal = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     border: none;
     flex-direction: row;
-    // flex-wrap: wrap;
     align-items: flex-start;
   }
 `;

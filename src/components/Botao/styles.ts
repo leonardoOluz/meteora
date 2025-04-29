@@ -33,6 +33,14 @@ const btnSecundary = css`
 `;
 const btnTerciario = css`
   all: unset;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-align: center;
+  color: ${({ theme }) => theme.colorsPrimary.branco};
+  border: solid 1px white;
+  border-radius: 50%;
+  box-sizing: border-box;
 `;
 const btnQuarciario = css`
   font-weight: 500;
@@ -40,24 +48,24 @@ const btnQuarciario = css`
   padding: 0.9rem 1.6rem;
   border: 1px solid ${({ theme }) => theme.colorsPrimary.roxo};
   color: ${({ theme }) => theme.colorsPrimary.roxo};
-  background-color: ${({theme}) => theme.colorsPrimary.branco};
+  background-color: ${({ theme }) => theme.colorsPrimary.branco};
 `;
+
+const btnUnset = css`
+  all: unset;
+`;
+
+const classBtns = {
+  btnPrimary,
+  btnSecundary,
+  btnTerciario,
+  btnQuarciario,
+  btnUnset
+}
+
 export const BtnStyle = styled.button<{
   $classNameBtn: IButton;
 }>`
-  ${({ $classNameBtn: $botaoClass }) => {
-    switch ($botaoClass) {
-      case "btnPrimary":
-        return btnPrimary;
-      case "btnSecundary":
-        return btnSecundary;
-      case "btnTerciario":
-        return btnTerciario;
-      case "btnQuarciario":
-        return btnQuarciario;
-      default:
-        break;
-    }
-  }}
+  ${({ $classNameBtn }) =>  classBtns[$classNameBtn]}
   cursor: pointer;
 `;

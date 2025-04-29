@@ -17,12 +17,13 @@ export const DivCart = styled.div`
 
 export const DivCartList = styled.div`
   margin: 0;
-  h2 {
-    padding: 3.2rem 0;
-    background-color: ${({ theme }) => theme.colorsPrimary.preto};
-  }
+  padding-top: 3.2rem;
+  background-color: ${({ theme }) => theme.colorsPrimary.preto};
   width: 100%;
   max-width: 69rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 `;
 
 export const DivCartSumare = styled.div`

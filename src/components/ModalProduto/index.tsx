@@ -19,7 +19,7 @@ import Botao from "../Botao";
 import { IoIosClose } from "react-icons/io";
 import Form from "../Form";
 import Photo from "../Photo";
-import RadioSelect from "./RadioSelect";
+import RadioSelect from "../RadioSelect";
 import { ICardProduto } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
 import { useState } from "react";
@@ -67,7 +67,7 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
             </Typography>
           </DivHeaderModal>
           <Botao
-            classNameBtn="btnTerciario"
+            classNameBtn="btnUnset"
             tipo="reset"
             handleClick={handleClose}
           >

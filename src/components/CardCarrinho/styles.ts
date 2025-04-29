@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 /* Cart */
 export const ArtCardCart = styled.article`
+  position: relative;
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
   padding: 3.2rem 2.4rem;
   border-bottom: 1px solid #6c757d;
@@ -44,6 +45,7 @@ export const PriceSpanCardCart = styled.span`
 
 /* Cart DropDown */
 export const ArtCardCartDropDown = styled.div`
+  position: relative;
   box-sizing: border-box;
   width: 54rem;
   display: flex;
@@ -51,7 +53,7 @@ export const ArtCardCartDropDown = styled.div`
   margin: 4rem 8rem;
   padding-bottom: 3.2rem;
   border-bottom: 1px solid ${({ theme }) => theme.colorsPrimary.cinza};
-  
+
   &:last-child {
     margin-bottom: 3.2rem;
   }

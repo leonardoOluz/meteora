@@ -38,7 +38,11 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
             >
               {card.titulo}
             </Typography>
-            <SelectedQuantity totProduct={totQuanty} isDropDown />
+            <SelectedQuantity
+              totProduct={totQuanty}
+              isDropDown
+              card={card}
+            />
             <PriceSpanCardCart>
               R$ {(totQuanty * card.preco).toFixed(2)}
             </PriceSpanCardCart>
@@ -71,7 +75,10 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
         <PriceSpanCardCart>
           R$ {(totQuanty * card.preco).toFixed(2)}
         </PriceSpanCardCart>
-        <SelectedQuantity totProduct={totQuanty} />
+        <SelectedQuantity
+          totProduct={totQuanty}
+          card={card}
+        />
         <MdDelete size={16} color="#fff" />
       </DivActionsCart>
     </ArtCardCart>
