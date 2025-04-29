@@ -44,7 +44,7 @@ export type ILista =
   | "listaCarrinho";
 
 export type IHeader = "header" | "headerModal" | "headerDropDown";  
-export type IButton = "btnPrimary" | "btnSecundary" | "btnTerciario" | "btnQuarciario";
+export type IButton = "btnPrimary" | "btnSecundary" | "btnTerciario" | "btnQuarciario" | "btnUnset";
 export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];

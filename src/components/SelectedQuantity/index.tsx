@@ -1,40 +1,51 @@
 import { useState } from "react";
 import Botao from "../Botao";
-import { DivSelectedQuantity } from "./styles";
+import { DivBtnsSelected, DivSelectedQuantity } from "./styles";
 import Typography from "../Typography";
-
+import ModalProduto from "../ModalProduto";
+import { ICardProduto } from "@/types/componentTypes";
 interface IProps {
   isDropDown?: boolean;
   totProduct?: number;
+  card: ICardProduto;
 }
-const SelectedQuantity = ({ isDropDown, totProduct }: IProps) => {
-  const [value, setValue] = useState(1);
+const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <DivSelectedQuantity $flexDirection={isDropDown ? "row" : "column"}>
       <Typography elementoHtml="p" classNameTypograph="basicParagraphBold">
         Quantidade:{" "}
       </Typography>
-      <div>
+
+      <DivBtnsSelected>
         <Botao
           classNameBtn="btnTerciario"
-          handleClick={() => {
-            setValue(value === 0 ? 0 : value - 1);
-          }}
+          handleClick={() => {}}
         >
           -
         </Botao>
         <span className="quantity">{totProduct}</span>
-
         <Botao
           classNameBtn="btnTerciario"
           handleClick={() => {
-            setValue(value === 15 ? 15 : value + 1);
+            setModalOpen(true);
           }}
         >
           +
         </Botao>
-      </div>
+      </DivBtnsSelected>
+
+      {modalOpen ? (
+        <ModalProduto
+          card={card}
+          handleClose={() => setModalOpen(false)}
+          isOpen={modalOpen}
+        />
+      ) : (
+        <></>
+      )}
+
     </DivSelectedQuantity>
   );
 };
