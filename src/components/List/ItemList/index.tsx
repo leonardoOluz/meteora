@@ -7,11 +7,11 @@ const StyleItemList = styled.li`
   }
 `;
 
-interface IProps {
+interface IProps extends React.LiHTMLAttributes<HTMLLIElement>{
   children: React.ReactNode;
 }
-const ItemList = ({ children }: IProps) => {
-  return <StyleItemList>{children}</StyleItemList>;
+const ItemList = ({ children, ...rest }: IProps) => {
+  return <StyleItemList {...rest}>{children}</StyleItemList>;
 };
 
 export default ItemList;

@@ -12,6 +12,8 @@ import useSetImagens from "@/hooks/useSetImagens";
 import Typography from "../Typography";
 import SelectedQuantity from "../SelectedQuantity";
 import { MdDelete } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { deleteProduct } from "@/store/reducers/carrinho";
 
 interface IProps {
   card: ICardProduto;
@@ -21,6 +23,11 @@ interface IProps {
 
 const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
+  const dispatch = useDispatch();
+
+  const handleRemoveProduct = () => {
+    dispatch(deleteProduct({ id: card.id, price: card.preco }));
+  };
 
   if (cartSuspensa) {
     return (
@@ -38,18 +45,21 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
             >
               {card.titulo}
             </Typography>
-            <SelectedQuantity
-              totProduct={totQuanty}
-              isDropDown
-              card={card}
-            />
+            <SelectedQuantity totProduct={totQuanty} isDropDown card={card} />
             <PriceSpanCardCart>
               R$ {(totQuanty * card.preco).toFixed(2)}
             </PriceSpanCardCart>
           </DivCarDropDown>
         </div>
 
-        <MdDelete size={16} color="#fff" style={{ alignSelf: "center" }} />
+        <MdDelete
+          size={16}
+          color="#fff"
+          style={{ alignSelf: "center" }}
+          onClick={handleRemoveProduct}
+          aria-label="remover produto do carrinho"
+          title="remover produto do carrinho"
+        />
       </ArtCardCartDropDown>
     );
   }
@@ -75,11 +85,14 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
         <PriceSpanCardCart>
           R$ {(totQuanty * card.preco).toFixed(2)}
         </PriceSpanCardCart>
-        <SelectedQuantity
-          totProduct={totQuanty}
-          card={card}
+        <SelectedQuantity totProduct={totQuanty} card={card} />
+        <MdDelete
+          size={16}
+          color="#fff"
+          onClick={handleRemoveProduct}
+          aria-label="remover produto do carrinho"
+          title="remover produto do carrinho"
         />
-        <MdDelete size={16} color="#fff" />
       </DivActionsCart>
     </ArtCardCart>
   );

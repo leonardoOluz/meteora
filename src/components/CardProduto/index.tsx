@@ -56,6 +56,7 @@ const CardProduto = ({ card }: IProps) => {
       {modalOpen && (
         <ModalProduto
           handleClose={openModalProduto}
+          isSetOpen={setModalOpen}
           isOpen={modalOpen}
           card={card}
         />

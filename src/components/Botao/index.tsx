@@ -2,7 +2,7 @@ import { IButton } from "@/types/componentTypes";
 import { BtnStyle } from "./styles";
 
 
-interface IProps {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   classNameBtn: IButton;
   tipo?: "button" | "submit" | "reset";
@@ -13,9 +13,10 @@ const Botao = ({
   classNameBtn,
   tipo = "button",
   handleClick,
+  ...rest
 }: IProps) => {
   return (
-    <BtnStyle $classNameBtn={classNameBtn} onClick={handleClick} type={tipo}>
+    <BtnStyle $classNameBtn={classNameBtn} onClick={handleClick} type={tipo} {...rest}>
       {children}
     </BtnStyle>
   );

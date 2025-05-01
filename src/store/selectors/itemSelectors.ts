@@ -19,23 +19,9 @@ export const selectCartForProduct = createSelector(
   }
 );
 
-export const selectTotCart = createSelector([selectCartProduct], (state) => {
-  
-  const { tPrice, tProduct } = state.produtos.reduce(
-    
-    ({ tPrice, tProduct }, itemProduct) => {
-      state.carrinho.data.map((itemCart) => {
-        if (itemCart.id === itemProduct.id) {
-          tPrice += itemCart.quantity * itemProduct.preco;
-          tProduct += itemCart.quantity;
-        }
-      });
-      return {tPrice, tProduct}
-    },
-    
-    { tPrice: 0, tProduct: 0 }
-  );
-  
-  return { tPrice, tProduct }
-
-});
+export const selectDetailsTheCartForProduct = createSelector(
+  [selectCartProduct, (_, id: number) => id],
+  (state, id) => {
+    return state.carrinho.data.find((itemCart) => itemCart.id === id)
+  }
+)

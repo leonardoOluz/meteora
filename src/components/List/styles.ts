@@ -1,3 +1,4 @@
+import { basicParagraphSmallBold } from "@/styles/stylesGlobal";
 import { ILista } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
@@ -43,21 +44,39 @@ const listaCarrinho = css`
   /* max-height: 70vh; */
 `;
 
+const listSelectedModal = css`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  li {
+    border: 1px solid ${({ theme }) => theme.colorsPrimary.preto};
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 1.6rem;
+    border-radius: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    justify-content: center;
+    ${basicParagraphSmallBold}
+    cursor: pointer;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+`;
+
+const classLists = {
+  listaCategorias,
+  listaFelicidades,
+  listaProdutos,
+  listaCarrinho,
+  listSelectedModal,
+};
+
 export const ListaStyle = styled.ul<{
   $classe: ILista;
 }>`
-  ${({ $classe }) => {
-    switch ($classe) {
-      case "listaCategorias":
-        return listaCategorias;
-      case "listaFelicidades":
-        return listaFelicidades;
-      case "listaProdutos":
-        return listaProdutos;
-      case "listaCarrinho":
-        return listaCarrinho;
-      default:
-        break;
-    }
-  }}
+  ${({ $classe }) => classLists[$classe]}
 `;

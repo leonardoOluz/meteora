@@ -25,18 +25,14 @@ const Cabecalho = () => {
 
   const handleCartDropDown = () => {
     if (location.pathname === "/carrinho") {
-      console.log("dentro da rota carrinho");
       return setCartDropDown(false);
     }
-
     if (isOpenDropDown) {
       return setTimeout(() => {
-        console.log("fora da rota carrinho");
         setCartDropDown(!cartDropDown);
         setIsOpenDropDown(false);
       }, 500);
     }
-
     setIsOpenDropDown(true);
   };
 
@@ -52,7 +48,7 @@ const Cabecalho = () => {
     <ContainerCart onMouseEnter={() => handleCartDropDown()}>
       <Link to="carrinho">
         <BsCart4 {...iconsProps} />
-        <span>{carrinho.data.length}</span>
+        <span>{carrinho.totProduct}</span>
       </Link>
     </ContainerCart>
   );
