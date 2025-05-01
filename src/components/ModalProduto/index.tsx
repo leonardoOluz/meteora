@@ -22,26 +22,34 @@ import Photo from "../Photo";
 import RadioSelect from "../RadioSelect";
 import { ICardProduto } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/store/reducers/carrinho";
+import useHandleMouse from "@/hooks/useHandleMouse";
 interface IProps {
   handleClose: () => void;
+  isSetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   card: ICardProduto;
 }
 
-const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
-  const { imagensCardProdutos } = useSetImagens();
+const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   const [cor, setCor] = useState("");
   const [tamanho, setTamanho] = useState("");
+  const divRef = useRef<HTMLDivElement>(null);
+  const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
+  
+  useHandleMouse({
+    isBoolean: isOpen,
+    setIsBoolean: isSetOpen,
+    isRef: divRef,
+    eventType: "mousedown"
+  })
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
     alert("Produto adicionado ao carrinho");
-
     dispatch(
       addProduct({
         id: card.id,
@@ -52,13 +60,12 @@ const ModalProduto = ({ handleClose, isOpen, card }: IProps) => {
         price: card.preco
       })
     );
-
     handleClose();
   };
 
   return (
     <DialogModal open={isOpen} tabIndex={0}>
-      <DivModal>
+      <DivModal ref={divRef}>
         <Header classeHeader="headerModal">
           <DivHeaderModal>
             <FaRegCheckCircle color={thema.colorsPrimary.verde} size={32} />

@@ -13,7 +13,7 @@ import Botao from "../Botao";
 import Header from "../Header";
 import btnClose from "./assets/close-button.svg";
 import { useRef } from "react";
-import useHandleMouseDown from "@/hooks/useHandleMouseDown";
+import useHandleMouse from "@/hooks/useHandleMouse";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectCartForProduct } from "@/store/selectors/itemSelectors";
@@ -32,10 +32,11 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
 
   const cart = useSelector((state: RootState) => state.carrinho);
 
-  useHandleMouseDown({
+  useHandleMouse({
     isBoolean: dropDown,
     setIsBoolean: setDropDown,
     isRef: cartDropDownRef,
+    eventType: "mouseover"
   });
 
   if (carrinho.length > 0) {

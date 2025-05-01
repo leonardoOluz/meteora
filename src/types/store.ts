@@ -12,15 +12,22 @@ export interface ICart {
   quantity: number;
   details: IDetails[];
 }
-
 export interface ICartSlice {
   data: ICart[];
   totProduct: number;
   totValue: number;
 }
-
 /* Payload */
-export interface IProductCart {
+export type AddProductCart = {
+  id: number;
+  details: IDetails;
+  price: number;
+}
+export type DeleteProduct = {
+  id: number;
+  price: number;
+}
+export type UpdateProduct = {
   id: number;
   details: IDetails;
   price: number;

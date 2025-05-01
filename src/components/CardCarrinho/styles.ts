@@ -61,6 +61,9 @@ export const ArtCardCartDropDown = styled.div`
     display: flex;
     gap: 1.6rem;
   }
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const DivCarDropDown = styled.div`
