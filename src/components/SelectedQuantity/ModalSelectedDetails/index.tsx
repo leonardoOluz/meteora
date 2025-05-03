@@ -35,7 +35,7 @@ const ModalSelectedDetails = ({
     isBoolean: isModalDetailsOpen,
     setIsBoolean: setModalDetailsOpen,
     isRef: formRef,
-    eventType: "mousedown"
+    eventType: "mousedown",
   });
 
   const handleClick = (details: IDetails) => {
@@ -72,9 +72,9 @@ const ModalSelectedDetails = ({
           <IoIosCloseCircle size={25} />
         </Botao>
         <List ariaLabel="Lista de detalhes" classeLista="listSelectedModal">
-          {details.map((detail, index) => (
+          {details.map((detail) => (
             <ItemList
-              key={index}
+              key={detail.id}
               onClick={() => handleClick(detail)}
               tabIndex={0}
             >
