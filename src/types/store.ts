@@ -4,6 +4,7 @@ export type RootState = ReturnType<typeof store.getState>;
 
 /* interface de carrinho */
 export interface IDetails {
+  id: string;
   cor: string;
   tamanho: string;
 }

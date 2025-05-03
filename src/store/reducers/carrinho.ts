@@ -84,11 +84,7 @@ const carrinhoSlice = createSlice({
               id: itemCart.id,
               quantity: itemCart.quantity - 1,
               details: itemCart.details.filter(
-                (detail) =>
-                  !(
-                    detail.cor === payload.details.cor &&
-                    detail.tamanho === payload.details.tamanho
-                  )
+                (detail) => detail.id !== payload.details.id
               ),
             };
           }

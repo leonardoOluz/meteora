@@ -26,6 +26,8 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/store/reducers/carrinho";
 import useHandleMouse from "@/hooks/useHandleMouse";
+import { v4 as uuidv4 } from "uuid";
+
 interface IProps {
   handleClose: () => void;
   isSetOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,13 +41,13 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
-  
+
   useHandleMouse({
     isBoolean: isOpen,
     setIsBoolean: isSetOpen,
     isRef: divRef,
-    eventType: "mousedown"
-  })
+    eventType: "mousedown",
+  });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,10 +56,11 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
       addProduct({
         id: card.id,
         details: {
+          id: uuidv4(),
           cor,
-          tamanho
+          tamanho,
         },
-        price: card.preco
+        price: card.preco,
       })
     );
     handleClose();
@@ -73,11 +76,7 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
               Confira detalhes sobre o produto
             </Typography>
           </DivHeaderModal>
-          <Botao
-            classNameBtn="btnUnset"
-            tipo="reset"
-            handleClick={handleClose}
-          >
+          <Botao classNameBtn="btnUnset" tipo="reset" handleClick={handleClose}>
             <IoIosClose color="#6C757D" size={32} />
           </Botao>
         </Header>
