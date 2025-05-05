@@ -11,6 +11,7 @@ import { updateProduct } from "@/store/reducers/carrinho";
 import { ICardProduto } from "@/types/componentTypes";
 import { useRef } from "react";
 import useEventMouse from "@/hooks/useEventMouse";
+import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
@@ -30,12 +31,18 @@ const ModalSelectedDetails = ({
 }: DialogProps) => {
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
+  const dialogModalRef = useRef<HTMLDialogElement>(null);
 
   useEventMouse({
     isBoolean: isModalDetailsOpen,
     setIsBoolean: setModalDetailsOpen,
     isRef: formRef,
     eventType: "mousedown",
+  });
+  useEventFocusKeydown({
+    dialogModalRef,
+    isOpen: isModalDetailsOpen,
+    handleClose,
   });
 
   const handleClick = (details: IDetails) => {
@@ -50,7 +57,7 @@ const ModalSelectedDetails = ({
   };
 
   return (
-    <ModalSelectedDetailsStyle {...rest}>
+    <ModalSelectedDetailsStyle ref={dialogModalRef} {...rest}>
       <Form
         ariaLabel="Formulario de detalhes"
         handleSubmit={() => {}}
