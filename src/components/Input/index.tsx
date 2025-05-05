@@ -15,7 +15,7 @@ const StyleInput = styled.input<{
     }
   }}
 `;
-interface IProps {
+interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeHolder?: string;
@@ -33,7 +33,8 @@ const Input = ({
   classeInput,
   id,
   nome,
-  isRequired
+  isRequired,
+  ...rest
 }: IProps) => {
   return (
     <StyleInput
@@ -45,6 +46,7 @@ const Input = ({
       placeholder={placeHolder}
       type={tipo}
       required={isRequired}
+      {...rest}
     />
   );
 };

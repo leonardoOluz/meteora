@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { updateProduct } from "@/store/reducers/carrinho";
 import { ICardProduto } from "@/types/componentTypes";
 import { useRef } from "react";
-import useHandleMouse from "@/hooks/useHandleMouse";
+import useEventMouse from "@/hooks/useEventMouse";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
@@ -31,7 +31,7 @@ const ModalSelectedDetails = ({
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
 
-  useHandleMouse({
+  useEventMouse({
     isBoolean: isModalDetailsOpen,
     setIsBoolean: setModalDetailsOpen,
     isRef: formRef,

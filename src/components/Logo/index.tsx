@@ -23,7 +23,7 @@ const LogoImg = styled.img`
 const Logo = () => {
   return (
     <Link to={"/"}>
-      <h1 style={{ padding: "0", margin: "0" }}>
+      <h1 style={{ padding: "0", margin: "0" }} title="Logo Meteora" lang="pt-br">
         <LogoImg
           src={logoMobile}
           srcSet={`${logoTablet} 768w, ${logoDesktop} 1440w`}

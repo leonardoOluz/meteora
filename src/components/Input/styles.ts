@@ -48,10 +48,10 @@ export const inputModalProduto = css`
   align-items: center;
   margin: 0 auto;
   box-sizing: border-box;
-  
+
   &[type="radio"]:hover {
-    box-shadow: 0px 0px 4px 5px ${({theme}) => theme.colorsPrimary.roxo};
-    background-color: #75D7F0;
+    box-shadow: 0px 0px 4px 5px ${({ theme }) => theme.colorsPrimary.roxo};
+    background-color: #75d7f0;
   }
 
   &[type="radio"]:checked {

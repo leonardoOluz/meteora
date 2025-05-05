@@ -7,7 +7,7 @@ import {
   ListaLinksStyle,
   NavbarStyle,
 } from "./styles";
-import useHandleMouse from "@/hooks/useHandleMouse";
+import useEventMouse from "@/hooks/useEventMouse";
 
 const links = [
   { to: "/", name: "Home" },
@@ -25,7 +25,7 @@ const Navbar = ({ menuDropDrown, handleMenuDropDrown }: IProps) => {
   const navBarRef = useRef<HTMLDivElement>(null);
   const navbarId = "navbar-links";
 
-  useHandleMouse({
+  useEventMouse({
     isBoolean: menuDropDrown,
     setIsBoolean: handleMenuDropDrown,
     isRef: navBarRef,
@@ -48,7 +48,7 @@ const Navbar = ({ menuDropDrown, handleMenuDropDrown }: IProps) => {
                 handleMenuDropDrown(false);
               }}
             >
-              <Link to={link.to}>{link.name}</Link>
+              <Link to={link.to} title={link.name}>{link.name}</Link>
             </LinkStyle>
           ))}
         </ListaLinksStyle>

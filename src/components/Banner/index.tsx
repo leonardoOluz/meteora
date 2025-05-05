@@ -10,9 +10,9 @@ import { RootState } from "@/types/store";
 import bannerCartMobile from "./assets/bannerCarrinho/BannerCarrinhoMobile.svg";
 import bannerCartDesktop from "./assets/bannerCarrinho/BannerCarrinhoDesktop.svg";
 import bannerCartTablet from "./assets/bannerCarrinho/BannerCarrinhoTablet.svg";
-import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
+import useResize from "@/hooks/useResize";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
