@@ -6,7 +6,7 @@ interface IProps<T extends HTMLElement = HTMLElement> {
   isRef: React.RefObject<T | null>;
   eventType: keyof WindowEventMap; // Tipo do evento a ser escutado
 }
-export default function useHandleMouse<T extends HTMLElement = HTMLElement>({
+export default function useEventMouse<T extends HTMLElement = HTMLElement>({
   isBoolean,
   setIsBoolean,
   isRef,

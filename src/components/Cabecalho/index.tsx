@@ -6,13 +6,13 @@ import Botao from "@components/Botao";
 import Header from "@components/Header";
 import { BsCart4 } from "react-icons/bs";
 import { thema } from "@/styles/thema";
-import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { Container, ContainerCart, iconsProps } from "./styles";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import CartDropDown from "../CartDropDown";
+import useResize from "@/hooks/useResize";
 
 const Cabecalho = () => {
   const [cartDropDown, setCartDropDown] = useState(false);
@@ -46,19 +46,23 @@ const Cabecalho = () => {
   const cartProdutosDesktop = width >=
     transformNumber(thema.breakpoints.tablet) && (
     <ContainerCart onMouseEnter={() => handleCartDropDown()}>
-      <Link to="carrinho">
-        <BsCart4 {...iconsProps} />
-        <span>{carrinho.totProduct}</span>
-      </Link>
+      <Botao classNameBtn="btnUnset" aria-label="carrinho" title="carrinho">
+        <Link to="carrinho">
+          <BsCart4 {...iconsProps} />
+          <span>{carrinho.totProduct}</span>
+        </Link>
+      </Botao>
     </ContainerCart>
   );
 
   const cartProdutosMobile = width <
     transformNumber(thema.breakpoints.tablet) && (
-    <Link to="carrinho">
-      <BsCart4 {...iconsProps} />
-      <span>{carrinho.data.length}</span>
-    </Link>
+    <Botao classNameBtn="btnUnset" aria-label="carrinho" title="carrinho">
+      <Link to="carrinho">
+        <BsCart4 {...iconsProps} />
+        <span>{carrinho.data.length}</span>
+      </Link>
+    </Botao>
   );
 
   return (
@@ -81,7 +85,9 @@ const Cabecalho = () => {
           tipo="text"
           classeInput="inputBuscador"
         />
-        <Botao classNameBtn="btnPrimary">Buscar</Botao>
+        <Botao classNameBtn="btnPrimary" title="Buscar" aria-label="buscar">
+          Buscar
+        </Botao>
         {cartProdutosDesktop}
       </Container>
       {isDropDown}

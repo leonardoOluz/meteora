@@ -1,6 +1,6 @@
-import useResize from "./useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
+import useResize from "./useResize";
 
 export default function useSetImagens() {
   const { width } = useResize();

@@ -9,10 +9,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectCartForProduct } from "@/store/selectors/itemSelectors";
 import Sumario from "./Sumario";
-import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import Botao from "@/components/Botao";
+import useResize from "@/hooks/useResize";
 
 const Carrinho = () => {
   const cartProduct = useSelector((state: RootState) => {

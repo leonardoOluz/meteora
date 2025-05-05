@@ -4,10 +4,16 @@ import { DivRadioSelect, LabelRadioSelect } from "./styles";
 interface IProps {
   nome: "cor" | "tamanho";
   texto: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void 
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isChecked?: boolean;
 }
 
-const RadioSelect = ({ nome, texto, handleChange }: IProps) => {
+const RadioSelect = ({
+  nome,
+  texto,
+  handleChange,
+  isChecked,
+}: IProps) => {
   return (
     <DivRadioSelect>
       <Input
@@ -18,6 +24,7 @@ const RadioSelect = ({ nome, texto, handleChange }: IProps) => {
         id={texto}
         nome={nome}
         handleChange={handleChange}
+        checked={isChecked}
       />
       <LabelRadioSelect htmlFor={texto}>{texto}</LabelRadioSelect>
     </DivRadioSelect>

@@ -3,8 +3,8 @@ import { Container, FormStyle, InputStyle } from "./styles";
 import Botao from "../Botao";
 import Typography from "../Typography";
 import { thema } from "@/styles/thema";
-import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
+import useResize from "@/hooks/useResize";
 
 const NewsLetter = () => {
   const { width } = useResize();

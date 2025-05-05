@@ -25,8 +25,9 @@ import useSetImagens from "@/hooks/useSetImagens";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/store/reducers/carrinho";
-import useHandleMouse from "@/hooks/useHandleMouse";
+import useEventMouse from "@/hooks/useEventMouse";
 import { v4 as uuidv4 } from "uuid";
+import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
 
 interface IProps {
   handleClose: () => void;
@@ -36,19 +37,20 @@ interface IProps {
 }
 
 const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
-  const [cor, setCor] = useState("");
+  const [cor, setCor] = useState<string>("");
   const [tamanho, setTamanho] = useState("");
   const divRef = useRef<HTMLDivElement>(null);
+  const dialogModalRef = useRef<HTMLDialogElement>(null);
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
 
-  useHandleMouse({
+  useEventMouse({
     isBoolean: isOpen,
     setIsBoolean: isSetOpen,
     isRef: divRef,
     eventType: "mousedown",
   });
-
+  useEventFocusKeydown({ dialogModalRef, isOpen, handleClose });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     alert("Produto adicionado ao carrinho");
@@ -67,7 +69,7 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   };
 
   return (
-    <DialogModal open={isOpen} tabIndex={0}>
+    <DialogModal open={isOpen} tabIndex={0} ref={dialogModalRef}>
       <DivModal ref={divRef}>
         <Header classeHeader="headerModal">
           <DivHeaderModal>
@@ -76,7 +78,13 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
               Confira detalhes sobre o produto
             </Typography>
           </DivHeaderModal>
-          <Botao classNameBtn="btnUnset" tipo="reset" handleClick={handleClose}>
+          <Botao
+            aria-label="Fechar modal"
+            classNameBtn="btnUnset"
+            tipo="button"
+            handleClick={handleClose}
+            tabIndex={0}
+          >
             <IoIosClose color="#6C757D" size={32} />
           </Botao>
         </Header>
@@ -115,31 +123,33 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
             </DivDescricaoProduto>
             <Form ariaLabel="itens opcionais" handleSubmit={handleSubmit}>
               <FieldsetStyle>
-                <LegendStyle>Cores:</LegendStyle>
+                <LegendStyle aria-label="cores">Cores:</LegendStyle>
                 <DivRadio>
-                  {card.cor.map((cor) => (
+                  {card.cor.map((itemCor) => (
                     <RadioSelect
-                      key={cor}
+                      key={itemCor}
                       nome="cor"
-                      texto={cor}
+                      texto={itemCor}
                       handleChange={(e) => {
                         setCor(e.target.value);
                       }}
+                      isChecked={itemCor === cor}
                     />
                   ))}
                 </DivRadio>
               </FieldsetStyle>
               <FieldsetStyle>
-                <LegendStyle>Tamanho:</LegendStyle>
+                <LegendStyle aria-label="tamanhos">Tamanho:</LegendStyle>
                 <DivRadio>
-                  {card.tamanho.map((tamanho) => (
+                  {card.tamanho.map((itemTamanho) => (
                     <RadioSelect
-                      key={tamanho}
+                      key={itemTamanho}
                       nome="tamanho"
-                      texto={tamanho}
+                      texto={itemTamanho}
                       handleChange={(e) => {
                         setTamanho(e.target.value);
                       }}
+                      isChecked={itemTamanho === tamanho}
                     />
                   ))}
                 </DivRadio>
