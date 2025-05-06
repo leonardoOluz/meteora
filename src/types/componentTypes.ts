@@ -43,7 +43,8 @@ export type ILista =
   | "listaFelicidades"
   | "listaProdutos"
   | "listaCarrinho"
-  | "listSelectedModal";
+  | "listSelectedModal"
+  | "listPromocoes";
 
 export type IHeader = "header" | "headerModal" | "headerDropDown";
 export type IButton =
