@@ -2,6 +2,25 @@ import store from "@/store";
 
 export type RootState = ReturnType<typeof store.getState>;
 
+/* interface de promocoes */
+export interface IPromocoes {
+  listProductsPromo: IProductPromo[];
+  categories: ICatDesc;
+}
+
+/* Type de promocoes */
+type ICatDesc = {
+  nOne: number;
+  nTwo: number;
+  nThree: number;
+  nFour: number;
+  nFive: number;
+};
+type IProductPromo = {
+  id: number;
+  catDesc: number;
+};
+
 /* interface de carrinho */
 export interface IDetails {
   id: string;
@@ -18,18 +37,18 @@ export interface ICartSlice {
   totProduct: number;
   totValue: number;
 }
-/* Payload */
+/* type de Payload */
 export type AddProductCart = {
   id: number;
   details: IDetails;
   price: number;
-}
+};
 export type DeleteProduct = {
   id: number;
   price: number;
-}
+};
 export type UpdateProduct = {
   id: number;
   details: IDetails;
   price: number;
-}
+};

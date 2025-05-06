@@ -41,7 +41,6 @@ const listaProdutos = css`
 
 const listaCarrinho = css`
   overflow-y: auto;
-  /* max-height: 70vh; */
 `;
 
 const listSelectedModal = css`
@@ -67,12 +66,20 @@ const listSelectedModal = css`
   }
 `;
 
+const listPromocoes = css`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+`;
+
 const classLists = {
   listaCategorias,
   listaFelicidades,
   listaProdutos,
   listaCarrinho,
   listSelectedModal,
+  listPromocoes
 };
 
 export const ListaStyle = styled.ul<{

@@ -43,12 +43,13 @@ const secaoNewsLetter = css`
 `;
 const secaoCarrinho = css`
   gap: 0;
-  @media screen and (min-width: ${({theme}) => theme.breakpoints.tablet}){
-    gap: 3.2rem;    
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: 3.2rem;
   }
 `;
 const secaoPromocoes = css`
-`
+  padding: 2.85rem 2.65rem;
+`;
 
 /* objetos de seções */
 const sectionStyles = {
