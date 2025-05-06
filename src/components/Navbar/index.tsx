@@ -13,7 +13,7 @@ const links = [
   { to: "/", name: "Home" },
   { to: "#", name: "Nossas lojas" },
   { to: "#", name: "Novidades" },
-  { to: "#", name: "Promoções" },
+  { to: "/promocoes", name: "Promoções" },
 ];
 
 interface IProps {

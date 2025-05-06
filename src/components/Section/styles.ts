@@ -47,6 +47,8 @@ const secaoCarrinho = css`
     gap: 3.2rem;    
   }
 `;
+const secaoPromocoes = css`
+`
 
 /* objetos de seções */
 const sectionStyles = {
@@ -55,6 +57,7 @@ const sectionStyles = {
   "secao-facilidades": secaoFacilidades,
   "secao-newsLetter": secaoNewsLetter,
   "secao-carrinho": secaoCarrinho,
+  "secao-promocoes": secaoPromocoes,
 };
 
 export const SectionStyle = styled.section<{
