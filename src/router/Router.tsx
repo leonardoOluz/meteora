@@ -5,6 +5,7 @@ import Home from "@/pages/home";
 import LayoutHomeBase from "@/pages/home/LayoutHomeBase";
 import { createBrowserRouter } from "react-router-dom";
 import Pagina404 from "@/pages/Pagina404";
+import Promocoes from "@/pages/Promocoes";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             path: "categoria/:categoria",
             element: <CategoriaPage />,
           },
+          {
+            path: "promocoes",
+            element: <Promocoes />,
+          }
         ],
       },
       {
@@ -31,7 +36,7 @@ export const router = createBrowserRouter([
       {
         path: "*",
         element: <Pagina404 />,
-      }
+      },
     ],
   },
 ]);

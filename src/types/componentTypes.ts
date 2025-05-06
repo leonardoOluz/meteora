@@ -35,7 +35,8 @@ export type IClassSection =
   | "secao-produtos"
   | "secao-facilidades"
   | "secao-newsLetter"
-  | "secao-carrinho";
+  | "secao-carrinho"
+  | "secao-promocoes";
 
 export type ILista =
   | "listaCategorias"
