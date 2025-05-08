@@ -50,15 +50,19 @@ const secaoCarrinho = css`
 const secaoPromocoes = css`
   padding: 2.85rem 2.65rem;
 `;
+const secaoBanner = css`
+  all: unset;
+`;
 
 /* objetos de seções */
 const sectionStyles = {
-  "secao-categorias": secaoCategorias,
-  "secao-produtos": secaoProdutos,
-  "secao-facilidades": secaoFacilidades,
-  "secao-newsLetter": secaoNewsLetter,
-  "secao-carrinho": secaoCarrinho,
-  "secao-promocoes": secaoPromocoes,
+  "secao categorias": secaoCategorias,
+  "secao produtos": secaoProdutos,
+  "secao facilidades": secaoFacilidades,
+  "secao newsLetter": secaoNewsLetter,
+  "secao carrinho": secaoCarrinho,
+  "secao promocoes": secaoPromocoes,
+  "secao banner": secaoBanner,
 };
 
 export const SectionStyle = styled.section<{

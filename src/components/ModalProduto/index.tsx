@@ -90,7 +90,7 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
         </Header>
         <DivProdutoModal>
           <Photo
-            photo={imagensCardProdutos(card.imagem)}
+            src={imagensCardProdutos(card.imagem)}
             alt={card.alt}
             classeImg="imgProdutoCard"
           />

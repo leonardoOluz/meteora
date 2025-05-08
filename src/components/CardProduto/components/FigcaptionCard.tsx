@@ -10,9 +10,9 @@ const Figcaption = styled.figcaption`
 interface IFigcaptionCardProps extends React.HTMLAttributes<HTMLElement> {
   card: ICardProduto;
 }
-const FigcaptionCard = ({card}: IFigcaptionCardProps) => {
+const FigcaptionCard = ({card, ...rest}: IFigcaptionCardProps) => {
   return (
-    <Figcaption>
+    <Figcaption {...rest}>
       <Typography
         elementoHtml="h3"
         classNameTypograph="basicParagraphBold"

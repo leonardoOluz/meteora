@@ -338,8 +338,8 @@
       "titulo": "Tênis Chunky",
       "descricao": "Snicker casual com solado mais alto e modelagem robusta. Modelo unissex.",
       "preco": 250.0,
-      "cor": ["", "", ""],
-      "tamanho": ["", "", ""]
+      "cor": ["azulClaro", "Offwhite", "Preto"],
+      "tamanho": ["35", "38", "40", "42", "44"]
     }
   ]
 }

@@ -12,12 +12,12 @@ const Figure = styled.figure`
 interface FigureCardProps extends React.HTMLAttributes<HTMLElement> {
   card: ICardProduto;
 }
-const FigureCard = ({ card, children }: FigureCardProps) => {
+const FigureCard = ({ card, children, ...rest }: FigureCardProps) => {
   const { imagensCardProdutos } = useSetImagens();
   return (
-    <Figure>
+    <Figure {...rest}>
       <Photo
-        photo={imagensCardProdutos(card.imagem)}
+        src={imagensCardProdutos(card.imagem)}
         alt={card.alt}
         classeImg="imgProdutoCard"
       />

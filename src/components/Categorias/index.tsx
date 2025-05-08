@@ -15,7 +15,7 @@ const Categorias = () => {
   const categorias = useSelector((state: RootState) => state.categorias);
 
   return (
-    <Section classNameSection="secao-categorias">
+    <Section classNameSection="secao categorias">
       <Typography
         elementoHtml="h2"
         classNameTypograph="basicHeadingH3"
@@ -29,7 +29,7 @@ const Categorias = () => {
             <Link to={`categoria/${item.categoria}`}>
               <CardCategoria texto={item.categoria}>
                 <Photo
-                  photo={imagensCategoria(item.imagem)}
+                  src={imagensCategoria(item.imagem)}
                   alt={item.categoria}
                   classeImg="imgCategoria"
                 />

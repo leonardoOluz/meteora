@@ -34,7 +34,7 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
       <ArtCardCartDropDown>
         <div className="cardImgDescription">
           <Photo
-            photo={imagensCardProdutos(card.imagem)}
+            src={imagensCardProdutos(card.imagem)}
             alt={card.alt}
             classeImg="imgCarrinho"
           />
@@ -68,7 +68,7 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
     <ArtCardCart>
       <DivImgDescrption>
         <Photo
-          photo={imagensCardProdutos(card.imagem)}
+          src={imagensCardProdutos(card.imagem)}
           alt={card.alt}
           classeImg="imgCarrinho"
         />

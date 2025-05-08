@@ -20,34 +20,32 @@ const CardProduto = ({ card, valueCatPromo }: IProps) => {
   };
 
   return (
-    <>
-      <ArticleStyle>
-        <Container>
-          <FigureCard card={card}>
-            <FigcaptionCard card={card} />
-          </FigureCard>
-        </Container>
-        <Container style={{ paddingLeft: "1.6rem", gap: "1.6rem" }}>
-          <Typography
-            elementoHtml="p"
-            classNameTypograph="basicParagraphSmall"
-            isColor={thema.colorsPrimary.cinzaChumbo}
-          >
-            {card.descricao}
-          </Typography>
-          <CheckPrice card={card} valueCatPromo={valueCatPromo} />
-          <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
-            Ver Mais
-          </Botao>
-        </Container>
-        <CheckModal
-          card={card}
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          openModalProduto={openModalProduto}
-        />
-      </ArticleStyle>
-    </>
+    <ArticleStyle>
+      <Container>
+        <FigureCard card={card}>
+          <FigcaptionCard card={card} />
+        </FigureCard>
+      </Container>
+      <Container style={{ paddingLeft: "1.6rem", gap: "1.6rem" }}>
+        <Typography
+          elementoHtml="p"
+          classNameTypograph="basicParagraphSmall"
+          isColor={thema.colorsPrimary.cinzaChumbo}
+        >
+          {card.descricao}
+        </Typography>
+        <CheckPrice card={card} valueCatPromo={valueCatPromo} />
+        <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
+          Ver Mais
+        </Botao>
+      </Container>
+      <CheckModal
+        card={card}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        openModalProduto={openModalProduto}
+      />
+    </ArticleStyle>
   );
 };
 

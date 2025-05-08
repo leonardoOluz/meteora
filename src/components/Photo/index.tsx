@@ -1,13 +1,11 @@
 import { IClassImg } from "@/types/componentTypes";
 import { FotoStyles } from "./styles";
 
-interface IProps {
-  photo: string;
-  alt: string;
+interface IProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   classeImg: IClassImg;
 }
-const Photo = ({ alt, photo, classeImg }: IProps) => {
-  return <FotoStyles src={photo} alt={alt} $classeImg={classeImg} />;
+const Photo = ({ classeImg, ...rest }: IProps) => {
+  return <FotoStyles $classeImg={classeImg} {...rest} />;
 };
 
 export default Photo;

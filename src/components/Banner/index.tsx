@@ -13,6 +13,7 @@ import bannerCartTablet from "./assets/bannerCarrinho/BannerCarrinhoTablet.svg";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import useResize from "@/hooks/useResize";
+import Section from "../Section";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
@@ -22,9 +23,6 @@ const swiperSettings: SwiperOptions = {
   navigation: true,
   pagination: {
     clickable: true,
-  },
-  autoplay: {
-    delay: 3500,
   },
 };
 
@@ -41,7 +39,7 @@ const Banner = ({ typeBanner }: IProps) => {
     return (
       <BannerCartContainer aria-label="banner carrinho">
         <Photo
-          photo={
+          src={
             width < transformNumber(thema.breakpoints.tablet)
               ? bannerCartMobile
               : width > transformNumber(thema.breakpoints.tablet)
@@ -56,22 +54,20 @@ const Banner = ({ typeBanner }: IProps) => {
   }
 
   return (
-    <section
-      aria-label="banner de carrossel de promoções"
-      title="banner carrossel de promoções"
-    >
+    <Section classNameSection="secao banner">
       <BannerSwiperContainer {...swiperSettings}>
         {banner.map((item) => (
           <SwiperSlide key={item.id}>
             <Photo
-              photo={imagensBanner(item.imagem)}
+              title="banner carrossel de promoções"
+              src={imagensBanner(item.imagem)}
               alt={item.alt}
               classeImg={"imgBanner"}
             />
           </SwiperSlide>
         ))}
       </BannerSwiperContainer>
-    </section>
+    </Section>
   );
 };
 

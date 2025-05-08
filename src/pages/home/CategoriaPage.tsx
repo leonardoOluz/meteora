@@ -16,7 +16,7 @@ const CategoriaPage = () => {
   });
   return (
     <>
-      <Section classNameSection="secao-produtos">
+      <Section classNameSection="secao produtos">
         <Typography
           elementoHtml="h2"
           classNameTypograph="basicHeadingH3"

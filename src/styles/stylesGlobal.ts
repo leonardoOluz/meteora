@@ -66,3 +66,37 @@ export const basicParagraphSmallBold = css`
   line-height: 2rem;
   font-weight: 700;
 `;
+export const swiperStyles = css`
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .swiper-pagination-bullet {
+    width: 3rem;
+    height: 0.3rem;
+    background-color: #ccc;
+    display: inline-block;
+    margin: 0 5px;
+    border-radius: 0.2rem;
+    opacity: 0.4;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: ${({ theme }) => theme.colorsPrimary.branco};
+    opacity: 1;
+  }
+  .swiper-button-next {
+    &::after {
+      content: url("/assets/paths/PathRight.png");
+    }
+  }
+  .swiper-button-prev {
+    &::after {
+      content: url("/assets/paths/PathLeft.png");
+    }
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: ${({ theme }) => theme.colorsPrimary.branco};
+  }
+`;

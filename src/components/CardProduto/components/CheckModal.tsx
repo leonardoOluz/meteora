@@ -1,5 +1,6 @@
 import ModalProduto from "@/components/ModalProduto";
 import { ICardProduto } from "@/types/componentTypes";
+import { createPortal } from "react-dom";
 interface CkeckModalProps {
   modalOpen: boolean;
   openModalProduto: () => void;
@@ -14,14 +15,16 @@ const CheckModal = ({
 }: CkeckModalProps) => {
   return (
     <>
-      {modalOpen && (
-        <ModalProduto
-          handleClose={openModalProduto}
-          isSetOpen={setModalOpen}
-          isOpen={modalOpen}
-          card={card}
-        />
-      )}
+      {modalOpen &&
+        createPortal(
+          <ModalProduto
+            handleClose={openModalProduto}
+            isSetOpen={setModalOpen}
+            isOpen={modalOpen}
+            card={card}
+          />,
+          document.getElementById("modal-root") as HTMLElement
+        )}
     </>
   );
 };
