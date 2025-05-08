@@ -11,7 +11,7 @@ const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
 
   return (
-    <Section classNameSection="secao-produtos" >
+    <Section classNameSection="secao produtos" >
       <Typography
         elementoHtml="h2"
         classNameTypograph="basicHeadingH3"

@@ -35,7 +35,7 @@ const Carrinho = () => {
     ) : null;
 
   return (
-    <Section classNameSection="secao-carrinho">
+    <Section classNameSection="secao carrinho">
       <Banner typeBanner="bannerCart" />
       {tituloCartMain}
       <DivCart>

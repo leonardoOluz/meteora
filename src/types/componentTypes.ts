@@ -31,12 +31,13 @@ export type IClassImg =
 
 /* className section */
 export type IClassSection =
-  | "secao-categorias"
-  | "secao-produtos"
-  | "secao-facilidades"
-  | "secao-newsLetter"
-  | "secao-carrinho"
-  | "secao-promocoes";
+  | "secao categorias"
+  | "secao produtos"
+  | "secao facilidades"
+  | "secao newsLetter"
+  | "secao carrinho"
+  | "secao promocoes"
+  | "secao banner";
 
 export type ILista =
   | "listaCategorias"

@@ -9,7 +9,7 @@ import useResize from "@/hooks/useResize";
 const NewsLetter = () => {
   const { width } = useResize();
   return (
-    <Section classNameSection="secao-newsLetter">
+    <Section classNameSection="secao newsLetter">
       <FormStyle aria-label="formulario de NewsLetter">
         <Typography
           elementoHtml="p"

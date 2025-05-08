@@ -13,7 +13,7 @@ const Facilidades = () => {
   const facilidades = useSelector((state: RootState) => state.facilidades);
   
   return (
-    <Section classNameSection="secao-facilidades">
+    <Section classNameSection="secao facilidades">
       <Typography elementoHtml="h2" classNameTypograph="basicHeadingH2">
         Conheça todas as nossas facilidades
       </Typography>
@@ -22,7 +22,7 @@ const Facilidades = () => {
           <ItemList key={item.id}>
             <CardFelicidades title={item.title} description={item.description}>
               <Photo
-                photo={imagensFacilidades(item.image)}
+                src={imagensFacilidades(item.image)}
                 alt={item.title}
                 classeImg="imgFacilidades"
               />
