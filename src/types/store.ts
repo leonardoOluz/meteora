@@ -4,23 +4,9 @@ export type RootState = ReturnType<typeof store.getState>;
 
 /* interface de promocoes */
 export interface IPromocoes {
-  listProductsPromo: IProductPromo[];
-  categories: ICatDesc;
+  catPromocao: number;
+  productId: number[];
 }
-
-/* Type de promocoes */
-type ICatDesc = {
-  nOne: number;
-  nTwo: number;
-  nThree: number;
-  nFour: number;
-  nFive: number;
-};
-type IProductPromo = {
-  id: number;
-  catDesc: number;
-};
-
 /* interface de carrinho */
 export interface IDetails {
   id: string;
