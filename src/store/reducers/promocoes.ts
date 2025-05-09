@@ -1,10 +1,8 @@
 import { IPromocoes } from "@/types/store";
 import { createSlice } from "@reduxjs/toolkit";
+import promocoes from "@/json/promocao.json";
 
-const initialState: IPromocoes = {
-  listProductsPromo: [],
-  categories: { nFive: 0.1, nFour: 0.15, nOne: 0.3, nThree: 0.45, nTwo: 0.5 },
-};
+const initialState: IPromocoes[] = promocoes.promocoes;
 
 const promocoesSlice = createSlice({
   name: "promocoes",
