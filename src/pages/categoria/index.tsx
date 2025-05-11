@@ -8,15 +8,19 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
+import Categorias from "@/components/Categorias";
+import NewsLetter from "@/components/NewsLetter";
+import Facilidades from "@/components/Facilidades";
 
-const CategoriaPage = () => {
+const Categoria = () => {
   const { categoria } = useParams();
   const cardCategoria = useSelector((state: RootState) => {
     return selectProdutosPorCategoria(state, categoria);
   });
   return (
     <>
-      <Section classNameSection="secao produtos">
+      <Section classNameSection="secao categorias">
+        <Categorias />
         <Typography
           elementoHtml="h2"
           classNameTypograph="basicHeadingH3"
@@ -25,7 +29,7 @@ const CategoriaPage = () => {
           {categoria}
         </Typography>
         <List
-          ariaLabel={`Lista de produtos da categoria ${categoria}`}
+          aria-Label={`Lista de produtos da categoria ${categoria}`}
           classeLista="listaProdutos"
         >
           {cardCategoria.map((card) => (
@@ -35,8 +39,10 @@ const CategoriaPage = () => {
           ))}
         </List>
       </Section>
+      <Facilidades />
+      <NewsLetter />
     </>
   );
 };
 
-export default CategoriaPage;
+export default Categoria;

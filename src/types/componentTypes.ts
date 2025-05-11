@@ -37,7 +37,8 @@ export type IClassSection =
   | "secao newsLetter"
   | "secao carrinho"
   | "secao promocoes"
-  | "secao banner";
+  | "secao banner"
+  | "secao nossas lojas";
 
 export type ILista =
   | "listaCategorias"
@@ -45,7 +46,8 @@ export type ILista =
   | "listaProdutos"
   | "listaCarrinho"
   | "listSelectedModal"
-  | "listPromocoes";
+  | "listPromocoes"
+  | "listNossasLojas";
 
 export type IHeader = "header" | "headerModal" | "headerDropDown";
 export type IButton =
@@ -58,3 +60,4 @@ export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];
 export type ICardFacilidades = (typeof facilidades.facilidades)[0];
+export type catPromocao = 0.15 | 0.20 | 0.25 | 0.30 | 0.35 | 0.40 | 0.45 | 0.50 | 0.75 | 0.90 | number;

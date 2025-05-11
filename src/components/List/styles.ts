@@ -59,7 +59,7 @@ const listSelectedModal = css`
     justify-content: center;
     ${basicParagraphSmallBold}
     cursor: pointer;
-    
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.4);
     }
@@ -73,13 +73,23 @@ const listPromocoes = css`
   gap: 3rem;
 `;
 
+const listNossasLojas = css`
+  padding: 0 2.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  gap: 3rem;
+`;
+
 const classLists = {
   listaCategorias,
   listaFelicidades,
   listaProdutos,
   listaCarrinho,
   listSelectedModal,
-  listPromocoes
+  listPromocoes,
+  listNossasLojas,
 };
 
 export const ListaStyle = styled.ul<{

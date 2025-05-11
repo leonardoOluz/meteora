@@ -1,15 +1,13 @@
 import { ILista } from "@/types/componentTypes";
 import { ListaStyle } from "./styles";
 
-interface IProps {
-  children: React.ReactNode;
+interface IProps extends React.HTMLAttributes<HTMLUListElement> {
   classeLista: ILista;
-  ariaLabel: string;
 }
 
-const List = ({ children, classeLista: classe, ariaLabel }: IProps) => {
+const List = ({ children, classeLista: classe, ...rest }: IProps) => {
   return (
-    <ListaStyle $classe={classe} aria-label={ariaLabel}>
+    <ListaStyle $classe={classe} {...rest}>
       {children}
     </ListaStyle>
   );

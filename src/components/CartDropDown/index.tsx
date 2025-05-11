@@ -55,7 +55,7 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
         </Header>
         <List
           classeLista="listaCarrinho"
-          ariaLabel="lista de carrinho suspensa"
+          aria-Label="lista de carrinho suspensa"
         >
           {carrinho.map((itemProduct) => (
             <ItemList key={itemProduct.id}>

@@ -1,10 +1,10 @@
 import store from "@/store";
+import { catPromocao } from "./componentTypes";
 
 export type RootState = ReturnType<typeof store.getState>;
-
 /* interface de promocoes */
 export interface IPromocoes {
-  catPromocao: number;
+  catPromocao: catPromocao;
   productId: number[];
 }
 /* interface de carrinho */
