@@ -43,7 +43,7 @@ const Carrinho = () => {
           <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
             Detalhes da compra
           </Typography>
-          <List classeLista="listaCarrinho" aria-Label="lista de carrinhos">
+          <List classeLista="listaCarrinho" aria-label="lista de carrinhos">
             {cartProduct.map((itemProduct) => (
               <ItemList key={itemProduct.id}>
                 <CardCarrinho
