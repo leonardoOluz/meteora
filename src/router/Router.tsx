@@ -1,11 +1,11 @@
 import PageBase from "@/components/PageBase";
 import Carrinho from "@/pages/carrinho";
-import CategoriaPage from "@/pages/home/CategoriaPage";
 import Home from "@/pages/home";
-import LayoutHomeBase from "@/pages/home/LayoutHomeBase";
 import { createBrowserRouter } from "react-router-dom";
-import Pagina404 from "@/pages/Pagina404";
-import Promocoes from "@/pages/Promocoes";
+import Pagina404 from "@/pages/pagina404";
+import Categoria from "@/pages/categoria";
+import Promocoes from "@/pages/promocao";
+import NossasLojas from "@/pages/nossasLojas";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,25 +13,23 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <LayoutHomeBase />,
-        children: [
-          {
-            path: "",
-            element: <Home />,
-          },
-          {
-            path: "categoria/:categoria",
-            element: <CategoriaPage />,
-          },
-          {
-            path: "promocoes",
-            element: <Promocoes />,
-          }
-        ],
+        element: <Home />,
+      },
+      {
+        path: "nossas-lojas",
+        element: <NossasLojas />,
+      },
+      {
+        path: "categoria/:categoria",
+        element: <Categoria />,
       },
       {
         path: "carrinho",
         element: <Carrinho />,
+      },
+      {
+        path: "promocoes",
+        element: <Promocoes />,
       },
       {
         path: "*",

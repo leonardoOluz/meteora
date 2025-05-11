@@ -6,12 +6,14 @@ import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import List from "../List";
 import ItemList from "../List/ItemList";
+import Categorias from "../Categorias";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
 
   return (
-    <Section classNameSection="secao produtos" >
+    <Section classNameSection="secao produtos">
+      <Categorias />
       <Typography
         elementoHtml="h2"
         classNameTypograph="basicHeadingH3"
@@ -19,9 +21,12 @@ const Produtos = () => {
       >
         Produtos que estão bombando!
       </Typography>
-      <List classeLista="listaProdutos" ariaLabel="Lista de produtos">
+      <List classeLista="listaProdutos" aria-Label="Lista de produtos">
         {produtos.map((card) => (
-          <ItemList key={card.id} aria-label={`card de produto ${card.categoria}`}>
+          <ItemList
+            key={card.id}
+            aria-label={`card de produto ${card.categoria}`}
+          >
             <CardProduto card={card} />
           </ItemList>
         ))}

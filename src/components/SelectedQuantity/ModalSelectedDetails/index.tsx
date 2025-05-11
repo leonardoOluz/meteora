@@ -78,7 +78,7 @@ const ModalSelectedDetails = ({
         >
           <IoIosCloseCircle size={25} />
         </Botao>
-        <List ariaLabel="Lista de detalhes" classeLista="listSelectedModal">
+        <List aria-Label="Lista de detalhes" classeLista="listSelectedModal">
           {details.map((detail) => (
             <ItemList
               key={detail.id}
