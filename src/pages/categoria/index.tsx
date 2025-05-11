@@ -29,7 +29,7 @@ const Categoria = () => {
           {categoria}
         </Typography>
         <List
-          aria-Label={`Lista de produtos da categoria ${categoria}`}
+          aria-label={`Lista de produtos da categoria ${categoria}`}
           classeLista="listaProdutos"
         >
           {cardCategoria.map((card) => (

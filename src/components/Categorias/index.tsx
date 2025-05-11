@@ -26,7 +26,7 @@ const Categorias = () => {
       <List
         aria-labelledby="categorias"
         classeLista="listaCategorias"
-        aria-Label="Lista de categorias"
+        aria-label="Lista de categorias"
       >
         {categorias.map((item) => (
           <ItemList key={item.id}>

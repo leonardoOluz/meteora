@@ -18,7 +18,7 @@ const NossaLojas = () => {
         Nossas Lojas
       </Typography>
       <DivNossasLojas>
-        <List classeLista="listNossasLojas">
+        <List classeLista="listNossasLojas" aria-label="Lista de nossas lojas">
           <ItemList>
             <NossasLojasCard endereco="Endereço da Loja 1" loja="Loja 1" />
           </ItemList>

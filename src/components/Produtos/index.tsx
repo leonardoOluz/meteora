@@ -21,7 +21,7 @@ const Produtos = () => {
       >
         Produtos que estão bombando!
       </Typography>
-      <List classeLista="listaProdutos" aria-Label="Lista de produtos">
+      <List classeLista="listaProdutos" aria-label="Lista de produtos">
         {produtos.map((card) => (
           <ItemList
             key={card.id}
