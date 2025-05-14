@@ -77,9 +77,11 @@ const listNossasLojas = css`
   padding: 0 2.6rem;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: flex-start;
+  align-items: center;
   gap: 3rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    align-self: center;
+  }
 `;
 
 const classLists = {

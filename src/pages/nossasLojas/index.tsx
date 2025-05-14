@@ -6,8 +6,12 @@ import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
 import NossasLojasMap from "./NossasLojasMap";
 import NossasLojasCard from "./NossasLojasCard";
+import nossasLojas from "./json/nossasLojas.json";
+import { useState } from "react";
 
 const NossaLojas = () => {
+  const [map, setMap] = useState<string>(nossasLojas.nossasLojas[0].maps)
+  
   return (
     <Section classNameSection="secao nossas lojas">
       <Typography
@@ -19,18 +23,19 @@ const NossaLojas = () => {
       </Typography>
       <DivNossasLojas>
         <List classeLista="listNossasLojas" aria-label="Lista de nossas lojas">
-          <ItemList>
-            <NossasLojasCard endereco="Endereço da Loja 1" loja="Loja 1" />
-          </ItemList>
-          <ItemList>
-            <NossasLojasCard endereco="Endereço da Loja 2" loja="Loja 2" />
-          </ItemList>
-          <ItemList>
-            <NossasLojasCard endereco="Endereço da Loja 3" loja="Loja 3" />
-          </ItemList>
+          {nossasLojas.nossasLojas.map((loja) => (
+            <ItemList>
+              <NossasLojasCard
+                endereco={loja.endereco}
+                loja={loja.loja}
+                image={loja.image}
+                onClick={() => setMap(loja.maps)}
+              />
+            </ItemList>
+          ))}
         </List>
       </DivNossasLojas>
-      <NossasLojasMap />
+      <NossasLojasMap map={map}/>
     </Section>
   );
 };

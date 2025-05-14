@@ -26,12 +26,24 @@ const imgProdutoCard = css`
 const imgCarrinho = css`
   max-width: 10.9rem;
 `;
+const imgNossasLojas = css`
+  width: 32rem;
+  height: 24rem;
+  border-radius: 25px;
+  box-shadow: 4px 8px 8px 4px rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    border-radius: 0 45px 0 0;
+  }
+`;
+
 const objClasseImg = {
   imgBanner,
   imgCategoria,
   imgFacilidades,
   imgProdutoCard,
   imgCarrinho,
+  imgNossasLojas,
 };
 
 export const FotoStyles = styled.img<{
