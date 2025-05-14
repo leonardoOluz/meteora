@@ -27,7 +27,8 @@ export type IClassImg =
   | "imgCategoria"
   | "imgFacilidades"
   | "imgProdutoCard"
-  | "imgCarrinho";
+  | "imgCarrinho"
+  | "imgNossasLojas";
 
 /* className section */
 export type IClassSection =
@@ -60,4 +61,15 @@ export type ICardProduto = (typeof produtos.produtos)[0];
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];
 export type ICardFacilidades = (typeof facilidades.facilidades)[0];
-export type catPromocao = 0.15 | 0.20 | 0.25 | 0.30 | 0.35 | 0.40 | 0.45 | 0.50 | 0.75 | 0.90 | number;
+export type catPromocao =
+  | 0.15
+  | 0.2
+  | 0.25
+  | 0.3
+  | 0.35
+  | 0.4
+  | 0.45
+  | 0.5
+  | 0.75
+  | 0.9
+  | number;

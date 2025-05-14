@@ -1,7 +1,7 @@
 import { IClassTypograph, IGrid, ITag } from "@/types/componentTypes";
 import { TypographyStyle } from "./styles";
 
-interface IProps {
+interface IProps  extends React.HTMLAttributes<HTMLDivElement>{
   children: React.ReactNode;
   elementoHtml: ITag;
   classNameTypograph: IClassTypograph;
@@ -15,6 +15,7 @@ const Typography = ({
   classNameTypograph,
   isColor,
   isGrid,
+  ...rest
 }: IProps) => {
   return (
     <TypographyStyle
@@ -22,6 +23,7 @@ const Typography = ({
       $classNameTypograph={classNameTypograph}
       $isColor={isColor}
       $isGrid={isGrid}
+      {...rest}
     >
       {children}
     </TypographyStyle>

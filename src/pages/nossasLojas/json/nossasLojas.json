@@ -1,0 +1,22 @@
+{
+  "nossasLojas": [
+    {
+      "endereco": "R. Treze de Maio, 1947 - Bela Vista, São Paulo - SP, 01327-900",
+      "loja": "Loja 1 - Shopping Paulista",
+      "image": "/shopping-paulista.jpeg",
+      "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.935598747583!2d-46.645795223846086!3d-23.57075636193901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59bd7dd3f269%3A0x72273dff36e63560!2sShopping%20P%C3%A1tio%20Paulista!5e0!3m2!1spt-BR!2sbr!4v1747252474418!5m2!1spt-BR!2sbr"
+    },
+    {
+      "endereco": "Shopping Metrô Boulevard Tatuapé R. Gonçalves Crespo, 78",
+      "loja": "Loja 2 - Shopping Metrô Tatuapé",
+      "image": "/shopping-tatuape.jpeg",
+      "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1828.891151439806!2d-46.577874011125246!3d-23.54033108570873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5ec2e1a484a3%3A0x1a8cdaf57a43d11!2sShopping%20Metr%C3%B4%20Boulevard%20Tatuap%C3%A9!5e0!3m2!1spt-BR!2sbr!4v1747252572688!5m2!1spt-BR!2sbr"
+    },
+    {
+      "endereco": "Av. Raimundo Pereira de Magalhães, 1465 - Jardim Iris, São Paulo - SP, 05145-000",
+      "loja": "Loja 3 - Shopping Tiete Plaza",
+      "image": "/shopping-tiete.jpeg",
+      "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1829.3692080093335!2d-46.71960191112551!3d-23.505929685071877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef8fb50ca061d%3A0xe9e8d46317b5574f!2sTiet%C4%99%20Plaza%20Shopping%20-%20Jardim%20Iris%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1747252635717!5m2!1spt-BR!2sbr"
+    }
+  ]
+}
