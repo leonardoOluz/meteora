@@ -10,11 +10,7 @@ interface ICarouselProps<T> extends SwiperOptions {
 
 const Carousel = <T,>({ itens, renderItem, ...rest }: ICarouselProps<T>) => {
   return (
-    <CarroselSwiper
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-      {...rest}
-    >
+    <CarroselSwiper {...rest}>
       {itens.map((item, index) => (
         <SwiperSlide key={index}>{renderItem(item)}</SwiperSlide>
       ))}

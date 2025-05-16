@@ -23,8 +23,8 @@ const NossaLojas = () => {
       </Typography>
       <DivNossasLojas>
         <List classeLista="listNossasLojas" aria-label="Lista de nossas lojas">
-          {nossasLojas.nossasLojas.map((loja) => (
-            <ItemList>
+          {nossasLojas.nossasLojas.map((loja, index) => (
+            <ItemList key={index}>
               <NossasLojasCard
                 endereco={loja.endereco}
                 loja={loja.loja}

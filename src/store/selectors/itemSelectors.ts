@@ -9,7 +9,6 @@ export const selectProdutosPorCategoria = createSelector(
   (produtos, categoria) =>
     produtos.filter((item) => item.categoria === categoria)
 );
-
 export const selectCartForProduct = createSelector(
   [selectCartProduct],
   (state) => {
@@ -18,10 +17,9 @@ export const selectCartForProduct = createSelector(
     );
   }
 );
-
 export const selectDetailsTheCartForProduct = createSelector(
   [selectCartProduct, (_, id: number) => id],
   (state, id) => {
     return state.carrinho.data.find((itemCart) => itemCart.id === id)
   }
-)
+);

@@ -1,25 +1,10 @@
-import Header from "../Header";
-import Typography from "../Typography";
 import {
   DialogModal,
-  DivHeaderModal,
   DivModal,
-  DivDescricaoProduto,
   DivProdutoModal,
-  FieldsetStyle,
-  DivPrecoProdutod,
-  SpanPreco,
-  LegendStyle,
-  DivRadio,
   ContainerModal,
 } from "./styles";
-import { FaRegCheckCircle } from "react-icons/fa";
-import { thema } from "@/styles/thema";
-import Botao from "../Botao";
-import { IoIosClose } from "react-icons/io";
-import Form from "../Form";
 import Photo from "../Photo";
-import RadioSelect from "../RadioSelect";
 import { ICardProduto } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
 import { useRef, useState } from "react";
@@ -28,21 +13,33 @@ import { addProduct } from "@/store/reducers/carrinho";
 import useEventMouse from "@/hooks/useEventMouse";
 import { v4 as uuidv4 } from "uuid";
 import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
+import ModalProductHeader from "./components/ModalProductHeader";
+import ModalProductDescription from "./components/ModalProductDescription";
+import ModalProductForm from "./components/ModalProductForm";
+import useCheckPrice from "@/hooks/useCheckPrice";
 
 interface IProps {
   handleClose: () => void;
   isSetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   card: ICardProduto;
+  valueCatPromo?: number;
 }
 
-const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
-  const [cor, setCor] = useState<string>("");
-  const [tamanho, setTamanho] = useState("");
+const ModalProduto = ({
+  handleClose,
+  isOpen,
+  card,
+  isSetOpen,
+  valueCatPromo,
+}: IProps) => {
+  const [isColor, setIsColor] = useState<string>("");
+  const [isSize, setIsSize] = useState<string>("");
   const divRef = useRef<HTMLDivElement>(null);
   const dialogModalRef = useRef<HTMLDialogElement>(null);
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
+  const { price } = useCheckPrice(card.preco, valueCatPromo);
 
   useEventMouse({
     isBoolean: isOpen,
@@ -50,6 +47,7 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
     isRef: divRef,
     eventType: "mousedown",
   });
+
   useEventFocusKeydown({ dialogModalRef, isOpen, handleClose });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -59,10 +57,10 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
         id: card.id,
         details: {
           id: uuidv4(),
-          cor,
-          tamanho,
+          cor: isColor,
+          tamanho: isSize,
         },
-        price: card.preco,
+        price,
       })
     );
     handleClose();
@@ -71,23 +69,7 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   return (
     <DialogModal open={isOpen} tabIndex={0} ref={dialogModalRef}>
       <DivModal ref={divRef}>
-        <Header classeHeader="headerModal">
-          <DivHeaderModal>
-            <FaRegCheckCircle color={thema.colorsPrimary.verde} size={32} />
-            <Typography elementoHtml="h2" classNameTypograph="typographyModal">
-              Confira detalhes sobre o produto
-            </Typography>
-          </DivHeaderModal>
-          <Botao
-            aria-label="Fechar modal"
-            classNameBtn="btnUnset"
-            tipo="button"
-            handleClick={handleClose}
-            tabIndex={0}
-          >
-            <IoIosClose color="#6C757D" size={32} />
-          </Botao>
-        </Header>
+        <ModalProductHeader handleClose={handleClose} />
         <DivProdutoModal>
           <Photo
             src={imagensCardProdutos(card.imagem)}
@@ -95,69 +77,21 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
             classeImg="imgProdutoCard"
           />
           <ContainerModal>
-            <DivDescricaoProduto>
-              <Typography
-                elementoHtml="h2"
-                classNameTypograph="basicParagraphBold"
-                isColor={thema.colorsPrimary.cinzaChumbo}
-              >
-                {card.titulo}
-              </Typography>
-              <Typography
-                classNameTypograph="basicParagraphSmall"
-                elementoHtml="p"
-                isColor={thema.colorsPrimary.cinzaChumbo}
-              >
-                {card.descricao}
-              </Typography>
-              <DivPrecoProdutod>
-                <SpanPreco>R$ {card.preco.toFixed(2)}</SpanPreco>
-                <Typography
-                  elementoHtml="p"
-                  classNameTypograph="basicParagraphSmall"
-                  isColor={thema.inputState.offState.default}
-                >
-                  Vendido e entregue por Riachuelo
-                </Typography>
-              </DivPrecoProdutod>
-            </DivDescricaoProduto>
-            <Form ariaLabel="itens opcionais" handleSubmit={handleSubmit}>
-              <FieldsetStyle>
-                <LegendStyle aria-label="cores">Cores:</LegendStyle>
-                <DivRadio>
-                  {card.cor.map((itemCor) => (
-                    <RadioSelect
-                      key={itemCor}
-                      nome="cor"
-                      texto={itemCor}
-                      handleChange={(e) => {
-                        setCor(e.target.value);
-                      }}
-                      isChecked={itemCor === cor}
-                    />
-                  ))}
-                </DivRadio>
-              </FieldsetStyle>
-              <FieldsetStyle>
-                <LegendStyle aria-label="tamanhos">Tamanho:</LegendStyle>
-                <DivRadio>
-                  {card.tamanho.map((itemTamanho) => (
-                    <RadioSelect
-                      key={itemTamanho}
-                      nome="tamanho"
-                      texto={itemTamanho}
-                      handleChange={(e) => {
-                        setTamanho(e.target.value);
-                      }}
-                      isChecked={itemTamanho === tamanho}
-                    />
-                  ))}
-                </DivRadio>
-              </FieldsetStyle>
-              <Botao classNameBtn="btnSecundary" tipo="submit">
-                Adicionar à sacola
-              </Botao>
-            </Form>
+            <ModalProductDescription
+              descricao={card.descricao}
+              preco={card.preco}
+              titulo={card.titulo}
+              valueCatPromo={valueCatPromo}
+            />
+            <ModalProductForm
+              colors={card.cor}
+              sizes={card.tamanho}
+              handleSubmit={handleSubmit}
+              isColor={isColor}
+              isSize={isSize}
+              setIsColor={setIsColor}
+              setIsSize={setIsSize}
+            />
           </ContainerModal>
         </DivProdutoModal>
       </DivModal>

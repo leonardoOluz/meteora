@@ -11,9 +11,12 @@ import ItemList from "@/components/List/ItemList";
 import Categorias from "@/components/Categorias";
 import NewsLetter from "@/components/NewsLetter";
 import Facilidades from "@/components/Facilidades";
+import useFindSearchPromo from "@/hooks/useFindSearchPromo";
 
 const Categoria = () => {
   const { categoria } = useParams();
+  const { findSearchPromo } = useFindSearchPromo();
+  const promocoes = useSelector((state: RootState) => state.promocoes);
   const cardCategoria = useSelector((state: RootState) => {
     return selectProdutosPorCategoria(state, categoria);
   });
@@ -34,7 +37,10 @@ const Categoria = () => {
         >
           {cardCategoria.map((card) => (
             <ItemList key={card.id}>
-              <CardProduto card={card} />
+              <CardProduto
+                card={card}
+                valueCatPromo={findSearchPromo(card.id, promocoes)}
+              />
             </ItemList>
           ))}
         </List>

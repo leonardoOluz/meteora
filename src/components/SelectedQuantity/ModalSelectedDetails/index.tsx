@@ -12,6 +12,7 @@ import { ICardProduto } from "@/types/componentTypes";
 import { useRef } from "react";
 import useEventMouse from "@/hooks/useEventMouse";
 import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
+import useCheckPrice from "@/hooks/useCheckPrice";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
@@ -19,6 +20,7 @@ interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   setModalDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   card: ICardProduto;
   isModalDetailsOpen: boolean;
+  valueCatPromo?: number;
 }
 
 const ModalSelectedDetails = ({
@@ -27,12 +29,13 @@ const ModalSelectedDetails = ({
   setModalDetailsOpen,
   card,
   isModalDetailsOpen,
+  valueCatPromo,
   ...rest
 }: DialogProps) => {
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
   const dialogModalRef = useRef<HTMLDialogElement>(null);
-
+  const { price } = useCheckPrice(card.preco, valueCatPromo);
   useEventMouse({
     isBoolean: isModalDetailsOpen,
     setIsBoolean: setModalDetailsOpen,
@@ -44,13 +47,12 @@ const ModalSelectedDetails = ({
     isOpen: isModalDetailsOpen,
     handleClose,
   });
-
   const handleClick = (details: IDetails) => {
     dispatch(
       updateProduct({
         id: card.id,
         details,
-        price: card.preco,
+        price,
       })
     );
     handleClose();

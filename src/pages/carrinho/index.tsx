@@ -13,15 +13,16 @@ import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import Botao from "@/components/Botao";
 import useResize from "@/hooks/useResize";
+import useFindSearchPromo from "@/hooks/useFindSearchPromo";
 
 const Carrinho = () => {
+  const { width } = useResize();
+  const cart = useSelector((state: RootState) => state.carrinho);
+  const promocoes = useSelector((state: RootState) => state.promocoes);
   const cartProduct = useSelector((state: RootState) => {
     return selectCartForProduct(state);
   });
-
-  const cart = useSelector((state: RootState) => state.carrinho);
-
-  const { width } = useResize();
+  const { findSearchPromo } = useFindSearchPromo();
 
   const tituloCartMain =
     width >= transformNumber(thema.breakpoints.tablet) ? (
@@ -52,6 +53,7 @@ const Carrinho = () => {
                     cart.data.find((itemCart) => itemCart.id === itemProduct.id)
                       ?.quantity || 0
                   }
+                  valueCatPromo={findSearchPromo(itemProduct.id, promocoes)}
                 />
               </ItemList>
             ))}
