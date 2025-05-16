@@ -14,19 +14,27 @@ import SelectedQuantity from "../SelectedQuantity";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "@/store/reducers/carrinho";
+import useCheckPrice from "@/hooks/useCheckPrice";
 
 interface IProps {
   card: ICardProduto;
   cartSuspensa?: boolean;
   totQuanty: number;
+  valueCatPromo?: number;
 }
 
-const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
+const CardCarrinho = ({
+  card,
+  cartSuspensa,
+  totQuanty,
+  valueCatPromo,
+}: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
+  const { price } = useCheckPrice(card.preco, valueCatPromo);
 
   const handleRemoveProduct = () => {
-    dispatch(deleteProduct({ id: card.id, price: card.preco }));
+    dispatch(deleteProduct({ id: card.id, price }));
   };
 
   if (cartSuspensa) {
@@ -45,9 +53,14 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
             >
               {card.titulo}
             </Typography>
-            <SelectedQuantity totProduct={totQuanty} isDropDown card={card} />
+            <SelectedQuantity
+              totProduct={totQuanty}
+              isDropDown
+              card={card}
+              valueCatPromo={valueCatPromo}
+            />
             <PriceSpanCardCart>
-              R$ {(totQuanty * card.preco).toFixed(2)}
+              R$ {(totQuanty * price).toFixed(2)}
             </PriceSpanCardCart>
           </DivCarDropDown>
         </div>
@@ -83,9 +96,13 @@ const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
       </DivImgDescrption>
       <DivActionsCart>
         <PriceSpanCardCart>
-          R$ {(totQuanty * card.preco).toFixed(2)}
+          R$ {(totQuanty * price).toFixed(2)}
         </PriceSpanCardCart>
-        <SelectedQuantity totProduct={totQuanty} card={card} />
+        <SelectedQuantity
+          totProduct={totQuanty}
+          card={card}
+          valueCatPromo={valueCatPromo}
+        />
         <MdDelete
           size={16}
           color="#fff"

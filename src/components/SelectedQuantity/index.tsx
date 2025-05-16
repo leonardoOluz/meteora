@@ -12,14 +12,21 @@ interface IProps {
   isDropDown?: boolean;
   totProduct?: number;
   card: ICardProduto;
+  valueCatPromo?: number;
 }
-const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
+const SelectedQuantity = ({
+  isDropDown,
+  totProduct,
+  card,
+  valueCatPromo,
+}: IProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDetailsOpen, setModalDetailsOpen] = useState(false);
 
   const details = useSelector((state: RootState) =>
     selectDetailsTheCartForProduct(state, card.id)
   );
+
   const modalDetailsDelete =
     modalDetailsOpen && details?.details ? (
       <ModalSelectedDetails
@@ -29,6 +36,7 @@ const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
         setModalDetailsOpen={setModalDetailsOpen}
         handleClose={() => setModalDetailsOpen(false)}
         card={card}
+        valueCatPromo={valueCatPromo}
       />
     ) : null;
 
@@ -38,6 +46,7 @@ const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
       handleClose={() => setModalOpen(false)}
       isOpen={modalOpen}
       isSetOpen={setModalOpen}
+      valueCatPromo={valueCatPromo}
     />
   ) : null;
 

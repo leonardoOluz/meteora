@@ -72,8 +72,8 @@
       "alt": "Mulher com camiseta roxa",
       "titulo": "Camiseta Conforto",
       "descricao": "Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.",
-      "sales": true,
-      "catPromocao": 0.15,
+      "sales": false,
+      "catPromocao": 0,
       "preco": 79.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -124,8 +124,8 @@
       "alt": "Home usando uma calça branca",
       "titulo": "Calça Alfaiataria",
       "descricao": "Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!",
-      "sales": true,
-      "catPromocao": 0.15,
+      "sales": false,
+      "catPromocao": 0,
       "preco": 115.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -189,8 +189,8 @@
       "alt": "Mulher usando uma jaqueta de couro preta",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "sales": true,
-      "catPromocao": 0.15,
+      "sales": false,
+      "catPromocao": 0,
       "preco": 315.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -228,8 +228,8 @@
       "alt": "Home usando uma jaqueta jeans azul clara",
       "titulo": "Jaqueta Jeans",
       "descricao": "Modelo unissex oversized com gola de camurça. Atemporal e autêntica!",
-      "sales": true,
-      "catPromocao": 0.15,
+      "sales": false,
+      "catPromocao": 0,
       "preco": 215.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -242,7 +242,7 @@
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.25,
       "preco": 120.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -255,7 +255,7 @@
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.25,
       "preco": 220.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -268,7 +268,7 @@
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.25,
       "preco": 85.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -294,7 +294,7 @@
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.20,
       "preco": 150.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -307,7 +307,7 @@
       "titulo": "Bolsa coringa",
       "descricao": "Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.20,
       "preco": 179.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -320,7 +320,7 @@
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.20,
       "preco": 120.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -346,7 +346,7 @@
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.30,
       "preco": 130.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -359,7 +359,7 @@
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.30,
       "preco": 189.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
@@ -372,7 +372,7 @@
       "titulo": "Óculos Redondo",
       "descricao": "Armação metálica em grafite com lentes arredondadas. Sem erro!",
       "sales": true,
-      "catPromocao": 0.15,
+      "catPromocao": 0.30,
       "preco": 99.0,
       "cor": ["azulClaro", "Offwhite", "Preto"],
       "tamanho": ["P", "PP", "M", "G", "GG"]
