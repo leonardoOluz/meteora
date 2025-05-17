@@ -9,7 +9,7 @@ import { DivCartDropDown } from "./styles";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
-import { selectCartForProduct } from "@/store/selectors/itemSelectors";
+import { selectProductCart } from "@/store/selectors/itemSelectors";
 
 interface IProps {
   setDropDown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +20,7 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
   const cartDropDownRef = useRef<HTMLDivElement>(null);
   const cart = useSelector((state: RootState) => state.carrinho);
   const carrinho = useSelector((state: RootState) => {
-    return selectCartForProduct(state);
+    return selectProductCart(state);
   });
 
   useEventMouse({

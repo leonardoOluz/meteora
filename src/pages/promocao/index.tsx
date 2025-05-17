@@ -12,6 +12,10 @@ import { RootState } from "@/types/store";
 import useSelectColorPromo from "@/hooks/useSelectColorPromo";
 import Facilidades from "@/components/Facilidades";
 import NewsLetter from "@/components/NewsLetter";
+import { selectProductForSearch } from "@/store/selectors/itemSelectors";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { clearBuscador } from "@/store/reducers/buscador";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination],
@@ -24,10 +28,17 @@ const swiperSettings: SwiperOptions = {
 };
 
 const Promocoes = () => {
+  const dispatch = useDispatch();
   const { slidesPerView } = useSlidesPerView();
   const promocoes = useSelector((state: RootState) => state.promocoes);
-  const produtos = useSelector((state: RootState) => state.produtos);
+  const produtos = useSelector((state: RootState) => {
+    return selectProductForSearch(state, "descricao");
+  });
   const { handleIsValuePromoIsColor } = useSelectColorPromo();
+  useEffect(() => {
+    dispatch(clearBuscador());
+  }, [dispatch]);
+
   return (
     <>
       <Section classNameSection="secao promocoes">
@@ -52,11 +63,7 @@ const Promocoes = () => {
                 itemPromo.productId.some((idPromo) => idPromo === itemFilter.id)
               )}
               renderItem={(itemProduct) => {
-                return (
-                  <CardProduto
-                    card={itemProduct}
-                  />
-                );
+                return <CardProduto card={itemProduct} />;
               }}
             />
           </DivCatPromo>

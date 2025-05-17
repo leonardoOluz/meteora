@@ -1,28 +1,35 @@
+import Botao from "@components/Botao";
+import CartDropDown from "../CartDropDown";
 import Logo from "@components/Logo";
+import Header from "@components/Header";
 import Navbar from "@components/Navbar";
 import Input from "@/components/Input";
-import { useState } from "react";
-import Botao from "@components/Botao";
-import Header from "@components/Header";
-import { BsCart4 } from "react-icons/bs";
-import { thema } from "@/styles/thema";
 import transformNumber from "@/utils/transformNumber";
+import useResize from "@/hooks/useResize";
+import { BsCart4 } from "react-icons/bs";
 import { Container, ContainerCart, iconsProps } from "./styles";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { RootState } from "@/types/store";
-import CartDropDown from "../CartDropDown";
-import useResize from "@/hooks/useResize";
+import { thema } from "@/styles/thema";
+import { setBuscador } from "@/store/reducers/buscador";
 
 const Cabecalho = () => {
   const [cartDropDown, setCartDropDown] = useState(false);
   const [menuDropDrown, setMenuDropDown] = useState(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState(true);
-  const [texto, setTexto] = useState("");
+  const [search, setSearch] = useState<string>("");
   const { width } = useResize();
   const carrinho = useSelector((state: RootState) => state.carrinho);
   const location = useLocation();
+  const dispatch = useDispatch();
 
+  const handleSearch = () => {
+    dispatch(setBuscador(search));
+    setSearch("");
+  };
   const handleCartDropDown = () => {
     if (location.pathname === "/carrinho") {
       return setCartDropDown(false);
@@ -79,13 +86,19 @@ const Cabecalho = () => {
       </Container>
       <Container style={{ gap: "1rem" }} $buscadorMobile>
         <Input
-          value={texto}
-          handleChange={(e) => setTexto(e.target.value)}
+          value={search}
+          handleChange={(e) => setSearch(e.target.value)}
           placeHolder="Digite o produto"
           tipo="text"
           classeInput="inputBuscador"
+          aria-label="buscador"
         />
-        <Botao classNameBtn="btnPrimary" title="Buscar" aria-label="buscar">
+        <Botao
+          classNameBtn="btnPrimary"
+          title="Buscar"
+          aria-label="buscar"
+          onClick={handleSearch}
+        >
           Buscar
         </Botao>
         {cartProdutosDesktop}

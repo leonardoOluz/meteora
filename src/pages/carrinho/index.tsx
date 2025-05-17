@@ -7,7 +7,7 @@ import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
-import { selectCartForProduct } from "@/store/selectors/itemSelectors";
+import { selectProductCart } from "@/store/selectors/itemSelectors";
 import Sumario from "./Sumario";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
@@ -18,7 +18,7 @@ const Carrinho = () => {
   const { width } = useResize();
   const cart = useSelector((state: RootState) => state.carrinho);
   const cartProduct = useSelector((state: RootState) => {
-    return selectCartForProduct(state);
+    return selectProductCart(state);
   });
 
   const tituloCartMain =

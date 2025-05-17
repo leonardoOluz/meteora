@@ -1,7 +1,7 @@
 import CardProduto from "@/components/CardProduto";
 import Section from "@components/Section";
 import Typography from "@components/Typography";
-import { selectProdutosPorCategoria } from "@/store/selectors/itemSelectors";
+import { selectProductCat } from "@/store/selectors/itemSelectors";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
@@ -15,8 +15,9 @@ import Facilidades from "@/components/Facilidades";
 const Categoria = () => {
   const { categoria } = useParams();
   const cardCategoria = useSelector((state: RootState) => {
-    return selectProdutosPorCategoria(state, categoria);
+    return selectProductCat(state, categoria);
   });
+
   return (
     <>
       <Section classNameSection="secao categorias">
@@ -34,9 +35,7 @@ const Categoria = () => {
         >
           {cardCategoria.map((card) => (
             <ItemList key={card.id}>
-              <CardProduto
-                card={card}
-              />
+              <CardProduto card={card} />
             </ItemList>
           ))}
         </List>
