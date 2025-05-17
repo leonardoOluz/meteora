@@ -1,25 +1,38 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "@/types/store";
+import { KeysIProductString, RootState } from "@/types/store";
 
-const selectRawProdutos = (state: RootState) => state.produtos;
-const selectCartProduct = (state: RootState) => state;
+const selectStoreState = (state: RootState) => state;
 
-export const selectProdutosPorCategoria = createSelector(
-  [selectRawProdutos, (_, categoria: string | undefined) => categoria],
-  (produtos, categoria) =>
-    produtos.filter((item) => item.categoria === categoria)
-);
-export const selectCartForProduct = createSelector(
-  [selectCartProduct],
-  (state) => {
-    return state.produtos.filter((itemProduct) =>
-      state.carrinho.data.some((itemCart) => itemCart.id === itemProduct.id)
+export const selectProductCat = createSelector(
+  [selectStoreState, (_, categoria: string | undefined) => categoria],
+  (state, categoria) => {
+    const productCat = state.produtos.filter(
+      (item) => item.categoria === categoria
     );
+    const regexSearch = new RegExp(state.buscador, "i");
+    return productCat.filter((item) => item.descricao.match(regexSearch));
   }
 );
+export const selectProductCart = createSelector([selectStoreState], (state) => {
+  return state.produtos.filter((itemProduct) =>
+    state.carrinho.data.some((itemCart) => itemCart.id === itemProduct.id)
+  );
+});
 export const selectDetailsTheCartForProduct = createSelector(
-  [selectCartProduct, (_, id: number) => id],
+  [selectStoreState, (_, id: number) => id],
   (state, id) => {
-    return state.carrinho.data.find((itemCart) => itemCart.id === id)
+    return state.carrinho.data.find((itemCart) => itemCart.id === id);
+  }
+);
+export const selectProductForSearch = createSelector(
+  [
+    selectStoreState,
+    (_, typeDescription: KeysIProductString) => typeDescription,
+  ],
+  (state, typeDescription) => {
+    const regexSearch = new RegExp(state.buscador, "i");
+    return state.produtos.filter((item) =>
+      item[typeDescription].match(regexSearch)
+    );
   }
 );

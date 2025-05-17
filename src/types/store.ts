@@ -1,5 +1,5 @@
 import store from "@/store";
-import { catPromocao } from "./componentTypes";
+import { catPromocao, ICardProduto } from "./componentTypes";
 
 export type RootState = ReturnType<typeof store.getState>;
 /* interface de promocoes */
@@ -38,3 +38,8 @@ export type UpdateProduct = {
   details: IDetails;
   price: number;
 };
+/* type de selectors */
+export type KeysIProductString = Extract<
+  keyof ICardProduto,
+  "titulo" | "categoria" | "descricao"
+>;

@@ -5,6 +5,7 @@ import categoriasSlice from "@/store/reducers/categorias";
 import facilidadesSlice from "@/store/reducers/facilidades";
 import carrinhoSlice from "@/store/reducers/carrinho";
 import promocoesSlice from "@/store/reducers/promocoes";
+import buscadorSlice from "@/store/reducers/buscador";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     facilidades: facilidadesSlice,
     carrinho: carrinhoSlice,
     promocoes: promocoesSlice,
+    buscador: buscadorSlice,
   },
 });
 

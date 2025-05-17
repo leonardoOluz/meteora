@@ -7,9 +7,20 @@ import { useSelector } from "react-redux";
 import List from "../List";
 import ItemList from "../List/ItemList";
 import Categorias from "../Categorias";
+import { selectProductForSearch } from "@/store/selectors/itemSelectors";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { clearBuscador } from "@/store/reducers/buscador";
 
 const Produtos = () => {
-  const produtos = useSelector((state: RootState) => state.produtos);
+  const dispatch = useDispatch();
+  const produtos = useSelector((state: RootState) => {
+    return selectProductForSearch(state, "titulo");
+  });
+
+  useEffect(() => {
+    dispatch(clearBuscador());
+  }, [dispatch]);
 
   return (
     <Section classNameSection="secao produtos">
