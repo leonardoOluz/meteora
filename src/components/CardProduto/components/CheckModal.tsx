@@ -6,14 +6,12 @@ interface CkeckModalProps {
   openModalProduto: () => void;
   card: ICardProduto;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  valueCatPromo?: number;
 }
 const CheckModal = ({
   card,
   modalOpen,
   openModalProduto,
   setModalOpen,
-  valueCatPromo
 }: CkeckModalProps) => {
   return (
     <>
@@ -24,7 +22,6 @@ const CheckModal = ({
             isSetOpen={setModalOpen}
             isOpen={modalOpen}
             card={card}
-            valueCatPromo={valueCatPromo}
           />,
           document.getElementById("modal-root") as HTMLElement
         )}

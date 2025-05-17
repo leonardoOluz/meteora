@@ -7,12 +7,9 @@ import { useSelector } from "react-redux";
 import List from "../List";
 import ItemList from "../List/ItemList";
 import Categorias from "../Categorias";
-import useFindSearchPromo from "@/hooks/useFindSearchPromo";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
-  const promocoes = useSelector((state: RootState) => state.promocoes);
-  const { findSearchPromo } = useFindSearchPromo();
 
   return (
     <Section classNameSection="secao produtos">
@@ -30,10 +27,7 @@ const Produtos = () => {
             key={card.id}
             aria-label={`card de produto ${card.categoria}`}
           >
-            <CardProduto
-              card={card}
-              valueCatPromo={findSearchPromo(card.id, promocoes)}
-            />
+            <CardProduto card={card} />
           </ItemList>
         ))}
       </List>

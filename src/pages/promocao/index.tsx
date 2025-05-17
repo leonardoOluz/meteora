@@ -55,7 +55,6 @@ const Promocoes = () => {
                 return (
                   <CardProduto
                     card={itemProduct}
-                    valueCatPromo={itemPromo.catPromocao}
                   />
                 );
               }}

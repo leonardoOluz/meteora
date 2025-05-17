@@ -8,13 +8,17 @@ import CheckModal from "./components/CheckModal";
 import FigureCard from "./components/FigureCard";
 import FigcaptionCard from "./components/FigcaptionCard";
 import CheckPrice from "../CheckPrice";
+import { RootState } from "@/types/store";
+import useFindSearchPromo from "@/hooks/useFindSearchPromo";
+import { useSelector } from "react-redux";
 interface IProps {
   card: ICardProduto;
-  valueCatPromo?: number;
 }
 
-const CardProduto = ({ card, valueCatPromo }: IProps) => {
+const CardProduto = ({ card }: IProps) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const promocoes = useSelector((state: RootState) => state.promocoes);
+  const { findSearchPromo } = useFindSearchPromo();
   const openModalProduto = () => {
     setModalOpen(!modalOpen);
   };
@@ -34,7 +38,10 @@ const CardProduto = ({ card, valueCatPromo }: IProps) => {
         >
           {card.descricao}
         </Typography>
-        <CheckPrice price={card.preco} valueCatPromo={valueCatPromo} />
+        <CheckPrice
+          price={card.preco}
+          valueCatPromo={findSearchPromo(card.id, promocoes)}
+        />
         <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
           Ver Mais
         </Botao>
@@ -44,7 +51,6 @@ const CardProduto = ({ card, valueCatPromo }: IProps) => {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         openModalProduto={openModalProduto}
-        valueCatPromo={valueCatPromo}
       />
     </ArticleStyle>
   );
