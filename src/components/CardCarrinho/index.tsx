@@ -15,23 +15,25 @@ import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "@/store/reducers/carrinho";
 import useCheckPrice from "@/hooks/useCheckPrice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
+import useFindSearchPromo from "@/hooks/useFindSearchPromo";
 
 interface IProps {
   card: ICardProduto;
   cartSuspensa?: boolean;
   totQuanty: number;
-  valueCatPromo?: number;
 }
 
-const CardCarrinho = ({
-  card,
-  cartSuspensa,
-  totQuanty,
-  valueCatPromo,
-}: IProps) => {
+const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
-  const { price } = useCheckPrice(card.preco, valueCatPromo);
+  const promocoes = useSelector((state: RootState) => state.promocoes);
+  const { findSearchPromo } = useFindSearchPromo();
+  const { price } = useCheckPrice(
+    card.preco,
+    findSearchPromo(card.id, promocoes)
+  );
 
   const handleRemoveProduct = () => {
     dispatch(deleteProduct({ id: card.id, price }));
@@ -53,12 +55,7 @@ const CardCarrinho = ({
             >
               {card.titulo}
             </Typography>
-            <SelectedQuantity
-              totProduct={totQuanty}
-              isDropDown
-              card={card}
-              valueCatPromo={valueCatPromo}
-            />
+            <SelectedQuantity totProduct={totQuanty} isDropDown card={card} />
             <PriceSpanCardCart>
               R$ {(totQuanty * price).toFixed(2)}
             </PriceSpanCardCart>
@@ -98,11 +95,7 @@ const CardCarrinho = ({
         <PriceSpanCardCart>
           R$ {(totQuanty * price).toFixed(2)}
         </PriceSpanCardCart>
-        <SelectedQuantity
-          totProduct={totQuanty}
-          card={card}
-          valueCatPromo={valueCatPromo}
-        />
+        <SelectedQuantity totProduct={totQuanty} card={card} />
         <MdDelete
           size={16}
           color="#fff"

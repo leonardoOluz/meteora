@@ -17,13 +17,15 @@ import ModalProductHeader from "./components/ModalProductHeader";
 import ModalProductDescription from "./components/ModalProductDescription";
 import ModalProductForm from "./components/ModalProductForm";
 import useCheckPrice from "@/hooks/useCheckPrice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
+import useFindSearchPromo from "@/hooks/useFindSearchPromo";
 
 interface IProps {
   handleClose: () => void;
   isSetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   card: ICardProduto;
-  valueCatPromo?: number;
 }
 
 const ModalProduto = ({
@@ -31,7 +33,6 @@ const ModalProduto = ({
   isOpen,
   card,
   isSetOpen,
-  valueCatPromo,
 }: IProps) => {
   const [isColor, setIsColor] = useState<string>("");
   const [isSize, setIsSize] = useState<string>("");
@@ -39,7 +40,10 @@ const ModalProduto = ({
   const dialogModalRef = useRef<HTMLDialogElement>(null);
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
-  const { price } = useCheckPrice(card.preco, valueCatPromo);
+  const promocoes = useSelector((state: RootState) => state.promocoes);
+  const {findSearchPromo} = useFindSearchPromo()
+
+  const { price } = useCheckPrice(card.preco, findSearchPromo(card.id, promocoes));
 
   useEventMouse({
     isBoolean: isOpen,
@@ -81,7 +85,7 @@ const ModalProduto = ({
               descricao={card.descricao}
               preco={card.preco}
               titulo={card.titulo}
-              valueCatPromo={valueCatPromo}
+              valueCatPromo={findSearchPromo(card.id, promocoes)}
             />
             <ModalProductForm
               colors={card.cor}

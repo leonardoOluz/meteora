@@ -12,13 +12,11 @@ interface IProps {
   isDropDown?: boolean;
   totProduct?: number;
   card: ICardProduto;
-  valueCatPromo?: number;
 }
 const SelectedQuantity = ({
   isDropDown,
   totProduct,
-  card,
-  valueCatPromo,
+  card
 }: IProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDetailsOpen, setModalDetailsOpen] = useState(false);
@@ -36,7 +34,6 @@ const SelectedQuantity = ({
         setModalDetailsOpen={setModalDetailsOpen}
         handleClose={() => setModalDetailsOpen(false)}
         card={card}
-        valueCatPromo={valueCatPromo}
       />
     ) : null;
 
@@ -46,7 +43,6 @@ const SelectedQuantity = ({
       handleClose={() => setModalOpen(false)}
       isOpen={modalOpen}
       isSetOpen={setModalOpen}
-      valueCatPromo={valueCatPromo}
     />
   ) : null;
 
