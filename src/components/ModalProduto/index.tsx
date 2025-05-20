@@ -34,20 +34,16 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
   const dispatch = useDispatch();
   const checkPromocao = useSelectCatPromocao();
-
   const price = useCheckPrice(card.preco, checkPromocao(card.id));
-
   useEventMouse({
     isBoolean: isOpen,
     setIsBoolean: isSetOpen,
     isRef: divRef,
     eventType: "mousedown",
   });
-
   useEventFocusKeydown({ dialogModalRef, isOpen, handleClose });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert("Produto adicionado ao carrinho");
     dispatch(
       addProduct({
         id: card.id,
@@ -59,7 +55,6 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
         price,
       })
     );
-
     handleClose();
   };
 

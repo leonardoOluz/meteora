@@ -6,6 +6,7 @@ import {
   UpdateProduct,
 } from "@/types/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState: ICartSlice = {
   data: [] as ICart[],
@@ -27,6 +28,7 @@ const carrinhoSlice = createSlice({
           details: [payload.details],
         } as ICart;
 
+        toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
         return {
           data: [...state.data, newProductCart],
           totValue: state.totValue + payload.price,
@@ -44,7 +46,7 @@ const carrinhoSlice = createSlice({
         }
         return item;
       });
-
+      toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
       return {
         data: [...newCart],
         totValue: state.totValue + payload.price,
@@ -57,6 +59,7 @@ const carrinhoSlice = createSlice({
         (itemCart) => itemCart.id !== payload.id
       );
       if (cartProduct) {
+        toast.info("Produto removido do carrinho", { autoClose: 1000 });
         return {
           data: [...updateCart],
           totValue: state.totValue - cartProduct?.quantity * payload.price,
@@ -71,6 +74,7 @@ const carrinhoSlice = createSlice({
 
       if (productCart) {
         if (productCart?.quantity === 1) {
+          toast.info("Produto removido do carrinho", { autoClose: 1000 });
           return {
             data: state.data.filter((item) => item.id !== payload.id),
             totProduct: state.totProduct - 1,
@@ -80,6 +84,7 @@ const carrinhoSlice = createSlice({
 
         const updateCart = state.data.map((itemCart) => {
           if (itemCart.id === payload.id) {
+            toast.info("Item de produto removido do carrinho");
             return {
               id: itemCart.id,
               quantity: itemCart.quantity - 1,

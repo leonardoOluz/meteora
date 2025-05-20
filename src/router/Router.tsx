@@ -1,11 +1,14 @@
+import { Suspense, lazy } from "react";
 import PageBase from "@/components/PageBase";
-import Carrinho from "@/pages/carrinho";
-import Home from "@/pages/home";
 import { createBrowserRouter } from "react-router-dom";
-import Categoria from "@/pages/categoria";
-import Promocoes from "@/pages/promocao";
-import NossasLojas from "@/pages/nossasLojas";
-import PageError404 from "@/pages/pageError404";
+
+const Home = lazy(() => import("@/pages/home"));
+const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
+const Categoria = lazy(() => import("@/pages/categoria"));
+const Carrinho = lazy(() => import("@/pages/carrinho"));
+const Promocoes = lazy(() => import("@/pages/promocao"));
+const PageError404 = lazy(() => import("@/pages/pageError404"));
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,27 +16,51 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "nossas-lojas",
-        element: <NossasLojas />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <NossasLojas />
+          </Suspense>
+        ),
       },
       {
         path: "categoria/:categoria",
-        element: <Categoria />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <Categoria />
+          </Suspense>
+        ),
       },
       {
         path: "carrinho",
-        element: <Carrinho />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <Carrinho />
+          </Suspense>
+        ),
       },
       {
         path: "promocoes",
-        element: <Promocoes />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <Promocoes />
+          </Suspense>
+        ),
       },
       {
         path: "*",
-        element: <PageError404 />,
+        element: (
+          <Suspense fallback={<div>Carregando...</div>}>
+            <PageError404 />
+          </Suspense>
+        ),
       },
     ],
   },
