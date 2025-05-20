@@ -13,9 +13,11 @@ import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import Botao from "@/components/Botao";
 import useResize from "@/hooks/useResize";
+import { useNavigate } from "react-router-dom";
 
 const Carrinho = () => {
   const { width } = useResize();
+  const navigation = useNavigate();
   const cart = useSelector((state: RootState) => state.carrinho);
   const cartProduct = useSelector((state: RootState) => {
     return selectProductCart(state);
@@ -58,7 +60,11 @@ const Carrinho = () => {
         <DivCartSumare>
           <Sumario cart={cart} />
           <DivCartBtn>
-            <Botao classNameBtn="btnQuarciario" tipo="button">
+            <Botao
+              classNameBtn="btnQuarciario"
+              tipo="button"
+              handleClick={() => navigation("/")}
+            >
               Continuar compra
             </Botao>
             <Botao classNameBtn="btnSecundary" tipo="button">

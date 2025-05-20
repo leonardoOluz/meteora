@@ -11,7 +11,7 @@ const useCheckPrice = (isPrice: number, valueCatPromo?: number) => {
     }
   }, [isPrice, valueCatPromo]);
 
-  return { price };
+  return price;
 };
 
 export default useCheckPrice;

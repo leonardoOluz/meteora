@@ -1,4 +1,4 @@
-import { IDetails, RootState } from "@/types/store";
+import { IDetails } from "@/types/store";
 import { DivModalContent, ModalSelectedDetailsStyle } from "./styles";
 import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
@@ -13,8 +13,7 @@ import { useRef } from "react";
 import useEventMouse from "@/hooks/useEventMouse";
 import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
 import useCheckPrice from "@/hooks/useCheckPrice";
-import { useSelector } from "react-redux";
-import useFindSearchPromo from "@/hooks/useFindSearchPromo";
+import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
@@ -35,10 +34,9 @@ const ModalSelectedDetails = ({
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
   const dialogModalRef = useRef<HTMLDialogElement>(null);
-  const promocoes = useSelector((state: RootState) => state.promocoes);
-  const { findSearchPromo } = useFindSearchPromo();
-  const { price } = useCheckPrice(card.preco, findSearchPromo(card.id, promocoes));
-  
+  const checkPromocao = useSelectCatPromocao();
+  const price = useCheckPrice(card.preco, checkPromocao(card.id));
+
   useEventMouse({
     isBoolean: isModalDetailsOpen,
     setIsBoolean: setModalDetailsOpen,

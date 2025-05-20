@@ -14,6 +14,7 @@ import { clearBuscador } from "@/store/reducers/buscador";
 
 const Produtos = () => {
   const dispatch = useDispatch();
+  
   const produtos = useSelector((state: RootState) => {
     return selectProductForSearch(state, "titulo");
   });
