@@ -58,6 +58,7 @@ export type IButton =
   | "btnQuarciario"
   | "btnUnset";
 export type ICardProduto = (typeof produtos.produtos)[0];
+export type IKeyIdProduct = typeof produtos.produtos[0] extends { id: infer U } ? U : never;
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];
 export type ICardFacilidades = (typeof facilidades.facilidades)[0];
