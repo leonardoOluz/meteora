@@ -8,12 +8,14 @@ import store from "@/store";
 import { Provider } from "react-redux";
 import { router } from "./router/Router";
 import { RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={thema}>
         <RouterProvider router={router} />
+        <ToastContainer position="top-center"/>
       </ThemeProvider>
     </Provider>
   </StrictMode>

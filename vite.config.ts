@@ -11,6 +11,17 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          redux: ["@reduxjs/toolkit", "react-redux"],
+          swiper: ["swiper"],
+        },
+      },
+    },
+  },
   server: {
     host: '0.0.0.0',
   },
