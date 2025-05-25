@@ -10,6 +10,7 @@ const Carrinho = lazy(() => import("@/pages/carrinho"));
 const Promocoes = lazy(() => import("@/pages/promocao"));
 const Novidades = lazy(() => import("@/pages/novidades"));
 const PageError404 = lazy(() => import("@/pages/pageError404"));
+const Busca = lazy(() => import("@/pages/buscas"));
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LazyLoader />}>
             <Novidades />
+          </Suspense>
+        ),
+      },
+      {
+        path: "seach-products",
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Busca />
           </Suspense>
         ),
       },

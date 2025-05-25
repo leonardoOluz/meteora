@@ -62,12 +62,12 @@ const Carrinho = () => {
           <DivCartBtn>
             <Botao
               classNameBtn="btnQuarciario"
-              tipo="button"
-              handleClick={() => navigation("/")}
+              type="button"
+              onClick={() => navigation("/")}
             >
               Continuar compra
             </Botao>
-            <Botao classNameBtn="btnSecundary" tipo="button">
+            <Botao classNameBtn="btnSecundary" type="button">
               Finalizar compra
             </Botao>
           </DivCartBtn>

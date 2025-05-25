@@ -32,16 +32,18 @@ export type IClassImg =
   | "imgNovidades";
 
 /* className section */
-export type IClassSection =
+// Type com os valores em string, igual ao aria-label
+export type SectionStyleKeys =
   | "secao categorias"
   | "secao produtos"
   | "secao facilidades"
-  | "secao newsLetter"
+  | "secao newsletter"
   | "secao carrinho"
   | "secao promocoes"
   | "secao banner"
   | "secao nossas lojas"
-  | "secao novidades";
+  | "secao novidades"
+  | "secao produtos buscados";
 
 export type ILista =
   | "listaCategorias"
@@ -58,7 +60,8 @@ export type IButton =
   | "btnSecundary"
   | "btnTerciario"
   | "btnQuarciario"
-  | "btnUnset";
+  | "btnUnset"
+  | "btnModalClose";
 export type ICardProduto = (typeof produtos.produtos)[0];
 export type IKeyIdProduct = (typeof produtos.produtos)[0] extends {
   id: infer U;

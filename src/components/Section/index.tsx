@@ -1,9 +1,9 @@
-import { IClassSection } from "@/types/componentTypes";
+import { SectionStyleKeys } from "@/types/componentTypes";
 import { SectionStyle } from "./styles";
 
 interface IProps {
   children: React.ReactNode;
-  classNameSection?: IClassSection;
+  classNameSection?: SectionStyleKeys;
 }
 const Section = ({ children, classNameSection }: IProps) => {
   return (

@@ -36,7 +36,7 @@ const CardProduto = ({ card }: IProps) => {
           {card.descricao}
         </Typography>
         <CheckPrice price={card.preco} valueCatPromo={checkPromocao(card.id)} />
-        <Botao handleClick={openModalProduto} classNameBtn="btnSecundary">
+        <Botao onClick={openModalProduto} classNameBtn="btnSecundary">
           Ver Mais
         </Botao>
       </Container>

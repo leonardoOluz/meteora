@@ -26,8 +26,8 @@ const ModalProductHeader = ({ handleClose }: ModalProductHeaderProps) => {
       <Botao
         aria-label="Fechar modal"
         classNameBtn="btnUnset"
-        tipo="button"
-        handleClick={handleClose}
+        type="button"
+        onClick={handleClose}
         tabIndex={0}
       >
         <IoIosClose color="#6C757D" size={32} />

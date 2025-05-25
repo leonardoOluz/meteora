@@ -29,8 +29,8 @@ const CartDropDownSumare = ({totValue, handleDropDown}: ICartDropDownSumareProps
       </DivSumareValue>
       <Botao
         classNameBtn="btnSecundary"
-        tipo="button"
-        handleClick={handleDropDown}
+        type="button"
+        onClick={handleDropDown}
       >
         Finalizar compra
       </Botao>

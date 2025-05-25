@@ -74,7 +74,7 @@ const ModalProductForm = ({
           ))}
         </DivRadio>
       </FieldsetStyle>
-      <Botao classNameBtn="btnSecundary" tipo="submit">
+      <Botao classNameBtn="btnSecundary" type="submit">
         Adicionar à sacola
       </Botao>
     </Form>

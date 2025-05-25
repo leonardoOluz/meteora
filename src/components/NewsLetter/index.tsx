@@ -9,7 +9,7 @@ import useResize from "@/hooks/useResize";
 const NewsLetter = () => {
   const { width } = useResize();
   return (
-    <Section classNameSection="secao newsLetter">
+    <Section classNameSection="secao newsletter">
       <FormStyle aria-label="formulario de NewsLetter">
         <Typography
           elementoHtml="p"
@@ -25,7 +25,7 @@ const NewsLetter = () => {
         </Typography>
         <Container>
           <InputStyle type="email" placeholder="Digite seu email" />
-          <Botao classNameBtn="btnSecundary" tipo="submit">
+          <Botao classNameBtn="btnSecundary" type="submit">
             Enviar
           </Botao>
         </Container>

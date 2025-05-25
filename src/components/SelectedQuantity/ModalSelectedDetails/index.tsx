@@ -74,11 +74,7 @@ const ModalSelectedDetails = ({
         >
           Selecione o item para excluir
         </Typography>
-        <Botao
-          classNameBtn="btnUnset"
-          className="btnClose"
-          onClick={handleClose}
-        >
+        <Botao classNameBtn="btnModalClose" onClick={handleClose}>
           <IoIosCloseCircle size={25} />
         </Botao>
         <List aria-label="Lista de detalhes" classeLista="listSelectedModal">
