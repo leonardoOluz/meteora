@@ -1,9 +1,11 @@
-interface NossasLojasMapProps extends React.IframeHTMLAttributes<HTMLIFrameElement>{
+interface NossasLojasMapProps
+  extends React.IframeHTMLAttributes<HTMLIFrameElement> {
   map: string;
 }
 const NossasLojasMap = ({ map, ...rest }: NossasLojasMapProps) => {
   return (
     <iframe
+      id="map"
       src={map}
       width="100%"
       height="450"

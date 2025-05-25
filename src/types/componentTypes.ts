@@ -28,7 +28,8 @@ export type IClassImg =
   | "imgFacilidades"
   | "imgProdutoCard"
   | "imgCarrinho"
-  | "imgNossasLojas";
+  | "imgNossasLojas"
+  | "imgNovidades";
 
 /* className section */
 export type IClassSection =
@@ -39,7 +40,8 @@ export type IClassSection =
   | "secao carrinho"
   | "secao promocoes"
   | "secao banner"
-  | "secao nossas lojas";
+  | "secao nossas lojas"
+  | "secao novidades";
 
 export type ILista =
   | "listaCategorias"
@@ -58,7 +60,11 @@ export type IButton =
   | "btnQuarciario"
   | "btnUnset";
 export type ICardProduto = (typeof produtos.produtos)[0];
-export type IKeyIdProduct = typeof produtos.produtos[0] extends { id: infer U } ? U : never;
+export type IKeyIdProduct = (typeof produtos.produtos)[0] extends {
+  id: infer U;
+}
+  ? U
+  : never;
 export type ICardBanner = (typeof banner.banner)[0];
 export type ICardCategoria = (typeof categorias.categorias)[0];
 export type ICardFacilidades = (typeof facilidades.facilidades)[0];

@@ -1,12 +1,14 @@
 import { Suspense, lazy } from "react";
 import PageBase from "@/components/PageBase";
 import { createBrowserRouter } from "react-router-dom";
+import LazyLoader from "@/components/LazyLoader";
 
 const Home = lazy(() => import("@/pages/home"));
 const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
 const Categoria = lazy(() => import("@/pages/categoria"));
 const Carrinho = lazy(() => import("@/pages/carrinho"));
 const Promocoes = lazy(() => import("@/pages/promocao"));
+const Novidades = lazy(() => import("@/pages/novidades"));
 const PageError404 = lazy(() => import("@/pages/pageError404"));
 
 export const router = createBrowserRouter([
@@ -17,7 +19,7 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <Home />
           </Suspense>
         ),
@@ -25,7 +27,7 @@ export const router = createBrowserRouter([
       {
         path: "nossas-lojas",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <NossasLojas />
           </Suspense>
         ),
@@ -33,7 +35,7 @@ export const router = createBrowserRouter([
       {
         path: "categoria/:categoria",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <Categoria />
           </Suspense>
         ),
@@ -41,7 +43,7 @@ export const router = createBrowserRouter([
       {
         path: "carrinho",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <Carrinho />
           </Suspense>
         ),
@@ -49,15 +51,23 @@ export const router = createBrowserRouter([
       {
         path: "promocoes",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <Promocoes />
+          </Suspense>
+        ),
+      },
+      {
+        path: "novidades",
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Novidades />
           </Suspense>
         ),
       },
       {
         path: "*",
         element: (
-          <Suspense fallback={<div>Carregando...</div>}>
+          <Suspense fallback={<LazyLoader />}>
             <PageError404 />
           </Suspense>
         ),
