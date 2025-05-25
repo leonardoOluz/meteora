@@ -1,54 +1,55 @@
 import { thema } from "@/styles/thema";
-import { IClassSection } from "@/types/componentTypes";
+import { SectionStyleKeys } from "@/types/componentTypes";
 import styled, { css, keyframes } from "styled-components";
 
+// Animação de gradiente rotativo
 const rotateGradient = keyframes`
-0% {
-  background-image: linear-gradient(
-    0deg,
-    ${thema.colorsPrimary.verde},
-    ${thema.colorsPrimary.coral},
-    ${thema.colorsPrimary.roxo}
-  );
-}
-25% {
-  background-image: linear-gradient(
-    45deg,
-    ${thema.colorsPrimary.verde},
-    ${thema.colorsPrimary.coral},
-    ${thema.colorsPrimary.roxo}
-  );
-}
-50% {
-  background-image: linear-gradient(
-    90deg,
-    ${thema.colorsPrimary.verde},
-    ${thema.colorsPrimary.coral},
-    ${thema.colorsPrimary.roxo}
-  );
-}
-75% {
-  background-image: linear-gradient(
-    135deg,
-    ${thema.colorsPrimary.verde},
-    ${thema.colorsPrimary.coral},
-    ${thema.colorsPrimary.roxo}
-  );
-}
-100% {
-  background-image: linear-gradient(
-    180deg,
-    ${thema.colorsPrimary.verde},
-    ${thema.colorsPrimary.coral},
-    ${thema.colorsPrimary.roxo}
-  );
-}
+  0% {
+    background-image: linear-gradient(
+      0deg,
+      ${thema.colorsPrimary.verde},
+      ${thema.colorsPrimary.coral},
+      ${thema.colorsPrimary.roxo}
+    );
+  }
+  25% {
+    background-image: linear-gradient(
+      45deg,
+      ${thema.colorsPrimary.verde},
+      ${thema.colorsPrimary.coral},
+      ${thema.colorsPrimary.roxo}
+    );
+  }
+  50% {
+    background-image: linear-gradient(
+      90deg,
+      ${thema.colorsPrimary.verde},
+      ${thema.colorsPrimary.coral},
+      ${thema.colorsPrimary.roxo}
+    );
+  }
+  75% {
+    background-image: linear-gradient(
+      135deg,
+      ${thema.colorsPrimary.verde},
+      ${thema.colorsPrimary.coral},
+      ${thema.colorsPrimary.roxo}
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      180deg,
+      ${thema.colorsPrimary.verde},
+      ${thema.colorsPrimary.coral},
+      ${thema.colorsPrimary.roxo}
+    );
+  }
 `;
 
+// Estilos das seções
 const secaoFacilidades = css`
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
   padding: 3.2rem 0;
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 4rem 0;
     gap: 4rem;
@@ -56,14 +57,11 @@ const secaoFacilidades = css`
 `;
 const secaoProdutos = css``;
 const secaoCategorias = css``;
-
-const secaoNewsLetter = css`
+const secaoNewsletter = css`
   padding: 2.85rem 2.65rem;
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 3.85rem 3.9rem;
   }
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding: 6rem 0;
   }
@@ -92,40 +90,53 @@ const secaoNossasLojas = css`
   }
 `;
 const secaoNovidades = css`
-  background-image: linear-gradient(
-    180deg,
-    ${({ theme }) => theme.colorsPrimary.verde},
-    ${({ theme }) => theme.colorsPrimary.coral},
-    ${({ theme }) => theme.colorsPrimary.roxo}
-  );
   padding: 2.85rem 2.65rem;
-
   animation: ${rotateGradient} 2s linear infinite;
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 3.85rem 3.9rem;
   }
 `;
-/* objetos de seções */
-const sectionStyles = {
+const secaoBuscar = css`
+  padding: 2.85rem 2.65rem;
+`;
+
+// Objeto de estilos das seções, usando ReturnType<typeof css> para tipagem
+const sectionStyles: Record<SectionStyleKeys, ReturnType<typeof css>> = {
   "secao categorias": secaoCategorias,
   "secao produtos": secaoProdutos,
   "secao facilidades": secaoFacilidades,
-  "secao newsLetter": secaoNewsLetter,
+  "secao newsletter": secaoNewsletter,
   "secao carrinho": secaoCarrinho,
   "secao promocoes": secaoPromocoes,
   "secao banner": secaoBanner,
   "secao nossas lojas": secaoNossasLojas,
   "secao novidades": secaoNovidades,
+  "secao produtos buscados": secaoBuscar,
 };
+
+// Componente principal de seção
 export const SectionStyle = styled.section<{
-  $classNameSection?: IClassSection;
+  $classNameSection?: SectionStyleKeys;
 }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3.2rem;
-
   ${({ $classNameSection }) =>
     $classNameSection && sectionStyles[$classNameSection]};
 `;
+
+// Exportação dos estilos individuais caso necessário
+export {
+  secaoFacilidades,
+  secaoProdutos,
+  secaoCategorias,
+  secaoNewsletter,
+  secaoCarrinho,
+  secaoPromocoes,
+  secaoBanner,
+  secaoNossasLojas,
+  secaoNovidades,
+  secaoBuscar,
+  rotateGradient,
+};

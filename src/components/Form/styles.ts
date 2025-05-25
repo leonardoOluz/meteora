@@ -8,7 +8,6 @@ const formBasic = css`
   flex-wrap: wrap;
   gap: 1.6rem;
 `;
-
 const formSelectedModal = css`
   position: relative;
   display: flex;
@@ -20,11 +19,6 @@ const formSelectedModal = css`
   align-self: center;
   color: ${({ theme }) => theme.colorsPrimary.preto};
   border-radius: 0.8rem;
-  .btnClose {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
 `;
 export const FormStyle = styled.form<{
   $classForm?: "basic" | "selectedModal";

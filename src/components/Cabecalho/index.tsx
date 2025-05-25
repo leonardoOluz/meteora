@@ -7,8 +7,8 @@ import Input from "@/components/Input";
 import transformNumber from "@/utils/transformNumber";
 import useResize from "@/hooks/useResize";
 import { BsCart4 } from "react-icons/bs";
-import { Container, ContainerCart, iconsProps } from "./styles";
-import { Link, useLocation } from "react-router-dom";
+import { Container, ContainerCart, FormSearch, iconsProps } from "./styles";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -24,10 +24,13 @@ const Cabecalho = () => {
   const { width } = useResize();
   const carrinho = useSelector((state: RootState) => state.carrinho);
   const location = useLocation();
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSearch = () => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(setBuscador(search));
+    navigation("/seach-products");
     setSearch("");
   };
   const handleCartDropDown = () => {
@@ -84,7 +87,8 @@ const Cabecalho = () => {
           />
         </ContainerCart>
       </Container>
-      <Container style={{ gap: "1rem" }} $buscadorMobile>
+
+      <FormSearch onSubmit={handleSearch}>
         <Input
           value={search}
           handleChange={(e) => setSearch(e.target.value)}
@@ -97,12 +101,13 @@ const Cabecalho = () => {
           classNameBtn="btnPrimary"
           title="Buscar"
           aria-label="buscar"
-          onClick={handleSearch}
+          type="submit"
         >
           Buscar
         </Botao>
         {cartProdutosDesktop}
-      </Container>
+      </FormSearch>
+
       {isDropDown}
     </Header>
   );

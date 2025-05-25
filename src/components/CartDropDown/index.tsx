@@ -39,7 +39,7 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
           </Typography>
           <Botao
             classNameBtn="btnUnset"
-            handleClick={() => setDropDown(false)}
+            onClick={() => setDropDown(false)}
             title="Fechar carrinho"
           >
             <img src={btnClose} alt="" />

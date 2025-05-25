@@ -56,14 +56,14 @@ const SelectedQuantity = ({
       <DivBtnsSelected>
         <Botao
           classNameBtn="btnTerciario"
-          handleClick={() => setModalDetailsOpen(!modalDetailsOpen)}
+          onClick={() => setModalDetailsOpen(!modalDetailsOpen)}
         >
           -
         </Botao>
         <span className="quantity">{totProduct}</span>
         <Botao
           classNameBtn="btnTerciario"
-          handleClick={() => {
+          onClick={() => {
             setModalOpen(true);
           }}
         >

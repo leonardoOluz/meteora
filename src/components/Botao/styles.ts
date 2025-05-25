@@ -50,22 +50,26 @@ const btnQuarciario = css`
   color: ${({ theme }) => theme.colorsPrimary.roxo};
   background-color: ${({ theme }) => theme.colorsPrimary.branco};
 `;
-
+const btnModalClose = css`
+  all: unset;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
 const btnUnset = css`
   all: unset;
 `;
-
 const classBtns = {
   btnPrimary,
   btnSecundary,
   btnTerciario,
   btnQuarciario,
-  btnUnset
-}
-
+  btnUnset,
+  btnModalClose,
+};
 export const BtnStyle = styled.button<{
   $classNameBtn: IButton;
 }>`
-  ${({ $classNameBtn }) =>  classBtns[$classNameBtn]}
+  ${({ $classNameBtn }) => classBtns[$classNameBtn]}
   cursor: pointer;
 `;

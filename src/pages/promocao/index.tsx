@@ -12,10 +12,6 @@ import { RootState } from "@/types/store";
 import useSelectColorPromo from "@/hooks/useSelectColorPromo";
 import Facilidades from "@/components/Facilidades";
 import NewsLetter from "@/components/NewsLetter";
-import { selectProductForSearch } from "@/store/selectors/itemSelectors";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { clearBuscador } from "@/store/reducers/buscador";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination],
@@ -28,16 +24,10 @@ const swiperSettings: SwiperOptions = {
 };
 
 const Promocoes = () => {
-  const dispatch = useDispatch();
   const { slidesPerView } = useSlidesPerView();
   const promocoes = useSelector((state: RootState) => state.promocoes);
-  const produtos = useSelector((state: RootState) => {
-    return selectProductForSearch(state, "descricao");
-  });
+  const produtos = useSelector((state: RootState) => state.produtos);
   const { handleIsValuePromoIsColor } = useSelectColorPromo();
-  useEffect(() => {
-    dispatch(clearBuscador());
-  }, [dispatch]);
 
   return (
     <>
