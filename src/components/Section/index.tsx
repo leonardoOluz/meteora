@@ -6,7 +6,14 @@ interface IProps {
   classNameSection?: IClassSection;
 }
 const Section = ({ children, classNameSection }: IProps) => {
-  return <SectionStyle  $classNameSection={classNameSection} aria-label={classNameSection}>{children}</SectionStyle>;
+  return (
+    <SectionStyle
+      $classNameSection={classNameSection}
+      aria-label={classNameSection}
+    >
+      {children}
+    </SectionStyle>
+  );
 };
 
 export default Section;

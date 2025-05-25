@@ -36,6 +36,12 @@ const imgNossasLojas = css`
     border-radius: 0 45px 0 0;
   }
 `;
+const imgNovidades = css`
+  width: 100%;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 41rem;
+  }
+`;
 
 const objClasseImg = {
   imgBanner,
@@ -44,6 +50,7 @@ const objClasseImg = {
   imgProdutoCard,
   imgCarrinho,
   imgNossasLojas,
+  imgNovidades,
 };
 
 export const FotoStyles = styled.img<{

@@ -12,7 +12,7 @@ import useEventMouse from "@/hooks/useEventMouse";
 const links = [
   { to: "/", name: "Home" },
   { to: "nossas-lojas", name: "Nossas lojas" },
-  { to: "#", name: "Novidades" },
+  { to: "/novidades", name: "Novidades" },
   { to: "/promocoes", name: "Promoções" },
 ];
 

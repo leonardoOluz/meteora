@@ -8,10 +8,10 @@ import NossasLojasMap from "./NossasLojasMap";
 import NossasLojasCard from "./NossasLojasCard";
 import nossasLojas from "./json/nossasLojas.json";
 import { useState } from "react";
-
+import { Link as LinkScroll } from "react-scroll";
 const NossaLojas = () => {
-  const [map, setMap] = useState<string>(nossasLojas.nossasLojas[0].maps)
-  
+  const [map, setMap] = useState<string>(nossasLojas.nossasLojas[0].maps);
+
   return (
     <Section classNameSection="secao nossas lojas">
       <Typography
@@ -25,17 +25,19 @@ const NossaLojas = () => {
         <List classeLista="listNossasLojas" aria-label="Lista de nossas lojas">
           {nossasLojas.nossasLojas.map((loja, index) => (
             <ItemList key={index}>
-              <NossasLojasCard
-                endereco={loja.endereco}
-                loja={loja.loja}
-                image={loja.image}
-                onClick={() => setMap(loja.maps)}
-              />
+              <LinkScroll to="map" smooth={true} duration={500}>
+                <NossasLojasCard
+                  endereco={loja.endereco}
+                  loja={loja.loja}
+                  image={loja.image}
+                  onClick={() => setMap(loja.maps)}
+                />
+              </LinkScroll>
             </ItemList>
           ))}
         </List>
       </DivNossasLojas>
-      <NossasLojasMap map={map}/>
+      <NossasLojasMap map={map} />
     </Section>
   );
 };
