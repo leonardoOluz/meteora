@@ -9,8 +9,7 @@ export const selectProductCat = createSelector(
     const productCat = state.produtos.filter(
       (item) => item.categoria === categoria
     );
-    const regexSearch = new RegExp(state.buscador, "i");
-    return productCat.filter((item) => item.descricao.match(regexSearch));
+    return productCat
   }
 );
 export const selectProductCart = createSelector([selectStoreState], (state) => {

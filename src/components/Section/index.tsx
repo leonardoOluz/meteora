@@ -10,6 +10,7 @@ const Section = ({ children, classNameSection }: IProps) => {
     <SectionStyle
       $classNameSection={classNameSection}
       aria-label={classNameSection}
+      id={classNameSection}
     >
       {children}
     </SectionStyle>
