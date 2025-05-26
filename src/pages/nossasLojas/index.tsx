@@ -8,9 +8,16 @@ import NossasLojasMap from "./NossasLojasMap";
 import NossasLojasCard from "./NossasLojasCard";
 import nossasLojas from "./json/nossasLojas.json";
 import { useState } from "react";
-import { Link as LinkScroll } from "react-scroll";
+import useScroll from "@/hooks/useScroll";
+
+export type NossasLojas = (typeof nossasLojas.nossasLojas)[0];
 const NossaLojas = () => {
-  const [map, setMap] = useState<string>(nossasLojas.nossasLojas[0].maps);
+  const [map, setMap] = useState<NossasLojas>(nossasLojas.nossasLojas[0]);
+  const scrollIntoView = useScroll();
+  const handleClick = (loja: NossasLojas) => {
+    setMap(loja);
+    scrollIntoView(map.id);
+  };
 
   return (
     <Section classNameSection="secao nossas lojas">
@@ -23,16 +30,14 @@ const NossaLojas = () => {
       </Typography>
       <DivNossasLojas>
         <List classeLista="listNossasLojas" aria-label="Lista de nossas lojas">
-          {nossasLojas.nossasLojas.map((loja, index) => (
-            <ItemList key={index}>
-              <LinkScroll to="map" smooth={true} duration={500}>
-                <NossasLojasCard
-                  endereco={loja.endereco}
-                  loja={loja.loja}
-                  image={loja.image}
-                  onClick={() => setMap(loja.maps)}
-                />
-              </LinkScroll>
+          {nossasLojas.nossasLojas.map((loja) => (
+            <ItemList key={loja.id}>
+              <NossasLojasCard
+                endereco={loja.endereco}
+                loja={loja.loja}
+                image={loja.image}
+                onClick={() => handleClick(loja)}
+              />
             </ItemList>
           ))}
         </List>
