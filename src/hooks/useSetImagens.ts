@@ -11,6 +11,13 @@ export default function useSetImagens() {
       ? `/assets/tablet/banner/${imagemBanner}.png`
       : `/assets/desktop/banner/${imagemBanner}.png`;
   };
+  const imagesCartBanner = (): string => {
+    return width < transformNumber(thema.breakpoints.tablet)
+      ? "/assets/bannerCarrinho/BannerCarrinhoMobile.svg"
+      : width > transformNumber(thema.breakpoints.tablet)
+      ? "/assets/bannerCarrinho/BannerCarrinhoTablet.svg"
+      : "/assets/bannerCarrinho/BannerCarrinhoDesktop.svg";
+  };
   const imagensCategoria = (imagemCategoria: string) => {
     return width < transformNumber(thema.breakpoints.tablet)
       ? `/assets/mobile/categorias/${imagemCategoria}.png`
@@ -38,5 +45,6 @@ export default function useSetImagens() {
     imagensCategoria,
     imagensFacilidades,
     imagensCardProdutos,
+    imagesCartBanner,
   };
 }

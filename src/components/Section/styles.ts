@@ -90,6 +90,7 @@ const secaoNossasLojas = css`
   }
 `;
 const secaoNovidades = css`
+  height: 100vh;
   padding: 2.85rem 2.65rem;
   animation: ${rotateGradient} 2s linear infinite;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
