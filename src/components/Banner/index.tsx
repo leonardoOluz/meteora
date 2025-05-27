@@ -7,13 +7,8 @@ import Photo from "../Photo";
 import useSetImagens from "@/hooks/useSetImagens";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
-import bannerCartMobile from "./assets/bannerCarrinho/BannerCarrinhoMobile.svg";
-import bannerCartDesktop from "./assets/bannerCarrinho/BannerCarrinhoDesktop.svg";
-import bannerCartTablet from "./assets/bannerCarrinho/BannerCarrinhoTablet.svg";
-import transformNumber from "@/utils/transformNumber";
-import { thema } from "@/styles/thema";
-import useResize from "@/hooks/useResize";
 import Section from "../Section";
+import { Link } from "react-router-dom";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination, Autoplay],
@@ -25,45 +20,36 @@ const swiperSettings: SwiperOptions = {
     clickable: true,
   },
 };
-
 interface IProps {
   typeBanner: "bannerSwiper" | "bannerCart";
 }
-
 const Banner = ({ typeBanner }: IProps) => {
-  const { imagensBanner } = useSetImagens();
+  const { imagensBanner, imagesCartBanner } = useSetImagens();
   const banner = useSelector((state: RootState) => state.banner);
-  const { width } = useResize();
-
   if (typeBanner === "bannerCart") {
     return (
       <BannerCartContainer aria-label="banner carrinho">
         <Photo
-          src={
-            width < transformNumber(thema.breakpoints.tablet)
-              ? bannerCartMobile
-              : width > transformNumber(thema.breakpoints.tablet)
-              ? bannerCartTablet
-              : bannerCartDesktop
-          }
+          src={imagesCartBanner()}
           alt="banner-carrinho"
           classeImg="imgBanner"
         />
       </BannerCartContainer>
     );
   }
-
   return (
     <Section classNameSection="secao banner">
       <BannerSwiperContainer {...swiperSettings}>
         {banner.map((item) => (
           <SwiperSlide key={item.id}>
-            <Photo
-              title="banner carrossel de promoções"
-              src={imagensBanner(item.imagem)}
-              alt={item.alt}
-              classeImg={"imgBanner"}
-            />
+            <Link style={{ width: "100%" }} to="/novidades">
+              <Photo
+                title="banner carrossel de promoções"
+                src={imagensBanner(item.imagem)}
+                alt={item.alt}
+                classeImg={"imgBanner"}
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </BannerSwiperContainer>
