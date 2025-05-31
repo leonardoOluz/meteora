@@ -10,27 +10,25 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectProductCart } from "@/store/selectors/itemSelectors";
+import { useDispatch } from "react-redux";
+import { isCartDropDown } from "@/store/reducers/carrinho";
 
-interface IProps {
-  setDropDown: React.Dispatch<React.SetStateAction<boolean>>;
-  dropDown: boolean;
-}
-
-const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
+const CartDropDown = () => {
   const cartDropDownRef = useRef<HTMLDivElement>(null);
   const cart = useSelector((state: RootState) => state.carrinho);
-  const carrinho = useSelector((state: RootState) => {
+  const dispatch = useDispatch();
+  const productsCart = useSelector((state: RootState) => {
     return selectProductCart(state);
   });
 
   useEventMouse({
-    isBoolean: dropDown,
-    setIsBoolean: setDropDown,
+    isBoolean: cart.isCartDropDown,
+    setIsBoolean: (value: boolean) => dispatch(isCartDropDown(value)),
     isRef: cartDropDownRef,
-    eventType: "mouseover",
+    eventType: "mousedown",
   });
 
-  if (carrinho.length > 0) {
+  if (productsCart.length > 0) {
     return (
       <DivCartDropDown ref={cartDropDownRef}>
         <Header classeHeader="headerDropDown">
@@ -39,7 +37,7 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
           </Typography>
           <Botao
             classNameBtn="btnUnset"
-            onClick={() => setDropDown(false)}
+            onClick={() => dispatch(isCartDropDown(false))}
             title="Fechar carrinho"
           >
             <img src={btnClose} alt="" />
@@ -47,7 +45,7 @@ const CartDropDown = ({ setDropDown, dropDown }: IProps) => {
         </Header>
         <CartDropDownList />
         <CartDropDownSumare
-          handleDropDown={() => setDropDown(false)}
+          handleDropDown={() => dispatch(isCartDropDown(false))}
           totValue={cart.totValue}
         />
       </DivCartDropDown>

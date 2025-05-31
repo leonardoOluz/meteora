@@ -12,6 +12,7 @@ const initialState: ICartSlice = {
   data: [] as ICart[],
   totProduct: 0,
   totValue: 0,
+  isCartDropDown: false,
 };
 
 const carrinhoSlice = createSlice({
@@ -30,6 +31,7 @@ const carrinhoSlice = createSlice({
 
         toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
         return {
+          ...state,
           data: [...state.data, newProductCart],
           totValue: state.totValue + payload.price,
           totProduct: state.totProduct + newProductCart.quantity,
@@ -48,6 +50,7 @@ const carrinhoSlice = createSlice({
       });
       toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
       return {
+        ...state,
         data: [...newCart],
         totValue: state.totValue + payload.price,
         totProduct: state.totProduct + 1,
@@ -61,6 +64,7 @@ const carrinhoSlice = createSlice({
       if (cartProduct) {
         toast.info("Produto removido do carrinho", { autoClose: 1000 });
         return {
+          ...state,
           data: [...updateCart],
           totValue: state.totValue - cartProduct?.quantity * payload.price,
           totProduct: state.totProduct - cartProduct.quantity,
@@ -76,6 +80,7 @@ const carrinhoSlice = createSlice({
         if (productCart?.quantity === 1) {
           toast.info("Produto removido do carrinho", { autoClose: 1000 });
           return {
+            ...state,
             data: state.data.filter((item) => item.id !== payload.id),
             totProduct: state.totProduct - 1,
             totValue: state.totValue - payload.price,
@@ -98,15 +103,22 @@ const carrinhoSlice = createSlice({
         });
 
         return {
+          ...state,
           data: [...updateCart],
           totProduct: state.totProduct - 1,
           totValue: state.totValue - payload.price,
         };
       }
     },
+    isCartDropDown: (state, { payload }: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        isCartDropDown: payload,
+      };    
+    },
   },
 });
 
-export const { addProduct, deleteProduct, updateProduct } =
+export const { addProduct, deleteProduct, updateProduct, isCartDropDown } =
   carrinhoSlice.actions;
 export default carrinhoSlice.reducer;
