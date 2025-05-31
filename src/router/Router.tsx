@@ -74,6 +74,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "login",
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <div>Login Page (Placeholder)</div>
+          </Suspense>
+        ),
+      },
+      {
         path: "*",
         element: (
           <Suspense fallback={<LazyLoader />}>
