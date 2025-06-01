@@ -1,13 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import MenuHamburguer from "../MenuHamburguer";
 import { Link } from "react-router-dom";
-import {
-  ContainerStyle,
-  LinkStyle,
-  ListaLinksStyle,
-  NavbarStyle,
-} from "./styles";
+import { ContainerNavbar, ItemLink, ListLinks, NavbarStyle } from "./styles";
 import useEventMouse from "@/hooks/useEventMouse";
+import useResize from "@/hooks/useResize";
+import { thema } from "@/styles/thema";
+import transformNumber from "@/utils/transformNumber";
 
 const links = [
   { to: "/", name: "Home" },
@@ -15,45 +13,62 @@ const links = [
   { to: "/novidades", name: "Novidades" },
   { to: "/promocoes", name: "Promoções" },
 ];
-
-interface IProps {
-  menuDropDrown: boolean;
-  handleMenuDropDrown: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Navbar = ({ menuDropDrown, handleMenuDropDrown }: IProps) => {
+const Navbar = () => {
+  const [menuDropDrown, setMenuDropDown] = useState(false);
+  const [logar, setLogar] = useState<string>("Entrar");
   const navBarRef = useRef<HTMLDivElement>(null);
   const navbarId = "navbar-links";
+  const width = useResize();
+
+  const Logar =
+    width < transformNumber(thema.breakpoints.tablet) ? (
+      <ItemLink>
+        <Link
+          to="/login"
+          title={`${logar} na Meteora`}
+          onClick={() =>
+            setLogar((prev) => (prev === "Entrar" ? "Sair" : "Entrar"))
+          }
+        >
+          {logar}
+        </Link>
+      </ItemLink>
+    ) : (
+      <></>
+    );
 
   useEventMouse({
     isBoolean: menuDropDrown,
-    setIsBoolean: handleMenuDropDrown,
+    setIsBoolean: setMenuDropDown,
     isRef: navBarRef,
-    eventType: "mouseover"
+    eventType: "mouseover",
   });
 
   return (
-    <ContainerStyle $menuAberto={menuDropDrown} ref={navBarRef}>
+    <ContainerNavbar $menuAberto={menuDropDrown} ref={navBarRef}>
       <MenuHamburguer
         menuDropDrown={menuDropDrown}
-        handleMenuDropDrown={handleMenuDropDrown}
+        handleMenuDropDrown={setMenuDropDown}
         ariaControls={navbarId}
       />
       <NavbarStyle $menuAberto={menuDropDrown}>
-        <ListaLinksStyle id={navbarId}>
+        <ListLinks id={navbarId}>
           {links.map((link, index) => (
-            <LinkStyle
+            <ItemLink
               key={index}
               onClick={() => {
-                handleMenuDropDrown(false);
+                setMenuDropDown(false);
               }}
             >
-              <Link to={link.to} title={link.name}>{link.name}</Link>
-            </LinkStyle>
+              <Link to={link.to} title={link.name}>
+                {link.name}
+              </Link>
+            </ItemLink>
           ))}
-        </ListaLinksStyle>
+          {Logar}
+        </ListLinks>
       </NavbarStyle>
-    </ContainerStyle>
+    </ContainerNavbar>
   );
 };
 

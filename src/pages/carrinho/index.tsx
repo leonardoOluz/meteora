@@ -16,7 +16,7 @@ import useResize from "@/hooks/useResize";
 import { useNavigate } from "react-router-dom";
 
 const Carrinho = () => {
-  const { width } = useResize();
+  const width = useResize();
   const navigation = useNavigate();
   const cart = useSelector((state: RootState) => state.carrinho);
   const cartProduct = useSelector((state: RootState) => {

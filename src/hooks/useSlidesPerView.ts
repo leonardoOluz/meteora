@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const useSlidesPerView = () => {
   const [slidesPerView, setSlidesPerView] = useState<number>(1);
-  const { width } = useResize();
+  const width = useResize();
 
   useEffect(() => {
     if (width >= 1024) {

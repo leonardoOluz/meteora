@@ -22,6 +22,7 @@ export interface ICartSlice {
   data: ICart[];
   totProduct: number;
   totValue: number;
+  isCartDropDown: boolean;
 }
 /* type de Payload */
 export type AddProductCart = {

@@ -7,7 +7,7 @@ const dropDownOpen = css`
   z-index: 2;
   background-color: ${({ theme }) => theme.colorsPrimary.dropDown};
 `;
-export const ContainerStyle = styled.div<{ $menuAberto: boolean }>`
+export const ContainerNavbar = styled.div<{ $menuAberto: boolean }>`
   ${({ $menuAberto }) => ($menuAberto ? dropDownOpen : "")}
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -21,9 +21,9 @@ export const NavbarStyle = styled.nav<{ $menuAberto: boolean }>`
     display: block;
   }
 `;
-export const ListaLinksStyle = styled.ul`
+export const ListLinks = styled.ul`
   margin: 0;
-  padding: 0 2.4rem 0.8rem 2.4rem;
+  padding: 0 4.4rem 0.8rem 4.4rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -31,10 +31,13 @@ export const ListaLinksStyle = styled.ul`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
     padding: 0;
+    gap: 1rem;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     gap: 2rem;
   }
 `;
-export const LinkStyle = styled.li`
+export const ItemLink = styled.li`
   list-style: none;
   padding: 0.765rem 0;
   border-bottom: 0.1rem solid ${({ theme }) => theme.inputState.default};

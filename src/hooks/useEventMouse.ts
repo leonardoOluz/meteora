@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 
+type BooleanFunction = (value: boolean) => void;
+
 interface IProps<T extends HTMLElement = HTMLElement> {
   isBoolean: boolean;
-  setIsBoolean: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsBoolean: React.Dispatch<React.SetStateAction<boolean>> | BooleanFunction;
   isRef: React.RefObject<T | null>;
-  eventType: keyof WindowEventMap; // Tipo do evento a ser escutado
+  eventType: keyof WindowEventMap;
 }
 export default function useEventMouse<T extends HTMLElement = HTMLElement>({
   isBoolean,
