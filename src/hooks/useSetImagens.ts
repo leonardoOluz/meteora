@@ -3,7 +3,7 @@ import { thema } from "@/styles/thema";
 import useResize from "./useResize";
 
 export default function useSetImagens() {
-  const { width } = useResize();
+  const width = useResize();
   const imagensBanner = (imagemBanner: string): string => {
     return width < transformNumber(thema.breakpoints.tablet)
       ? `/assets/mobile/banner/${imagemBanner}.png`

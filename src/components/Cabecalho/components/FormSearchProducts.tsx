@@ -1,7 +1,6 @@
 import Input from "@/components/Input";
-import { FormSearch } from "../styles";
+import { HeaderFormSearch } from "../styles";
 import Botao from "@/components/Botao";
-import CartProductsDesktop from "./CartProductsDesktop";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -18,7 +17,7 @@ const FormSearchProducts = () => {
     setSearch("");
   };
   return (
-    <FormSearch onSubmit={handleSearch}>
+    <HeaderFormSearch onSubmit={handleSearch}>
       <Input
         value={search}
         handleChange={(e) => setSearch(e.target.value)}
@@ -35,8 +34,7 @@ const FormSearchProducts = () => {
       >
         Buscar
       </Botao>
-      <CartProductsDesktop />
-    </FormSearch>
+    </HeaderFormSearch>
   );
 };
 

@@ -7,7 +7,7 @@ import transformNumber from "@/utils/transformNumber";
 import useResize from "@/hooks/useResize";
 
 const NewsLetter = () => {
-  const { width } = useResize();
+  const width = useResize();
   return (
     <Section classNameSection="secao newsletter">
       <FormStyle aria-label="formulario de NewsLetter">

@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 const DropDownOn = () => {
   const cart = useSelector((state: RootState) => state.carrinho);
-  const { width } = useResize();
+  const width = useResize();
   const location = useLocation();
 
   return (

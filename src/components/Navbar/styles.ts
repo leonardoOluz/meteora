@@ -31,6 +31,9 @@ export const ListLinks = styled.ul`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
     padding: 0;
+    gap: 1rem;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     gap: 2rem;
   }
 `;

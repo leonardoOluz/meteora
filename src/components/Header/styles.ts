@@ -22,7 +22,6 @@ const headerModal = css`
   justify-content: space-between;
   align-items: center;
 `;
-
 const headerDropDown = css`
   text-align: left;
   background-color: ${({ theme }) => theme.colorsPrimary.roxo};
@@ -30,13 +29,11 @@ const headerDropDown = css`
   justify-content: space-between;
   padding: 2.4rem 3.2rem 2.4rem 8rem;
 `;
-
 const hedersType = {
   header,
   headerModal,
   headerDropDown,
 };
-
 export const HeaderStyle = styled.header<{
   $classHeader: IHeader;
 }>`

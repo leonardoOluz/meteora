@@ -1,22 +1,31 @@
 import Logo from "@components/Logo";
 import Header from "@components/Header";
 import Navbar from "@components/Navbar";
-import { Container, ContainerCart } from "./styles";
-import CartProductsMobile from "./components/CartProductsMobile";
+import {
+  HeaderDivLogoNavbar,
+  HeaderDivCart,
+  HeaderDivFormBtns,
+} from "./styles";
 import DropDownOn from "./components/DropDownOn";
 import FormSearchProducts from "./components/FormSearchProducts";
+import BtnLogar from "../BtnLogar";
+import HeaderProductsCart from "./components/HeaderProductsCart";
 
 const Cabecalho = () => {
   return (
     <Header classeHeader="header">
-      <Container>
+      <HeaderDivLogoNavbar>
         <Logo />
-        <ContainerCart>
-          <CartProductsMobile />
+        <HeaderDivCart>
+          <HeaderProductsCart cartProducts="mobile" />
           <Navbar />
-        </ContainerCart>
-      </Container>
+        </HeaderDivCart>
+      </HeaderDivLogoNavbar>
       <FormSearchProducts />
+      <HeaderDivFormBtns>
+        <HeaderProductsCart cartProducts="desktop" />
+        <BtnLogar />
+      </HeaderDivFormBtns>
       <DropDownOn />
     </Header>
   );
