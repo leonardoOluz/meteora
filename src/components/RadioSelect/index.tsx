@@ -19,11 +19,11 @@ const RadioSelect = ({
       <Input
         value={texto}
         classeInput="inputModalProduto"
-        tipo="radio"
-        isRequired
+        type="radio"
+        required
         id={texto}
-        nome={nome}
-        handleChange={handleChange}
+        name={nome}
+        onChange={handleChange}
         checked={isChecked}
       />
       <LabelRadioSelect htmlFor={texto}>{texto}</LabelRadioSelect>

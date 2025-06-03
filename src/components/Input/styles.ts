@@ -1,6 +1,8 @@
 import { css } from "styled-components";
+import styled from "styled-components";
+import { InputStyles } from "@/types/componentTypes";
 
-export const inputBuscador = css`
+const inputBuscador = css`
   width: 80%;
   padding: 0.8rem 0;
   font-size: 1.3rem;
@@ -36,8 +38,7 @@ export const inputBuscador = css`
     }
   }
 `;
-
-export const inputModalProduto = css`
+const inputModalProduto = css`
   all: unset;
   cursor: pointer;
   width: 1.3rem;
@@ -57,4 +58,42 @@ export const inputModalProduto = css`
   &[type="radio"]:checked {
     background-color: ${({ theme }) => theme.colorsPrimary.preto};
   }
+`;
+const inputForm = css`
+  width: 100%;
+  padding: 0.8rem 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 2rem;
+  letter-spacing: 0rem;
+  background-color: #ffffff;
+  color: ${({ theme }) => theme.colorsPrimary.preto};
+  outline: none;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: ${({ theme }) => theme.colorsPrimary.preto};
+  padding-left: ${({ theme }) => theme.spacing.sm};
+
+  &::placeholder {
+    color: #6c757d;
+    line-height: 2rem;
+    font-size: 1.3rem;
+  }
+`;
+
+export const StyleInput = styled.input<{
+  $classeInput: InputStyles;
+}>`
+  ${({ $classeInput }) => {
+    switch ($classeInput) {
+      case "inputBuscador":
+        return inputBuscador;
+      case "inputModalProduto":
+        return inputModalProduto;
+      case "inputForm":
+        return inputForm;
+      default:
+        break;
+    }
+  }}
 `;
