@@ -29,6 +29,27 @@ const Novidades = () => {
             src="/assets/mobile/banner/bannerPromoThree.png"
           />
         </ItemList>
+        <ItemList>
+          <Photo
+            classeImg="imgNovidades"
+            alt=""
+            src="/assets/mobile/banner/bannerPromoOne.png"
+          />
+        </ItemList>
+        <ItemList>
+          <Photo
+            classeImg="imgNovidades"
+            alt=""
+            src="/assets/mobile/banner/bannerPromoTwo.png"
+          />
+        </ItemList>
+        <ItemList>
+          <Photo
+            classeImg="imgNovidades"
+            alt=""
+            src="/assets/mobile/banner/bannerPromoThree.png"
+          />
+        </ItemList>
       </List>
     </Section>
   );

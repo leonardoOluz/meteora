@@ -15,7 +15,7 @@ const DivError404 = styled.div`
 const PageError404 = () => {
   const navegate = useNavigate();
   return (
-    <Section classNameSection="secao facilidades">
+    <Section classNameSection="secao pagina nao encontrada">
       <DivError404>
         <img src="/notFound404.jpeg" alt="pagina nao encontrada" />
         <Typography classNameTypograph="basicHeadingH3" elementoHtml="h2">

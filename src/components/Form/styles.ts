@@ -7,6 +7,9 @@ const formBasic = css`
   display: flex;
   flex-wrap: wrap;
   gap: 1.6rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 76.9rem;
+  }
 `;
 const formSelectedModal = css`
   position: relative;

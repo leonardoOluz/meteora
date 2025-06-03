@@ -20,9 +20,9 @@ const FormSearchProducts = () => {
     <HeaderFormSearch onSubmit={handleSearch}>
       <Input
         value={search}
-        handleChange={(e) => setSearch(e.target.value)}
-        placeHolder="Digite o produto"
-        tipo="text"
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Digite o produto"
+        type="text"
         classeInput="inputBuscador"
         aria-label="buscador"
       />

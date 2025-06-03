@@ -11,6 +11,7 @@ export type IGrid =
   | "descricaoProduto"
   | false;
 export type ITag = "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type InputStyles = "inputBuscador" | "inputModalProduto" | "inputForm";
 export type IClassTypograph =
   | "paragraph"
   | "basicParagraphBold"
@@ -43,7 +44,9 @@ export type SectionStyleKeys =
   | "secao banner"
   | "secao nossas lojas"
   | "secao novidades"
-  | "secao produtos buscados";
+  | "secao produtos buscados"
+  | "secao login"
+  | "secao pagina nao encontrada";
 
 export type ILista =
   | "listaCategorias"

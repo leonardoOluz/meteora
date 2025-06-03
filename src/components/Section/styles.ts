@@ -45,7 +45,6 @@ const rotateGradient = keyframes`
     );
   }
 `;
-
 // Estilos das seções
 const secaoFacilidades = css`
   background-color: ${({ theme }) => theme.colorsPrimary.preto};
@@ -55,8 +54,28 @@ const secaoFacilidades = css`
     gap: 4rem;
   }
 `;
+const secaoNotFound = css`
+  margin: auto 0;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colorsPrimary.preto};
+  justify-content: center;
+`;
 const secaoProdutos = css``;
 const secaoCategorias = css``;
+const secaoLogin = css`
+  height: 100vh;
+  margin: 0 auto;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  background: #9b2a97;
+  background: radial-gradient(
+    circle,
+    rgba(155, 42, 151, 1) 0%,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
+`;
 const secaoNewsletter = css`
   padding: 2.85rem 2.65rem;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -90,17 +109,16 @@ const secaoNossasLojas = css`
   }
 `;
 const secaoNovidades = css`
-  height: 100vh;
   padding: 2.85rem 2.65rem;
   animation: ${rotateGradient} 2s linear infinite;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: auto;
     padding: 3.85rem 3.9rem;
   }
 `;
 const secaoBuscar = css`
   padding: 2.85rem 2.65rem;
 `;
-
 // Objeto de estilos das seções, usando ReturnType<typeof css> para tipagem
 const sectionStyles: Record<SectionStyleKeys, ReturnType<typeof css>> = {
   "secao categorias": secaoCategorias,
@@ -113,8 +131,9 @@ const sectionStyles: Record<SectionStyleKeys, ReturnType<typeof css>> = {
   "secao nossas lojas": secaoNossasLojas,
   "secao novidades": secaoNovidades,
   "secao produtos buscados": secaoBuscar,
+  "secao login": secaoLogin,
+  "secao pagina nao encontrada": secaoNotFound,
 };
-
 // Componente principal de seção
 export const SectionStyle = styled.section<{
   $classNameSection?: SectionStyleKeys;
@@ -126,7 +145,6 @@ export const SectionStyle = styled.section<{
   ${({ $classNameSection }) =>
     $classNameSection && sectionStyles[$classNameSection]};
 `;
-
 // Exportação dos estilos individuais caso necessário
 export {
   secaoFacilidades,

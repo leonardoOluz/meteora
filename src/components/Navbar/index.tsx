@@ -26,9 +26,10 @@ const Navbar = () => {
         <Link
           to="/login"
           title={`${logar} na Meteora`}
-          onClick={() =>
-            setLogar((prev) => (prev === "Entrar" ? "Sair" : "Entrar"))
-          }
+          onClick={() => {
+            setLogar((prev) => (prev === "Entrar" ? "Sair" : "Entrar"));
+            setMenuDropDown(false);
+          }}
         >
           {logar}
         </Link>
