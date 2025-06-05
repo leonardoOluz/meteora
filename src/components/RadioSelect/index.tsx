@@ -17,7 +17,6 @@ const RadioSelect = ({
   return (
     <DivRadioSelect>
       <Input
-        value={texto}
         classeInput="inputModalProduto"
         type="radio"
         required
@@ -25,6 +24,7 @@ const RadioSelect = ({
         name={nome}
         onChange={handleChange}
         checked={isChecked}
+        value={texto}
       />
       <LabelRadioSelect htmlFor={texto}>{texto}</LabelRadioSelect>
     </DivRadioSelect>

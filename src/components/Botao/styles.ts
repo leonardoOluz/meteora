@@ -12,6 +12,7 @@ const btnPrimary = css`
   font-weight: 500;
   color: ${({ theme }) => theme.colorsPrimary.preto};
   background-color: transparent;
+  box-shadow: none;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-weight: inherit;
@@ -30,6 +31,12 @@ const btnSecundary = css`
   padding: 0.9rem 1.6rem;
   color: ${({ theme }) => theme.colorsPrimary.branco};
   background-color: ${({ theme }) => theme.colorsPrimary.roxo};
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    transform: scale(0.99);
+  }
 `;
 const btnTerciario = css`
   all: unset;
@@ -70,6 +77,8 @@ const classBtns = {
 export const BtnStyle = styled.button<{
   $classNameBtn: IButton;
 }>`
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease-in-out;
   ${({ $classNameBtn }) => classBtns[$classNameBtn]}
   cursor: pointer;
 `;
