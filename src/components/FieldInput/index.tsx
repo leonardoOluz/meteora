@@ -7,26 +7,26 @@ const iconsProps = {
   size: 20,
   style: { position: "absolute" as const, right: 10, top: 10 },
 };
-
 const DivInput = styled.div`
   position: relative;
 `;
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  text: string;
-  value: string;
+  textLabel: string;
 }
-const FieldTextLogin = ({ text, value, ...rest }: IProps) => {
+const FieldInput = ({ textLabel, ...rest }: IProps) => {
+  const { type, ...restProps } = rest;
   const [isPassword, setIsPassword] = useState<boolean>(false);
   return (
     <>
-      <label htmlFor={value}>{text}</label>
+      <label htmlFor={rest.name}>{textLabel}</label>
       <DivInput>
         <Input
+          id={rest.name}
           classeInput="inputForm"
-          type={isPassword ? "text" : value}
-          {...rest}
+          type={isPassword ? "text" : type}
+          {...restProps}
         />
-        {value === "password" && (
+        {type === "password" && (
           <Botao
             classNameBtn="btnUnset"
             type="button"
@@ -44,4 +44,4 @@ const FieldTextLogin = ({ text, value, ...rest }: IProps) => {
   );
 };
 
-export default FieldTextLogin;
+export default FieldInput;

@@ -12,7 +12,7 @@ const Novidades = lazy(() => import("@/pages/novidades"));
 const PageError404 = lazy(() => import("@/pages/pageError404"));
 const Login = lazy(() => import("@/pages/login"));
 const Busca = lazy(() => import("@/pages/buscas"));
-
+const Cadastro = lazy(() => import("@/pages/cadastro"));
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +79,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LazyLoader />}>
             <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "cadastro",
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Cadastro />
           </Suspense>
         ),
       },

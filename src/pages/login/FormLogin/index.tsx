@@ -1,8 +1,8 @@
 import Botao from "@/components/Botao";
 import Form from "@/components/Form";
-import { LoginFieldset, LoginLegend } from "./styles";
-import FieldTextLogin from "../FieldTextLogin";
 import { useForm } from "react-hook-form";
+import FieldInput from "@/components/FieldInput";
+import { FieldsetForm, LegendForm } from "@/styles/forms";
 
 const login = {
   email: "",
@@ -25,26 +25,24 @@ const FormLogin = () => {
       classForm="basic"
       ariaLabel="formulario de login"
     >
-      <LoginFieldset>
-        <LoginLegend>Login do usuário</LoginLegend>
-        <FieldTextLogin
-          text="Email"
-          value="email"
+      <FieldsetForm>
+        <LegendForm>Login do usuário</LegendForm>
+        <FieldInput
+          textLabel="Email"
           placeholder="Digite seu email"
-          required
-          {...register("email")}
+          type="email"
+          {...register("email", { required: true })}
         />
-        <FieldTextLogin
-          text="Senha"
-          value="password"
+        <FieldInput
+          textLabel="Senha"
           placeholder="Digite sua senha"
-          required
-          {...register("password")}
+          type="password"
+          {...register("password", { required: true })}
         />
         <Botao classNameBtn="btnSecundary" type="submit">
           Entrar
         </Botao>
-      </LoginFieldset>
+      </FieldsetForm>
     </Form>
   );
 };

@@ -1,13 +1,14 @@
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
-import { thema } from "@/styles/thema";
-import FormLogin from "./FormLogin";
-import { Link } from "react-router-dom";
+import FormRegister from "./FormRegister";
 import useWriteSlowly from "@/hooks/useWriteSlowly";
+import { Link } from "react-router-dom";
+import { thema } from "@/styles/thema";
 import { DivFadeInForm } from "@/styles/forms";
-const title = "Entre com sua conta!";
-const Login = () => {
+const title = "Vamos criar sua conta!";
+const Cadastro = () => {
   const writeTitle = useWriteSlowly(title);
+
   return (
     <Section classNameSection="secao login">
       <Typography
@@ -19,13 +20,13 @@ const Login = () => {
       </Typography>
       {writeTitle.length === title.length && (
         <DivFadeInForm>
-          <FormLogin />
-          <Link to="/cadastro" style={{ textDecoration: "none" }}>
+          <FormRegister />
+          <Link to="/login" style={{ textDecoration: "none" }}>
             <Typography
               elementoHtml="p"
               classNameTypograph="basicParagraphBold"
             >
-              Ainda não possui cadastro?
+              Já possui cadastro? Entrar
             </Typography>
           </Link>
         </DivFadeInForm>
@@ -34,4 +35,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Cadastro;
