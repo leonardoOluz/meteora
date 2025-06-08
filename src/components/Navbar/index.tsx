@@ -12,6 +12,7 @@ const links = [
   { to: "nossas-lojas", name: "Nossas lojas" },
   { to: "/novidades", name: "Novidades" },
   { to: "/promocoes", name: "Promoções" },
+  { to: "/cadastro", name: "Cadastre-se" },
 ];
 const Navbar = () => {
   const [menuDropDrown, setMenuDropDown] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
   const navbarId = "navbar-links";
   const width = useResize();
 
-  const Logar =
+  const Login =
     width < transformNumber(thema.breakpoints.tablet) ? (
       <ItemLink>
         <Link
@@ -66,7 +67,7 @@ const Navbar = () => {
               </Link>
             </ItemLink>
           ))}
-          {Logar}
+          {Login}
         </ListLinks>
       </NavbarStyle>
     </ContainerNavbar>

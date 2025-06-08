@@ -12,8 +12,9 @@ const DivInput = styled.div`
 `;
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   textLabel: string;
+  error?: boolean;
 }
-const FieldInput = ({ textLabel, ...rest }: IProps) => {
+const FieldInput = ({ textLabel, error, ...rest }: IProps) => {
   const { type, ...restProps } = rest;
   const [isPassword, setIsPassword] = useState<boolean>(false);
   return (
@@ -24,12 +25,14 @@ const FieldInput = ({ textLabel, ...rest }: IProps) => {
           id={rest.name}
           classeInput="inputForm"
           type={isPassword ? "text" : type}
+          error={error}
           {...restProps}
         />
         {type === "password" && (
           <Botao
             classNameBtn="btnUnset"
             type="button"
+            tabIndex={-1}
             onClick={() => setIsPassword((prev) => !prev)}
           >
             {isPassword ? (

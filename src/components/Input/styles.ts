@@ -59,7 +59,7 @@ const inputModalProduto = css`
     background-color: ${({ theme }) => theme.colorsPrimary.preto};
   }
 `;
-const inputForm = css`
+const inputForm = ($error?: boolean) => css`
   width: 100%;
   padding: 0.8rem 0;
   font-size: 1.3rem;
@@ -71,7 +71,8 @@ const inputForm = css`
   outline: none;
   box-sizing: border-box;
   border: 0.1rem solid;
-  border-color: ${({ theme }) => theme.colorsPrimary.preto};
+  border-color: ${({ theme }) =>
+    $error ? theme.inputState.error : theme.colorsPrimary.preto};
   padding-left: ${({ theme }) => theme.spacing.sm};
 
   &::placeholder {
@@ -79,19 +80,23 @@ const inputForm = css`
     line-height: 2rem;
     font-size: 1.3rem;
   }
+  &:focus {
+    outline-color: ${({theme}) => $error ? theme.inputState.error : ""};
+  }
 `;
 
 export const StyleInput = styled.input<{
   $classeInput: InputStyles;
+  $error?: boolean;
 }>`
-  ${({ $classeInput }) => {
+  ${({ $classeInput, $error }) => {
     switch ($classeInput) {
       case "inputBuscador":
         return inputBuscador;
       case "inputModalProduto":
         return inputModalProduto;
       case "inputForm":
-        return inputForm;
+        return inputForm($error);
       default:
         break;
     }
