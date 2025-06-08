@@ -65,9 +65,9 @@ const secaoCategorias = css``;
 const secaoLogin = css`
   height: 100vh;
   margin: 0 auto;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
+  padding: 3.2rem 0;
   justify-content: center;
+  gap: 1rem;
   background: #9b2a97;
   background: radial-gradient(
     circle,
@@ -75,6 +75,11 @@ const secaoLogin = css`
     rgba(87, 199, 133, 1) 50%,
     rgba(237, 221, 83, 1) 100%
   );
+  box-sizing: border-box;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: 3.2rem;
+    padding: 0;
+  }
 `;
 const secaoNewsletter = css`
   padding: 2.85rem 2.65rem;

@@ -37,7 +37,7 @@ const thema: DefaultTheme = {
   },
   breakpoints: {
     mobile: "375px",
-    tablet: "768px",
+    tablet: "852px",
     desktop: "1440px",
   },
   fontFamily: '"Inter", sans-serif',

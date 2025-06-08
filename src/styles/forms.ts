@@ -6,7 +6,7 @@ export const FieldsetForm = styled.fieldset`
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  row-gap: .4rem;
   border-color: ${({ theme }) => theme.colorsPrimary.preto};
   box-sizing: border-box;
 `;

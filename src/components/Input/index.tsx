@@ -3,9 +3,10 @@ import { StyleInput } from "./styles";
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   classeInput: InputStyles;
+  error?: boolean;
 }
-const Input = ({ classeInput, ...rest }: IProps) => {
-  return <StyleInput $classeInput={classeInput} {...rest} />;
+const Input = ({ classeInput, error, ...rest }: IProps) => {
+  return <StyleInput $classeInput={classeInput} $error={error} {...rest} />;
 };
 
 export default Input;
