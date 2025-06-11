@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Botao from "../Botao";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { iconsProps } from "../Cabecalho/styles";
@@ -7,6 +6,10 @@ import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "@/types/store";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "@/store/reducers/usuario";
+
 const iconsStyles = {
   width: "6rem",
   display: "flex",
@@ -21,12 +24,17 @@ const SpanBtn = styled.span`
   color: ${({ theme }) => theme.colorsPrimary.branco};
 `;
 const BtnLogar = () => {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const user = useSelector((state: RootState) => state.usuario);
+  const dispatch = useDispatch();
   const width = useResize();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setIsLogged((prev) => !prev);
+    if (user.isLogado) {
+      dispatch(logout());
+      navigate("/");
+      return;
+    }
     navigate("/login");
   };
 
@@ -37,10 +45,10 @@ const BtnLogar = () => {
           classNameBtn="btnUnset"
           onClick={handleLogout}
           style={iconsStyles}
-          title={isLogged ? "Clique para sair" : "Entrar ou criar conta"}
+          title={user.isLogado ? "Clique para sair" : "Entrar ou criar conta"}
         >
-          <SpanBtn>{isLogged ? "Sair" : "Entrar"}</SpanBtn>
-          {isLogged ? (
+          <SpanBtn>{user.isLogado ? "Sair" : "Entrar"}</SpanBtn>
+          {user.isLogado ? (
             <CiLogout {...iconsProps} size={15} />
           ) : (
             <CiLogin {...iconsProps} size={15} />

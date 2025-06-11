@@ -23,8 +23,9 @@ const Cadastro = () => {
           <FormRegister />
           <Link to="/login" style={{ textDecoration: "none" }}>
             <Typography
-              elementoHtml="p"
-              classNameTypograph="basicParagraphBold"
+              elementoHtml="h3"
+              classNameTypograph="basicParagraphLead"
+              isColor={thema.colorsPrimary.cinzaChumbo}
             >
               Já possui cadastro? Entrar
             </Typography>

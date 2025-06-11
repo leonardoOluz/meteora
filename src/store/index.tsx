@@ -6,6 +6,7 @@ import facilidadesSlice from "@/store/reducers/facilidades";
 import carrinhoSlice from "@/store/reducers/carrinho";
 import promocoesSlice from "@/store/reducers/promocoes";
 import buscadorSlice from "@/store/reducers/buscador";
+import usuarioSlice from "@/store/reducers/usuario";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     carrinho: carrinhoSlice,
     promocoes: promocoesSlice,
     buscador: buscadorSlice,
+    usuario: usuarioSlice,
   },
 });
 

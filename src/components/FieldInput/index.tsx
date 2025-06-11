@@ -10,6 +10,9 @@ const iconsProps = {
 const DivInput = styled.div`
   position: relative;
 `;
+const LabelInput = styled.label`
+  font-size: 1.6rem;
+`;
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   textLabel: string;
   error?: boolean;
@@ -19,7 +22,7 @@ const FieldInput = ({ textLabel, error, ...rest }: IProps) => {
   const [isPassword, setIsPassword] = useState<boolean>(false);
   return (
     <>
-      <label htmlFor={rest.name}>{textLabel}</label>
+      <LabelInput htmlFor={rest.name}>{textLabel}</LabelInput>
       <DivInput>
         <Input
           id={rest.name}
