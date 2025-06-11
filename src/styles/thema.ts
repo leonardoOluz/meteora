@@ -17,7 +17,7 @@ const thema: DefaultTheme = {
     dropDown: "#343A40",
   },
   inputState: {
-    error: "#DC3545",
+    error: "#d7a7ac",
     success: "#198754",
     disabled: "#E9ECEF",
     focus: "#80BDFF",

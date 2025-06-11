@@ -22,8 +22,9 @@ const Login = () => {
           <FormLogin />
           <Link to="/cadastro" style={{ textDecoration: "none" }}>
             <Typography
-              elementoHtml="p"
-              classNameTypograph="basicParagraphBold"
+              elementoHtml="h3"
+              classNameTypograph="basicParagraphLead"
+              isColor={thema.colorsPrimary.cinzaChumbo}
             >
               Ainda não possui cadastro?
             </Typography>

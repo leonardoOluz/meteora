@@ -11,7 +11,7 @@ export const FieldsetForm = styled.fieldset`
   box-sizing: border-box;
 `;
 export const LegendForm = styled.legend`
-  font-size: 1.6rem;
+  font-size: 2rem;
   line-height: 100%;
   padding: 0 0.5rem;
 `;

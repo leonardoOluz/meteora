@@ -5,33 +5,46 @@ import FieldInput from "@/components/FieldInput";
 import { FieldsetForm, LegendForm } from "@/styles/forms";
 import { MessageError } from "@/components/MessageError";
 import { useEffect } from "react";
-
-const login = {
-  email: "",
-  password: "",
-};
-
-interface ILogin {
-  email: string;
-  password: string;
-}
+import { ILogin } from "@/types/usuarios";
+import { useDispatch } from "react-redux";
+import { authenticateUser } from "@/store/reducers/usuario";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.usuario);
+  const cart = useSelector((state: RootState) => state.carrinho);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
-  } = useForm<ILogin>({ mode: "all", defaultValues: login });
+  } = useForm<ILogin>({
+    mode: "all",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (isSubmitSuccessful && user.isLogado) {
+      if (cart.data.length) {
+        navigate("/carrinho");
+        reset();
+        return;
+      }
+      navigate("/");
       reset();
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful, reset, user, cart, navigate]);
   const submit = (data: ILogin) => {
-    console.log(data);
+    dispatch(authenticateUser(data));
   };
+
   return (
     <Form
       handleSubmit={handleSubmit(submit)}

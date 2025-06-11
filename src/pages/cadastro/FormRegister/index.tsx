@@ -2,14 +2,20 @@ import Botao from "@/components/Botao";
 import FieldInput from "@/components/FieldInput";
 import Form from "@/components/Form";
 import { MessageError } from "@/components/MessageError";
+import { createUser } from "@/store/reducers/usuario";
 import { FieldsetForm, LegendForm } from "@/styles/forms";
+import { RootState } from "@/types/store";
+import { Usuario } from "@/types/usuarios";
+import { getStorage } from "@/utils/starage";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const cadastro = {
-  name: "",
+  nome: "",
   email: "",
   password: "",
-  confirmPassword: "",
+  verifyPassword: "",
 };
 const FormRegister = () => {
   const {
@@ -18,11 +24,16 @@ const FormRegister = () => {
     watch,
     formState: { errors, isSubmitSuccessful },
     reset,
-  } = useForm<typeof cadastro>({
+  } = useForm<Usuario>({
     mode: "all",
     defaultValues: cadastro,
   });
+  const user = useSelector((state: RootState) => state.usuario);
+  const cart = useSelector((state: RootState) => state.carrinho);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const password = watch("password");
+
   const checkPassword = {
     minLength: (val: string) =>
       val.length >= 6 || "O campo senha deve ter pelo menos 6 caracteres",
@@ -30,16 +41,35 @@ const FormRegister = () => {
     validatePassword: (val: string) =>
       val === password || "As senhas devem ser iguais",
   };
+  const checkEmail = {
+    emailUsed: (val: string) => {
+      const usuarios: Usuario[] = JSON.parse(getStorage("user") || "[]");
+      const user = usuarios.find((use) => use.email === val);
+      return !user || "Email ja cadastrado";
+    },
+    emailEmpty: (val: string) => !!val || "Verifique seu email",
+    isEmailValid: (val: string) => {
+      return (
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(val) ||
+        "O email deve ser valido!"
+      );
+    },
+  };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (isSubmitSuccessful && user.isLogado) {
+      if (cart.data.length) {
+        navigate("/carrinho");
+        reset();
+        return;
+      }
+      navigate("/");
       reset();
-      console.log("reset");
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful, reset, user, cart, navigate]);
 
   const submit = (data: typeof cadastro) => {
-    console.log(data);
+    dispatch(createUser(data));
   };
 
   return (
@@ -55,8 +85,8 @@ const FormRegister = () => {
           type="text"
           placeholder="Digite seu nome"
           aria-describedby="error-message-name"
-          error={!!errors.name}
-          {...register("name", {
+          error={!!errors.nome}
+          {...register("nome", {
             required: "Por favor, insira um nome",
             minLength: {
               message: "O nome deve ter pelo menos 5 letras",
@@ -64,9 +94,9 @@ const FormRegister = () => {
             },
           })}
         />
-        {!!errors.name && (
+        {!!errors.nome && (
           <MessageError id="error-message-name">
-            {errors.name.message}
+            {errors.nome.message}
           </MessageError>
         )}
         <FieldInput
@@ -77,10 +107,7 @@ const FormRegister = () => {
           error={!!errors.email}
           {...register("email", {
             required: "Por favor, insira um email",
-            pattern: {
-              message: "Por favor, insira um email valido",
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            },
+            validate: checkEmail,
           })}
         />
         {!!errors.email && (
@@ -111,15 +138,15 @@ const FormRegister = () => {
           textLabel="Confirme sua senha"
           placeholder="Confirme sua senha"
           type="password"
-          error={!!errors.confirmPassword}
+          error={!!errors.verifyPassword}
           aria-describedby="error-message-confirm-password"
-          {...register("confirmPassword", {
+          {...register("verifyPassword", {
             validate: checkPassword,
           })}
         />
-        {!!errors.confirmPassword && (
+        {!!errors.verifyPassword && (
           <MessageError id="error-message-confirm-password">
-            {errors.confirmPassword.message}
+            {errors.verifyPassword.message}
           </MessageError>
         )}
         <Botao

@@ -21,7 +21,6 @@ const carrinhoSlice = createSlice({
   reducers: {
     addProduct: (state, { payload }: PayloadAction<AddProductCart>) => {
       const hasProduct = state.data.some((item) => item.id === payload.id);
-
       if (!hasProduct) {
         const newProductCart = {
           id: payload.id,
@@ -29,15 +28,18 @@ const carrinhoSlice = createSlice({
           details: [payload.details],
         } as ICart;
 
-        toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
+        toast.success("Produto adicionado ao carrinho", {
+          autoClose: 1500,
+          hideProgressBar: true,
+          theme: "colored",
+        });
         return {
           ...state,
           data: [...state.data, newProductCart],
           totValue: state.totValue + payload.price,
           totProduct: state.totProduct + newProductCart.quantity,
         };
-      }
-
+      };
       const newCart = state.data.map((item) => {
         if (payload.id === item.id) {
           return {
@@ -48,7 +50,11 @@ const carrinhoSlice = createSlice({
         }
         return item;
       });
-      toast.success("Produto adicionado ao carrinho", { autoClose: 1000 });
+      toast.success("Produto adicionado ao carrinho", {
+        autoClose: 1500,
+        hideProgressBar: true,
+        theme: "colored",
+      });
       return {
         ...state,
         data: [...newCart],
@@ -62,7 +68,11 @@ const carrinhoSlice = createSlice({
         (itemCart) => itemCart.id !== payload.id
       );
       if (cartProduct) {
-        toast.info("Produto removido do carrinho", { autoClose: 1000 });
+        toast.info("Produto removido do carrinho", {
+          autoClose: 1500,
+          hideProgressBar: true,
+          theme: "colored",
+        });
         return {
           ...state,
           data: [...updateCart],
@@ -78,7 +88,11 @@ const carrinhoSlice = createSlice({
 
       if (productCart) {
         if (productCart?.quantity === 1) {
-          toast.info("Produto removido do carrinho", { autoClose: 1000 });
+          toast.info("Produto removido do carrinho", {
+            autoClose: 1500,
+            hideProgressBar: true,
+            theme: "colored",
+          });
           return {
             ...state,
             data: state.data.filter((item) => item.id !== payload.id),
@@ -89,7 +103,11 @@ const carrinhoSlice = createSlice({
 
         const updateCart = state.data.map((itemCart) => {
           if (itemCart.id === payload.id) {
-            toast.info("Item de produto removido do carrinho");
+            toast.info("Item de produto removido do carrinho",{
+              autoClose: 1500,
+              hideProgressBar: true,
+              theme: "colored",
+            });
             return {
               id: itemCart.id,
               quantity: itemCart.quantity - 1,
@@ -114,7 +132,7 @@ const carrinhoSlice = createSlice({
       return {
         ...state,
         isCartDropDown: payload,
-      };    
+      };
     },
   },
 });
