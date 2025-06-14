@@ -6,6 +6,7 @@ import {
   DivSumareValue,
   PriceSpanCartDropDown,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface ICartDropDownSumareProps {
   totValue: number;
@@ -13,6 +14,11 @@ interface ICartDropDownSumareProps {
 }
 
 const CartDropDownSumare = ({totValue, handleDropDown}: ICartDropDownSumareProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    handleDropDown();
+    navigate("/checkout/address");
+  }
   return (
     <DivCartDropDownSumare>
       <DivSumareValue>
@@ -30,7 +36,7 @@ const CartDropDownSumare = ({totValue, handleDropDown}: ICartDropDownSumareProps
       <Botao
         classNameBtn="btnSecundary"
         type="button"
-        onClick={handleDropDown}
+        onClick={handleClick}
       >
         Finalizar compra
       </Botao>

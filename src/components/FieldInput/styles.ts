@@ -1,0 +1,12 @@
+import styled from "styled-components";
+
+export const iconsProps = {
+  size: 20,
+  style: { position: "absolute" as const, right: 10, top: 10 },
+};
+export const DivInput = styled.div`
+  position: relative;
+`;
+export const LabelInput = styled.label`
+  font-size: 1.6rem;
+`;

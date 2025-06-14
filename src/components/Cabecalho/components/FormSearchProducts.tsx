@@ -1,10 +1,10 @@
-import Input from "@/components/Input";
 import { HeaderFormSearch } from "../styles";
 import Botao from "@/components/Botao";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { setBuscador } from "@/store/reducers/buscador";
+import { InputMask } from "@/components/InputMask";
 
 const FormSearchProducts = () => {
   const [search, setSearch] = useState<string>("");
@@ -18,12 +18,13 @@ const FormSearchProducts = () => {
   };
   return (
     <HeaderFormSearch onSubmit={handleSearch}>
-      <Input
+      <InputMask
+        mask="**********"
+        $classeInput="inputBuscador"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Digite o produto"
         type="text"
-        classeInput="inputBuscador"
         aria-label="buscador"
       />
       <Botao

@@ -5,7 +5,7 @@ interface IProps {
   children: React.ReactNode;
   ariaLabel: string;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  classForm?: "basic" | "selectedModal";
+  classForm?: "basic" | "selectedModal" | "addressForm";
 }
 const Form = ({ children, ariaLabel, handleSubmit, classForm = "basic" }: IProps, ref: Ref<HTMLFormElement>) => {
   return (

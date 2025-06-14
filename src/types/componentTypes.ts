@@ -11,7 +11,7 @@ export type IGrid =
   | "descricaoProduto"
   | false;
 export type ITag = "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-export type InputStyles = "inputBuscador" | "inputModalProduto" | "inputForm";
+export type InputStyles = "inputBuscador" | "inputModalProduto" | "inputForm" | "inputNewsLetter";
 export type IClassTypograph =
   | "paragraph"
   | "basicParagraphBold"
@@ -57,7 +57,7 @@ export type ILista =
   | "listPromocoes"
   | "listNossasLojas";
 
-export type IHeader = "header" | "headerModal" | "headerDropDown";
+export type IHeader = "header" | "headerModal" | "headerDropDown" | "headerCheckout";
 export type IButton =
   | "btnPrimary"
   | "btnSecundary"

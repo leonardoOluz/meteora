@@ -1,8 +1,21 @@
-import { css } from "styled-components";
-import styled from "styled-components";
+import { basicParagraphSmall } from "@/styles/stylesGlobal";
 import { InputStyles } from "@/types/componentTypes";
+import { css } from "styled-components";
 
-const inputBuscador = css`
+ const inputNewsLetter = css`
+  width: 60%;
+  padding: 0.8rem 0 0.6rem 0;
+  border: 1px solid ${({ theme }) => theme.colorsPrimary.preto};
+  border-right: none;
+  text-decoration: none;
+  outline: none;
+  ${basicParagraphSmall(false)}
+  padding-left: 1.5rem;
+  &::placeholder {
+    font-family: ${({ theme }) => theme.fontFamily};
+  }
+`;
+ const inputBuscador = css`
   width: 80%;
   padding: 0.8rem 0;
   font-size: 1.3rem;
@@ -38,7 +51,7 @@ const inputBuscador = css`
     }
   }
 `;
-const inputModalProduto = css`
+ const inputModalProduto = css`
   all: unset;
   cursor: pointer;
   width: 1.3rem;
@@ -59,7 +72,7 @@ const inputModalProduto = css`
     background-color: ${({ theme }) => theme.colorsPrimary.preto};
   }
 `;
-const inputForm = ($error?: boolean) => css`
+ const inputForm = ($error?: boolean) => css`
   width: 100%;
   padding: 0.8rem 0;
   font-size: 1.3rem;
@@ -81,24 +94,24 @@ const inputForm = ($error?: boolean) => css`
     font-size: 1.3rem;
   }
   &:focus {
-    outline-color: ${({theme}) => $error ? theme.inputState.error : ""};
+    outline-color: ${({ theme }) => ($error ? theme.inputState.error : "")};
   }
 `;
-
-export const StyleInput = styled.input<{
+export interface InputMaskProps extends React.InputHTMLAttributes<HTMLInputElement> {
   $classeInput: InputStyles;
   $error?: boolean;
-}>`
-  ${({ $classeInput, $error }) => {
-    switch ($classeInput) {
-      case "inputBuscador":
-        return inputBuscador;
-      case "inputModalProduto":
-        return inputModalProduto;
-      case "inputForm":
-        return inputForm($error);
-      default:
-        break;
-    }
-  }}
-`;
+}
+export const checkInputProps = (props: InputMaskProps) => {
+  switch (props.$classeInput) {
+    case "inputBuscador":
+      return inputBuscador;
+    case "inputModalProduto":
+      return inputModalProduto;
+    case "inputForm":
+      return inputForm(props.$error);
+    case "inputNewsLetter":
+      return inputNewsLetter;
+    default:
+      break;
+  }
+};

@@ -23,8 +23,9 @@ const formSelectedModal = css`
   color: ${({ theme }) => theme.colorsPrimary.preto};
   border-radius: 0.8rem;
 `;
+const formAddress = css``;
 export const FormStyle = styled.form<{
-  $classForm?: "basic" | "selectedModal";
+  $classForm?: "basic" | "selectedModal" | "addressForm";
 }>`
   ${({ $classForm }) => {
     switch ($classForm) {
@@ -32,6 +33,8 @@ export const FormStyle = styled.form<{
         return formSelectedModal;
       case "basic":
         return formBasic;
+      case "addressForm":
+        return formAddress;
       default:
         break;
     }

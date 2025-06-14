@@ -1,7 +1,7 @@
-import { Suspense, lazy } from "react";
 import PageBase from "@/components/PageBase";
-import { createBrowserRouter } from "react-router-dom";
 import LazyLoader from "@/components/LazyLoader";
+import { Suspense, lazy } from "react";
+import { createBrowserRouter } from "react-router-dom";
 
 const Home = lazy(() => import("@/pages/home"));
 const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
@@ -13,6 +13,11 @@ const PageError404 = lazy(() => import("@/pages/pageError404"));
 const Login = lazy(() => import("@/pages/login"));
 const Busca = lazy(() => import("@/pages/buscas"));
 const Cadastro = lazy(() => import("@/pages/cadastro"));
+const CheckoutBase = lazy(() => import("@/pages/checkout"));
+const AddressForm = lazy(() => import("@/pages/checkout/AddressForm"));
+const PayForm = lazy(() => import("@/pages/checkout/PayForm"));
+const Summary = lazy(() => import("@/pages/checkout/Summary"));
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -89,6 +94,40 @@ export const router = createBrowserRouter([
             <Cadastro />
           </Suspense>
         ),
+      },
+      {
+        path: "checkout/address",
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <CheckoutBase />
+          </Suspense>
+        ),
+        children: [
+          {
+            path: "",
+            element: (
+              <Suspense fallback={<LazyLoader />}>
+                <AddressForm />
+              </Suspense>
+            ),
+          },
+          {
+            path: "pay",
+            element: (
+              <Suspense fallback={<LazyLoader />}>
+                <PayForm />
+              </Suspense>
+            ),
+          },
+          {
+            path: "pay/summary",
+            element: (
+              <Suspense fallback={<LazyLoader />}>
+                <Summary />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: "*",

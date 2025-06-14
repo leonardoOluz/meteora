@@ -67,7 +67,11 @@ const Carrinho = () => {
             >
               Continuar compra
             </Botao>
-            <Botao classNameBtn="btnSecundary" type="button">
+            <Botao
+              classNameBtn="btnSecundary"
+              type="button"
+              onClick={() => navigation("/checkout/address")}
+            >
               Finalizar compra
             </Botao>
           </DivCartBtn>
