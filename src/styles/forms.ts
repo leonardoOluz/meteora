@@ -3,10 +3,11 @@ import { FadeIn } from "./animation";
 
 export const FieldsetForm = styled.fieldset`
   width: 100%;
+  width: 32.2rem;
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
-  row-gap: .4rem;
+  row-gap: 0.4rem;
   border-color: ${({ theme }) => theme.colorsPrimary.preto};
   box-sizing: border-box;
 `;
@@ -22,4 +23,15 @@ export const DivFadeInForm = styled.div`
   gap: 2.4rem;
   align-items: center;
   animation: ${FadeIn} 1s ease-in forwards;
+`;
+export const LabelForm = styled.label`
+  font-size: 1.5rem;
+  line-height: 100%;
+  color: ${({ theme }) => theme.colorsPrimary.preto};
+`;
+export const DivForm = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  box-sizing: border-box;
 `;

@@ -1,5 +1,5 @@
-import Input from "@/components/Input";
 import { DivRadioSelect, LabelRadioSelect } from "./styles";
+import { InputMask } from "../InputMask";
 
 interface IProps {
   nome: "cor" | "tamanho";
@@ -8,16 +8,11 @@ interface IProps {
   isChecked?: boolean;
 }
 
-const RadioSelect = ({
-  nome,
-  texto,
-  handleChange,
-  isChecked,
-}: IProps) => {
+const RadioSelect = ({ nome, texto, handleChange, isChecked }: IProps) => {
   return (
     <DivRadioSelect>
-      <Input
-        classeInput="inputModalProduto"
+      <InputMask
+        $classeInput="inputModalProduto"
         type="radio"
         required
         id={texto}

@@ -29,10 +29,17 @@ const headerDropDown = css`
   justify-content: space-between;
   padding: 2.4rem 3.2rem 2.4rem 8rem;
 `;
+const headerCheckout = css`
+  margin: 1rem;
+  display: flex;
+  /* border-bottom: 2px solid ${({ theme }) => theme.colorsPrimary.verde}; */
+`;
+
 const hedersType = {
   header,
   headerModal,
   headerDropDown,
+  headerCheckout,
 };
 export const HeaderStyle = styled.header<{
   $classHeader: IHeader;
