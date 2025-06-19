@@ -1,11 +1,12 @@
 import { forwardRef, Ref } from "react";
 import { FormStyle } from "./styles";
+import { FormClass } from "@/types/componentTypes";
 
 interface IProps {
   children: React.ReactNode;
   ariaLabel: string;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  classForm?: "basic" | "selectedModal" | "addressForm";
+  classForm?: FormClass;
 }
 const Form = ({ children, ariaLabel, handleSubmit, classForm = "basic" }: IProps, ref: Ref<HTMLFormElement>) => {
   return (

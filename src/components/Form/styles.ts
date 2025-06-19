@@ -1,3 +1,4 @@
+import { FormClass } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 const formBasic = css`
@@ -6,10 +7,18 @@ const formBasic = css`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.6rem;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 76.9rem;
   }
+`;
+const formProductModal = css`
+  padding: 1.6rem 1.6rem 0 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
 `;
 const formSelectedModal = css`
   position: relative;
@@ -24,8 +33,9 @@ const formSelectedModal = css`
   border-radius: 0.8rem;
 `;
 const formAddress = css``;
+
 export const FormStyle = styled.form<{
-  $classForm?: "basic" | "selectedModal" | "addressForm";
+  $classForm?: FormClass;
 }>`
   ${({ $classForm }) => {
     switch ($classForm) {
@@ -35,6 +45,8 @@ export const FormStyle = styled.form<{
         return formBasic;
       case "addressForm":
         return formAddress;
+      case "formProductModal":
+        return formProductModal;
       default:
         break;
     }

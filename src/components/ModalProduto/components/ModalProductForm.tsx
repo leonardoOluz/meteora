@@ -41,7 +41,11 @@ const ModalProductForm = ({
   setIsSize,
 }: ModalProductFormProps) => {
   return (
-    <Form ariaLabel="itens opcionais" handleSubmit={handleSubmit}>
+    <Form
+      ariaLabel="itens opcionais"
+      handleSubmit={handleSubmit}
+      classForm="formProductModal"
+    >
       <FieldsetStyle>
         <LegendStyle aria-label="cores">Cores:</LegendStyle>
         <DivRadio>
