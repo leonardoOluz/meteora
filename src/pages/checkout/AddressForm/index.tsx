@@ -1,11 +1,14 @@
+import apiCep from "@/api";
 import Botao from "@/components/Botao";
 import Form from "@/components/Form";
 import { Input, InputMask } from "@/components/InputMask";
 import { MessageError } from "@/components/MessageError";
 import { DivForm, FieldsetForm, LabelForm, LegendForm } from "@/styles/forms";
 import { thema } from "@/styles/thema";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SiGooglestreetview } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInputEndereco {
   cep: string;
@@ -14,13 +17,33 @@ interface IFormInputEndereco {
   bairro: string;
   localidade: string;
 }
+interface IData {
+  bairro: string;
+  cep: string;
+  complemento: string;
+  ddd: string;
+  estado: string;
+  gia: string;
+  ibge: string;
+  localidade: string;
+  logradouro: string;
+  regiao: string;
+  siafi: string;
+  uf: string;
+  unidade: string;
+  erro?: boolean;
+}
 
 const AddressForm = () => {
   const {
     register,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
     handleSubmit,
+    watch,
+    setError,
+    setValue,
+    reset,
   } = useForm<IFormInputEndereco>({
     mode: "all",
     defaultValues: {
@@ -31,6 +54,39 @@ const AddressForm = () => {
       rua: "",
     },
   });
+  const navegate = useNavigate();
+  const cepInput = watch("cep");
+  const fetchConsultaCep = async (cep: string) => {
+    if (!cep) {
+      setError("cep", {
+        type: "manual",
+        message: "O campo CEP é obrigatório",
+      });
+      return;
+    }
+    try {
+      const { data } = await apiCep.get<IData>(`/ws/${cep}/json/`);
+      if (data.erro) {
+        setError("cep", {
+          type: "validate",
+          message: "O CEP não existe ou é inválido",
+        });
+        return;
+      }
+      setValue("rua", data.logradouro);
+      setValue("bairro", data.bairro);
+      setValue("localidade", `${data.localidade}, ${data.uf}`);
+      setValue("cep", data.cep);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+      navegate("/checkout/address/pay");
+    }
+  }, [isSubmitSuccessful, reset, navegate]);
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
   };
@@ -61,9 +117,12 @@ const AddressForm = () => {
                     aria-labelledby="message-error-cep"
                     $classeInput="inputForm"
                     mask={"00000-000"}
+                    id="campo-cep"
+                    onBlur={() => fetchConsultaCep(cepInput)}
+                    onChange={field.onChange}
+                    value={field.value}
                     placeholder="CEP"
                     $error={!!errors.cep}
-                    {...field}
                   />
                   {!!errors.cep && (
                     <MessageError id="message-error-cep">
@@ -86,10 +145,6 @@ const AddressForm = () => {
             $error={!!errors.rua}
             {...register("rua", {
               required: "O campo rua é obrigatório",
-              pattern: {
-                value: /^[A-Za-z\s]+$/i,
-                message: "A rua deve conter apenas letras",
-              },
             })}
           />
           {!!errors.rua && (

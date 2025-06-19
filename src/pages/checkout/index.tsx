@@ -23,7 +23,7 @@ const CheckoutBase = () => {
     navigate(`/checkout/address/${newRoute}`);
   };
   return (
-    <Section classNameSection="secao promocoes">
+    <Section classNameSection="secao login">
       <Header classeHeader="headerCheckout">
         {pathRoute.map((word, index) => (
           <Typography
