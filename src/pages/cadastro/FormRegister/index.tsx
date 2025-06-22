@@ -3,7 +3,7 @@ import FieldInput from "@/components/FieldInput";
 import Form from "@/components/Form";
 import { MessageError } from "@/components/MessageError";
 import { createUser } from "@/store/reducers/usuario";
-import { FieldsetForm, LegendForm } from "@/styles/forms";
+import { ContainerForm, FieldsetForm, LegendForm } from "@/styles/forms";
 import { RootState } from "@/types/store";
 import { Usuario } from "@/types/usuarios";
 import { getStorage } from "@/utils/starage";
@@ -74,85 +74,93 @@ const FormRegister = () => {
 
   return (
     <Form
-      classForm="basic"
+      classForm="formBasic"
       ariaLabel="formulario de cadastro"
       handleSubmit={handleSubmit(submit)}
     >
       <FieldsetForm>
         <LegendForm>Cadastre-se</LegendForm>
-        <FieldInput
-          textLabel="Nome"
-          type="text"
-          placeholder="Digite seu nome"
-          aria-describedby="error-message-name"
-          error={!!errors.nome}
-          {...register("nome", {
-            required: "Por favor, insira um nome",
-            minLength: {
-              message: "O nome deve ter pelo menos 5 letras",
-              value: 5,
-            },
-          })}
-        />
-        {!!errors.nome && (
-          <MessageError id="error-message-name">
-            {errors.nome.message}
-          </MessageError>
-        )}
-        <FieldInput
-          textLabel="Email"
-          type="email"
-          placeholder="Digite seu email"
-          aria-describedby="error-message-email"
-          error={!!errors.email}
-          {...register("email", {
-            required: "Por favor, insira um email",
-            validate: checkEmail,
-          })}
-        />
-        {!!errors.email && (
-          <MessageError id="error-message-email">
-            {errors.email.message}
-          </MessageError>
-        )}
-        <FieldInput
-          textLabel="Senha"
-          type="password"
-          placeholder="Digite sua senha"
-          aria-describedby="error-message-password"
-          error={!!errors.password}
-          {...register("password", {
-            required: "Por favor, insira uma senha",
-            minLength: {
-              value: 6,
-              message: "O campo senha deve ter pelo menos 6 caracteres",
-            },
-          })}
-        />
-        {!!errors.password && (
-          <MessageError id="error-message-password">
-            {errors.password.message}
-          </MessageError>
-        )}
-        <FieldInput
-          textLabel="Confirme sua senha"
-          placeholder="Confirme sua senha"
-          type="password"
-          error={!!errors.verifyPassword}
-          aria-describedby="error-message-confirm-password"
-          {...register("verifyPassword", {
-            validate: checkPassword,
-          })}
-        />
-        {!!errors.verifyPassword && (
-          <MessageError id="error-message-confirm-password">
-            {errors.verifyPassword.message}
-          </MessageError>
-        )}
+        <ContainerForm>
+          <FieldInput
+            textLabel="Nome"
+            type="text"
+            placeholder="Digite seu nome"
+            aria-describedby="error-message-name"
+            error={!!errors.nome}
+            {...register("nome", {
+              required: "Por favor, insira um nome",
+              minLength: {
+                message: "O nome deve ter pelo menos 5 letras",
+                value: 5,
+              },
+            })}
+          />
+          {!!errors.nome && (
+            <MessageError id="error-message-name">
+              {errors.nome.message}
+            </MessageError>
+          )}
+        </ContainerForm>
+        <ContainerForm>
+          <FieldInput
+            textLabel="Email"
+            type="email"
+            placeholder="Digite seu email"
+            aria-describedby="error-message-email"
+            error={!!errors.email}
+            {...register("email", {
+              required: "Por favor, insira um email",
+              validate: checkEmail,
+            })}
+          />
+          {!!errors.email && (
+            <MessageError id="error-message-email">
+              {errors.email.message}
+            </MessageError>
+          )}
+        </ContainerForm>
+        <ContainerForm>
+          <FieldInput
+            textLabel="Senha"
+            type="password"
+            placeholder="Digite sua senha"
+            aria-describedby="error-message-password"
+            error={!!errors.password}
+            {...register("password", {
+              required: "Por favor, insira uma senha",
+              minLength: {
+                value: 6,
+                message: "O campo senha deve ter pelo menos 6 caracteres",
+              },
+            })}
+          />
+          {!!errors.password && (
+            <MessageError id="error-message-password">
+              {errors.password.message}
+            </MessageError>
+          )}
+        </ContainerForm>
+        <ContainerForm>
+          <FieldInput
+            textLabel="Confirme sua senha"
+            placeholder="Confirme sua senha"
+            type="password"
+            error={!!errors.verifyPassword}
+            aria-describedby="error-message-confirm-password"
+            {...register("verifyPassword", {
+              validate: checkPassword,
+            })}
+          />
+          {!!errors.verifyPassword && (
+            <MessageError id="error-message-confirm-password">
+              {errors.verifyPassword.message}
+            </MessageError>
+          )}
+        </ContainerForm>
         <Botao
           classNameBtn="btnSecundary"
           type="submit"
-          style={{ marginTop: "1rem" }}
+          style={{ marginTop: "2rem" }}
         >
           Cadastrar-se
         </Botao>

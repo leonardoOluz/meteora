@@ -1,14 +1,18 @@
-import apiCep from "@/api";
+import apiCep, { simulateShipping } from "@/api";
 import Botao from "@/components/Botao";
 import Form from "@/components/Form";
 import { Input, InputMask } from "@/components/InputMask";
 import { MessageError } from "@/components/MessageError";
 import { DivForm, FieldsetForm, LabelForm, LegendForm } from "@/styles/forms";
 import { thema } from "@/styles/thema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SiGooglestreetview } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
+import { DivGridCep, DivGridStreet } from "../styles";
+import { useSelector } from "react-redux";
+import { IFrete, RootState } from "@/types/store";
+import ShippingPrices from "@/components/ShippingPrices";
 
 interface IFormInputEndereco {
   cep: string;
@@ -54,6 +58,8 @@ const AddressForm = () => {
       rua: "",
     },
   });
+  const [frete, setFrete] = useState<IFrete>();
+  const cart = useSelector((state: RootState) => state.carrinho).totProduct;
   const navegate = useNavigate();
   const cepInput = watch("cep");
   const fetchConsultaCep = async (cep: string) => {
@@ -66,6 +72,7 @@ const AddressForm = () => {
     }
     try {
       const { data } = await apiCep.get<IData>(`/ws/${cep}/json/`);
+      const dataShipping = await simulateShipping(cart);
       if (data.erro) {
         setError("cep", {
           type: "validate",
@@ -73,37 +80,40 @@ const AddressForm = () => {
         });
         return;
       }
+      if (dataShipping.isFrete) setFrete(dataShipping);
       setValue("rua", data.logradouro);
       setValue("bairro", data.bairro);
       setValue("localidade", `${data.localidade}, ${data.uf}`);
       setValue("cep", data.cep);
+      console.log(dataShipping);
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
       navegate("/checkout/address/pay");
     }
   }, [isSubmitSuccessful, reset, navegate]);
+
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
   };
 
   return (
     <Form
-      classForm="addressForm"
+      classForm="formAddress"
       ariaLabel="Formulário de endereço"
       handleSubmit={handleSubmit(handleDateSubmit)}
     >
       <FieldsetForm>
         <LegendForm>Digite seu endereço</LegendForm>
-        <DivForm>
+
+        <DivGridCep>
           <SiGooglestreetview size={55} color={thema.colorsPrimary.roxo} />
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
+          <DivForm style={{ gap: "0.4rem" }}>
             <Controller
               name="cep"
               control={control}
@@ -112,9 +122,13 @@ const AddressForm = () => {
               }}
               render={({ field }) => (
                 <>
-                  <LabelForm>Cep</LabelForm>
+                  <LabelForm htmlFor="campo-cep" id="label-cep">
+                    Cep
+                  </LabelForm>
                   <InputMask
-                    aria-labelledby="message-error-cep"
+                    aria-labelledby={
+                      errors.cep ? "label-cep message-error-cep" : "label-cep"
+                    }
                     $classeInput="inputForm"
                     mask={"00000-000"}
                     id="campo-cep"
@@ -132,63 +146,80 @@ const AddressForm = () => {
                 </>
               )}
             />
-          </div>
-        </DivForm>
-        <DivForm>
-          <LabelForm>Rua</LabelForm>
-          <Input
-            aria-labelledby="message-error-rua"
-            $classeInput="inputForm"
-            type="text"
-            id="rua"
-            placeholder="Rua"
-            $error={!!errors.rua}
-            {...register("rua", {
-              required: "O campo rua é obrigatório",
-            })}
-          />
-          {!!errors.rua && (
-            <MessageError id="message-error-rua">
-              {errors.rua.message}
-            </MessageError>
-          )}
-        </DivForm>
-        <DivForm>
-          <Controller
-            name="numero"
-            control={control}
-            rules={{
-              required: "O campo número é obrigatório",
-              pattern: {
-                value: /^\d{1,8}$/,
-                message: "Número inválido, deve conter apenas números",
-              },
-            }}
-            render={({ field }) => (
-              <>
-                <LabelForm htmlFor="numero">Numero</LabelForm>
-                <InputMask
-                  aria-labelledby="message-error-numero"
-                  $classeInput="inputForm"
-                  mask={"00000000"}
-                  placeholder="número"
-                  id="numero"
-                  $error={!!errors.numero}
-                  {...field}
-                />
-                {!!errors.numero && (
-                  <MessageError id="message-error-numero">
-                    {errors.numero.message}
-                  </MessageError>
-                )}
-              </>
+          </DivForm>
+        </DivGridCep>
+
+        <DivGridStreet>
+          <DivForm>
+            <LabelForm htmlFor="rua" id="label-rua">
+              Rua
+            </LabelForm>
+            <Input
+              aria-labelledby={
+                errors.rua ? "label-rua message-error-rua" : "label-rua"
+              }
+              $classeInput="inputForm"
+              type="text"
+              id="rua"
+              placeholder="Rua"
+              $error={!!errors.rua}
+              {...register("rua", {
+                required: "O campo rua é obrigatório",
+              })}
+            />
+            {!!errors.rua && (
+              <MessageError id="message-error-rua">
+                {errors.rua.message}
+              </MessageError>
             )}
-          />
-        </DivForm>
+          </DivForm>
+
+          <DivForm>
+            <Controller
+              name="numero"
+              control={control}
+              rules={{
+                required: "Obrigatorio",
+              }}
+              render={({ field }) => (
+                <>
+                  <LabelForm htmlFor="numero" id="label-numero">
+                    Numero
+                  </LabelForm>
+                  <InputMask
+                    aria-labelledby={
+                      errors.numero
+                        ? "label-numero message-error-numero"
+                        : "label-numero"
+                    }
+                    $classeInput="inputForm"
+                    mask={"00000000"}
+                    placeholder="número"
+                    id="numero"
+                    $error={!!errors.numero}
+                    {...field}
+                  />
+                  {!!errors.numero && (
+                    <MessageError id="message-error-numero">
+                      {errors.numero.message}
+                    </MessageError>
+                  )}
+                </>
+              )}
+            />
+          </DivForm>
+        </DivGridStreet>
+
         <DivForm>
-          <LabelForm htmlFor="bairro">Bairro</LabelForm>
+          <LabelForm htmlFor="bairro" id="label-bairro">
+            Bairro
+          </LabelForm>
           <Input
-            aria-labelledby="message-error-bairro"
+            aria-labelledby={
+              errors.bairro
+                ? "label-bairro message-error-bairro"
+                : "label-bairro"
+            }
             $classeInput="inputForm"
             type="text"
             id="bairro"
@@ -204,10 +235,17 @@ const AddressForm = () => {
             </MessageError>
           )}
         </DivForm>
+
         <DivForm>
-          <LabelForm htmlFor="cidade">Cidade</LabelForm>
+          <LabelForm htmlFor="cidade" id="label-localidade">
+            Cidade
+          </LabelForm>
           <Input
-            aria-labelledby="message-error-localidade"
+            aria-labelledby={
+              errors.localidade
+                ? "label-localidade message-error-localidade"
+                : "label-localidade"
+            }
             $classeInput="inputForm"
             placeholder="Cidade"
             id="cidade"
@@ -222,7 +260,14 @@ const AddressForm = () => {
             </MessageError>
           )}
         </DivForm>
-        <Botao classNameBtn="btnSecundary" type="submit">
+
+        {frete?.isFrete && <ShippingPrices {...frete}/>}
+
+        <Botao
+          classNameBtn="btnSecundary"
+          type="submit"
+          style={{ marginTop: "2rem" }}
+        >
           Próximo
         </Botao>
       </FieldsetForm>

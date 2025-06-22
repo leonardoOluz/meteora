@@ -39,11 +39,11 @@ export const FormStyle = styled.form<{
 }>`
   ${({ $classForm }) => {
     switch ($classForm) {
-      case "selectedModal":
+      case "formSelectedModal":
         return formSelectedModal;
-      case "basic":
+      case "formBasic":
         return formBasic;
-      case "addressForm":
+      case "formAddress":
         return formAddress;
       case "formProductModal":
         return formProductModal;

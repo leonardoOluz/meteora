@@ -64,7 +64,7 @@ const ModalSelectedDetails = ({
       <Form
         ariaLabel="Formulario de detalhes"
         handleSubmit={() => {}}
-        classForm="selectedModal"
+        classForm="formSelectedModal"
         ref={formRef}
       >
         <Typography

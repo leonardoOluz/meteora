@@ -1,8 +1,11 @@
+import CartIsEmpty from "@/components/CartIsEmpty";
 import Header from "@/components/Header";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import useArrayRoute from "@/hooks/useArrayRoute";
 import { thema } from "@/styles/thema";
+import { RootState } from "@/types/store";
+import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const pathRoute = [
@@ -17,6 +20,7 @@ const pathRoute = [
 const CheckoutBase = () => {
   const navigate = useNavigate();
   const arrayRouter = useArrayRoute();
+  const totCart = useSelector((state: RootState) => state.carrinho).totProduct;
   const handlClick = (path: string) => {
     const newRoute =
       path === "address" ? "" : path === "pay" ? "pay" : "pay/summary";
@@ -24,27 +28,33 @@ const CheckoutBase = () => {
   };
   return (
     <Section classNameSection="secao login">
-      <Header classeHeader="headerCheckout">
-        {pathRoute.map((word, index) => (
-          <Typography
-            key={index}
-            elementoHtml="h2"
-            classNameTypograph="basicParagraphLead"
-            onClick={() => handlClick(word.path)}
-            isColor={thema.colorsPrimary.preto}
-            style={{
-              cursor: "pointer",
-              borderBottom: `5px solid ${
-                arrayRouter.includes(word.path) ? "green" : "#ccc"
-              }`,
-              padding: "0.5rem",
-            }}
-          >
-            {word.name}
-          </Typography>
-        ))}
-      </Header>
-      <Outlet />
+      {totCart === 0 ? (
+        <CartIsEmpty />
+      ) : (
+        <>
+          <Header classeHeader="headerCheckout">
+            {pathRoute.map((word, index) => (
+              <Typography
+                key={index}
+                elementoHtml="h2"
+                classNameTypograph="basicParagraphLead"
+                onClick={() => handlClick(word.path)}
+                isColor={thema.colorsPrimary.preto}
+                style={{
+                  cursor: "pointer",
+                  borderBottom: `5px solid ${
+                    arrayRouter.includes(word.path) ? "green" : "#ccc"
+                  }`,
+                  padding: "0.5rem",
+                }}
+              >
+                {word.name}
+              </Typography>
+            ))}
+          </Header>
+          <Outlet />
+        </>
+      )}
     </Section>
   );
 };
