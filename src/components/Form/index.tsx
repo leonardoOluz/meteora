@@ -8,7 +8,7 @@ interface IProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   classForm?: FormClass;
 }
-const Form = ({ children, ariaLabel, handleSubmit, classForm = "basic" }: IProps, ref: Ref<HTMLFormElement>) => {
+const Form = ({ children, ariaLabel, handleSubmit, classForm = "formBasic" }: IProps, ref: Ref<HTMLFormElement>) => {
   return (
     <FormStyle ref={ref} aria-label={ariaLabel} onSubmit={handleSubmit} $classForm={classForm}>
       {children}

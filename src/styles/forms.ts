@@ -3,7 +3,7 @@ import { FadeIn } from "./animation";
 
 export const FieldsetForm = styled.fieldset`
   width: 100%;
-  width: 32.2rem;
+  max-width: 32.2rem;
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -30,8 +30,13 @@ export const LabelForm = styled.label`
   color: ${({ theme }) => theme.colorsPrimary.preto};
 `;
 export const DivForm = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
   box-sizing: border-box;
+`;
+export const ContainerForm = styled.div`
+  position: relative;
+  width: 100%;
 `;

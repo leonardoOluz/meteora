@@ -13,7 +13,7 @@ const FieldInput = ({ textLabel, error, ...rest }: IProps) => {
   
   return (
     <>
-      <LabelInput htmlFor={rest.name}>{textLabel}</LabelInput>
+      <LabelInput htmlFor={rest.name} id={`${textLabel}-label`}>{textLabel}</LabelInput>
       <DivInput>
         <Input
           id={rest.name}

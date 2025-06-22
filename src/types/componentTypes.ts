@@ -58,7 +58,7 @@ export type ILista =
   | "listNossasLojas";
 
 export type IHeader = "header" | "headerModal" | "headerDropDown" | "headerCheckout";
-export type FormClass = "basic" | "selectedModal" | "addressForm" | "formProductModal";
+export type FormClass = "formBasic" | "formSelectedModal" | "formAddress" | "formProductModal";
 export type IButton =
   | "btnPrimary"
   | "btnSecundary"

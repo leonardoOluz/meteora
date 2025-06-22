@@ -1,10 +1,7 @@
 import Banner from "@/components/Banner";
-import CardCarrinho from "@/components/CardCarrinho";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import { DivCart, DivCartBtn, DivCartList, DivCartSumare } from "./styles";
-import List from "@/components/List";
-import ItemList from "@/components/List/ItemList";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectProductCart } from "@/store/selectors/itemSelectors";
@@ -14,6 +11,8 @@ import { thema } from "@/styles/thema";
 import Botao from "@/components/Botao";
 import useResize from "@/hooks/useResize";
 import { useNavigate } from "react-router-dom";
+import ListCart from "./ListCart";
+import CartIsEmpty from "@/components/CartIsEmpty";
 
 const Carrinho = () => {
   const width = useResize();
@@ -36,47 +35,43 @@ const Carrinho = () => {
 
   return (
     <Section classNameSection="secao carrinho">
-      <Banner typeBanner="bannerCart" />
-      {tituloCartMain}
-      <DivCart>
-        <DivCartList>
-          <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
-            Detalhes da compra
-          </Typography>
-          <List classeLista="listaCarrinho" aria-label="lista de carrinhos">
-            {cartProduct.map((itemProduct) => (
-              <ItemList key={itemProduct.id}>
-                <CardCarrinho
-                  card={itemProduct}
-                  totQuanty={
-                    cart.data.find((itemCart) => itemCart.id === itemProduct.id)
-                      ?.quantity || 0
-                  }
-                />
-              </ItemList>
-            ))}
-          </List>
-        </DivCartList>
-        <DivCartSumare>
-          <Sumario cart={cart} />
-          <DivCartBtn>
-            <Botao
-              classNameBtn="btnQuarciario"
-              type="button"
-              onClick={() => navigation("/")}
-            >
-              Continuar compra
-            </Botao>
-            <Botao
-              classNameBtn="btnSecundary"
-              type="button"
-              onClick={() => navigation("/checkout/address")}
-            >
-              Finalizar compra
-            </Botao>
-          </DivCartBtn>
-        </DivCartSumare>
-      </DivCart>
+      {cart.totProduct === 0 ? (
+        <CartIsEmpty />
+      ) : (
+        <>
+          <Banner typeBanner="bannerCart" />
+          {tituloCartMain}
+          <DivCart>
+            <DivCartList>
+              <Typography elementoHtml="h2" classNameTypograph="basicHeadingH3">
+                Detalhes da compra
+              </Typography>
+              <ListCart cart={cart} cartProduct={cartProduct} />
+            </DivCartList>
+            <DivCartSumare>
+              <Sumario cart={cart} />
+              <DivCartBtn>
+                <Botao
+                  title="Continuar comprando"
+                  classNameBtn="btnQuarciario"
+                  type="button"
+                  onClick={() => navigation("/")}
+                >
+                  Continuar compra
+                </Botao>
+                <Botao
+                  title="Finalizar compra"
+                  classNameBtn="btnSecundary"
+                  type="button"
+                  onClick={() => navigation("/checkout/address")}
+                >
+                  Finalizar compra
+                </Botao>
+              </DivCartBtn>
+            </DivCartSumare>
+          </DivCart>
+        </>
+      )}
     </Section>
   );
 };

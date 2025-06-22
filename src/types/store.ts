@@ -44,3 +44,10 @@ export type KeysIProductString = Extract<
   keyof ICardProduto,
   "titulo" | "categoria" | "descricao"
 >;
+/* IFrete */
+export interface IFrete {
+  service: string;
+  price: number;
+  deliveryTime: string;
+  isFrete: boolean;
+}

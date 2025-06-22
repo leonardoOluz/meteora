@@ -64,6 +64,7 @@ const secaoProdutos = css``;
 const secaoCategorias = css``;
 const secaoLogin = css`
   height: 100vh;
+  overflow-y: auto;
   margin: 0 auto;
   padding: 3.2rem 0;
   justify-content: center;
@@ -77,8 +78,7 @@ const secaoLogin = css`
   );
   box-sizing: border-box;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    gap: 3.2rem;
-    padding: 0;
+    min-height: 83rem;
   }
 `;
 const secaoNewsletter = css`
@@ -91,6 +91,8 @@ const secaoNewsletter = css`
   }
 `;
 const secaoCarrinho = css`
+  height: 100vh;
+  overflow-y: auto;
   gap: 0;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     gap: 3.2rem;

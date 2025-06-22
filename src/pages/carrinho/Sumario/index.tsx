@@ -6,8 +6,6 @@ interface IProps {
   cart: ICartSlice;
 }
 const Sumario = ({ cart }: IProps) => {
-  const frete = 10.0;
-
   return (
     <AnsideSumare>
       <Typography elementoHtml="h4" classNameTypograph="basicHendingH4">
@@ -20,10 +18,8 @@ const Sumario = ({ cart }: IProps) => {
             : `${cart.totProduct} Produtos`}
         </dt>
         <dd>R$ {cart.totValue.toFixed(2)}</dd>
-        <dt>Frete</dt>
-        <dd>R$ {frete.toFixed(2)}</dd>
         <dt className="total">Total:</dt>
-        <dd className="total">R$ {(cart.totValue + frete).toFixed(2)}</dd>
+        <dd className="total">R$ {cart.totValue.toFixed(2)}</dd>
       </DlSumare>
     </AnsideSumare>
   );
