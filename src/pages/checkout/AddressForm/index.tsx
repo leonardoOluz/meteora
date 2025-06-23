@@ -1,105 +1,66 @@
-import apiCep, { simulateShipping } from "@/api";
 import Botao from "@/components/Botao";
 import Form from "@/components/Form";
 import { Input, InputMask } from "@/components/InputMask";
 import { MessageError } from "@/components/MessageError";
 import { DivForm, FieldsetForm, LabelForm, LegendForm } from "@/styles/forms";
 import { thema } from "@/styles/thema";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SiGooglestreetview } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import { DivGridCep, DivGridStreet } from "../styles";
 import { useSelector } from "react-redux";
-import { IFrete, RootState } from "@/types/store";
+import { RootState } from "@/types/store";
 import ShippingPrices from "@/components/ShippingPrices";
-
-interface IFormInputEndereco {
-  cep: string;
-  rua: string;
-  numero: string;
-  bairro: string;
-  localidade: string;
-}
-interface IData {
-  bairro: string;
-  cep: string;
-  complemento: string;
-  ddd: string;
-  estado: string;
-  gia: string;
-  ibge: string;
-  localidade: string;
-  logradouro: string;
-  regiao: string;
-  siafi: string;
-  uf: string;
-  unidade: string;
-  erro?: boolean;
-}
+import { IFormInputEndereco } from "@/types/checkout";
+import { useDispatch } from "react-redux";
+import { setFrete } from "@/store/reducers/frete";
+import { simulateShipping } from "@/service";
+import { searchAddress, setAddress } from "@/store/reducers/address";
+import { AppDispatch } from "@/store";
 
 const AddressForm = () => {
+  const defaultValues = useSelector((state: RootState) => state.address);
   const {
     register,
     control,
     formState: { errors, isSubmitSuccessful },
     handleSubmit,
-    watch,
     setError,
-    setValue,
     reset,
   } = useForm<IFormInputEndereco>({
     mode: "all",
-    defaultValues: {
-      bairro: "",
-      cep: "",
-      localidade: "",
-      numero: "",
-      rua: "",
-    },
+    defaultValues,
   });
-  const [frete, setFrete] = useState<IFrete>();
-  const cart = useSelector((state: RootState) => state.carrinho).totProduct;
+  const dispatch = useDispatch<AppDispatch>();
+  const { totProduct } = useSelector((state: RootState) => state.carrinho);
   const navegate = useNavigate();
-  const cepInput = watch("cep");
-  const fetchConsultaCep = async (cep: string) => {
-    if (!cep) {
-      setError("cep", {
-        type: "manual",
-        message: "O campo CEP é obrigatório",
-      });
-      return;
-    }
-    try {
-      const { data } = await apiCep.get<IData>(`/ws/${cep}/json/`);
-      const dataShipping = await simulateShipping(cart);
-      if (data.erro) {
-        setError("cep", {
-          type: "validate",
-          message: "O CEP não existe ou é inválido",
-        });
-        return;
-      }
-      if (dataShipping.isFrete) setFrete(dataShipping);
-      setValue("rua", data.logradouro);
-      setValue("bairro", data.bairro);
-      setValue("localidade", `${data.localidade}, ${data.uf}`);
-      setValue("cep", data.cep);
-      console.log(dataShipping);
-    } catch (error) {
-      console.error(error);
+
+  const handleCepBlur = async (cep: string) => {
+    if (cep) {
+      const dataShipping = await simulateShipping(totProduct);
+      if (dataShipping.isFrete) dispatch(setFrete(dataShipping));
+      dispatch(searchAddress(cep));
     }
   };
 
   useEffect(() => {
+    reset(defaultValues);
+    if (defaultValues.erro) {
+      setError("cep", {
+        type: "validate",
+        message: defaultValues.errorMessage,
+      });
+    }
     if (isSubmitSuccessful) {
-      reset();
+      reset(defaultValues);
       navegate("/checkout/address/pay");
     }
-  }, [isSubmitSuccessful, reset, navegate]);
+  }, [isSubmitSuccessful, reset, navegate, defaultValues, setError]);
 
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
+    dispatch(setAddress(data));
   };
 
   return (
@@ -132,7 +93,11 @@ const AddressForm = () => {
                     $classeInput="inputForm"
                     mask={"00000-000"}
                     id="campo-cep"
-                    onBlur={() => fetchConsultaCep(cepInput)}
+                    autoComplete="on"
+                    onBlur={(e) => {
+                      field.onChange(e.target.value);
+                      handleCepBlur(e.target.value);
+                    }}
                     onChange={field.onChange}
                     value={field.value}
                     placeholder="CEP"
@@ -197,7 +162,11 @@ const AddressForm = () => {
                     placeholder="número"
                     id="numero"
                     $error={!!errors.numero}
-                    {...field}
+                     onBlur={(e) => {
+                      field.onChange(e.target.value);
+                    }}
+                    onChange={field.onChange}
+                    value={field.value}
                   />
                   {!!errors.numero && (
                     <MessageError id="message-error-numero">
@@ -260,9 +229,7 @@ const AddressForm = () => {
             </MessageError>
           )}
         </DivForm>
-
-        {frete?.isFrete && <ShippingPrices {...frete}/>}
-
+        <ShippingPrices />
         <Botao
           classNameBtn="btnSecundary"
           type="submit"

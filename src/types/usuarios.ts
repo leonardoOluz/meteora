@@ -3,7 +3,6 @@ export interface ILogin {
   email: string;
   password: string;
 }
-
 /* type de usuario */
 export type Usuario = {
   id?: number;
@@ -12,7 +11,6 @@ export type Usuario = {
   password: string;
   verifyPassword: string;
 };
-
 /* type token */
 export type Token = {
   email: string;
