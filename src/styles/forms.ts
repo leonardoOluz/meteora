@@ -9,6 +9,8 @@ export const FieldsetForm = styled.fieldset`
   flex-direction: column;
   row-gap: 0.4rem;
   border-color: ${({ theme }) => theme.colorsPrimary.preto};
+  border-radius: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
 `;
 export const LegendForm = styled.legend`

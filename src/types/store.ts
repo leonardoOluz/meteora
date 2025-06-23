@@ -1,6 +1,7 @@
 import store from "@/store";
 import { catPromocao, ICardProduto } from "./componentTypes";
 
+
 export type RootState = ReturnType<typeof store.getState>;
 /* interface de promocoes */
 export interface IPromocoes {

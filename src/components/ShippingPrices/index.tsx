@@ -1,7 +1,7 @@
-import { IFrete } from "@/types/store";
+import { RootState } from "@/types/store";
 import styled from "styled-components";
 import Typography from "../Typography";
-
+import { useSelector } from "react-redux";
 
 const DivFreight = styled.div`
   display: flex;
@@ -22,7 +22,11 @@ const PriceFreight = styled.span`
   line-height: 2.5rem;
   color: #13422c;
 `;
-const ShippingPrices = ({ deliveryTime, price, service }: IFrete) => {
+const ShippingPrices = () => {
+  const { deliveryTime, price, service, isFrete } = useSelector(
+    (state: RootState) => state.frete
+  );
+  if (!isFrete) return <></>;
   return (
     <DivFreight>
       <Typography
