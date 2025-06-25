@@ -12,7 +12,7 @@ const initialState = {
   erro: false,
   status: "idle", // idle | loading | succeeded | failed,
   errorMessage: "",
-} as IFormInputEndereco & { status: string; errorMessage: string };
+} as IFormInputEndereco;
 
 export const searchAddress = createAsyncThunk<IData, string>(
   "address",
@@ -33,7 +33,14 @@ const addressSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(searchAddress.pending, () => initialState);
+    builder.addCase(searchAddress.pending, () => {
+      return {
+        ...initialState,
+        erro: false,
+        status: "loading",
+        errorMessage: "",
+      };
+    });
     builder.addCase(searchAddress.fulfilled, (_, { payload }) => {
       return {
         ...mapApiToFormInput(payload),

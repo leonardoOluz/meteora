@@ -1,7 +1,8 @@
 import { Token } from "@/types/usuarios";
 
 export function getSessionStorage(key: string) {
-  return sessionStorage.getItem(key);
+  const token = sessionStorage.getItem(key);
+  return token ? JSON.parse(token) : null;
 }
 
 export function setSessionStorage(key: string, value: Token) {

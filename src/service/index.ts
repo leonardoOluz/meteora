@@ -26,7 +26,12 @@ export const simulateShipping = (totCart: number): Promise<IFrete> => {
   return new Promise((resolve) => {
     try {
       if (totCart < 1) {
-        throw new Error("Carrinho vazio");
+        resolve({
+          service: "Sem produto",
+          price: 0,
+          deliveryTime: "N/A",
+          isFrete: false,
+        });
       }
       setTimeout(() => {
         const price = [

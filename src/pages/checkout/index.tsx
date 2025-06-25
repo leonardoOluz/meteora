@@ -3,8 +3,12 @@ import Header from "@/components/Header";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import useArrayRoute from "@/hooks/useArrayRoute";
+import { AppDispatch } from "@/store";
+import { isCheckLogin } from "@/store/reducers/usuario";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -21,6 +25,16 @@ const CheckoutBase = () => {
   const navigate = useNavigate();
   const arrayRouter = useArrayRoute();
   const totCart = useSelector((state: RootState) => state.carrinho).totProduct;
+  const isLogado = useSelector((state: RootState) => state.usuario).isLogado;
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(isCheckLogin());
+    if (!isLogado) {
+      navigate("/login");
+    }
+  }, [isLogado, navigate, dispatch]);
+
   const handlClick = (path: string) => {
     const newRoute =
       path === "address" ? "" : path === "pay" ? "pay" : "pay/summary";

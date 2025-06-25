@@ -1,9 +1,14 @@
 import { ILogin, Usuario } from "@/types/usuarios";
-import { removeSessionStorage, setSessionStorage } from "@/utils/session";
+import {
+  getSessionStorage,
+  removeSessionStorage,
+  setSessionStorage,
+} from "@/utils/session";
 import { getStorage, setStorage } from "@/utils/starage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import token from "@/json/token.json";
 import { toast } from "react-toastify";
+
 const initialState = {
   usuario: {} as Usuario,
   isLogado: false,
@@ -98,8 +103,23 @@ const usuarioSlice = createSlice({
         usuario: {} as Usuario,
       };
     },
+    isCheckLogin(state) {
+      const token = getSessionStorage("token");
+      if (token) {
+        return {
+          ...state,
+          isLogado: true,
+        };
+      }
+      return {
+        ...state,
+        isLogado: false,
+        usuario: {} as Usuario,
+      };
+    },
   },
 });
 
-export const { createUser, authenticateUser, logout } = usuarioSlice.actions;
+export const { createUser, authenticateUser, logout, isCheckLogin } =
+  usuarioSlice.actions;
 export default usuarioSlice.reducer;
