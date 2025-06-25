@@ -18,7 +18,6 @@ const Cadastro = () => {
       >
         {writeTitle}
       </Typography>
-      {writeTitle.length === title.length && (
         <DivFadeInForm>
           <FormRegister />
           <Link to="/login" style={{ textDecoration: "none" }}>
@@ -31,7 +30,6 @@ const Cadastro = () => {
             </Typography>
           </Link>
         </DivFadeInForm>
-      )}
     </Section>
   );
 };

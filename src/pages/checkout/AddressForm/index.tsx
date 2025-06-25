@@ -35,7 +35,7 @@ const AddressForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navegate = useNavigate();
   const handleCepBlur = async (cep: string) => {
-    dispatch(searchAddress(cep));
+    dispatch(searchAddress(cep.replace(/-/g,"")));
   };
 
 // 1. Reset do formulário quando defaultValues mudar

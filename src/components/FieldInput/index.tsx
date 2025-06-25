@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Input } from "../InputMask";
-import { DivInput, LabelInput } from "./styles";
+import { DivFieldInput, DivInput, LabelInput } from "./styles";
 import BtnTypePassword from "./BtnTypePassword";
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -12,7 +12,7 @@ const FieldInput = ({ textLabel, error, ...rest }: IProps) => {
   const [isPassword, setIsPassword] = useState<boolean>(false);
   
   return (
-    <>
+    <DivFieldInput>
       <LabelInput htmlFor={rest.name} id={`${textLabel}-label`}>{textLabel}</LabelInput>
       <DivInput>
         <Input
@@ -24,7 +24,7 @@ const FieldInput = ({ textLabel, error, ...rest }: IProps) => {
         />
        <BtnTypePassword type={type} handleClick={() => setIsPassword(!isPassword)}/> 
       </DivInput>
-    </>
+    </DivFieldInput>
   );
 };
 
