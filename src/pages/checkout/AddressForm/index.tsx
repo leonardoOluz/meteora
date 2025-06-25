@@ -14,13 +14,13 @@ import { RootState } from "@/types/store";
 import ShippingPrices from "@/components/ShippingPrices";
 import { IFormInputEndereco } from "@/types/checkout";
 import { useDispatch } from "react-redux";
-import { setFrete } from "@/store/reducers/frete";
-import { simulateShipping } from "@/service";
 import { searchAddress, setAddress } from "@/store/reducers/address";
 import { AppDispatch } from "@/store";
+import { checkShipping, resetFrete } from "@/store/reducers/frete";
 
 const AddressForm = () => {
   const defaultValues = useSelector((state: RootState) => state.address);
+  const { totProduct } = useSelector((state: RootState) => state.carrinho);
   const {
     register,
     control,
@@ -33,30 +33,42 @@ const AddressForm = () => {
     defaultValues,
   });
   const dispatch = useDispatch<AppDispatch>();
-  const { totProduct } = useSelector((state: RootState) => state.carrinho);
   const navegate = useNavigate();
-
   const handleCepBlur = async (cep: string) => {
-    if (cep) {
-      const dataShipping = await simulateShipping(totProduct);
-      if (dataShipping.isFrete) dispatch(setFrete(dataShipping));
-      dispatch(searchAddress(cep));
-    }
+    dispatch(searchAddress(cep));
   };
 
-  useEffect(() => {
+// 1. Reset do formulário quando defaultValues mudar
+useEffect(() => {
+  reset(defaultValues);
+}, [defaultValues, reset]);
+
+// 2. Tratamento de erro e navegação
+useEffect(() => {
+  if (defaultValues.erro) {
+    setError("cep", {
+      type: "validate",
+      message: defaultValues.errorMessage,
+    });
+    dispatch(resetFrete());
+    return;
+  }
+  if (defaultValues.status === "succeeded") {
+    dispatch(checkShipping(totProduct));
+  }
+  if (isSubmitSuccessful) {
     reset(defaultValues);
-    if (defaultValues.erro) {
-      setError("cep", {
-        type: "validate",
-        message: defaultValues.errorMessage,
-      });
-    }
-    if (isSubmitSuccessful) {
-      reset(defaultValues);
-      navegate("/checkout/address/pay");
-    }
-  }, [isSubmitSuccessful, reset, navegate, defaultValues, setError]);
+    navegate("/checkout/address/pay");
+  }
+}, [
+  defaultValues,
+  isSubmitSuccessful,
+  reset,
+  navegate,
+  setError,
+  dispatch,
+  totProduct,
+]);
 
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
@@ -162,7 +174,7 @@ const AddressForm = () => {
                     placeholder="número"
                     id="numero"
                     $error={!!errors.numero}
-                     onBlur={(e) => {
+                    onBlur={(e) => {
                       field.onChange(e.target.value);
                     }}
                     onChange={field.onChange}

@@ -1,5 +1,11 @@
+import { simulateShipping } from "@/service";
 import { IFrete } from "@/types/store";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export const checkShipping = createAsyncThunk<IFrete, number>(
+  "frete",
+  simulateShipping
+);
 
 const initialState = {
   deliveryTime: "",
@@ -13,7 +19,15 @@ const freteSlice = createSlice({
   initialState,
   reducers: {
     setFrete: (_, { payload }: PayloadAction<IFrete>) => payload,
+    resetFrete: () => initialState,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(checkShipping.fulfilled, (_, { payload }) => {
+      return payload;
+    });
+    builder.addCase(checkShipping.rejected, () => initialState);
+    builder.addCase(checkShipping.pending, () => initialState);
   },
 });
-export const { setFrete } = freteSlice.actions;
+export const { setFrete, resetFrete } = freteSlice.actions;
 export default freteSlice.reducer;
