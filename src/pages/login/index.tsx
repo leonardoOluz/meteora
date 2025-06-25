@@ -17,8 +17,7 @@ const Login = () => {
       >
         {writeTitle}
       </Typography>
-      {writeTitle.length === title.length && (
-        <DivFadeInForm>
+      <DivFadeInForm>
           <FormLogin />
           <Link to="/cadastro" style={{ textDecoration: "none" }}>
             <Typography
@@ -30,7 +29,6 @@ const Login = () => {
             </Typography>
           </Link>
         </DivFadeInForm>
-      )}
     </Section>
   );
 };

@@ -10,13 +10,15 @@ export const FieldsetForm = styled.fieldset`
   row-gap: 0.4rem;
   border-color: ${({ theme }) => theme.colorsPrimary.preto};
   border-radius: 0.8rem;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
 `;
 export const LegendForm = styled.legend`
   font-size: 2rem;
-  line-height: 100%;
-  padding: 0 0.5rem;
+  font-weight: 400;
+  line-height: 2rem;
+  padding: 0 1rem 1rem 1rem;
 `;
 export const DivFadeInForm = styled.div`
   width: 100%;

@@ -10,8 +10,16 @@ import DropDownOn from "./components/DropDownOn";
 import FormSearchProducts from "./components/FormSearchProducts";
 import BtnLogar from "../BtnLogar";
 import HeaderProductsCart from "./components/HeaderProductsCart";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { useEffect } from "react";
+import { isCheckLogin } from "@/store/reducers/usuario";
 
 const Cabecalho = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(isCheckLogin());
+  }, [dispatch]);
   return (
     <Header classeHeader="header">
       <HeaderDivLogoNavbar>
