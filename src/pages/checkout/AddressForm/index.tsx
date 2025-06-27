@@ -4,10 +4,8 @@ import { Input, InputMask } from "@/components/InputMask";
 import { MessageError } from "@/components/MessageError";
 import { DivForm, FieldsetForm, LabelForm, LegendForm } from "@/styles/forms";
 import { thema } from "@/styles/thema";
-import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SiGooglestreetview } from "react-icons/si";
-import { useNavigate } from "react-router-dom";
 import { DivGridCep, DivGridStreet } from "../styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
@@ -16,11 +14,11 @@ import { IFormInputEndereco } from "@/types/checkout";
 import { useDispatch } from "react-redux";
 import { searchAddress, setAddress } from "@/store/reducers/address";
 import { AppDispatch } from "@/store";
-import { checkShipping, resetFrete } from "@/store/reducers/frete";
+import { resetFrete } from "@/store/reducers/frete";
+import { useAddressFormEffect } from "@/hooks/useAddressFormEffect";
 
 const AddressForm = () => {
   const defaultValues = useSelector((state: RootState) => state.address);
-  const { totProduct } = useSelector((state: RootState) => state.carrinho);
   const {
     register,
     control,
@@ -33,48 +31,21 @@ const AddressForm = () => {
     defaultValues,
   });
   const dispatch = useDispatch<AppDispatch>();
-  const navegate = useNavigate();
+  useAddressFormEffect({
+    isSubmitSuccessful,
+    reset,
+    setError
+  });
   const handleCepBlur = async (cep: string) => {
-    dispatch(searchAddress(cep.replace(/-/g,"")));
+    if (defaultValues.cep !== cep) {
+      dispatch(resetFrete());
+    }
+    dispatch(searchAddress(cep.replace(/-/g, "")));
   };
-
-// 1. Reset do formulário quando defaultValues mudar
-useEffect(() => {
-  reset(defaultValues);
-}, [defaultValues, reset]);
-
-// 2. Tratamento de erro e navegação
-useEffect(() => {
-  if (defaultValues.erro) {
-    setError("cep", {
-      type: "validate",
-      message: defaultValues.errorMessage,
-    });
-    dispatch(resetFrete());
-    return;
-  }
-  if (defaultValues.status === "succeeded") {
-    dispatch(checkShipping(totProduct));
-  }
-  if (isSubmitSuccessful) {
-    reset(defaultValues);
-    navegate("/checkout/address/pay");
-  }
-}, [
-  defaultValues,
-  isSubmitSuccessful,
-  reset,
-  navegate,
-  setError,
-  dispatch,
-  totProduct,
-]);
-
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
     dispatch(setAddress(data));
   };
-
   return (
     <Form
       classForm="formAddress"

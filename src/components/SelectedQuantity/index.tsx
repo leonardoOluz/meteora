@@ -13,11 +13,7 @@ interface IProps {
   totProduct?: number;
   card: ICardProduto;
 }
-const SelectedQuantity = ({
-  isDropDown,
-  totProduct,
-  card
-}: IProps) => {
+const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDetailsOpen, setModalDetailsOpen] = useState(false);
 
@@ -55,6 +51,7 @@ const SelectedQuantity = ({
       {modalDetailsDelete}
       <DivBtnsSelected>
         <Botao
+          title="Detalhes do produto"
           classNameBtn="btnTerciario"
           onClick={() => setModalDetailsOpen(!modalDetailsOpen)}
         >
@@ -62,6 +59,7 @@ const SelectedQuantity = ({
         </Botao>
         <span className="quantity">{totProduct}</span>
         <Botao
+          title="Adicionar produto"
           classNameBtn="btnTerciario"
           onClick={() => {
             setModalOpen(true);
