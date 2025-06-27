@@ -21,6 +21,7 @@ const FormSearchProducts = () => {
       <InputMask
         mask="**********"
         $classeInput="inputBuscador"
+        id="buscador"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Digite o produto"

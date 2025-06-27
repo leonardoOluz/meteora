@@ -1,4 +1,4 @@
-import { IDetails } from "@/types/store";
+import { IDetails, RootState } from "@/types/store";
 import { DivModalContent, ModalSelectedDetailsStyle } from "./styles";
 import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
@@ -14,6 +14,9 @@ import useEventMouse from "@/hooks/useEventMouse";
 import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
 import useCheckPrice from "@/hooks/useCheckPrice";
 import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
+import { AppDispatch } from "@/store";
+import { useSelector } from "react-redux";
+import { checkShipping } from "@/store/reducers/frete";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
@@ -31,11 +34,13 @@ const ModalSelectedDetails = ({
   isModalDetailsOpen,
   ...rest
 }: DialogProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const formRef = useRef<HTMLFormElement>(null);
   const dialogModalRef = useRef<HTMLDialogElement>(null);
   const checkPromocao = useSelectCatPromocao();
   const price = useCheckPrice(card.preco, checkPromocao(card.id));
+  const { isFrete } = useSelector((state: RootState) => state.frete);
+  const { totProduct } = useSelector((state: RootState) => state.carrinho);
 
   useEventMouse({
     isBoolean: isModalDetailsOpen,
@@ -56,6 +61,9 @@ const ModalSelectedDetails = ({
         price,
       })
     );
+    if (isFrete) {
+      dispatch(checkShipping(totProduct - 1));
+    }
     handleClose();
   };
 

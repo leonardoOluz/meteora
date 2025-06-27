@@ -16,6 +16,10 @@ import { useDispatch } from "react-redux";
 import { deleteProduct } from "@/store/reducers/carrinho";
 import useCheckPrice from "@/hooks/useCheckPrice";
 import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
+import { AppDispatch } from "@/store";
+import { checkShipping } from "@/store/reducers/frete";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
 
 interface IProps {
   card: ICardProduto;
@@ -25,12 +29,14 @@ interface IProps {
 
 const CardCarrinho = ({ card, cartSuspensa, totQuanty }: IProps) => {
   const { imagensCardProdutos } = useSetImagens();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const checkPromocao = useSelectCatPromocao();
   const price = useCheckPrice(card.preco, checkPromocao(card.id));
+  const { totProduct } = useSelector((state: RootState) => state.carrinho);
 
   const handleRemoveProduct = (): void => {
     dispatch(deleteProduct({ id: card.id, price }));
+    dispatch(checkShipping(totProduct - totQuanty));
   };
 
   if (cartSuspensa) {

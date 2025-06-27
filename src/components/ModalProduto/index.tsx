@@ -18,6 +18,10 @@ import ModalProductDescription from "./components/ModalProductDescription";
 import ModalProductForm from "./components/ModalProductForm";
 import useCheckPrice from "@/hooks/useCheckPrice";
 import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
+import { useSelector } from "react-redux";
+import { RootState } from "@/types/store";
+import { checkShipping } from "@/store/reducers/frete";
+import { AppDispatch } from "@/store";
 
 interface IProps {
   handleClose: () => void;
@@ -32,9 +36,11 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
   const [isColor, setIsColor] = useState<string>("");
   const [isSize, setIsSize] = useState<string>("");
   const { imagensCardProdutos } = useSetImagens();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const checkPromocao = useSelectCatPromocao();
   const price = useCheckPrice(card.preco, checkPromocao(card.id));
+  const { isFrete } = useSelector((state: RootState) => state.frete);
+  const { totProduct } = useSelector((state: RootState) => state.carrinho);
   useEventMouse({
     isBoolean: isOpen,
     setIsBoolean: isSetOpen,
@@ -55,6 +61,9 @@ const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {
         price,
       })
     );
+    if (isFrete) {
+      dispatch(checkShipping(totProduct + 1));
+    }
     handleClose();
   };
 
