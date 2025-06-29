@@ -12,7 +12,7 @@ import { RootState } from "@/types/store";
 import ShippingPrices from "@/components/ShippingPrices";
 import { IFormInputEndereco } from "@/types/checkout";
 import { useDispatch } from "react-redux";
-import { searchAddress, setAddress } from "@/store/reducers/address";
+import { searchAddress, setAddress, setAddressChecked } from "@/store/reducers/address";
 import { AppDispatch } from "@/store";
 import { resetFrete } from "@/store/reducers/frete";
 import { useAddressFormEffect } from "@/hooks/useAddressFormEffect";
@@ -45,6 +45,7 @@ const AddressForm = () => {
   const handleDateSubmit = (data: IFormInputEndereco) => {
     console.log("Dados do endereço:", data);
     dispatch(setAddress(data));
+    dispatch(setAddressChecked());
   };
   return (
     <Form

@@ -97,11 +97,11 @@ import { css } from "styled-components";
     outline-color: ${({ theme }) => ($error ? theme.inputState.error : "")};
   }
 `;
-export interface InputMaskProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   $classeInput: InputStyles;
   $error?: boolean;
 }
-export const checkInputProps = (props: InputMaskProps) => {
+export const checkInputProps = (props: InputProps) => {
   switch (props.$classeInput) {
     case "inputBuscador":
       return inputBuscador;

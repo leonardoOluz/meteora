@@ -8,6 +8,7 @@ export interface IFormInputEndereco {
   erro?: boolean;
   status?: "idle" | "loading" | "succeeded" | "failed";
   errorMessage?: string;
+  addressChecked: boolean;
 }
 export interface IData {
   bairro: string;
