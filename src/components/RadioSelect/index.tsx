@@ -2,7 +2,7 @@ import { DivRadioSelect, LabelRadioSelect } from "./styles";
 import { InputMask } from "../InputMask";
 
 interface IProps {
-  nome: "cor" | "tamanho";
+  nome: "cor" | "tamanho" | "pagamento";
   texto: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isChecked?: boolean;

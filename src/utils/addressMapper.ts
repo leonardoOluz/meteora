@@ -6,6 +6,10 @@ export function mapApiToFormInput(data: IData): IFormInputEndereco {
     rua: data.logradouro,
     bairro: data.bairro,
     localidade: `${data.localidade}, ${data.uf}`,
-    numero: "", // ou algum valor padrão
+    numero: "",
+    erro: false,
+    status: "succeeded",
+    errorMessage: "",
+    addressChecked: false
   };
 }

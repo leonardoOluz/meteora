@@ -2,6 +2,7 @@ import PageBase from "@/components/PageBase";
 import LazyLoader from "@/components/LazyLoader";
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import PagePayPix from "@/components/PagePayPix";
 
 const Home = lazy(() => import("@/pages/home"));
 const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
@@ -138,5 +139,13 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "PagePayPix",
+    element: (
+      <Suspense fallback={<LazyLoader />}>
+        <PagePayPix />
+      </Suspense>
+    ),
   },
 ]);

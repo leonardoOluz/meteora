@@ -12,6 +12,7 @@ const initialState = {
   erro: false,
   status: "idle", // idle | loading | succeeded | failed,
   errorMessage: "",
+  addressChecked: false,
 } as IFormInputEndereco;
 
 export const searchAddress = createAsyncThunk<IData, string>(
@@ -31,6 +32,12 @@ const addressSlice = createSlice({
         errorMessage: "",
       };
     },
+    setAddressChecked: (state) => {
+      return {
+        ...state,
+        addressChecked: true,
+      };
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(searchAddress.pending, () => {
@@ -43,10 +50,7 @@ const addressSlice = createSlice({
     });
     builder.addCase(searchAddress.fulfilled, (_, { payload }) => {
       return {
-        ...mapApiToFormInput(payload),
-        erro: false,
-        status: "succeeded",
-        errorMessage: "",
+        ...mapApiToFormInput(payload)
       };
     });
     builder.addCase(searchAddress.rejected, (_, action) => {
@@ -60,5 +64,5 @@ const addressSlice = createSlice({
   },
 });
 
-export const { setAddress } = addressSlice.actions;
+export const { setAddress, setAddressChecked } = addressSlice.actions;
 export default addressSlice.reducer;

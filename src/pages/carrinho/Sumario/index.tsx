@@ -1,11 +1,13 @@
 import Typography from "@/components/Typography";
 import { AnsideSumare, DlSumare } from "./styles";
-import { ICartSlice } from "@/types/store";
+import { ICartSlice, RootState } from "@/types/store";
+import { useSelector } from "react-redux";
 
 interface IProps {
   cart: ICartSlice;
 }
 const Sumario = ({ cart }: IProps) => {
+  const { isFrete, price } = useSelector((state: RootState) => state.frete);
   return (
     <AnsideSumare>
       <Typography elementoHtml="h4" classNameTypograph="basicHendingH4">
@@ -18,8 +20,14 @@ const Sumario = ({ cart }: IProps) => {
             : `${cart.totProduct} Produtos`}
         </dt>
         <dd>R$ {cart.totValue.toFixed(2)}</dd>
+        {isFrete && (
+          <>
+            <dt>Frete</dt>
+            <dd>{`R$ ${price.toFixed(2)}`}</dd>
+          </>
+        )}
         <dt className="total">Total:</dt>
-        <dd className="total">R$ {cart.totValue.toFixed(2)}</dd>
+        <dd className="total">R$ {(isFrete ? cart.totValue + price : cart.totValue).toFixed(2)}</dd>
       </DlSumare>
     </AnsideSumare>
   );
