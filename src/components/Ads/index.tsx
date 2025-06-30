@@ -1,7 +1,7 @@
+import styled from "styled-components";
 import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
 import { FaCcAmazonPay } from "react-icons/fa";
-import styled from "styled-components";
 
 const DivAddForPay = styled.div`
   margin: 0 auto;
@@ -13,8 +13,7 @@ const DivAddForPay = styled.div`
   padding: 1rem 2rem;
   border-radius: 0.8rem;
 `;
-
-const AddForPay = () => {
+export const AdsForPay = () => {
   return (
     <DivAddForPay>
       <Typography
@@ -28,5 +27,3 @@ const AddForPay = () => {
     </DivAddForPay>
   );
 };
-
-export default AddForPay;

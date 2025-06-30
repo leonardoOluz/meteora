@@ -1,4 +1,7 @@
 import RadioSelect from "@/components/RadioSelect";
+import { AppDispatch } from "@/store";
+import { setTypePay } from "@/store/reducers/pay";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const DivCheckKindPay = styled.div`
@@ -20,10 +23,23 @@ const kindPay = [
   },
   {
     id: 3,
-    name: "pix",
+    name: "Pix",
   },
 ];
 const CheckKindPay = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Normalize value to match the union type
+    if (
+      value === "Boleto" ||
+      value === "Cartão de Crédito" ||
+      value === "Pix" ||
+      value === ""
+    ) {
+      dispatch(setTypePay(value));
+    }
+  };
   return (
     <DivCheckKindPay>
       {kindPay.map((item) => (
@@ -31,7 +47,7 @@ const CheckKindPay = () => {
           key={item.id}
           nome="pagamento"
           texto={item.name}
-          handleChange={(e) => console.log(e.target.value)}
+          handleChange={handleChange}
         />
       ))}
     </DivCheckKindPay>

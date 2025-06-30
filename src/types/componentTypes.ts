@@ -46,6 +46,7 @@ export type SectionStyleKeys =
   | "secao novidades"
   | "secao produtos buscados"
   | "secao login"
+  | "secao pagamento"
   | "secao pagina nao encontrada";
 
 export type ILista =

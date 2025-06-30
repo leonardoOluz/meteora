@@ -1,15 +1,18 @@
 import Form from "@/components/Form";
 import { DivForm, FieldsetForm, LegendForm } from "@/styles/forms";
-import { RootState } from "@/types/store";
+import { PaymentMethod, RootState } from "@/types/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CheckKindPay from "./CheckKindPay";
-import AddForPay from "./AddForPay";
-import PayForPix from "./PayForPix";
+import CheckKindPay from "./components/CheckKindPay";
+import PayForPix from "./components/PayForPix";
+import { AdsForPay } from "@/components/Ads";
+import PayForTicket from "./components/PayForTicket";
+import PayForCards from "./components/PayForCards";
 
 const PayForm = () => {
   const { addressChecked } = useSelector((state: RootState) => state.address);
+  const { method } = useSelector((state: RootState) => state.pay);
   const navigate = useNavigate();
   useEffect(() => {
     if (!addressChecked) {
@@ -27,11 +30,14 @@ const PayForm = () => {
         <LegendForm style={{ fontSize: "1.8rem" }}>
           Escolha a forma de pagamento
         </LegendForm>
-        <AddForPay />
+
+        <AdsForPay />
         <DivForm>
           <CheckKindPay />
         </DivForm>
-        <PayForPix />
+        {method === PaymentMethod.Pix && <PayForPix />}
+        {method === PaymentMethod.Boleto && <PayForTicket />}
+        {method === PaymentMethod.CartaoDeCredito && <PayForCards />}
       </FieldsetForm>
     </Form>
   );
