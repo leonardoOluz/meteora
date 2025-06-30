@@ -81,6 +81,20 @@ const secaoLogin = css`
     min-height: 83rem;
   }
 `;
+const secaoPayment = css`
+  height: 100vh;
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 3.2rem 0;
+  justify-content: center;
+  gap: 1rem;
+  background-image: linear-gradient(
+    45deg,
+    ${thema.colorsPrimary.verde},
+    ${thema.colorsPrimary.coral},
+    ${thema.colorsPrimary.roxo}
+  );
+`;
 const secaoNewsletter = css`
   padding: 2.85rem 2.65rem;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -139,6 +153,7 @@ const sectionStyles: Record<SectionStyleKeys, ReturnType<typeof css>> = {
   "secao novidades": secaoNovidades,
   "secao produtos buscados": secaoBuscar,
   "secao login": secaoLogin,
+  "secao pagamento": secaoPayment,
   "secao pagina nao encontrada": secaoNotFound,
 };
 // Componente principal de seção

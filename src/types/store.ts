@@ -52,3 +52,14 @@ export interface IFrete {
   deliveryTime: string;
   isFrete: boolean;
 }
+
+export interface IPayment {
+  method: "Pix" | "Cartão de Crédito" | "Boleto" | "";
+}
+
+export enum PaymentMethod {
+  Pix = "Pix",
+  CartaoDeCredito = "Cartão de Crédito",
+  Boleto = "Boleto",
+  Nenhum = ""
+}

@@ -9,6 +9,7 @@ import buscadorSlice from "@/store/reducers/buscador";
 import usuarioSlice from "@/store/reducers/usuario";
 import freteSlice from "@/store/reducers/frete";
 import addressSlice from "@/store/reducers/address";
+import paySlice from "@/store/reducers/pay"; 
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
     usuario: usuarioSlice,
     frete: freteSlice,
     address: addressSlice,
+    pay: paySlice
   },
 });
 

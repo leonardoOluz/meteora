@@ -41,7 +41,7 @@ const CheckoutBase = () => {
     navigate(`/checkout/address/${newRoute}`);
   };
   return (
-    <Section classNameSection="secao login">
+    <Section classNameSection="secao pagamento">
       {totCart === 0 ? (
         <CartIsEmpty />
       ) : (
