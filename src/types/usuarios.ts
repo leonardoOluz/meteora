@@ -8,8 +8,8 @@ export type Usuario = {
   id?: number;
   nome: string;
   email: string;
-  password: string;
-  verifyPassword: string;
+  password?: string;
+  verifyPassword?: string;
 };
 /* type token */
 export type Token = {

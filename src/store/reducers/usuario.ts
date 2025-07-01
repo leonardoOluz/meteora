@@ -87,7 +87,11 @@ const usuarioSlice = createSlice({
       return {
         ...state,
         isLogado: true,
-        usuario: user,
+        usuario: {
+          email: user?.email,
+          nome: user?.nome,
+          id: user?.id
+        },
       };
     },
     logout(state) {
@@ -106,10 +110,18 @@ const usuarioSlice = createSlice({
     isCheckLogin(state) {
       const token = getSessionStorage("token");
       if (token) {
-        return {
-          ...state,
-          isLogado: true,
-        };
+        const usuarios: Usuario[] = JSON.parse(getStorage("user") || "[]");
+        const user = usuarios.find((user) => user.email === token.email);
+        if (user) {
+          return {
+            isLogado: true,
+            usuario: {
+              email: user?.email,
+              nome: user?.nome,
+              id: user?.id
+            },
+          };
+        }
       }
       return {
         ...state,
