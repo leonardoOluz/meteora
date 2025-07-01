@@ -35,10 +35,10 @@ const FormRegister = () => {
   const password = watch("password");
 
   const checkPassword = {
-    minLength: (val: string) =>
-      val.length >= 6 || "O campo senha deve ter pelo menos 6 caracteres",
-    checkEmpty: (Val: string) => !!Val || "O campo senha deve ser preenchido",
-    validatePassword: (val: string) =>
+    minLength: (val: string | undefined) =>
+      (val?.length ?? 0) >= 6 || "O campo senha deve ter pelo menos 6 caracteres",
+    checkEmpty: (val: string | undefined) => !!val || "O campo senha deve ser preenchido",
+    validatePassword: (val: string | undefined) =>
       val === password || "As senhas devem ser iguais",
   };
   const checkEmail = {
@@ -68,7 +68,7 @@ const FormRegister = () => {
     }
   }, [isSubmitSuccessful, reset, user, cart, navigate]);
 
-  const submit = (data: typeof cadastro) => {
+  const submit = (data: Usuario) => {
     dispatch(createUser(data));
   };
 

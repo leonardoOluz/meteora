@@ -55,6 +55,8 @@ export interface IFrete {
 
 export interface IPayment {
   method: "Pix" | "Cartão de Crédito" | "Boleto" | "";
+  priceTot: number;
+  checkedPay: boolean;
 }
 
 export enum PaymentMethod {
