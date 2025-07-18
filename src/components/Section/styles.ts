@@ -82,7 +82,8 @@ const secaoLogin = css`
   }
 `;
 const secaoPayment = css`
-  height: 100vh;
+  min-height: 55rem;
+  height: auto;
   overflow-y: auto;
   margin: 0 auto;
   padding: 3.2rem 0;

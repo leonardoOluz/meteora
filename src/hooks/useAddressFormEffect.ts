@@ -26,7 +26,7 @@ export function useAddressFormEffect({
 
   // 1. Reset do formulário quando defaultValues mudar
     useEffect(() => {
-      console.log("Reset do formulário");
+      console.log("atualizando endereço");
       reset(address);
     }, [reset, address]);
 

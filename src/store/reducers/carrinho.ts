@@ -128,7 +128,7 @@ const carrinhoSlice = createSlice({
         };
       }
     },
-    isCartDropDown: (state, { payload }: PayloadAction<boolean>) => {
+    isCartVisible: (state, { payload }: PayloadAction<boolean>) => {
       return {
         ...state,
         isCartDropDown: payload,
@@ -137,6 +137,6 @@ const carrinhoSlice = createSlice({
   },
 });
 
-export const { addProduct, deleteProduct, updateProduct, isCartDropDown } =
+export const { addProduct, deleteProduct, updateProduct, isCartVisible } =
   carrinhoSlice.actions;
 export default carrinhoSlice.reducer;

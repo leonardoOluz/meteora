@@ -5,11 +5,13 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const DivCheckKindPay = styled.div`
-  margin: 0 auto;
-  padding: 1rem;
+  margin: 1rem auto;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: row;
   gap: 1.6rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.8rem;
   border-bottom: 2px solid ${({ theme }) => theme.colorsPrimary.cinzaChumbo};
 `;
 const kindPay = [

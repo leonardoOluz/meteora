@@ -7,14 +7,14 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 const DropDownOn = () => {
-  const cart = useSelector((state: RootState) => state.carrinho);
+  const { isCartDropDown } = useSelector((state: RootState) => state.carrinho);
   const width = useResize();
   const location = useLocation();
 
   return (
     <>
       {location.pathname !== "/carrinho" &&
-      cart.isCartDropDown &&
+      isCartDropDown &&
       width >= transformNumber(thema.breakpoints.tablet) ? (
         <CartDropDown />
       ) : null}
