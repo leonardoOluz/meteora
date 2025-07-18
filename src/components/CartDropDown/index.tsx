@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectProductCart } from "@/store/selectors/itemSelectors";
 import { useDispatch } from "react-redux";
-import { isCartDropDown } from "@/store/reducers/carrinho";
+import { isCartVisible } from "@/store/reducers/carrinho";
 
 const CartDropDown = () => {
   const cartDropDownRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ const CartDropDown = () => {
 
   useEventMouse({
     isBoolean: cart.isCartDropDown,
-    setIsBoolean: (value: boolean) => dispatch(isCartDropDown(value)),
+    setIsBoolean: (value: boolean) => dispatch(isCartVisible(value)),
     isRef: cartDropDownRef,
     eventType: "mousedown",
   });
@@ -37,7 +37,7 @@ const CartDropDown = () => {
           </Typography>
           <Botao
             classNameBtn="btnUnset"
-            onClick={() => dispatch(isCartDropDown(false))}
+            onClick={() => dispatch(isCartVisible(false))}
             title="Fechar carrinho"
           >
             <img src={btnClose} alt="" />
@@ -45,7 +45,7 @@ const CartDropDown = () => {
         </Header>
         <CartDropDownList />
         <CartDropDownSumare
-          handleDropDown={() => dispatch(isCartDropDown(false))}
+          handleDropDown={() => dispatch(isCartVisible(false))}
           totValue={cart.totValue}
         />
       </DivCartDropDown>

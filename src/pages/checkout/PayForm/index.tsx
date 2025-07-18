@@ -1,71 +1,41 @@
-import Form from "@/components/Form";
-import { DivForm, FieldsetForm, LegendForm } from "@/styles/forms";
-import { PaymentMethod, RootState } from "@/types/store";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import CheckKindPay from "./components/CheckKindPay";
-import PayForPix from "./components/PayForPix";
+import useCheckAddress from "@/hooks/useCheckAddress";
+import usePaymentConfirmed from "@/hooks/usePaymentConfirmed";
+import Typography from "@/components/Typography";
+import LoaderDualRing from "@/components/Loader";
+import { PaymentMethod, RootState } from "@/types/store";
+import { useSelector } from "react-redux";
 import { AdsForPay } from "@/components/Ads";
-import PayForCards from "./components/PayForCards";
-import BoletoSimulado from "./components/PayForTicket";
-import { getStorage, removeStorage } from "@/utils/starage";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
-import { setCheckedPay } from "@/store/reducers/pay";
+import { DivPay } from "./styles";
+import { thema } from "@/styles/thema";
+import { lazy, Suspense } from "react";
+const PayForPix = lazy(() => import("./components/PayForPix"));
+const PayForCards = lazy(() => import("./components/PayForCards"));
+const BoletoSimulado = lazy(() => import("./components/PayForTicket"));
 
 const PayForm = () => {
-  const { addressChecked } = useSelector((state: RootState) => state.address);
-  const { method, checkedPay } = useSelector((state: RootState) => state.pay);
-  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!addressChecked) {
-      navigate("/checkout/address");
-    }
-  }, [addressChecked, navigate]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const pixPay = getStorage("pagamentoConfirmado");
-      if (pixPay === "true") {
-        setIsPaymentSuccessful(JSON.parse(pixPay));
-        removeStorage("pagamentoConfirmado");
-        console.log(pixPay);
-      }
-    }, 2500);
-    return () => clearInterval(interval); // Limpa o intervalo ao desmontar
-  }, []);
-
-  useEffect(() => {
-    if (isPaymentSuccessful || checkedPay) {
-      dispatch(setCheckedPay(true));
-      navigate("/checkout/address/pay/summary");
-    }
-  }, [isPaymentSuccessful, navigate, dispatch, checkedPay]);
+  const { method } = useSelector((state: RootState) => state.pay);
+  useCheckAddress();
+  usePaymentConfirmed();
 
   return (
-    <Form
-      classForm="formAddress"
-      ariaLabel="Form de pagamento"
-      handleSubmit={(e) => e.preventDefault()}
-    >
-      <FieldsetForm>
-        <LegendForm style={{ fontSize: "1.8rem" }}>
-          Escolha a forma de pagamento
-        </LegendForm>
+    <DivPay>
+      <Typography
+        classNameTypograph="basicHeadingH2"
+        elementoHtml="h2"
+        isColor={thema.colorsPrimary.cinzaChumbo}
+      >
+        Escolha a forma de pagamento
+      </Typography>
 
-        <AdsForPay />
-        <DivForm>
-          <CheckKindPay />
-        </DivForm>
+      <AdsForPay />
+      <CheckKindPay />
+      <Suspense fallback={<LoaderDualRing />}>
         {method === PaymentMethod.Pix && <PayForPix />}
         {method === PaymentMethod.Boleto && <BoletoSimulado />}
         {method === PaymentMethod.CartaoDeCredito && <PayForCards />}
-      </FieldsetForm>
-    </Form>
+      </Suspense>
+    </DivPay>
   );
 };
 

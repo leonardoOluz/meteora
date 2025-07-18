@@ -27,7 +27,7 @@ const PayForPix = () => {
   const handleOpenPix = () => {
     const dados = { totValue, price };
     setStorage("dados-PagePayPix", JSON.stringify(dados));
-    window.open("/PagePayPix", "_blank", "width=500,height=600");
+    window.open("/PagePayPix", "_blank", "width=350,height=400");
   };
 
   return (

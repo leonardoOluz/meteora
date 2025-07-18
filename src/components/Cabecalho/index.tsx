@@ -20,6 +20,7 @@ const Cabecalho = () => {
   useEffect(() => {
     dispatch(isCheckLogin());
   }, [dispatch]);
+  
   return (
     <Header classeHeader="header">
       <HeaderDivLogoNavbar>

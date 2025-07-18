@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
-import { isCartDropDown } from "@/store/reducers/carrinho";
+import { isCartVisible } from "@/store/reducers/carrinho";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 const styleButton = { display: "flex", alignItems: "center", gap: "0.5rem" };
@@ -26,14 +26,18 @@ const HeaderProductsCart = ({
 
   const handleCartDropDown = () => {
     if (location.pathname === "/carrinho") {
-      return dispatch(isCartDropDown(false));
+      return dispatch(isCartVisible(false));
     }
     if (isOpenDropDown) {
-      dispatch(isCartDropDown(true));
+      if (carrinho.totProduct === 0) {
+        return dispatch(isCartVisible(false));
+      }
+      dispatch(isCartVisible(true));
       return setIsOpenDropDown(false);
     }
     setIsOpenDropDown(true);
   };
+
   if (cartProducts === "mobile") {
     return (
       <>

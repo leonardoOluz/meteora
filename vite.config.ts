@@ -14,13 +14,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ["react", "react-dom"],
-          redux: ["@reduxjs/toolkit", "react-redux"],
-          swiper: ["swiper"],
-        },
-      },
-    },
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        }
+      }
+    }
   },
   server: {
     host: '0.0.0.0',

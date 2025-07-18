@@ -1,7 +1,6 @@
 import store from "@/store";
 import { catPromocao, ICardProduto } from "./componentTypes";
 
-
 export type RootState = ReturnType<typeof store.getState>;
 /* interface de promocoes */
 export interface IPromocoes {
@@ -52,16 +51,20 @@ export interface IFrete {
   deliveryTime: string;
   isFrete: boolean;
 }
-
 export interface IPayment {
   method: "Pix" | "Cartão de Crédito" | "Boleto" | "";
   priceTot: number;
   checkedPay: boolean;
 }
-
+export interface ICredCard {
+  numberCard: string;
+  name: string;
+  validity: string;
+  cvv: string;
+}
 export enum PaymentMethod {
   Pix = "Pix",
   CartaoDeCredito = "Cartão de Crédito",
   Boleto = "Boleto",
-  Nenhum = ""
+  Nenhum = "",
 }
