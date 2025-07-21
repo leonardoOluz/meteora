@@ -9,6 +9,12 @@ import { MessageError } from "@/components/MessageError";
 import { useCardBrandIcon } from "@/hooks/useCardBrandIcon";
 import { FaRegCreditCard } from "react-icons/fa";
 import checkDate from "@/utils/checkDate";
+import { AppDispatch } from "@/store";
+import { useDispatch } from "react-redux";
+import { setCredCard } from "@/store/reducers/credCard";
+import { setStorage } from "@/utils/starage";
+import { useState } from "react";
+import ProcessingPayment from "@/components/ProcessingPayment";
 
 const DivGridCard = styled.div`
   padding: 1rem 0;
@@ -38,6 +44,8 @@ const PayForCards = () => {
       cvv: "",
     },
   });
+  const [loadingPayment, setLoadingPayment] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
   const watchNumberCard = watch("numberCard");
   const BrandIcon = useCardBrandIcon(watchNumberCard);
   const checkValidity = (value: string) => {
@@ -45,15 +53,21 @@ const PayForCards = () => {
       resetField("validity", { defaultValue: "" }); // Limpa o campo se a validação falhar
       setError("validity", {
         type: "required",
-        message: "Formato inválido (MM/AAAA)",
+        message: "Data de expiração inválida!",
       });
     } else {
       clearErrors("validity");
     }
   };
   const handleSubmitForm = (data: ICredCard) => {
-    console.log(data);
+    setLoadingPayment(true);
+    setTimeout(() => {
+      dispatch(setCredCard(data));
+      setStorage("pagamentoConfirmado", "true");
+    }, 2500);
   };
+
+  if (loadingPayment) return <ProcessingPayment />;
   return (
     <Form
       classForm="formAddress"

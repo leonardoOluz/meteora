@@ -9,7 +9,8 @@ import buscadorSlice from "@/store/reducers/buscador";
 import usuarioSlice from "@/store/reducers/usuario";
 import freteSlice from "@/store/reducers/frete";
 import addressSlice from "@/store/reducers/address";
-import paySlice from "@/store/reducers/pay"; 
+import paySlice from "@/store/reducers/pay";
+import credCardSlice from "@/store/reducers/credCard";
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
@@ -24,11 +25,12 @@ const store = configureStore({
     usuario: usuarioSlice,
     frete: freteSlice,
     address: addressSlice,
-    pay: paySlice
+    pay: paySlice,
+    credCard: credCardSlice,
   },
 });
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>() // Export a hook that can be reused to resolve types
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>(); // Export a hook that can be reused to resolve types
 
 export default store;

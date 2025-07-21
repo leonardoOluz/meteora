@@ -62,9 +62,18 @@ export interface ICredCard {
   validity: string;
   cvv: string;
 }
+
+/* Enum */
 export enum PaymentMethod {
   Pix = "Pix",
   CartaoDeCredito = "Cartão de Crédito",
   Boleto = "Boleto",
   Nenhum = "",
+}
+
+export enum CheckoutSteps {
+  Address = "address",
+  Payment = "pay",
+  Summary = "summary",
+  checkout = "checkout",
 }

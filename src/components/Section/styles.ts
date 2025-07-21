@@ -95,6 +95,9 @@ const secaoPayment = css`
     ${thema.colorsPrimary.coral},
     ${thema.colorsPrimary.roxo}
   );
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    min-height: 83rem;
+  }
 `;
 const secaoNewsletter = css`
   padding: 2.85rem 2.65rem;
