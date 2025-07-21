@@ -3,41 +3,31 @@ import Header from "@/components/Header";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import useArrayRoute from "@/hooks/useArrayRoute";
-import { AppDispatch } from "@/store";
-import { isCheckLogin } from "@/store/reducers/usuario";
 import { thema } from "@/styles/thema";
-import { RootState } from "@/types/store";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { CheckoutSteps, RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const pathRoute = [
   {
-    path: "address",
+    path: CheckoutSteps.Address,
     name: "Endereço",
   },
-  { path: "pay", name: "Pagamento" },
-  { path: "summary", name: "Resumo" },
+  { path: CheckoutSteps.Payment, name: "Pagamento" },
+  { path: CheckoutSteps.Summary, name: "Resumo" },
 ];
 
 const CheckoutBase = () => {
-  const navigate = useNavigate();
-  const arrayRouter = useArrayRoute();
   const totCart = useSelector((state: RootState) => state.carrinho).totProduct;
-  const isLogado = useSelector((state: RootState) => state.usuario).isLogado;
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(isCheckLogin());
-    if (!isLogado) {
-      navigate("/login");
-    }
-  }, [isLogado, navigate, dispatch]);
-
+  const arrayRouter = useArrayRoute();
+  const navigate = useNavigate();
   const handlClick = (path: string) => {
     const newRoute =
-      path === "address" ? "" : path === "pay" ? "pay" : "pay/summary";
+      path === CheckoutSteps.Address
+        ? ""
+        : path === CheckoutSteps.Payment
+        ? "pay"
+        : "pay/summary";
     navigate(`/checkout/address/${newRoute}`);
   };
   return (

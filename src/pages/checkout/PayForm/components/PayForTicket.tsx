@@ -1,10 +1,11 @@
+import ProcessingPayment from "@/components/ProcessingPayment";
 import useResize from "@/hooks/useResize";
+import transformNumber from "@/utils/transformNumber";
+import Barcode from "react-barcode";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
 import { setStorage } from "@/utils/starage";
-import transformNumber from "@/utils/transformNumber";
 import { useState } from "react";
-import Barcode from "react-barcode";
 import { useSelector } from "react-redux";
 
 const BoletoSimulado = () => {
@@ -15,11 +16,13 @@ const BoletoSimulado = () => {
   } = useSelector((state: RootState) => state.usuario);
   const [status, setStatus] = useState("Aberto");
   const [dataPagamento, setDataPagamento] = useState<string>("");
+  const [loadingPayment, setLoadingPayment] = useState(false);
 
   const simularPagamento = () => {
     setStatus("Pago");
     setDataPagamento(new Date().toLocaleDateString("pt-BR"));
     setStorage("pagamentoConfirmado", "true");
+    setLoadingPayment(true);
   };
 
   // Lógica para gerar linha digitável e código de barras fictícios
@@ -29,6 +32,7 @@ const BoletoSimulado = () => {
   const tWidth =
     useResize() < transformNumber(thema.breakpoints.tablet) ? 1 : 1.3;
 
+  if (loadingPayment) return <ProcessingPayment />;
   return (
     <div
       style={{
