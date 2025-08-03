@@ -2,8 +2,7 @@ import PageBase from "@/components/PageBase";
 import LazyLoader from "@/components/LazyLoader";
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import PagePayPix from "@/components/PagePayPix";
-
+import RequireAuth from "@/components/RequireAuth";
 const Home = lazy(() => import("@/pages/home"));
 const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
 const Categoria = lazy(() => import("@/pages/categoria"));
@@ -18,12 +17,14 @@ const CheckoutBase = lazy(() => import("@/pages/checkout"));
 const AddressForm = lazy(() => import("@/pages/checkout/AddressForm"));
 const PayForm = lazy(() => import("@/pages/checkout/PayForm"));
 const Summary = lazy(() => import("@/pages/checkout/Summary"));
+const Pedidos = lazy(() => import("@/pages/pedidos"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <PageBase />,
     children: [
+      /* Rotas públicas */
       {
         path: "",
         element: (
@@ -96,40 +97,57 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
+      /* Rotas privadas */
       {
-        path: "checkout/address",
-        element: (
-          <Suspense fallback={<LazyLoader />}>
-            <CheckoutBase />
-          </Suspense>
-        ),
+        element: <RequireAuth />,
         children: [
           {
-            path: "",
+            path: "checkout/address",
             element: (
               <Suspense fallback={<LazyLoader />}>
-                <AddressForm />
+                <CheckoutBase />
               </Suspense>
             ),
+            children: [
+              {
+                path: "",
+                element: (
+                  <Suspense fallback={<LazyLoader />}>
+                    <AddressForm />
+                  </Suspense>
+                ),
+              },
+              {
+                path: "pay",
+                element: (
+                  <Suspense fallback={<LazyLoader />}>
+                    <PayForm />
+                  </Suspense>
+                ),
+              },
+              {
+                path: "pay/summary",
+                element: (
+                  <Suspense fallback={<LazyLoader />}>
+                    <Summary />
+                  </Suspense>
+                ),
+              },
+            ],
           },
           {
-            path: "pay",
+            path: "pedidos",
             element: (
               <Suspense fallback={<LazyLoader />}>
-                <PayForm />
+                <Pedidos />
               </Suspense>
             ),
-          },
-          {
-            path: "pay/summary",
-            element: (
-              <Suspense fallback={<LazyLoader />}>
-                <Summary />
-              </Suspense>
-            ),
-          },
+          }
         ],
       },
+
+      /* Rotas não encontradas */
       {
         path: "*",
         element: (
@@ -139,13 +157,5 @@ export const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
-    path: "PagePayPix",
-    element: (
-      <Suspense fallback={<LazyLoader />}>
-        <PagePayPix />
-      </Suspense>
-    ),
   },
 ]);

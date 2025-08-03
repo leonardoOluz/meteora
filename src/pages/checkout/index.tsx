@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import useArrayRoute from "@/hooks/useArrayRoute";
+import useWatchPayConfirmed from "@/hooks/useWatchPayConfirmed";
 import { thema } from "@/styles/thema";
 import { CheckoutSteps, RootState } from "@/types/store";
 import { useSelector } from "react-redux";
@@ -10,26 +11,29 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 const pathRoute = [
   {
-    path: CheckoutSteps.Address,
+    path: CheckoutSteps.ADDRESS,
     name: "Endereço",
   },
-  { path: CheckoutSteps.Payment, name: "Pagamento" },
-  { path: CheckoutSteps.Summary, name: "Resumo" },
+  { path: CheckoutSteps.PAY, name: "Pagamento" },
+  { path: CheckoutSteps.SUMMARY, name: "Resumo" },
 ];
 
 const CheckoutBase = () => {
   const totCart = useSelector((state: RootState) => state.carrinho).totProduct;
   const arrayRouter = useArrayRoute();
   const navigate = useNavigate();
+  useWatchPayConfirmed();
   const handlClick = (path: string) => {
     const newRoute =
-      path === CheckoutSteps.Address
+      path === CheckoutSteps.ADDRESS
         ? ""
-        : path === CheckoutSteps.Payment
+        : path === CheckoutSteps.PAY
         ? "pay"
         : "pay/summary";
     navigate(`/checkout/address/${newRoute}`);
   };
+ 
+  
   return (
     <Section classNameSection="secao pagamento">
       {totCart === 0 ? (

@@ -134,9 +134,12 @@ const carrinhoSlice = createSlice({
         isCartDropDown: payload,
       };
     },
+    clearCart: () => {
+      return initialState
+    }
   },
 });
 
-export const { addProduct, deleteProduct, updateProduct, isCartVisible } =
+export const { addProduct, deleteProduct, updateProduct, isCartVisible, clearCart } =
   carrinhoSlice.actions;
 export default carrinhoSlice.reducer;

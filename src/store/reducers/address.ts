@@ -37,7 +37,12 @@ const addressSlice = createSlice({
         ...state,
         addressChecked: true,
       };
-    }
+    },
+    clearAddress: () => {
+      return {
+        ...initialState,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(searchAddress.pending, () => {
@@ -64,5 +69,5 @@ const addressSlice = createSlice({
   },
 });
 
-export const { setAddress, setAddressChecked } = addressSlice.actions;
+export const { setAddress, setAddressChecked, clearAddress } = addressSlice.actions;
 export default addressSlice.reducer;

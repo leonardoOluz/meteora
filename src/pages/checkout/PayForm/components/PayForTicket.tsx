@@ -1,12 +1,14 @@
-import ProcessingPayment from "@/components/ProcessingPayment";
 import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import Barcode from "react-barcode";
 import { thema } from "@/styles/thema";
 import { RootState } from "@/types/store";
-import { setStorage } from "@/utils/starage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { setCheckedPay } from "@/store/reducers/pay";
+import { useNavigate } from "react-router-dom";
 
 const BoletoSimulado = () => {
   const { totValue } = useSelector((state: RootState) => state.carrinho);
@@ -16,13 +18,16 @@ const BoletoSimulado = () => {
   } = useSelector((state: RootState) => state.usuario);
   const [status, setStatus] = useState("Aberto");
   const [dataPagamento, setDataPagamento] = useState<string>("");
-  const [loadingPayment, setLoadingPayment] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const simularPagamento = () => {
     setStatus("Pago");
     setDataPagamento(new Date().toLocaleDateString("pt-BR"));
-    setStorage("pagamentoConfirmado", "true");
-    setLoadingPayment(true);
+    setTimeout(() => {
+      dispatch(setCheckedPay(true));
+      navigate("/checkout/address/pay/summary");
+    }, 1500);
   };
 
   // Lógica para gerar linha digitável e código de barras fictícios
@@ -31,8 +36,6 @@ const BoletoSimulado = () => {
   const codigoBarrasFicticio = "00190000000000000000000000000000000000000000"; // Usado pelo componente de barcode
   const tWidth =
     useResize() < transformNumber(thema.breakpoints.tablet) ? 1 : 1.3;
-
-  if (loadingPayment) return <ProcessingPayment />;
   return (
     <div
       style={{

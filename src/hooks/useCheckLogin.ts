@@ -11,7 +11,6 @@ const useCheckLogin = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
-  const pathCheckout = `/${CheckoutSteps.checkout}/${CheckoutSteps.Address}`;
 
   useEffect(() => {
     if (!isLogado) {
@@ -20,10 +19,17 @@ const useCheckLogin = () => {
   }, [dispatch, isLogado]);
 
   useEffect(() => {
-    if (!isLogado && location.pathname === pathCheckout) {
+    const privatePrefixes = [
+      `/${CheckoutSteps.CHECKOUT}`,
+      `/${CheckoutSteps.PEDIDOS}`,
+    ];
+    if (
+      !isLogado &&
+      privatePrefixes.some((prefix) => location.pathname.startsWith(prefix))
+    ) {
       navigate("/login");
     }
-  }, [isLogado, navigate, location.pathname, pathCheckout]);
+  }, [isLogado, navigate, location.pathname]);
 };
 
 export default useCheckLogin;

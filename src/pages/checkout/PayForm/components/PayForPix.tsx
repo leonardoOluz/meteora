@@ -1,11 +1,14 @@
 import Botao from "@/components/Botao";
 import ProcessingPayment from "@/components/ProcessingPayment";
 import Typography from "@/components/Typography";
+import { AppDispatch } from "@/store";
+import { setCheckedPay } from "@/store/reducers/pay";
 import { RootState } from "@/types/store";
-import { setStorage } from "@/utils/starage";
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const DivForPix = styled.div`
@@ -20,18 +23,21 @@ const PayForPix = () => {
   const { totValue } = useSelector((state: RootState) => state.carrinho);
   const { price } = useSelector((state: RootState) => state.frete);
   const [currentUrl, setCurrentUrl] = useState<string>("");
- const [loadingPayment, setLoadingPayment] = useState(false);
-
+  const [loadingPayment, setLoadingPayment] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   useEffect(() => {
     setCurrentUrl(window.location.origin);
   }, []);
 
   const handleOpenPix = () => {
-    const dados = { totValue, price };
-    setStorage("dados-PagePayPix", JSON.stringify(dados));
-    window.open("/PagePayPix", "_blank", "width=350,height=400");
     setLoadingPayment(true);
+    setTimeout(() => {
+      dispatch(setCheckedPay(true));
+      navigate("/checkout/address/pay/summary");
+    }, 1500);
   };
+  
   if (loadingPayment) return <ProcessingPayment />;
   return (
     <DivForPix>
