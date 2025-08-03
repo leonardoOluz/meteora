@@ -43,7 +43,6 @@ const AddressForm = () => {
     dispatch(searchAddress(cep.replace(/-/g, "")));
   };
   const handleDateSubmit = (data: IFormInputEndereco) => {
-    console.log("Dados do endereço:", data);
     dispatch(setAddress(data));
     dispatch(setAddressChecked());
   };

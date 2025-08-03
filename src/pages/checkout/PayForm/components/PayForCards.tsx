@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Botao from "@/components/Botao";
 import Form from "@/components/Form";
+import checkDate from "@/utils/checkDate";
+import ProcessingPayment from "@/components/ProcessingPayment";
 import { Input, InputMask } from "@/components/InputMask";
 import { DivForm, FieldsetForm, LabelForm, LegendForm } from "@/styles/forms";
 import { Controller, useForm } from "react-hook-form";
@@ -8,13 +10,12 @@ import { ICredCard } from "@/types/store";
 import { MessageError } from "@/components/MessageError";
 import { useCardBrandIcon } from "@/hooks/useCardBrandIcon";
 import { FaRegCreditCard } from "react-icons/fa";
-import checkDate from "@/utils/checkDate";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { setCredCard } from "@/store/reducers/credCard";
-import { setStorage } from "@/utils/starage";
 import { useState } from "react";
-import ProcessingPayment from "@/components/ProcessingPayment";
+import { setCheckedPay } from "@/store/reducers/pay";
+import { useNavigate } from "react-router-dom";
 
 const DivGridCard = styled.div`
   padding: 1rem 0;
@@ -48,6 +49,7 @@ const PayForCards = () => {
   const dispatch = useDispatch<AppDispatch>();
   const watchNumberCard = watch("numberCard");
   const BrandIcon = useCardBrandIcon(watchNumberCard);
+  const navigate = useNavigate();
   const checkValidity = (value: string) => {
     if (!checkDate(value)) {
       resetField("validity", { defaultValue: "" }); // Limpa o campo se a validação falhar
@@ -63,7 +65,8 @@ const PayForCards = () => {
     setLoadingPayment(true);
     setTimeout(() => {
       dispatch(setCredCard(data));
-      setStorage("pagamentoConfirmado", "true");
+      dispatch(setCheckedPay(true));
+      navigate("/checkout/address/pay/summary");
     }, 2500);
   };
 
@@ -204,6 +207,7 @@ const PayForCards = () => {
                   placeholder="000"
                   id="cvv-Card"
                   title="codigo de segurança"
+                  required
                   onChange={(e) => field.onChange(e.target.value)}
                   value={field.value}
                   $error={!!errors.cvv}

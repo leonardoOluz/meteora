@@ -11,6 +11,7 @@ import freteSlice from "@/store/reducers/frete";
 import addressSlice from "@/store/reducers/address";
 import paySlice from "@/store/reducers/pay";
 import credCardSlice from "@/store/reducers/credCard";
+import pedidosSlice from "@/store/reducers/pedidos";
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
@@ -27,6 +28,7 @@ const store = configureStore({
     address: addressSlice,
     pay: paySlice,
     credCard: credCardSlice,
+    pedidos: pedidosSlice,
   },
 });
 

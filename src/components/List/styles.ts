@@ -84,6 +84,16 @@ const listNossasLojas = css`
   }
 `;
 
+const listSummary = css`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 0;
+  }
+`;
+
 const classLists = {
   listaCategorias,
   listaFelicidades,
@@ -92,6 +102,7 @@ const classLists = {
   listSelectedModal,
   listPromocoes,
   listNossasLojas,
+  listSummary,
 };
 
 export const ListaStyle = styled.ul<{

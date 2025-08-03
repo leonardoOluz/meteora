@@ -1,6 +1,4 @@
 import CheckKindPay from "./components/CheckKindPay";
-import useCheckAddress from "@/hooks/useCheckAddress";
-import usePaymentConfirmed from "@/hooks/usePaymentConfirmed";
 import Typography from "@/components/Typography";
 import LoaderDualRing from "@/components/Loader";
 import { PaymentMethod, RootState } from "@/types/store";
@@ -9,15 +7,15 @@ import { AdsForPay } from "@/components/Ads";
 import { DivPay } from "./styles";
 import { thema } from "@/styles/thema";
 import { lazy, Suspense } from "react";
+import useCheckAddress from "@/hooks/useCheckAddress";
 const PayForPix = lazy(() => import("./components/PayForPix"));
 const PayForCards = lazy(() => import("./components/PayForCards"));
 const BoletoSimulado = lazy(() => import("./components/PayForTicket"));
 
 const PayForm = () => {
   const { method } = useSelector((state: RootState) => state.pay);
-  useCheckAddress();
-  usePaymentConfirmed();
-
+   useCheckAddress();
+   
   return (
     <DivPay>
       <Typography

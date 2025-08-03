@@ -1,5 +1,6 @@
 import store from "@/store";
 import { catPromocao, ICardProduto } from "./componentTypes";
+import { IFormInputEndereco } from "./checkout";
 
 export type RootState = ReturnType<typeof store.getState>;
 /* interface de promocoes */
@@ -53,7 +54,6 @@ export interface IFrete {
 }
 export interface IPayment {
   method: "Pix" | "Cartão de Crédito" | "Boleto" | "";
-  priceTot: number;
   checkedPay: boolean;
 }
 export interface ICredCard {
@@ -72,8 +72,21 @@ export enum PaymentMethod {
 }
 
 export enum CheckoutSteps {
-  Address = "address",
-  Payment = "pay",
-  Summary = "summary",
-  checkout = "checkout",
+  ADDRESS = "address",
+  PAY = "pay",
+  SUMMARY = "summary",
+  CHECKOUT = "checkout",
+  PEDIDOS = "pedidos",
+}
+
+/* IPedido */
+
+export interface IPedido {
+  id?: string;
+  status: "pendente" | "concluido" | "cancelado";
+  date: ICart[];
+  totValue: number;
+  frete: IFrete;
+  payment: IPayment;
+  address: IFormInputEndereco;
 }

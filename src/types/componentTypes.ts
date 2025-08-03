@@ -56,7 +56,8 @@ export type ILista =
   | "listaCarrinho"
   | "listSelectedModal"
   | "listPromocoes"
-  | "listNossasLojas";
+  | "listNossasLojas"
+  | "listSummary";
 
 export type IHeader = "header" | "headerModal" | "headerDropDown" | "headerCheckout";
 export type FormClass = "formBasic" | "formSelectedModal" | "formAddress" | "formProductModal";

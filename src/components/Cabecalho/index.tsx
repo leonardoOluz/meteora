@@ -10,8 +10,10 @@ import DropDownOn from "./components/DropDownOn";
 import FormSearchProducts from "./components/FormSearchProducts";
 import BtnLogar from "../BtnLogar";
 import HeaderProductsCart from "./components/HeaderProductsCart";
+import useCheckLogin from "@/hooks/useCheckLogin";
 
 const Cabecalho = () => {
+  useCheckLogin();
   return (
     <Header classeHeader="header">
       <HeaderDivLogoNavbar>
