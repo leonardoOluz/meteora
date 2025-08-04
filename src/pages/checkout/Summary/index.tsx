@@ -11,10 +11,6 @@ import Botao from "@/components/Botao";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { addPedido } from "@/store/reducers/pedidos";
-import { clearCart } from "@/store/reducers/carrinho";
-import { clearAddress } from "@/store/reducers/address";
-import { resetFrete } from "@/store/reducers/frete";
-import { clearPay } from "@/store/reducers/pay";
 import { useNavigate } from "react-router-dom";
 const Summary = () => {
   usePaymentConfirmed();
@@ -39,10 +35,6 @@ const Summary = () => {
       })
     );
     navigate("/pedidos");
-    dispatch(clearAddress());
-    dispatch(resetFrete());
-    dispatch(clearPay());
-    dispatch(clearCart());
   };
 
   return (
