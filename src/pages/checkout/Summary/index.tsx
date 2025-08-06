@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { addPedido } from "@/store/reducers/pedidos";
 import { useNavigate } from "react-router-dom";
+import useCleanStatus from "@/hooks/useCleanStatus";
 const Summary = () => {
   usePaymentConfirmed();
   const card = useSelector((state: RootState) => {
@@ -23,6 +24,7 @@ const Summary = () => {
   const pay = useSelector((state: RootState) => state.pay);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const clearStatus = useCleanStatus();
   const handlefinalizePurchase = () => {
     dispatch(
       addPedido({
@@ -35,6 +37,7 @@ const Summary = () => {
       })
     );
     navigate("/pedidos");
+    clearStatus();
   };
 
   return (

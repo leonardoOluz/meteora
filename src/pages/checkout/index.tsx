@@ -37,7 +37,7 @@ const CheckoutBase = () => {
   return (
     <Section classNameSection="secao pagamento">
       {totCart === 0 ? (
-        <CartIsEmpty />
+        <CartIsEmpty emptyType="cart"/>
       ) : (
         <>
           <Header classeHeader="headerCheckout">

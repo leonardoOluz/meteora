@@ -16,6 +16,7 @@ const routes = {
   nossasLojas: "/nossas-lojas",
   novidades: "/novidades",
   promocoes: "/promocoes",
+  pedidos: "/pedidos",
 };
 const getLink = (route: string, name: string, onClick?: () => void) => (
   <ItemLink onClick={onClick}>
@@ -52,7 +53,10 @@ const Navbar = () => {
           {getLink(routes.promocoes, "Promoções")}
           {!user.isLogado && <SubscribeButton />}
           {width < transformNumber(thema.breakpoints.tablet) ? (
-            <LoginButton />
+            <>
+              {user.isLogado && getLink(routes.pedidos, "Pedidos")}
+              <LoginButton />
+            </>
           ) : (
             <></>
           )}

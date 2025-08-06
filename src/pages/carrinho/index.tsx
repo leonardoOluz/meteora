@@ -36,7 +36,7 @@ const Carrinho = () => {
   return (
     <Section classNameSection="secao carrinho">
       {cart.totProduct === 0 ? (
-        <CartIsEmpty />
+        <CartIsEmpty emptyType="cart"/>
       ) : (
         <>
           <Banner typeBanner="bannerCart" />
