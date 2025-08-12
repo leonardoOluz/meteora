@@ -35,3 +35,10 @@ export const selectProductForSearch = createSelector(
     );
   }
 );
+export const selectProductForFavorite = createSelector(
+  [selectStoreState],
+  (state) => {
+    return state.produtos.filter((item) =>
+      state.favorito.some((itemFav) => itemFav.idProduct === item.id)
+    );
+  })

@@ -1,11 +1,11 @@
 import store from "@/store";
-import { catPromocao, ICardProduto } from "./componentTypes";
+import { CatPromocao, ProductCard } from "./componentTypes";
 import { IFormInputEndereco } from "./checkout";
 
 export type RootState = ReturnType<typeof store.getState>;
 /* interface de promocoes */
 export interface IPromocoes {
-  catPromocao: catPromocao;
+  catPromocao: CatPromocao;
   productId: number[];
 }
 /* interface de carrinho */
@@ -42,7 +42,7 @@ export type UpdateProduct = {
 };
 /* type de selectors */
 export type KeysIProductString = Extract<
-  keyof ICardProduto,
+  keyof ProductCard,
   "titulo" | "categoria" | "descricao"
 >;
 /* IFrete */
@@ -90,3 +90,9 @@ export interface IPedido {
   payment: IPayment;
   address: IFormInputEndereco;
 }
+
+/* IFavorito */
+export type Favorite = {
+  idProduct: number;
+  id?: string;
+};

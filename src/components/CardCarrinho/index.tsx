@@ -1,4 +1,4 @@
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import {
   ArtCardCart,
   ArtCardCartDropDown,
@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 
 interface IProps {
-  card: ICardProduto;
+  card: ProductCard;
   cartSuspensa?: boolean;
   totQuanty: number;
 }

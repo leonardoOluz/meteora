@@ -33,6 +33,9 @@ export const HeaderFormSearch = styled.form`
   justify-content: center;
   ${headerStyles}
   gap: 0.82rem;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-wrap: nowrap;
+  }
 `;
 export const HeaderDivFormBtns = styled.div`
   display: flex;

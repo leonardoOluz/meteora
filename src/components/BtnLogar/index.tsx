@@ -5,7 +5,7 @@ import styled from "styled-components";
 import useResize from "@/hooks/useResize";
 import transformNumber from "@/utils/transformNumber";
 import { thema } from "@/styles/thema";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RootState } from "@/types/store";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/store/reducers/usuario";
@@ -41,26 +41,19 @@ const BtnLogar = () => {
   return (
     <>
       {width >= transformNumber(thema.breakpoints.tablet) && (
-        <>
-          <Botao
-            classNameBtn="btnUnset"
-            onClick={handleLogout}
-            style={iconsStyles}
-            title={user.isLogado ? "Clique para sair" : "Entrar ou criar conta"}
-          >
-            <SpanBtn>{user.isLogado ? "Sair" : "Entrar"}</SpanBtn>
-            {user.isLogado ? (
-              <CiLogout {...iconsProps} size={15} />
-            ) : (
-              <CiLogin {...iconsProps} size={15} />
-            )}
-          </Botao>
+        <Botao
+          classNameBtn="btnUnset"
+          onClick={handleLogout}
+          style={iconsStyles}
+          title={user.isLogado ? "Clique para sair" : "Entrar ou criar conta"}
+        >
+          <SpanBtn>{user.isLogado ? "Sair" : "Entrar"}</SpanBtn>
           {user.isLogado ? (
-            <Link to="/pedidos" style={{ color: "#fff", textDecoration: "none", fontSize: "1.4rem" }}>
-              Meus Pedidos
-            </Link>
-          ) : null}
-        </>
+            <CiLogout {...iconsProps} size={15} />
+          ) : (
+            <CiLogin {...iconsProps} size={15} />
+          )}
+        </Botao>
       )}
     </>
   );

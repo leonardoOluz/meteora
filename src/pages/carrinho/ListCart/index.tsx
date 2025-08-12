@@ -1,10 +1,10 @@
 import CardCarrinho from "@/components/CardCarrinho";
 import List from "@/components/List";
 import ItemList from "@/components/List/ItemList";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import { ICartSlice } from "@/types/store";
 interface IListCart {
-  cartProduct: ICardProduto[];
+  cartProduct: ProductCard[];
   cart: ICartSlice;
 }
 const ListCart = ({ cart, cartProduct }: IListCart) => {

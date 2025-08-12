@@ -8,7 +8,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Botao from "@/components/Botao";
 import { useDispatch } from "react-redux";
 import { updateProduct } from "@/store/reducers/carrinho";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import { useRef } from "react";
 import useEventMouse from "@/hooks/useEventMouse";
 import useEventFocusKeydown from "@/hooks/useEventFocusKeydown";
@@ -22,7 +22,7 @@ interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   details: IDetails[];
   handleClose: () => void;
   setModalDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  card: ICardProduto;
+  card: ProductCard;
   isModalDetailsOpen: boolean;
 }
 

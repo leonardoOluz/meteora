@@ -1,6 +1,6 @@
 import Photo from "@/components/Photo";
 import useSetImagens from "@/hooks/useSetImagens";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import styled from "styled-components";
 
 const Figure = styled.figure`
@@ -10,7 +10,7 @@ const Figure = styled.figure`
 `;
 
 interface FigureCardProps extends React.HTMLAttributes<HTMLElement> {
-  card: ICardProduto;
+  card: ProductCard;
 }
 const FigureCard = ({ card, children, ...rest }: FigureCardProps) => {
   const { imagensCardProdutos } = useSetImagens();

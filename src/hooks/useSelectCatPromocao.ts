@@ -1,4 +1,4 @@
-import { IKeyIdProduct } from "@/types/componentTypes";
+import { KeyIdProduct } from "@/types/componentTypes";
 import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import useFindSearchPromo from "./useFindSearchPromo";
@@ -8,7 +8,7 @@ const useSelectCatPromocao = () => {
   const promocoes = useSelector((state: RootState) => state.promocoes);
   const findSearchPromo = useFindSearchPromo();
   const checkPromocao = useCallback(
-    (cardId: IKeyIdProduct): number | undefined => {
+    (cardId: KeyIdProduct): number | undefined => {
       return findSearchPromo(cardId, promocoes);
     },
     [findSearchPromo, promocoes]
