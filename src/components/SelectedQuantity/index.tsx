@@ -3,7 +3,7 @@ import Botao from "../Botao";
 import { DivBtnsSelected, DivSelectedQuantity } from "./styles";
 import Typography from "../Typography";
 import ModalProduto from "../ModalProduto";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { selectDetailsTheCartForProduct } from "@/store/selectors/itemSelectors";
@@ -11,7 +11,7 @@ import ModalSelectedDetails from "./ModalSelectedDetails";
 interface IProps {
   isDropDown?: boolean;
   totProduct?: number;
-  card: ICardProduto;
+  card: ProductCard;
 }
 const SelectedQuantity = ({ isDropDown, totProduct, card }: IProps) => {
   const [modalOpen, setModalOpen] = useState(false);

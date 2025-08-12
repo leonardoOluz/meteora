@@ -2,11 +2,11 @@ import Photo from "@/components/Photo";
 import useCheckPrice from "@/hooks/useCheckPrice";
 import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
 import useSetImagens from "@/hooks/useSetImagens";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import * as S from "./styles";
 import ItemList from "@/components/List/ItemList";
 interface ItensProductSummaryProps {
-  itemCard: ICardProduto;
+  itemCard: ProductCard;
   totQuanty: number;
 }
 const SummaryItensProduct = ({

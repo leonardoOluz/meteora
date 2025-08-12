@@ -1,5 +1,5 @@
 import { thema } from "@/styles/thema";
-import { catPromocao } from "@/types/componentTypes";
+import { CatPromocao } from "@/types/componentTypes";
 const objIsColor = {
   "0.15": thema.colorsPrimary.laranja,
   "0.2": thema.colorsPrimary.coral,
@@ -14,7 +14,7 @@ const objIsColor = {
 };
 
 const useSelectColorPromo = () => {
-  const handleIsValuePromoIsColor = (valuePromo: catPromocao) => {
+  const handleIsValuePromoIsColor = (valuePromo: CatPromocao) => {
     const valuePromoString = valuePromo.toString();
     return objIsColor[valuePromoString as keyof typeof objIsColor];
   };

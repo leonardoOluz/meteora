@@ -1,8 +1,8 @@
 import PageBase from "@/components/PageBase";
 import LazyLoader from "@/components/LazyLoader";
+import RequireAuth from "@/components/RequireAuth";
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import RequireAuth from "@/components/RequireAuth";
 const Home = lazy(() => import("@/pages/home"));
 const NossasLojas = lazy(() => import("@/pages/nossasLojas"));
 const Categoria = lazy(() => import("@/pages/categoria"));
@@ -18,7 +18,7 @@ const AddressForm = lazy(() => import("@/pages/checkout/AddressForm"));
 const PayForm = lazy(() => import("@/pages/checkout/PayForm"));
 const Summary = lazy(() => import("@/pages/checkout/Summary"));
 const Pedidos = lazy(() => import("@/pages/pedidos"));
-
+const Favorite = lazy(() => import("@/pages/favorite"));
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -143,7 +143,15 @@ export const router = createBrowserRouter([
                 <Pedidos />
               </Suspense>
             ),
-          }
+          },
+          {
+            path: "favoritos",
+            element: (
+              <Suspense fallback={<LazyLoader />}>
+                <Favorite />
+              </Suspense>
+            ),
+          },
         ],
       },
 

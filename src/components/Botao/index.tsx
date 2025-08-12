@@ -1,9 +1,9 @@
-import { IButton } from "@/types/componentTypes";
+import { ButtonClass } from "@/types/componentTypes";
 import { BtnStyle } from "./styles";
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  classNameBtn: IButton;
+  classNameBtn: ButtonClass;
 }
 const Botao = ({ children, classNameBtn, ...rest }: IProps) => {
   return (

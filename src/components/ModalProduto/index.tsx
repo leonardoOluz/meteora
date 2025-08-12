@@ -5,7 +5,7 @@ import {
   ContainerModal,
 } from "./styles";
 import Photo from "../Photo";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import useSetImagens from "@/hooks/useSetImagens";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -27,7 +27,7 @@ interface IProps {
   handleClose: () => void;
   isSetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
-  card: ICardProduto;
+  card: ProductCard;
 }
 
 const ModalProduto = ({ handleClose, isOpen, card, isSetOpen }: IProps) => {

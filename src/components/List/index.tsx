@@ -1,8 +1,8 @@
-import { ILista } from "@/types/componentTypes";
+import { CategoryList } from "@/types/componentTypes";
 import { ListaStyle } from "./styles";
 
 interface IProps extends React.HTMLAttributes<HTMLUListElement> {
-  classeLista: ILista;
+  classeLista: CategoryList;
 }
 
 const List = ({ children, classeLista: classe, ...rest }: IProps) => {

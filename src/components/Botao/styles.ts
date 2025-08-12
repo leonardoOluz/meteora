@@ -1,4 +1,4 @@
-import { IButton } from "@/types/componentTypes";
+import { ButtonClass } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 /* Estilos dos botões */
@@ -75,7 +75,7 @@ const classBtns = {
   btnModalClose,
 };
 export const BtnStyle = styled.button<{
-  $classNameBtn: IButton;
+  $classNameBtn: ButtonClass;
 }>`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   transition: transform 200ms ease-in-out;

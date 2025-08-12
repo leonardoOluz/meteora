@@ -1,5 +1,5 @@
 import { basicParagraphSmallBold } from "@/styles/stylesGlobal";
-import { ILista } from "@/types/componentTypes";
+import { CategoryList } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 const listaCategorias = css`
@@ -106,7 +106,7 @@ const classLists = {
 };
 
 export const ListaStyle = styled.ul<{
-  $classe: ILista;
+  $classe: CategoryList;
 }>`
   ${({ $classe }) => classLists[$classe]}
 `;

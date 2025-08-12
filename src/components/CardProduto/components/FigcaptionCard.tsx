@@ -1,6 +1,6 @@
 import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import styled from "styled-components";
 
 const Figcaption = styled.figcaption`
@@ -8,7 +8,7 @@ const Figcaption = styled.figcaption`
 `;
 
 interface IFigcaptionCardProps extends React.HTMLAttributes<HTMLElement> {
-  card: ICardProduto;
+  card: ProductCard;
 }
 const FigcaptionCard = ({card, ...rest}: IFigcaptionCardProps) => {
   return (

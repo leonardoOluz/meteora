@@ -49,7 +49,7 @@ export type SectionStyleKeys =
   | "secao pagamento"
   | "secao pagina nao encontrada";
 
-export type ILista =
+export type CategoryList =
   | "listaCategorias"
   | "listaFelicidades"
   | "listaProdutos"
@@ -59,25 +59,25 @@ export type ILista =
   | "listNossasLojas"
   | "listSummary";
 
-export type IHeader = "header" | "headerModal" | "headerDropDown" | "headerCheckout";
+export type HeaderClass = "header" | "headerModal" | "headerDropDown" | "headerCheckout";
 export type FormClass = "formBasic" | "formSelectedModal" | "formAddress" | "formProductModal";
-export type IButton =
+export type ButtonClass =
   | "btnPrimary"
   | "btnSecundary"
   | "btnTerciario"
   | "btnQuarciario"
   | "btnUnset"
   | "btnModalClose";
-export type ICardProduto = (typeof produtos.produtos)[0];
-export type IKeyIdProduct = (typeof produtos.produtos)[0] extends {
+export type ProductCard = (typeof produtos.produtos)[0];
+export type KeyIdProduct = (typeof produtos.produtos)[0] extends {
   id: infer U;
 }
   ? U
   : never;
-export type ICardBanner = (typeof banner.banner)[0];
-export type ICardCategoria = (typeof categorias.categorias)[0];
-export type ICardFacilidades = (typeof facilidades.facilidades)[0];
-export type catPromocao =
+export type CardBanner = (typeof banner.banner)[0];
+export type CardCategoria = (typeof categorias.categorias)[0];
+export type CardFacilidades = (typeof facilidades.facilidades)[0];
+export type CatPromocao =
   | 0.15
   | 0.2
   | 0.25

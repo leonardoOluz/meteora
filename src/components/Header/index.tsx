@@ -1,9 +1,9 @@
 import { HeaderStyle } from "./styles";
-import { IHeader } from "@/types/componentTypes";
+import { HeaderClass } from "@/types/componentTypes";
 
 interface IProps {
   children: React.ReactNode;
-  classeHeader: IHeader;
+  classeHeader: HeaderClass;
 }
 
 const Header = ({ children, classeHeader: classe }: IProps) => {

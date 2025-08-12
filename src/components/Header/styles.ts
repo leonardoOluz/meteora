@@ -1,4 +1,4 @@
-import { IHeader } from "@/types/componentTypes";
+import { HeaderClass } from "@/types/componentTypes";
 import styled, { css } from "styled-components";
 
 const header = css`
@@ -13,6 +13,7 @@ const header = css`
     padding: 1rem;
     flex-direction: row;
     justify-content: space-around;
+    gap: 1rem;
   }
 `;
 const headerModal = css`
@@ -42,7 +43,7 @@ const hedersType = {
   headerCheckout,
 };
 export const HeaderStyle = styled.header<{
-  $classHeader: IHeader;
+  $classHeader: HeaderClass;
 }>`
   ${({ $classHeader }) => hedersType[$classHeader]}
 `;

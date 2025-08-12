@@ -1,10 +1,10 @@
 import ModalProduto from "@/components/ModalProduto";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import { createPortal } from "react-dom";
 interface CkeckModalProps {
   modalOpen: boolean;
   openModalProduto: () => void;
-  card: ICardProduto;
+  card: ProductCard;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const CheckModal = ({

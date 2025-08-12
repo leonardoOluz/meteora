@@ -1,4 +1,4 @@
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import {
   CardPedido,
   CardPedidoContent,
@@ -12,7 +12,7 @@ import Typography from "@/components/Typography";
 import { thema } from "@/styles/thema";
 
 interface PedidosCardProps {
-  product: ICardProduto;
+  product: ProductCard;
   pedido: IPedido;
 }
 const PedidosCard = ({ product, pedido }: PedidosCardProps) => {

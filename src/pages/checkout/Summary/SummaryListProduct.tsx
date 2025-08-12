@@ -1,10 +1,10 @@
 import List from "@/components/List";
-import { ICardProduto } from "@/types/componentTypes";
+import { ProductCard } from "@/types/componentTypes";
 import SummaryItensProduct from "./SummaryItensProduct";
 import { ICartSlice } from "@/types/store";
 
 interface ItensProductSummaryProps {
-  card: ICardProduto[];
+  card: ProductCard[];
   cart: ICartSlice;
 }
 const SummaryListProduct = ({ card, cart }: ItensProductSummaryProps) => {
