@@ -77,6 +77,7 @@ export enum CheckoutSteps {
   SUMMARY = "summary",
   CHECKOUT = "checkout",
   PEDIDOS = "pedidos",
+  FAVORITOS = "favoritos",
 }
 
 /* IPedido */

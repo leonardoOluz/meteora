@@ -21,7 +21,8 @@ const useCheckLogin = () => {
   useEffect(() => {
     const privatePrefixes = [
       `/${CheckoutSteps.CHECKOUT}`,
-      `/${CheckoutSteps.PEDIDOS}`,
+      `/${CheckoutSteps.PEDIDOS}`,      
+      `/${CheckoutSteps.FAVORITOS}`,      
     ];
     if (
       !isLogado &&

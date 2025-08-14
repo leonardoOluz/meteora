@@ -1,29 +1,36 @@
-import { thema } from "@/styles/thema";
 import Typography from "../Typography";
-import { DivCartIsEmpty } from "./styles";
-import { PiShoppingCartSimple } from "react-icons/pi";
 import Botao from "../Botao";
+import IconEmpty from "./IconEmpty";
+import { thema } from "@/styles/thema";
+import { DivCartIsEmpty } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { IoBagHandleSharp } from "react-icons/io5";
 
 interface CartIsEmptyProps {
-  emptyType: "cart" | "order";
+  emptyType: "cart" | "order" | "favorite";
 }
 const CartIsEmpty = ({ emptyType }: CartIsEmptyProps) => {
   const navigate = useNavigate();
-  const title = emptyType === "cart" ? "Seu Carrinho Está Vazio" : "Nenhum Pedido Encontrado";
-  const description = emptyType === "cart"
-    ? "Parece que você ainda não adicionou nenhum item ao seu carrinho."
-    : "Nenhum pedido foi encontrado.";
+  let title = "";
+  let description = "";
 
+  switch (emptyType) {
+    case "cart":
+      title = "Seu Carrinho Está Vazio";
+      description =
+        "Parece que você ainda não adicionou nenhum item ao seu carrinho.";
+      break;
+    case "order":
+      title = "Nenhum Pedido Encontrado";
+      description = "Nenhum pedido foi encontrado.";
+      break;
+    case "favorite":
+      title = "Nenhum Produto Favoritado";
+      description = "Você ainda não adicionou nenhum produto aos favoritos.";
+      break;
+  }
   return (
     <DivCartIsEmpty>
-      {emptyType === "cart" ? (
-        <PiShoppingCartSimple size={150} color={thema.colorsPrimary.cinzaChumbo}/>
-      ) : (
-        <IoBagHandleSharp size={150} color={thema.colorsPrimary.cinzaChumbo} />
-      )}
-
+      <IconEmpty emptyType={emptyType} />
       <Typography
         classNameTypograph="basicHeadingH2"
         elementoHtml="h2"
