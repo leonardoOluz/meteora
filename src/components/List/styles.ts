@@ -7,7 +7,7 @@ const listaCategorias = css`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
+  gap: 1rem;
 
   @media screen and (min-width: 981px) {
     flex-wrap: nowrap;
