@@ -1,6 +1,6 @@
 import { IPayment } from "@/types/store";
+import { showSuccessNotification } from "@/utils/showSuccessNotification";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
 const initialState: IPayment = {
   method: "",
@@ -21,12 +21,7 @@ const paySlice = createSlice({
       state,
       { payload }: PayloadAction<IPayment["checkedPay"]>
     ) => {
-      toast.success("Pagamento realizado com sucesso", {
-        autoClose: 1000,
-        hideProgressBar: true,
-        theme: "colored",
-      });
-
+      showSuccessNotification("Pagamento realizado com sucesso");
       return {
         ...state,
         checkedPay: payload,

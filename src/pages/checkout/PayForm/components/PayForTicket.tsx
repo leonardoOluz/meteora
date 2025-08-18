@@ -13,9 +13,7 @@ import { useNavigate } from "react-router-dom";
 const BoletoSimulado = () => {
   const { totValue } = useSelector((state: RootState) => state.carrinho);
   const { price } = useSelector((state: RootState) => state.frete);
-  const {
-    usuario: { nome },
-  } = useSelector((state: RootState) => state.usuario);
+  const { nome } = useSelector((state: RootState) => state.usuario);
   const [status, setStatus] = useState("Aberto");
   const [dataPagamento, setDataPagamento] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();

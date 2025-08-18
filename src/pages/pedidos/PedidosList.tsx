@@ -18,6 +18,7 @@ const PedidosList = () => {
           <CardPedidoItem>
             {pedido.date.map((date) => (
               <PedidosCard
+                key={date.id}
                 product={products.find((prod) => prod.id === date.id)!}
                 pedido={pedido}
               />

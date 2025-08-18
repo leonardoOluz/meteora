@@ -1,137 +1,84 @@
-import { ILogin, Usuario } from "@/types/usuarios";
-import {
-  getSessionStorage,
-  removeSessionStorage,
-  setSessionStorage,
-} from "@/utils/session";
-import { getStorage, setStorage } from "@/utils/starage";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import token from "@/json/token.json";
-import { toast } from "react-toastify";
+// Retorna o primeiro nome com a primeira letra maiúscula
+export function getFirstNameCapitalized(name: string): string {
+  const firstName = name.split(" ")[0];
+  return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+}
+import { DateUsuario, ILogin, UsuarioState } from "@/types/usuarios";
+import { clearSessionStorage } from "@/utils/session";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { showSuccessNotification } from "@/utils/showSuccessNotification";
+import { addNewUserFetch, authenticateUserFetch, checkAuthenticated } from "@/service";
+import { showWrongToast } from "@/utils/showWrongToast";
+import { showInfoToast } from "@/utils/showInfoToast";
 
 const initialState = {
-  usuario: {} as Usuario,
   isLogado: false,
-};
+} as UsuarioState;
+
+export const addNewUser = createAsyncThunk<UsuarioState, DateUsuario>(
+  "usuario/addUser",
+  addNewUserFetch
+);
+export const loginUser = createAsyncThunk<UsuarioState, ILogin>(
+  "usuario/authenticateUser",
+  authenticateUserFetch
+);
+export const checkAuthenticatedUser = createAsyncThunk<UsuarioState>(
+  "usuario/checkAuthenticated",
+  checkAuthenticated
+);
 
 const usuarioSlice = createSlice({
   name: "usuario",
   initialState,
   reducers: {
-    createUser: (state, { payload }: PayloadAction<Usuario>) => {
-      /* salvando usuarios no localStarage temporario ate criar um backend */
-      /* Obs, não estou usando json-server pois não funciona em production */
-      toast.success("Cadastro realizado com sucesso", {
-        autoClose: 2000,
-        theme: "colored",
-        hideProgressBar: true,
-      });
-      const user = getStorage("user");
-      if (user) {
-        const usuarios: Usuario[] = JSON.parse(user);
-        usuarios.push(payload);
-        setStorage("user", JSON.stringify(usuarios));
-        setSessionStorage("token", {
-          email: payload.email,
-          token: token[0].token,
-          refreshToken: token[0].refreshToken,
-        });
-
-        return {
-          ...state,
-          isLogado: true,
-          usuario: payload,
-        }; // retorna o usuario que acabou de ser criado
-      }
-      setSessionStorage("token", {
-        email: payload.email,
-        token: token[0].token,
-        refreshToken: token[0].refreshToken,
-      });
-      setStorage("user", JSON.stringify([payload]));
-      return {
-        ...state,
-        isLogado: true,
-        usuario: payload,
-      }; // retorna o usuario que acabou de ser criado
+    logout() {
+      clearSessionStorage();
+      showInfoToast("Usuário deslogado com sucesso!");
+      return initialState;
     },
-    authenticateUser(state, { payload }: PayloadAction<ILogin>) {
-      const usuarios: Usuario[] = JSON.parse(getStorage("user") || "[]");
-      const user = usuarios.find(
-        (user) =>
-          user.email === payload.email && user.password === payload.password
+  },
+  extraReducers: (builder) => {
+    builder.addCase(addNewUser.pending, () => {});
+    builder.addCase(addNewUser.fulfilled, (_, { payload }) => {
+      showSuccessNotification(
+        `Seja bem vindo ${getFirstNameCapitalized(payload.nome)}`
       );
-      if (!user) {
-        toast.error("Email ou senha incorretos", {
-          autoClose: 2000,
-          hideProgressBar: true,
-          theme: "colored",
-        });
-        return {
-          ...state,
-          isLogado: false,
-        };
+      return payload;
+    });
+    builder.addCase(addNewUser.rejected, (_, action) => {
+      showWrongToast(
+        action.error.message || "Erro ao cadastrar usuário"
+      );
+      return initialState;
+    });
+    builder.addCase(loginUser.pending, () => {});
+    builder.addCase(loginUser.fulfilled, (_, { payload }) => {
+      showSuccessNotification(
+        `Seja bem vindo ${getFirstNameCapitalized(payload.nome)}`
+      );
+      return payload;
+    });
+    builder.addCase(loginUser.rejected, (_, action) => {
+      showWrongToast(action.error.message || "Erro ao fazer login");
+      return initialState;
+    });
+    builder.addCase(checkAuthenticatedUser.pending, () => {});
+    builder.addCase(checkAuthenticatedUser.fulfilled, (_, { payload }) => {
+      if (!payload.isLogado) {
+        clearSessionStorage();
       }
-
-      toast.success("Logado com sucesso", {
-        autoClose: 1000,
-        theme: "colored",
-        hideProgressBar: true,
-      });
-
-      setSessionStorage("token", {
-        email: payload.email,
-        token: token[0].token,
-        refreshToken: token[0].refreshToken,
-      });
-      return {
-        ...state,
-        isLogado: true,
-        usuario: {
-          email: user?.email,
-          nome: user?.nome,
-          id: user?.id
-        },
-      };
-    },
-    logout(state) {
-      toast.success("Logout realizado com sucesso", {
-        autoClose: 1000,
-        theme: "colored",
-        hideProgressBar: true,
-      });
-      removeSessionStorage("token");
-      return {
-        ...state,
-        isLogado: false,
-        usuario: {} as Usuario,
-      };
-    },
-    isCheckLogin(state) {
-      const token = getSessionStorage("token");
-      if (token) {
-        const usuarios: Usuario[] = JSON.parse(getStorage("user") || "[]");
-        const user = usuarios.find((user) => user.email === token.email);
-        if (user) {
-          return {
-            isLogado: true,
-            usuario: {
-              email: user?.email,
-              nome: user?.nome,
-              id: user?.id
-            },
-          };
-        }
-      }
-      return {
-        ...state,
-        isLogado: false,
-        usuario: {} as Usuario,
-      };
-    },
+      return payload;
+    });
+    builder.addCase(checkAuthenticatedUser.rejected, (_, action) => {
+      clearSessionStorage();
+      showWrongToast(
+        action.error.message || "Erro ao verificar autenticação"
+      );
+      return initialState;
+    });
   },
 });
 
-export const { createUser, authenticateUser, logout, isCheckLogin } =
-  usuarioSlice.actions;
+export const { logout } = usuarioSlice.actions;
 export default usuarioSlice.reducer;

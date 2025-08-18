@@ -1,8 +1,8 @@
-import useCheckLogin from "@/hooks/useCheckLogin";
+import useCheckRotas from "@/hooks/useCheckRotas";
 import { Outlet } from "react-router-dom";
 
 const RequireAuth = () => {
-  useCheckLogin();
+  useCheckRotas();
   return <Outlet />;
 };
 

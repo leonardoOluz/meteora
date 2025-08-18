@@ -1,6 +1,6 @@
 import { IPedido } from "@/types/store";
+import { showSuccessNotification } from "@/utils/showSuccessNotification";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 const initialState: IPedido[] = [];
@@ -10,11 +10,7 @@ const pedidosSlice = createSlice({
   initialState,
   reducers: {
     addPedido: (state, { payload }: PayloadAction<IPedido>) => {
-      toast.success("Pedido realizado com sucesso!", {
-        theme: "colored",
-        hideProgressBar: true,
-        autoClose: 3000,
-      });
+      showSuccessNotification("Pedido realizado com sucesso!");
       return [
         ...state,
         {
