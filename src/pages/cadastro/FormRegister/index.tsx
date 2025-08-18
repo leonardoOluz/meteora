@@ -2,11 +2,11 @@ import Botao from "@/components/Botao";
 import FieldInput from "@/components/FieldInput";
 import Form from "@/components/Form";
 import { MessageError } from "@/components/MessageError";
-import { createUser } from "@/store/reducers/usuario";
+import { AppDispatch } from "@/store";
+import { addNewUser } from "@/store/reducers/usuario";
 import { ContainerForm, FieldsetForm, LegendForm } from "@/styles/forms";
 import { RootState } from "@/types/store";
 import { Usuario } from "@/types/usuarios";
-import { getStorage } from "@/utils/starage";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,22 +31,19 @@ const FormRegister = () => {
   const user = useSelector((state: RootState) => state.usuario);
   const cart = useSelector((state: RootState) => state.carrinho);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const password = watch("password");
 
   const checkPassword = {
     minLength: (val: string | undefined) =>
-      (val?.length ?? 0) >= 6 || "O campo senha deve ter pelo menos 6 caracteres",
-    checkEmpty: (val: string | undefined) => !!val || "O campo senha deve ser preenchido",
+      (val?.length ?? 0) >= 6 ||
+      "O campo senha deve ter pelo menos 6 caracteres",
+    checkEmpty: (val: string | undefined) =>
+      !!val || "O campo senha deve ser preenchido",
     validatePassword: (val: string | undefined) =>
       val === password || "As senhas devem ser iguais",
   };
   const checkEmail = {
-    emailUsed: (val: string) => {
-      const usuarios: Usuario[] = JSON.parse(getStorage("user") || "[]");
-      const user = usuarios.find((use) => use.email === val);
-      return !user || "Email ja cadastrado";
-    },
     emailEmpty: (val: string) => !!val || "Verifique seu email",
     isEmailValid: (val: string) => {
       return (
@@ -69,7 +66,13 @@ const FormRegister = () => {
   }, [isSubmitSuccessful, reset, user, cart, navigate]);
 
   const submit = (data: Usuario) => {
-    dispatch(createUser(data));
+    dispatch(
+      addNewUser({
+        email: data.email,
+        nome: data.nome,
+        password: data.password,
+      })
+    );
   };
 
   return (

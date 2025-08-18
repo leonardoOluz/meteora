@@ -7,13 +7,14 @@ import { MessageError } from "@/components/MessageError";
 import { useEffect } from "react";
 import { ILogin } from "@/types/usuarios";
 import { useDispatch } from "react-redux";
-import { authenticateUser } from "@/store/reducers/usuario";
+import { loginUser } from "@/store/reducers/usuario";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch } from "@/store";
 
 const FormLogin = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.usuario);
   const cart = useSelector((state: RootState) => state.carrinho);
@@ -42,7 +43,7 @@ const FormLogin = () => {
     }
   }, [isSubmitSuccessful, reset, user, cart, navigate]);
   const submit = (data: ILogin) => {
-    dispatch(authenticateUser(data));
+    dispatch(loginUser(data));
   };
 
   return (

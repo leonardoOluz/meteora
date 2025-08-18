@@ -1,6 +1,22 @@
 import apiCep from "@/api";
+import { v4 as uuidv4 } from "uuid";
 import { IData } from "@/types/checkout";
 import { IFrete } from "@/types/store";
+import {
+  DateUsuario,
+  ILogin,
+  UsuarioLocalStorage,
+  UsuarioState,
+} from "@/types/usuarios";
+import { getSessionStorage, setSessionStorage } from "@/utils/session";
+import { getStorage, setStorage } from "@/utils/starage";
+import { generateSalt } from "./utils/generateSalt";
+import { generateHash } from "./utils/generateHash";
+import { verifyPassword } from "./utils/verifyPassword";
+import { generateAccessToken } from "./utils/generateAccessToken";
+import { storeTokens } from "./utils/storeTokens";
+import { getAccessToken } from "./utils/getAccessToken";
+import { generateRefreshToken } from "./utils/generateRefreshToken";
 
 export const fetchConsultaCep = async (cep: string): Promise<IData> => {
   if (!cep || cep.length < 8) {
@@ -63,6 +79,150 @@ export const simulateShipping = (totCart: number): Promise<IFrete> => {
         deliveryTime: "N/A",
         isFrete: false,
       });
+    }
+  });
+};
+
+/* Função para adicionar um novo usuário */
+export const addNewUserFetch = async (
+  userData: DateUsuario
+): Promise<UsuarioState> => {
+  return new Promise((resolve, reject) => {
+    const process = async () => {
+      /* Gerando o hash e o salt */
+      const salt = generateSalt();
+      const hash = await generateHash(userData.password, salt);
+      /* Criando um novo usuário */
+      const newUser: UsuarioLocalStorage = {
+        id: uuidv4(),
+        nome: userData.nome,
+        email: userData.email,
+        createdAt: new Date(),
+        hash,
+        salt,
+      };
+
+      try {
+        const user = getStorage("user") as UsuarioLocalStorage[];
+        // Verifica se já existe um usuário com o mesmo email
+        if (
+          user &&
+          user.some((u: UsuarioLocalStorage) => u.email === userData.email)
+        ) {
+          reject(
+            new Error("Email já cadastrado, tente outro email ou faça login")
+          );
+          return;
+        }
+        /* Adicionando o usuário */
+        if (user) {
+          const usuarios: UsuarioLocalStorage[] = user as UsuarioLocalStorage[];
+          usuarios.push(newUser);
+          setStorage("user", usuarios);
+        } else {
+          setStorage("user", [newUser]);
+        }
+
+        /* Criando o estado do usuário */
+        const userState: UsuarioState = {
+          id: newUser.id,
+          nome: newUser.nome,
+          refreshToken: generateRefreshToken(), // Substitua por um refresh token real se necessário
+          accessToken: generateAccessToken(), // Substitua por um token real se necessário
+          isLogado: true,
+        };
+        // Armazena os tokens no localStorage
+        storeTokens(userState.accessToken, userState.refreshToken);
+        /* Salvando o estado do usuário */
+        setSessionStorage("dataUser", {
+          id: userState.id,
+          nome: userState.nome,
+          accessToken: userState.accessToken,
+          refreshToken: userState.refreshToken,
+        });
+        /* Resolvendo a promessa com o estado do usuário */
+        resolve(userState);
+      } catch (error) {
+        console.error("Erro ao adicionar usuário:", error);
+        reject(error);
+      }
+    };
+    process();
+  });
+};
+/* Função para autenticar o usuário */
+export const authenticateUserFetch = async (
+  data: ILogin
+): Promise<UsuarioState> => {
+  return new Promise((resolve, reject) => {
+    const process = async () => {
+      try {
+        const usuarios = getStorage("user") as UsuarioLocalStorage[];
+        const user = usuarios.find((user) => user.email === data.email);
+        /* verifica se o email existe */
+        if (!user) {
+          reject(new Error("Email ou senha incorretos"));
+          return;
+        }
+        const isValid = await verifyPassword(
+          data.password,
+          user.salt,
+          user.hash
+        );
+        // Verifica se a senha está correta
+        if (!isValid) {
+          reject(new Error("Email ou senha incorretos"));
+          return;
+        }
+        /* const userState: UsuarioState = */
+        const userState: UsuarioState = {
+          id: user.id,
+          nome: user.nome,
+          refreshToken: generateRefreshToken(), // token fictício para simulação
+          accessToken: generateAccessToken(), // refreshToken fictício para simulação
+          isLogado: true,
+        };
+        // Armazena os tokens no localStorage
+        storeTokens(userState.accessToken, userState.refreshToken);
+        // Se a senha estiver correta, armazena os dados do usuário na sessão
+        setSessionStorage("dataUser", {
+          id: userState.id,
+          nome: userState.nome,
+          accessToken: userState.accessToken,
+          refreshToken: userState.refreshToken,
+        });
+        resolve(userState);
+      } catch (error) {
+        console.error("Erro ao adicionar usuário:", error);
+        reject(error);
+      }
+    };
+    process();
+  });
+};
+/* Função para verificar se o usuário está logado */
+export const checkAuthenticated = (): Promise<UsuarioState> => {
+  return new Promise((resolve, reject) => {
+    try {
+      const validToken = getAccessToken();
+      const dataUser = getSessionStorage("dataUser") as UsuarioState;
+
+      if (!validToken || validToken !== dataUser.accessToken){
+        console.warn("Token inválido ou expirado");
+        resolve({ isLogado: false } as UsuarioState);
+        return;
+      }
+      console.warn("Usuário autenticado:", dataUser);
+      resolve({
+        id: dataUser.id,
+        nome: dataUser.nome,
+        accessToken: dataUser.accessToken,
+        refreshToken: dataUser.refreshToken,
+        isLogado: true,
+      });
+    } catch (error) {
+      console.error("Erro ao verificar autenticação:", error);
+      reject(error);
     }
   });
 };

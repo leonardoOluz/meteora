@@ -5,8 +5,9 @@ import {
   DeleteProduct,
   UpdateProduct,
 } from "@/types/store";
+import { showInfoToast } from "@/utils/showInfoToast";
+import { showSuccessNotification } from "@/utils/showSuccessNotification";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
 const initialState: ICartSlice = {
   data: [] as ICart[],
@@ -28,11 +29,7 @@ const carrinhoSlice = createSlice({
           details: [payload.details],
         } as ICart;
 
-        toast.success("Produto adicionado ao carrinho", {
-          autoClose: 1000,
-          hideProgressBar: true,
-          theme: "colored",
-        });
+        showSuccessNotification("Produto adicionado ao carrinho");
         return {
           ...state,
           data: [...state.data, newProductCart],
@@ -50,11 +47,7 @@ const carrinhoSlice = createSlice({
         }
         return item;
       });
-      toast.success("Produto adicionado ao carrinho", {
-        autoClose: 1000,
-        hideProgressBar: true,
-        theme: "colored",
-      });
+      showSuccessNotification("Produto adicionado ao carrinho");
       return {
         ...state,
         data: [...newCart],
@@ -68,11 +61,7 @@ const carrinhoSlice = createSlice({
         (itemCart) => itemCart.id !== payload.id
       );
       if (cartProduct) {
-        toast.info("Produto removido do carrinho", {
-          autoClose: 1000,
-          hideProgressBar: true,
-          theme: "colored",
-        });
+        showInfoToast("Produto removido do carrinho");
         return {
           ...state,
           data: [...updateCart],
@@ -88,11 +77,7 @@ const carrinhoSlice = createSlice({
 
       if (productCart) {
         if (productCart?.quantity === 1) {
-          toast.info("Produto removido do carrinho", {
-            autoClose: 1000,
-            hideProgressBar: true,
-            theme: "colored",
-          });
+          showInfoToast("Produto removido do carrinho");
           return {
             ...state,
             data: state.data.filter((item) => item.id !== payload.id),
@@ -100,14 +85,10 @@ const carrinhoSlice = createSlice({
             totValue: state.totValue - payload.price,
           };
         }
-
+        
         const updateCart = state.data.map((itemCart) => {
           if (itemCart.id === payload.id) {
-            toast.info("Item de produto removido do carrinho",{
-              autoClose: 1000,
-              hideProgressBar: true,
-              theme: "colored",
-            });
+            showInfoToast("Item de produto removido do carrinho");
             return {
               id: itemCart.id,
               quantity: itemCart.quantity - 1,

@@ -1,14 +1,16 @@
-import { Token } from "@/types/usuarios";
-
 export function getSessionStorage(key: string) {
-  const token = sessionStorage.getItem(key);
-  return token ? JSON.parse(token) : null;
+  const value = sessionStorage.getItem(key);
+  return (value ? JSON.parse(value) : null) as unknown;
 }
 
-export function setSessionStorage(key: string, value: Token) {
+export function setSessionStorage<T = unknown>(key: string, value: T) {
   sessionStorage.setItem(key, JSON.stringify(value));
 }
 
 export function removeSessionStorage(key: string) {
   sessionStorage.removeItem(key);
+}
+
+export function clearSessionStorage() {
+  sessionStorage.clear();
 }
