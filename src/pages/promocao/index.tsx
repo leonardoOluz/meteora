@@ -12,6 +12,7 @@ import { RootState } from "@/types/store";
 import useSelectColorPromo from "@/hooks/useSelectColorPromo";
 import Facilidades from "@/components/Facilidades";
 import NewsLetter from "@/components/NewsLetter";
+import Reset from "@/components/Reset";
 
 const swiperSettings: SwiperOptions = {
   modules: [Navigation, Pagination],
@@ -59,6 +60,7 @@ const Promocoes = () => {
           </DivCatPromo>
         ))}
       </Section>
+      <Reset />
       <Facilidades />
       <NewsLetter />
     </>
