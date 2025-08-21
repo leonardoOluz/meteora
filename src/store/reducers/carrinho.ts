@@ -7,13 +7,16 @@ import {
 } from "@/types/store";
 import { showInfoToast } from "@/utils/showInfoToast";
 import { showSuccessNotification } from "@/utils/showSuccessNotification";
+import { clearStorage, getStorage, setStorage } from "@/utils/starage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const cart = getStorage("cart") as ICartSlice;
+
 const initialState: ICartSlice = {
-  data: [] as ICart[],
-  totProduct: 0,
-  totValue: 0,
-  isCartDropDown: false,
+  data: cart?.data || [],
+  totProduct: cart?.totProduct || 0,
+  totValue: cart?.totValue || 0,
+  isCartDropDown: cart?.isCartDropDown || false,
 };
 
 const carrinhoSlice = createSlice({
@@ -30,13 +33,19 @@ const carrinhoSlice = createSlice({
         } as ICart;
 
         showSuccessNotification("Produto adicionado ao carrinho");
+        setStorage("cart", {
+          ...state,
+          data: [...state.data, newProductCart],
+          totValue: state.totValue + payload.price,
+          totProduct: state.totProduct + 1,
+        });
         return {
           ...state,
           data: [...state.data, newProductCart],
           totValue: state.totValue + payload.price,
           totProduct: state.totProduct + newProductCart.quantity,
         };
-      };
+      }
       const newCart = state.data.map((item) => {
         if (payload.id === item.id) {
           return {
@@ -46,6 +55,12 @@ const carrinhoSlice = createSlice({
           };
         }
         return item;
+      });
+      setStorage("cart", {
+        ...state,
+        data: newCart,
+        totValue: state.totValue + payload.price,
+        totProduct: state.totProduct + 1,
       });
       showSuccessNotification("Produto adicionado ao carrinho");
       return {
@@ -61,6 +76,12 @@ const carrinhoSlice = createSlice({
         (itemCart) => itemCart.id !== payload.id
       );
       if (cartProduct) {
+        setStorage("cart", {
+          ...state,
+          data: [...updateCart],
+          totValue: state.totValue - cartProduct?.quantity * payload.price,
+          totProduct: state.totProduct - cartProduct.quantity,
+        });
         showInfoToast("Produto removido do carrinho");
         return {
           ...state,
@@ -77,6 +98,12 @@ const carrinhoSlice = createSlice({
 
       if (productCart) {
         if (productCart?.quantity === 1) {
+          setStorage("cart", {
+            ...state,
+            data: state.data.filter((item) => item.id !== payload.id),
+            totProduct: state.totProduct - 1,
+            totValue: state.totValue - payload.price,
+          });
           showInfoToast("Produto removido do carrinho");
           return {
             ...state,
@@ -85,7 +112,7 @@ const carrinhoSlice = createSlice({
             totValue: state.totValue - payload.price,
           };
         }
-        
+
         const updateCart = state.data.map((itemCart) => {
           if (itemCart.id === payload.id) {
             showInfoToast("Item de produto removido do carrinho");
@@ -97,8 +124,13 @@ const carrinhoSlice = createSlice({
               ),
             };
           }
-
           return itemCart;
+        });
+        setStorage("cart", {
+          ...state,
+          data: [...updateCart],
+          totProduct: state.totProduct - 1,
+          totValue: state.totValue - payload.price,
         });
 
         return {
@@ -110,17 +142,27 @@ const carrinhoSlice = createSlice({
       }
     },
     isCartVisible: (state, { payload }: PayloadAction<boolean>) => {
+      setStorage("cart", {
+        ...state,
+        isCartDropDown: payload,
+      });
       return {
         ...state,
         isCartDropDown: payload,
       };
     },
     clearCart: () => {
-      return initialState
-    }
+      clearStorage();
+      return initialState;
+    },
   },
 });
 
-export const { addProduct, deleteProduct, updateProduct, isCartVisible, clearCart } =
-  carrinhoSlice.actions;
+export const {
+  addProduct,
+  deleteProduct,
+  updateProduct,
+  isCartVisible,
+  clearCart,
+} = carrinhoSlice.actions;
 export default carrinhoSlice.reducer;
