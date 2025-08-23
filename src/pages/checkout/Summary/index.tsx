@@ -10,7 +10,7 @@ import usePaymentConfirmed from "@/hooks/usePaymentConfirmed";
 import Botao from "@/components/Botao";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { addPedido } from "@/store/reducers/pedidos";
+import { addPedidoFetch } from "@/store/reducers/pedidos";
 import { useNavigate } from "react-router-dom";
 import useCleanStatus from "@/hooks/useCleanStatus";
 const Summary = () => {
@@ -27,7 +27,7 @@ const Summary = () => {
   const clearStatus = useCleanStatus();
   const handlefinalizePurchase = () => {
     dispatch(
-      addPedido({
+      addPedidoFetch({
         status: "concluido",
         date: cart.data,
         totValue: cart.totValue + frete.price,

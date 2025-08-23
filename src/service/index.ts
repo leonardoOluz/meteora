@@ -1,7 +1,7 @@
 import apiCep from "@/api";
 import { v4 as uuidv4 } from "uuid";
 import { IData } from "@/types/checkout";
-import { IFrete } from "@/types/store";
+import { IFrete, IPedido } from "@/types/store";
 import {
   DateUsuario,
   ILogin,
@@ -159,12 +159,17 @@ export const authenticateUserFetch = async (
       try {
         const usuarios = getStorage("user") as UsuarioLocalStorage[];
         /* verifica se o email existe */
-        if (!Array.isArray(usuarios) || !usuarios.some((u) => u.email === data.email)) {
+        if (
+          !Array.isArray(usuarios) ||
+          !usuarios.some((u) => u.email === data.email)
+        ) {
           reject(new Error("Email não cadastrado"));
           return;
         }
 
-        const user = usuarios.find((user) => user.email === data.email) as UsuarioLocalStorage;
+        const user = usuarios.find(
+          (user) => user.email === data.email
+        ) as UsuarioLocalStorage;
         const isValid = await verifyPassword(
           data.password,
           user.salt,
@@ -202,13 +207,13 @@ export const authenticateUserFetch = async (
   });
 };
 /* Função para verificar se o usuário está logado */
-export const checkAuthenticated = (): Promise<UsuarioState> => {
+export const checkAuthenticated = async (): Promise<UsuarioState> => {
   return new Promise((resolve, reject) => {
     try {
       const validToken = getAccessToken();
       const dataUser = getSessionStorage("dataUser") as UsuarioState;
 
-      if (!validToken || validToken !== dataUser.accessToken){
+      if (!validToken || validToken !== dataUser.accessToken) {
         console.warn("Token inválido ou expirado");
         resolve({ isLogado: false } as UsuarioState);
         return;
@@ -223,6 +228,67 @@ export const checkAuthenticated = (): Promise<UsuarioState> => {
       });
     } catch (error) {
       console.error("Erro ao verificar autenticação:", error);
+      reject(error);
+    }
+  });
+};
+
+/* Api simular pedido */
+
+export const getOrder = async (): Promise<IPedido[]> => {
+  return new Promise((resolve, reject) => {
+    try {
+      /* Verifica se o usuário está logado */
+      const user = getSessionStorage("dataUser") as UsuarioState;
+      if (!user) {
+        console.warn("Usuário nao autenticado", user);
+        reject(new Error("Usuário não autenticado"));
+        return;
+      }
+      /* Pegando os pedidos do localStorage */
+      const pedidos = getStorage("pedidos") as IPedido[];
+      if (Array.isArray(pedidos)) {
+        resolve(pedidos.filter((p) => p.idUser === user.id));
+        return;
+      }
+      resolve([]);
+    } catch (error) {
+      console.error("Erro ao buscar pedidos:", error);
+      reject(error);
+    }
+  });
+}
+export const createOrder = async (newPedidos: IPedido): Promise<IPedido[]> => {
+  return new Promise((resolve, reject) => {
+    try {
+      console.log("Criando pedido:", newPedidos);
+      /* Verifica se o usuário está logado */
+      const user = getSessionStorage("dataUser") as UsuarioState;
+      if (!user) {
+        console.warn("Usuário nao autenticado", user);
+        reject(new Error("Usuário não autenticado"));
+        return;
+      }
+      
+      /* Adicionando o id do usuário */
+      const addUserPedido = {
+        ...newPedidos,
+        idUser: user.id,
+        id: uuidv4(),
+      };
+      
+      /* Adicionando o pedido */
+      const pedidos = getStorage("pedidos") as IPedido[];
+      if (Array.isArray(pedidos)) {
+        pedidos.push(addUserPedido);
+        setStorage("pedidos", pedidos);
+        resolve(pedidos.filter((p) => p.idUser === user.id));
+        return;
+      }
+      setStorage("pedidos", [addUserPedido]);
+      resolve([addUserPedido]);
+    } catch (error) {
+      console.error("Erro ao adicionar pedido:", error);
       reject(error);
     }
   });
