@@ -13,6 +13,12 @@ const useCheckRotas = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (!isLogado) {
+      navigate("/login");
+    }
+  }, [isLogado, navigate]);
+
+  useEffect(() => {
     const privatePrefixes = [
       `/${CheckoutSteps.CHECKOUT}`,
       `/${CheckoutSteps.PEDIDOS}`,
@@ -22,11 +28,8 @@ const useCheckRotas = () => {
       privatePrefixes.some((prefix) => location.pathname.startsWith(prefix))
     ) {
       dispatch(checkAuthenticatedUser());
-      if (!isLogado) {
-        navigate("/login");
-      }
     }
-  }, [isLogado, navigate, location.pathname, dispatch]);
+  }, [navigate, location.pathname, dispatch]);
 };
 
 export default useCheckRotas;
