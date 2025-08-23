@@ -9,10 +9,10 @@ const useCleanStatus = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const clearStatus = () => {
+    dispatch(clearCart());
     dispatch(clearAddress());
     dispatch(resetFrete());
     dispatch(clearPay());
-    dispatch(clearCart());
   };
 
   return clearStatus;

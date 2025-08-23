@@ -158,12 +158,13 @@ export const authenticateUserFetch = async (
     const process = async () => {
       try {
         const usuarios = getStorage("user") as UsuarioLocalStorage[];
-        const user = usuarios.find((user) => user.email === data.email);
         /* verifica se o email existe */
-        if (!user) {
-          reject(new Error("Email ou senha incorretos"));
+        if (!Array.isArray(usuarios) || !usuarios.some((u) => u.email === data.email)) {
+          reject(new Error("Email não cadastrado"));
           return;
         }
+
+        const user = usuarios.find((user) => user.email === data.email) as UsuarioLocalStorage;
         const isValid = await verifyPassword(
           data.password,
           user.salt,

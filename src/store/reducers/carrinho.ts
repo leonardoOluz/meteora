@@ -7,7 +7,7 @@ import {
 } from "@/types/store";
 import { showInfoToast } from "@/utils/showInfoToast";
 import { showSuccessNotification } from "@/utils/showSuccessNotification";
-import { clearStorage, getStorage, setStorage } from "@/utils/starage";
+import { getStorage, setStorage } from "@/utils/starage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const cart = getStorage("cart") as ICartSlice;
@@ -152,8 +152,14 @@ const carrinhoSlice = createSlice({
       };
     },
     clearCart: () => {
-      clearStorage();
-      return initialState;
+      const cartCLear = {
+        data: [],
+        totProduct: 0,
+        totValue: 0,
+        isCartDropDown: false,
+      } as ICartSlice;
+      setStorage("cart", cartCLear);
+      return cartCLear;
     },
   },
 });
