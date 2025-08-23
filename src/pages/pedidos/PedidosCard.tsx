@@ -43,21 +43,22 @@ const PedidosCard = ({ product, pedido }: PedidosCardProps) => {
         </Typography>
         <CardPedidoDetails>
           {pedido.date.map((date) =>
-            date.details.map((detail) => (
+            date.details.map((detail) =>
               product.id === date.id ? (
                 <Typography
-                classNameTypograph="basicParagraphSmall"
-                elementoHtml="p"
-                isColor={thema.colorsPrimary.cinzaChumbo}
-              >
-                <strong>Cor: </strong>
-                {detail.cor} - <strong>Tamanho: </strong>
-                {detail.tamanho}.
-              </Typography>
+                  key={detail.id}
+                  classNameTypograph="basicParagraphSmall"
+                  elementoHtml="p"
+                  isColor={thema.colorsPrimary.cinzaChumbo}
+                >
+                  <strong>Cor: </strong>
+                  {detail.cor} - <strong>Tamanho: </strong>
+                  {detail.tamanho}.
+                </Typography>
               ) : null
-            )))}
+            )
+          )}
         </CardPedidoDetails>
-      
       </CardPedidoContent>
     </CardPedido>
   );

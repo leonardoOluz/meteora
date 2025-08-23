@@ -10,12 +10,13 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "@/store/reducers/usuario";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AppDispatch } from "@/store";
 
 const FormLogin = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useSelector((state: RootState) => state.usuario);
   const cart = useSelector((state: RootState) => state.carrinho);
   const {
@@ -32,16 +33,11 @@ const FormLogin = () => {
   });
 
   useEffect(() => {
-    if (isSubmitSuccessful && user.isLogado) {
-      if (cart.data.length) {
-        navigate("/carrinho");
-        reset();
-        return;
-      }
-      navigate("/");
+    if (isSubmitSuccessful || user.isLogado) {
       reset();
+      navigate(-1);
     }
-  }, [isSubmitSuccessful, reset, user, cart, navigate]);
+  }, [isSubmitSuccessful, reset, user, cart, navigate, location]);
   const submit = (data: ILogin) => {
     dispatch(loginUser(data));
   };

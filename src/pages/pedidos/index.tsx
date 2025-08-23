@@ -7,8 +7,18 @@ import { RootState } from "@/types/store";
 import CartIsEmpty from "@/components/CartIsEmpty";
 import NewsLetter from "@/components/NewsLetter";
 import Facilidades from "@/components/Facilidades";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { fetchGetPedidos } from "@/store/reducers/pedidos";
 const Pedidos = () => {
   const pedidos = useSelector((state: RootState) => state.pedidos);
+  const dispatch = useDispatch<AppDispatch>();
+  
+  useEffect(() => {
+    dispatch(fetchGetPedidos());
+  }, [dispatch]);
+
   return (
     <>
       <Section classNameSection="secao produtos">

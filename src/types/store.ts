@@ -84,6 +84,7 @@ export enum CheckoutSteps {
 
 export interface IPedido {
   id?: string;
+  idUser?: string;
   status: "pendente" | "concluido" | "cancelado";
   date: ICart[];
   totValue: number;
