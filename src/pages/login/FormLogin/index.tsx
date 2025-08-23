@@ -33,7 +33,7 @@ const FormLogin = () => {
   });
 
   useEffect(() => {
-    if (isSubmitSuccessful || user.isLogado) {
+    if (isSubmitSuccessful && user.isLogado) {
       reset();
       navigate(-1);
     }
