@@ -97,4 +97,5 @@ export interface IPedido {
 export type Favorite = {
   idProduct: number;
   id?: string;
+  idUser?: string;
 };

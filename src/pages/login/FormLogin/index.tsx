@@ -7,11 +7,11 @@ import { MessageError } from "@/components/MessageError";
 import { useEffect } from "react";
 import { ILogin } from "@/types/usuarios";
 import { useDispatch } from "react-redux";
-import { loginUser } from "@/store/reducers/usuario";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppDispatch } from "@/store";
+import { loginUser } from "@/store/reducers/usuario";
 
 const FormLogin = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -8,7 +8,8 @@ import { thema } from "@/styles/thema";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/types/store";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "@/store/reducers/usuario";
+import { logoutUser } from "@/store/reducers/usuario";
+import { AppDispatch } from "@/store";
 
 const iconsStyles = {
   width: "6rem",
@@ -25,13 +26,13 @@ const SpanBtn = styled.span`
 `;
 const BtnLogar = () => {
   const user = useSelector((state: RootState) => state.usuario);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const width = useResize();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     if (user.isLogado) {
-      dispatch(logout());
+      dispatch(logoutUser());
       navigate("/");
       return;
     }
