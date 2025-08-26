@@ -14,6 +14,11 @@ import credCardSlice from "@/store/reducers/credCard";
 import pedidosSlice from "@/store/reducers/pedidos";
 import favoriteSlice from "@/store/reducers/favorito";
 import { useDispatch } from "react-redux";
+import createSagaMiddleware from 'redux-saga';
+// import { watchFetchPedidos } from "./sagas/pedidosSaga";
+import rootSaga from "./sagas";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
@@ -32,8 +37,13 @@ const store = configureStore({
     pedidos: pedidosSlice,
     favorito: favoriteSlice,
   },
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware().prepend(sagaMiddleware);
+  },
 });
 
+sagaMiddleware.run(rootSaga);
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>(); // Export a hook that can be reused to resolve types
 

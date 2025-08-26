@@ -12,7 +12,7 @@ import useSelectCatPromocao from "@/hooks/useSelectCatPromocao";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { setFavorito } from "@/store/reducers/favorito";
+import { createFavoriteFetch, deleteFavoriteFetch } from "@/store/reducers/favorito";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types/store";
 interface IProps {
@@ -24,13 +24,22 @@ const CardProduto = ({ card }: IProps) => {
   const checkPromocao = useSelectCatPromocao();
   const dispatch = useDispatch<AppDispatch>();
   const favorite = useSelector((state: RootState) => state.favorito);
+  const { isLogado } = useSelector((state: RootState) => state.usuario);
 
-  const handleFavorite = (id: number): boolean => {
+  const handleFavoriteColor = (id: number): boolean => {
     return favorite.some((item) => item.idProduct === id);
   };
   const openModalProduto = () => {
     setModalOpen(!modalOpen);
   };
+
+  const handleCheckFavoite = (idProduct: number) => {
+    if (favorite.some((item) => item.idProduct === idProduct)) {
+      dispatch(deleteFavoriteFetch(idProduct));
+      return;
+    }
+    dispatch(createFavoriteFetch({ idProduct: card.id }))
+  }
 
   return (
     <ArticleStyle>
@@ -63,21 +72,23 @@ const CardProduto = ({ card }: IProps) => {
           >
             Ver Mais
           </Botao>
-          <Botao
-            classNameBtn="btnUnset"
-            aria-label="Botão de favorito"
-            onClick={() => dispatch(setFavorito({ idProduct: card.id }))}
-            type="button"
-          >
-            <FaHeart
-              size={25}
-              color={
-                handleFavorite(card.id)
-                  ? thema.colorsPrimary.laranja
-                  : thema.colorsPrimary.cinza
-              }
-            />
-          </Botao>
+          {isLogado && (
+            <Botao
+              classNameBtn="btnUnset"
+              aria-label="Botão de favorito"
+              onClick={() => handleCheckFavoite(card.id)} // adiciona o id do usuario e id do produto ao estado global
+              type="button"
+            >
+              <FaHeart
+                size={25}
+                color={
+                  handleFavoriteColor(card.id)
+                    ? thema.colorsPrimary.laranja
+                    : thema.colorsPrimary.cinza
+                }
+              />
+            </Botao>
+          )}
         </div>
       </Container>
       <CheckModal

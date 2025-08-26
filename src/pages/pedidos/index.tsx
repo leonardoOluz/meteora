@@ -10,13 +10,13 @@ import Facilidades from "@/components/Facilidades";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
-import { fetchGetPedidos } from "@/store/reducers/pedidos";
+import { fetchGetPedidosSaga } from "@/store/reducers/pedidos";
 const Pedidos = () => {
   const pedidos = useSelector((state: RootState) => state.pedidos);
   const dispatch = useDispatch<AppDispatch>();
   
   useEffect(() => {
-    dispatch(fetchGetPedidos());
+    dispatch(fetchGetPedidosSaga());
   }, [dispatch]);
 
   return (

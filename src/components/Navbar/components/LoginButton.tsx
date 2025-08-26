@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import { ItemLink } from "../styles";
 import { Link } from "react-router-dom";
 import { RootState } from "@/types/store";
-import { logout } from "@/store/reducers/usuario";
+import { logoutUser } from "@/store/reducers/usuario";
+import { AppDispatch } from "@/store";
 
 const LoginButton = () => {
   const user = useSelector((state: RootState) => state.usuario);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <ItemLink>
@@ -15,7 +16,7 @@ const LoginButton = () => {
         to={user.isLogado ? "/" : "/login"}
         title={`${user.isLogado ? "Sair" : "Entrar"} na Meteora`}
         onClick={() => {
-          if (user.isLogado) dispatch(logout());
+          if (user.isLogado) dispatch(logoutUser());
         }}
       >
         {user.isLogado ? "Sair" : "Entrar"}
