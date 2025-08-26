@@ -12,10 +12,15 @@ import { RootState } from "@/types/store";
 import ShippingPrices from "@/components/ShippingPrices";
 import { IFormInputEndereco } from "@/types/checkout";
 import { useDispatch } from "react-redux";
-import { searchAddress, setAddress, setAddressChecked } from "@/store/reducers/address";
+import {
+  getAddressUserFetch,
+  saveAddressUserFetch,
+  searchAddress,
+} from "@/store/reducers/address";
 import { AppDispatch } from "@/store";
 import { resetFrete } from "@/store/reducers/frete";
 import { useAddressFormEffect } from "@/hooks/useAddressFormEffect";
+import { useEffect } from "react";
 
 const AddressForm = () => {
   const defaultValues = useSelector((state: RootState) => state.address);
@@ -31,10 +36,14 @@ const AddressForm = () => {
     defaultValues,
   });
   const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getAddressUserFetch());
+  }, [dispatch]);
+  
   useAddressFormEffect({
     isSubmitSuccessful,
     reset,
-    setError
+    setError,
   });
   const handleCepBlur = async (cep: string) => {
     if (defaultValues.cep !== cep) {
@@ -43,8 +52,7 @@ const AddressForm = () => {
     dispatch(searchAddress(cep.replace(/-/g, "")));
   };
   const handleDateSubmit = (data: IFormInputEndereco) => {
-    dispatch(setAddress(data));
-    dispatch(setAddressChecked());
+    dispatch(saveAddressUserFetch(data));
   };
   return (
     <Form

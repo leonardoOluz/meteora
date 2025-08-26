@@ -1,6 +1,6 @@
 import apiCep from "@/api";
 import { v4 as uuidv4 } from "uuid";
-import { IData } from "@/types/checkout";
+import { IData, IFormInputEndereco } from "@/types/checkout";
 import { Favorite, IFrete, IPedido } from "@/types/store";
 import {
   DateUsuario,
@@ -17,17 +17,25 @@ import { generateAccessToken } from "./utils/generateAccessToken";
 import { storeTokens } from "./utils/storeTokens";
 import { getAccessToken } from "./utils/getAccessToken";
 import { generateRefreshToken } from "./utils/generateRefreshToken";
+import { mapApiToFormInput } from "@/utils/addressMapper";
 
-export const fetchConsultaCep = async (cep: string): Promise<IData> => {
+export const fetchConsultaCep = async (
+  cep: string
+): Promise<IFormInputEndereco> => {
   if (!cep || cep.length < 8) {
     throw new Error("O campo CEP é obrigatório");
+  }
+  const user = getSessionStorage("dataUser") as UsuarioState;
+  if (!user) {
+    throw new Error("Usuário não autenticado");
   }
   try {
     const { data } = await apiCep.get<IData>(`/ws/${cep}/json/`);
     if (data.erro) {
       throw new Error("O CEP não existe ou é inválido");
     }
-    return data;
+    const address = mapApiToFormInput(data);
+    return { ...address, id: uuidv4(), idUser: user.id };
   } catch (error) {
     console.error(error);
     if (error instanceof Error) {
@@ -48,13 +56,18 @@ export const simulateShipping = async (totCart: number): Promise<IFrete> => {
   }
   try {
     await new Promise((res) => setTimeout(res, 500));
-    const price = [10.0, 15.0, 20.0, 25.0, 30.0, 50.0, 75.0, 100.0, 120.0, 150.0];
+    const price = [
+      10.0, 15.0, 20.0, 25.0, 30.0, 50.0, 75.0, 100.0, 120.0, 150.0,
+    ];
     const randomPrice = (
-      price[totCart - 1] + (Math.random() * 100) / price[totCart - 1]
+      price[totCart - 1] +
+      (Math.random() * 100) / price[totCart - 1]
     ).toFixed(2);
     const minDeliveryDays = 2;
     const maxDeliveryDays = 15;
-    const randomDeliveryDays = Math.floor(Math.random() * (maxDeliveryDays - minDeliveryDays + 1)) + minDeliveryDays;
+    const randomDeliveryDays =
+      Math.floor(Math.random() * (maxDeliveryDays - minDeliveryDays + 1)) +
+      minDeliveryDays;
     return {
       service: "Entrega Padrão",
       price: parseFloat(randomPrice),
@@ -73,7 +86,9 @@ export const simulateShipping = async (totCart: number): Promise<IFrete> => {
 };
 
 /* Função para adicionar um novo usuário */
-export const addNewUserFetch = async (userData: DateUsuario): Promise<UsuarioState> => {
+export const addNewUserFetch = async (
+  userData: DateUsuario
+): Promise<UsuarioState> => {
   /* Gerando o hash e o salt */
   const salt = generateSalt();
   const hash = await generateHash(userData.password, salt);
@@ -87,7 +102,10 @@ export const addNewUserFetch = async (userData: DateUsuario): Promise<UsuarioSta
   };
   try {
     const user = getStorage("user") as UsuarioLocalStorage[];
-    if (user && user.some((u: UsuarioLocalStorage) => u.email === userData.email)) {
+    if (
+      user &&
+      user.some((u: UsuarioLocalStorage) => u.email === userData.email)
+    ) {
       throw new Error("Email já cadastrado, tente outro email ou faça login");
     }
     if (user) {
@@ -116,13 +134,20 @@ export const addNewUserFetch = async (userData: DateUsuario): Promise<UsuarioSta
   }
 };
 /* Função para autenticar o usuário */
-export const authenticateUserFetch = async (data: ILogin): Promise<UsuarioState> => {
+export const authenticateUserFetch = async (
+  data: ILogin
+): Promise<UsuarioState> => {
   try {
     const usuarios = getStorage("user") as UsuarioLocalStorage[];
-    if (!Array.isArray(usuarios) || !usuarios.some((u) => u.email === data.email)) {
+    if (
+      !Array.isArray(usuarios) ||
+      !usuarios.some((u) => u.email === data.email)
+    ) {
       throw new Error("Email não cadastrado");
     }
-    const user = usuarios.find((user) => user.email === data.email) as UsuarioLocalStorage;
+    const user = usuarios.find(
+      (user) => user.email === data.email
+    ) as UsuarioLocalStorage;
     const isValid = await verifyPassword(data.password, user.salt, user.hash);
     if (!isValid) {
       throw new Error("Email ou senha incorretos");
@@ -231,7 +256,9 @@ export const getFavorites = async (): Promise<Favorite[]> => {
   }
 };
 
-export const createFavorite = async (newFavorite: Favorite): Promise<Favorite[]> => {
+export const createFavorite = async (
+  newFavorite: Favorite
+): Promise<Favorite[]> => {
   try {
     const user = getSessionStorage("dataUser") as UsuarioState;
     if (!user) {
@@ -257,9 +284,11 @@ export const createFavorite = async (newFavorite: Favorite): Promise<Favorite[]>
     console.error("Erro ao adicionar favorito:", error);
     throw error;
   }
-}
+};
 
-export const deleteFavorite = async (idProduct: number): Promise<Favorite[]> => {
+export const deleteFavorite = async (
+  idProduct: number
+): Promise<Favorite[]> => {
   try {
     const user = getSessionStorage("dataUser") as UsuarioState;
     if (!user) {
@@ -273,15 +302,67 @@ export const deleteFavorite = async (idProduct: number): Promise<Favorite[]> => 
 
     const restFavorites = favoritos.filter((f) => f.idUser !== user.id);
     const userFavorites = favoritos.filter((f) => f.idUser === user.id);
-    const newFavoritosUser = userFavorites.filter((f) => f.idProduct !== idProduct);
+    const newFavoritosUser = userFavorites.filter(
+      (f) => f.idProduct !== idProduct
+    );
 
-    setStorage("favoritos", [
-      ...restFavorites,
-      ...newFavoritosUser
-    ]);
+    setStorage("favoritos", [...restFavorites, ...newFavoritosUser]);
     return newFavoritosUser;
   } catch (error) {
     console.error("Erro ao deletar favorito:", error);
     throw error;
   }
-}
+};
+
+/* Api simular Adress */
+
+export const getAdressUser = async (): Promise<IFormInputEndereco | null> => {
+  try {
+    const user = getSessionStorage("dataUser") as UsuarioState;
+    if (!user) {
+      throw new Error("Usuário não autenticado");
+    }
+    const endereco = getStorage("adress") as IFormInputEndereco[];
+    if (Array.isArray(endereco)) {
+      const userEndereco = endereco.find((e) => e.idUser === user.id);
+      return userEndereco || null;
+    }
+    return null;
+  } catch (error) {
+    console.error("Erro ao buscar endereço:", error);
+    throw error;
+  }
+};
+
+export const saveAdressUser = async (
+  newEndereco: IFormInputEndereco
+): Promise<IFormInputEndereco> => {
+  try {
+    const user = getSessionStorage("dataUser") as UsuarioState;
+
+    if (!user) {
+      throw new Error("Usuário não autenticado");
+    }
+
+    const addUserEndereco = {
+      ...newEndereco,
+      idUser: user.id,
+      id: uuidv4(),
+      addressChecked: true,
+    } as IFormInputEndereco;
+
+    const endereco = getStorage("adress") as IFormInputEndereco[];
+    let novosEnderecos: IFormInputEndereco[];
+    if (Array.isArray(endereco)) {
+      const restEnderecos = endereco.filter((e) => e.idUser !== user.id);
+      novosEnderecos = [...restEnderecos, addUserEndereco];
+    } else {
+      novosEnderecos = [addUserEndereco];
+    }
+    setStorage("adress", novosEnderecos);
+    return addUserEndereco;
+  } catch (error) {
+    console.error("Erro ao adicionar endereço:", error);
+    throw error;
+  }
+};

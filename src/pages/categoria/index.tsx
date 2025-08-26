@@ -13,13 +13,20 @@ import { RootState } from "@/types/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { fetchGetFavoritosSaga } from "@/store/reducers/favorito";
 
 const Categoria = () => {
   const { categoria } = useParams();
-   const scrollIntoView = useScroll();
+  const scrollIntoView = useScroll();
   const cardCategoria = useSelector((state: RootState) => {
     return selectProductCat(state, categoria);
   });
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchGetFavoritosSaga());
+  }, [dispatch]);
 
   useEffect(() => {
     scrollIntoView(`titleListProducts-${categoria}`);
