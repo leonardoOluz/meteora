@@ -7,10 +7,17 @@ import { useSelector } from "react-redux";
 import List from "../List";
 import ItemList from "../List/ItemList";
 import Categorias from "../Categorias";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { fetchGetFavoritosSaga } from "@/store/reducers/favorito";
 
 const Produtos = () => {
   const produtos = useSelector((state: RootState) => state.produtos);
-
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchGetFavoritosSaga());
+  }, [dispatch]);
   return (
     <Section classNameSection="secao produtos">
       <Categorias />

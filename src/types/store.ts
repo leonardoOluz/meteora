@@ -47,6 +47,8 @@ export type KeysIProductString = Extract<
 >;
 /* IFrete */
 export interface IFrete {
+  id?: string;
+  idEndereco?: string;
   service: string;
   price: number;
   deliveryTime: string;

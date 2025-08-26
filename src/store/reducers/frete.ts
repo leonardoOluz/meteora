@@ -6,7 +6,6 @@ export const checkShipping = createAsyncThunk<IFrete, number>(
   "frete",
   simulateShipping
 );
-
 const initialState = {
   deliveryTime: "",
   price: 0,

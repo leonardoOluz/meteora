@@ -1,9 +1,9 @@
-import { fetchConsultaCep } from "@/service";
-import { IData, IFormInputEndereco } from "@/types/checkout";
-import { mapApiToFormInput } from "@/utils/addressMapper";
+import { fetchConsultaCep, getAdressUser, saveAdressUser } from "@/service";
+import { IFormInputEndereco } from "@/types/checkout";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
+  idUser: "",
   bairro: "",
   cep: "",
   localidade: "",
@@ -15,10 +15,18 @@ const initialState = {
   addressChecked: false,
 } as IFormInputEndereco;
 
-export const searchAddress = createAsyncThunk<IData, string>(
+export const searchAddress = createAsyncThunk<IFormInputEndereco, string>(
   "address",
   fetchConsultaCep
 );
+export const getAddressUserFetch = createAsyncThunk<IFormInputEndereco | null>(
+  "address/setAddressChecked",
+  getAdressUser
+);
+export const saveAddressUserFetch = createAsyncThunk<
+  IFormInputEndereco,
+  IFormInputEndereco
+>("address/saveAddressUser", saveAdressUser);
 
 const addressSlice = createSlice({
   name: "address",
@@ -30,11 +38,6 @@ const addressSlice = createSlice({
         erro: false,
         status: "succeeded",
         errorMessage: "",
-      };
-    },
-    setAddressChecked: (state) => {
-      return {
-        ...state,
         addressChecked: true,
       };
     },
@@ -54,9 +57,7 @@ const addressSlice = createSlice({
       };
     });
     builder.addCase(searchAddress.fulfilled, (_, { payload }) => {
-      return {
-        ...mapApiToFormInput(payload)
-      };
+      return payload;
     });
     builder.addCase(searchAddress.rejected, (_, action) => {
       return {
@@ -66,8 +67,29 @@ const addressSlice = createSlice({
         errorMessage: action.error.message ?? "Erro ao buscar endereço",
       };
     });
+    builder.addCase(getAddressUserFetch.fulfilled, (_, { payload }) => {
+      if (payload) {
+        return {
+          ...payload,
+          erro: false,
+          status: "succeeded",
+          errorMessage: "",
+          addressChecked: true,
+        };
+      }
+      return initialState;
+    });
+    builder.addCase(saveAddressUserFetch.fulfilled, (_, { payload }) => {
+      return {
+        ...payload,
+        erro: false,
+        status: "succeeded",
+        errorMessage: "",
+        addressChecked: true,
+      };
+    });
   },
 });
 
-export const { setAddress, setAddressChecked, clearAddress } = addressSlice.actions;
+export const { setAddress, clearAddress } = addressSlice.actions;
 export default addressSlice.reducer;

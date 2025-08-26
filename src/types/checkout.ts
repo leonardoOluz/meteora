@@ -1,5 +1,7 @@
 /* Interface de endereco e dados de CEP da API */
 export interface IFormInputEndereco {
+  id?: string;
+  idUser?: string;
   cep: string;
   rua: string;
   numero: string;
